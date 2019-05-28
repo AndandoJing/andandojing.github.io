@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Learn Python the Hard Way-ex13 | Learning with Writing</title>
+<title>Learn Python the hard way-ex14 | Learning with Writing</title>
 <link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559047800269">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -74,11 +74,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Learn Python the Hard Way-ex13
+              Learn Python the hard way-ex14
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2019-05-27 ·
+                · 2019-05-28 ·
               </time>
               
                 <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="post-tag">
@@ -87,63 +87,73 @@
               
             </div>
             
-              <div class="post-feature-image" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex13.png')">
+              <div class="post-feature-image" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex14.png')">
               </div>
             
             <div class="post-content">
               <pre><code>from sys import argv
-script, first, second, third = argv
-print(&quot;The script is called:&quot;, script)
-print(&quot;Your first variable is:&quot;, first)
-print(&quot;Your second variable is:&quot;, second)
-print(&quot;Your third variable is:&quot;, third)
+script, user_name = argv
+prompt = '&gt; '
+print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
+print(&quot;I'd like to ask you a few questions.&quot;)
+print(&quot;Do you like me %s?&quot; % user_name)
+likes = input(prompt)
+print(&quot;Where do you live %s?&quot; % user_name)
+lives = input(prompt)
+print(&quot;What kind of computer do you have?&quot;)
+computer = input(prompt)
+print (&quot;&quot;&quot;
+Alright, so you said %r about liking me.
+You live in %r. Not sure where that is.
+And you have a %r computer. Nice.
+&quot;&quot;&quot; % (likes, lives, computer))
 </code></pre>
-<p>终端输入python ex13.py first second third
-终端的python ex13.py命令种，ex13.py部分就是所谓的“参数（argument）”
-这章说的就是写一个可以接受参数的脚本</p>
-<p>import语句：
-将python的功能引入脚本。但实际上术语应该称这些“功能”为模组（modules）
-argv，所谓的“参数变量（argument variable），是一个非常标准的编程术语。这个变量包含了你传递给python的参数
-第3行将argv“解包（unpack）”，与其将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名：script，first，second，third。解包的含义就是：把argv中的东西解包，将所有的参数一次赋予左边的变量名</p>
-<p>如果给的参数不够，会出现错误
-举例：</p>
-<pre><code>File &quot;ex/ex13.py&quot;, line 3, in &lt;module&gt;
-    script, first, second, third = argv
-ValueError: need more than 3 values to unpack
+<p>这是将用户提示符设置为变量prompt，这样就不用在每次用到input () 时重复输入提示用户的字符了。而且在修改提示符为别的字串时，只需要修改一个位置。
+加上加分习题后的修改版本（忘记另存为ex14_1.py了，只能重新复制粘贴）：</p>
+<pre><code>from sys import argv
+script, user_name = argv
+prompt = 'Your answer is&gt; '
+print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
+print(&quot;I'd like to ask you a few questions.&quot;)
+print(&quot;Do you like me %s?&quot; % user_name)
+likes = input(prompt)
+print(&quot;Where do you live %s?&quot; % user_name)
+lives = input(prompt)
+print(&quot;What kind of computer do you have?&quot;)
+computer = input(prompt)
+print(&quot;And you like your girlfriend, right?&quot;)
+girlfriend = input(prompt)
+print (&quot;&quot;&quot;
+Alright, so you said %r about liking me.
+You live in %r. Not sure where that is.
+And you have a %r computer. Nice.
+You said %r when I asked your about if you do like your girlfriend.
+Maybe you should tell her now.
+&quot;&quot;&quot; % (likes, lives, computer, girlfriend))
+print(&quot;&quot;&quot;
+But maybe I can be smarter if I use some more variables.
+For example, when I use \\t, it means:
+\tI can start here.
+And if I use \\t*, it means:
+\t*Hi everyone, I can start writing from here.
+Isn't it cool?
+&quot;&quot;&quot;)
 </code></pre>
-<p>还有一种情况是
-ValueError: too many values to unpack (expected 4)
-这是因为实际在输入python 13_1.py时，后面跟的是除了script外的几个变量。举例来说：</p>
-<pre><code>#从sys模组导入argv参数变量
-from sys import argv
-#认定name, location, age, nationality为参数变量
-script, name, location, age, nationality = argv
-print(&quot;Who are you?&quot;,)
-name = input()
-print(&quot;Where are you?&quot;,)
-location = input()
-print(&quot;How old are you?&quot;,)
-age = input()
-print(&quot;Where are you from?&quot;,)
-nationality = input()
-print(&quot;The script is called:&quot;, script)  #这一行可以去除不显示
-print(&quot;So, your name is:&quot;, name)
-print(&quot;And you are now in:&quot;, location)
-print(&quot;Now you are %r years old&quot; % age)
-print(&quot;You are from:&quot;, nationality)
-</code></pre>
-<p>上面这样结合input()和argv，在终端执行时应该写入python ex13_1.py Jing Spain 28 China
-而不是python ex13_1.py script Jing Spain 28 China</p>
-<p>无论如何，在<code>script, name, location, age, nationality = argv</code>这一行中，script这个占第一的词要在，后面可以不显示</p>
-<p>argv和input( )有什么区别？
-argv：参数是在用户执行命令时就要输入
-input( ): 脚本运行过程中需要用户输入
-命令行参数是字符串，就算在命令行输入数字，也需要用int()把它先转成数字</p>
+<p>Ex14_1.py中添加了新的参数变量girlfriend，复习了一遍之前的\=\和\t用法</p>
 
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex13">
+              <h3 class="post-title">
+                Learn Python the Hard Way-ex13
+              </h3>
+            </a>
+          </div>
         
 
         

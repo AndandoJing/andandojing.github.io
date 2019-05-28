@@ -1,22 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://andandojing.github.io</id>
-    <title>Learning with Writing</title>
-    <updated>2019-05-28T12:50:29.516Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://andandojing.github.io"/>
-    <link rel="self" href="https://andandojing.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
-    <logo>https://andandojing.github.io/images/avatar.png</logo>
-    <icon>https://andandojing.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, Learning with Writing</rights>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex15]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex15</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex15">
-        </link>
-        <updated>2019-05-28T06:47:23.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>from sys import argv
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Learn Python the hard way-ex15 | Learning with Writing</title>
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559047800269">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://andandojing.github.io">
+  <img class="avatar" src="https://andandojing.github.io/images/avatar.png?v=1559047800269" alt="">
+  </a>
+  <h1 class="site-title">
+    Learning with Writing
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Learn Python the hard way-ex15
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-05-28 ·
+              </time>
+              
+                <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="post-tag">
+                  # python
+                </a>
+              
+            </div>
+            
+              <div class="post-feature-image" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex15.png')">
+              </div>
+            
+            <div class="post-content">
+              <pre><code>from sys import argv
 script, filename = argv
 txt = open(filename)
 print(&quot;Here's your file %r:&quot; % filename)
@@ -126,119 +201,60 @@ txt_again.close()
 <p><strong>🤔思考：input和argv脚本都能够达到效果，那么哪种更好？</strong>
 兼容性上来说，如果遇到文件名有空格的时候，input更好操作。用参数需要为文件名添加引号，防止程序误认为是两个参数。
 但是程序执行速度来说，input需要人工两次录入（执行一次，文件名一次），会增加程序运行时间。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex14]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex14</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex14">
-        </link>
-        <updated>2019-05-27T22:41:35.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>from sys import argv
-script, user_name = argv
-prompt = '&gt; '
-print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
-print(&quot;I'd like to ask you a few questions.&quot;)
-print(&quot;Do you like me %s?&quot; % user_name)
-likes = input(prompt)
-print(&quot;Where do you live %s?&quot; % user_name)
-lives = input(prompt)
-print(&quot;What kind of computer do you have?&quot;)
-computer = input(prompt)
-print (&quot;&quot;&quot;
-Alright, so you said %r about liking me.
-You live in %r. Not sure where that is.
-And you have a %r computer. Nice.
-&quot;&quot;&quot; % (likes, lives, computer))
-</code></pre>
-<p>这是将用户提示符设置为变量prompt，这样就不用在每次用到input () 时重复输入提示用户的字符了。而且在修改提示符为别的字串时，只需要修改一个位置。
-加上加分习题后的修改版本（忘记另存为ex14_1.py了，只能重新复制粘贴）：</p>
-<pre><code>from sys import argv
-script, user_name = argv
-prompt = 'Your answer is&gt; '
-print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
-print(&quot;I'd like to ask you a few questions.&quot;)
-print(&quot;Do you like me %s?&quot; % user_name)
-likes = input(prompt)
-print(&quot;Where do you live %s?&quot; % user_name)
-lives = input(prompt)
-print(&quot;What kind of computer do you have?&quot;)
-computer = input(prompt)
-print(&quot;And you like your girlfriend, right?&quot;)
-girlfriend = input(prompt)
-print (&quot;&quot;&quot;
-Alright, so you said %r about liking me.
-You live in %r. Not sure where that is.
-And you have a %r computer. Nice.
-You said %r when I asked your about if you do like your girlfriend.
-Maybe you should tell her now.
-&quot;&quot;&quot; % (likes, lives, computer, girlfriend))
-print(&quot;&quot;&quot;
-But maybe I can be smarter if I use some more variables.
-For example, when I use \\t, it means:
-\tI can start here.
-And if I use \\t*, it means:
-\t*Hi everyone, I can start writing from here.
-Isn't it cool?
-&quot;&quot;&quot;)
-</code></pre>
-<p>Ex14_1.py中添加了新的参数变量girlfriend，复习了一遍之前的\=\和\t用法</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the Hard Way-ex13]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex13</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex13">
-        </link>
-        <updated>2019-05-27T21:51:21.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>from sys import argv
-script, first, second, third = argv
-print(&quot;The script is called:&quot;, script)
-print(&quot;Your first variable is:&quot;, first)
-print(&quot;Your second variable is:&quot;, second)
-print(&quot;Your third variable is:&quot;, third)
-</code></pre>
-<p>终端输入python ex13.py first second third
-终端的python ex13.py命令种，ex13.py部分就是所谓的“参数（argument）”
-这章说的就是写一个可以接受参数的脚本</p>
-<p>import语句：
-将python的功能引入脚本。但实际上术语应该称这些“功能”为模组（modules）
-argv，所谓的“参数变量（argument variable），是一个非常标准的编程术语。这个变量包含了你传递给python的参数
-第3行将argv“解包（unpack）”，与其将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名：script，first，second，third。解包的含义就是：把argv中的东西解包，将所有的参数一次赋予左边的变量名</p>
-<p>如果给的参数不够，会出现错误
-举例：</p>
-<pre><code>File &quot;ex/ex13.py&quot;, line 3, in &lt;module&gt;
-    script, first, second, third = argv
-ValueError: need more than 3 values to unpack
-</code></pre>
-<p>还有一种情况是
-ValueError: too many values to unpack (expected 4)
-这是因为实际在输入python 13_1.py时，后面跟的是除了script外的几个变量。举例来说：</p>
-<pre><code>#从sys模组导入argv参数变量
-from sys import argv
-#认定name, location, age, nationality为参数变量
-script, name, location, age, nationality = argv
-print(&quot;Who are you?&quot;,)
-name = input()
-print(&quot;Where are you?&quot;,)
-location = input()
-print(&quot;How old are you?&quot;,)
-age = input()
-print(&quot;Where are you from?&quot;,)
-nationality = input()
-print(&quot;The script is called:&quot;, script)  #这一行可以去除不显示
-print(&quot;So, your name is:&quot;, name)
-print(&quot;And you are now in:&quot;, location)
-print(&quot;Now you are %r years old&quot; % age)
-print(&quot;You are from:&quot;, nationality)
-</code></pre>
-<p>上面这样结合input()和argv，在终端执行时应该写入python ex13_1.py Jing Spain 28 China
-而不是python ex13_1.py script Jing Spain 28 China</p>
-<p>无论如何，在<code>script, name, location, age, nationality = argv</code>这一行中，script这个占第一的词要在，后面可以不显示</p>
-<p>argv和input( )有什么区别？
-argv：参数是在用户执行命令时就要输入
-input( ): 脚本运行过程中需要用户输入
-命令行参数是字符串，就算在命令行输入数字，也需要用int()把它先转成数字</p>
-]]></content>
-    </entry>
-</feed>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex14">
+              <h3 class="post-title">
+                Learn Python the hard way-ex14
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c23ccbb3f1897aadbc0e',
+    clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+    repo: 'andandojing.github.io',
+    owner: 'AndandoJing',
+    admin: ['AndandoJing'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
