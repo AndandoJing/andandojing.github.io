@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://andandojing.github.io</id>
+    <title>Learning with Writing</title>
+    <updated>2019-05-28T10:21:01.124Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://andandojing.github.io"/>
+    <link rel="self" href="https://andandojing.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://andandojing.github.io/images/avatar.png</logo>
+    <icon>https://andandojing.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the Hard Way-ex13]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex13</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex13">
+        </link>
+        <updated>2019-05-28T03:51:21.000Z</updated>
+        <content type="html"><![CDATA[<p>from sys import argv
+script, first, second, third = argv
+print(&quot;The script is called:&quot;, script)
+print(&quot;Your first variable is:&quot;, first)
+print(&quot;Your second variable is:&quot;, second)
+print(&quot;Your third variable is:&quot;, third)</p>
+<p>终端输入python ex13.py first second third
+终端的python ex13.py命令种，ex13.py部分就是所谓的“参数（argument）”
+这章说的就是写一个可以接受参数的脚本</p>
+<p>import语句：
+将python的功能引入脚本。但实际上术语应该称这些“功能”为模组（modules）
+argv，所谓的“参数变量（argument variable），是一个非常标准的编程术语。这个变量包含了你传递给python的参数
+第3行将argv“解包（unpack）”，与其将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名：script，first，second，third。解包的含义就是：把argv中的东西解包，将所有的参数一次赋予左边的变量名</p>
+<p>如果给的参数不够，会出现错误
+举例：
+File &quot;ex/ex13.py&quot;, line 3, in <module>
+script, first, second, third = argv
+ValueError: need more than 3 values to unpack</p>
+<p>还有一种情况是
+ValueError: too many values to unpack (expected 4)
+这是因为实际在输入python 13_1.py时，后面跟的是除了script外的几个变量。举例来说：
+#从sys模组导入argv参数变量
+from sys import argv
+#认定name, location, age, nationality为参数变量
+script, name, location, age, nationality = argv
+print(&quot;Who are you?&quot;,)
+name = input()
+print(&quot;Where are you?&quot;,)
+location = input()
+print(&quot;How old are you?&quot;,)
+age = input()
+print(&quot;Where are you from?&quot;,)
+nationality = input()
+print(&quot;The script is called:&quot;, script)  #这一行可以去除不显示
+print(&quot;So, your name is:&quot;, name)
+print(&quot;And you are now in:&quot;, location)
+print(&quot;Now you are %r years old&quot; % age)
+print(&quot;You are from:&quot;, nationality)</p>
+<p>上面这样结合input()和argv，在终端执行时应该写入python ex13_1.py Jing Spain 28 China
+而不是python ex13_1.py script Jing Spain 28 China</p>
+<p>无论如何，在script, name, location, age, nationality = argv 这一行中，script这个占第一的词要在，后面可以不显示</p>
+<p>argv和input( )有什么区别？
+argv：参数是在用户执行命令时就要输入
+input( ): 脚本运行过程中需要用户输入
+命令行参数是字符串，就算在命令行输入数字，也需要用int()把它先转成数字</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://andandojing.github.io/post/hello-gridea</id>
+        <link href="https://andandojing.github.io/post/hello-gridea">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>

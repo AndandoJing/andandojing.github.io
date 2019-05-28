@@ -1,0 +1,188 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Learn Python the Hard Way-ex13 | Learning with Writing</title>
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559037193655">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://andandojing.github.io">
+  <img class="avatar" src="https://andandojing.github.io/images/avatar.png?v=1559037193655" alt="">
+  </a>
+  <h1 class="site-title">
+    Learning with Writing
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Learn Python the Hard Way-ex13
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-05-28 ·
+              </time>
+              
+            </div>
+            
+            <div class="post-content">
+              <p>from sys import argv
+script, first, second, third = argv
+print(&quot;The script is called:&quot;, script)
+print(&quot;Your first variable is:&quot;, first)
+print(&quot;Your second variable is:&quot;, second)
+print(&quot;Your third variable is:&quot;, third)</p>
+<p>终端输入python ex13.py first second third
+终端的python ex13.py命令种，ex13.py部分就是所谓的“参数（argument）”
+这章说的就是写一个可以接受参数的脚本</p>
+<p>import语句：
+将python的功能引入脚本。但实际上术语应该称这些“功能”为模组（modules）
+argv，所谓的“参数变量（argument variable），是一个非常标准的编程术语。这个变量包含了你传递给python的参数
+第3行将argv“解包（unpack）”，与其将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名：script，first，second，third。解包的含义就是：把argv中的东西解包，将所有的参数一次赋予左边的变量名</p>
+<p>如果给的参数不够，会出现错误
+举例：
+File &quot;ex/ex13.py&quot;, line 3, in <module>
+script, first, second, third = argv
+ValueError: need more than 3 values to unpack</p>
+<p>还有一种情况是
+ValueError: too many values to unpack (expected 4)
+这是因为实际在输入python 13_1.py时，后面跟的是除了script外的几个变量。举例来说：
+#从sys模组导入argv参数变量
+from sys import argv
+#认定name, location, age, nationality为参数变量
+script, name, location, age, nationality = argv
+print(&quot;Who are you?&quot;,)
+name = input()
+print(&quot;Where are you?&quot;,)
+location = input()
+print(&quot;How old are you?&quot;,)
+age = input()
+print(&quot;Where are you from?&quot;,)
+nationality = input()
+print(&quot;The script is called:&quot;, script)  #这一行可以去除不显示
+print(&quot;So, your name is:&quot;, name)
+print(&quot;And you are now in:&quot;, location)
+print(&quot;Now you are %r years old&quot; % age)
+print(&quot;You are from:&quot;, nationality)</p>
+<p>上面这样结合input()和argv，在终端执行时应该写入python ex13_1.py Jing Spain 28 China
+而不是python ex13_1.py script Jing Spain 28 China</p>
+<p>无论如何，在script, name, location, age, nationality = argv 这一行中，script这个占第一的词要在，后面可以不显示</p>
+<p>argv和input( )有什么区别？
+argv：参数是在用户执行命令时就要输入
+input( ): 脚本运行过程中需要用户输入
+命令行参数是字符串，就算在命令行输入数字，也需要用int()把它先转成数字</p>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://andandojing.github.io/post/hello-gridea">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c23ccbb3f1897aadbc0e',
+    clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+    repo: 'andandojing.github.io',
+    owner: 'AndandoJing',
+    admin: ['AndandoJing'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
