@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-05-28T14:25:23.025Z</updated>
+    <updated>2019-06-01T19:28:47.641Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -10,6 +10,292 @@
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-ex17]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex17</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex17">
+        </link>
+        <updated>2019-06-01T13:17:58.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>from sys import argv
+from os.path import exists
+script, from_file, to_file = argv
+print(&quot;Copying from %s to %s&quot; % (from_file, to_file))
+#We could do these two on one line too, how?
+in_file = open(from_file)
+indata = in_file.read()
+print(&quot;The input file is %d bytes long&quot; % len(indata))
+print(&quot;Does the output file exist? %r&quot; % exists(to_file))
+print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
+input(&quot;&gt;&quot;)
+out_file = open(to_file, 'w')
+out_file.write(indata)
+print(&quot;Alright, all done.&quot;)
+out_file.close()
+in_file.close()
+</code></pre>
+<p>上面是正常ex17.py的代码内容，如果用text.txt作为要复制的文件，copied.txt作为复制文件的目标，会显示：</p>
+<pre><code>Copying from test.txt to copied.txt
+The input file is 16 bytes long
+Does the output file exist? False
+Ready, hit RETURN to continue, CTRL-C to abort.
+&gt;
+Alright, all done.
+</code></pre>
+<p>在这个ex17.py里，<strong>import了新的模组exists</strong>，<strong>这个命令将文件名字符串作为参数，如果文件存在则返回True，否则返回False</strong></p>
+<p>这里我在最后多出了一个打印命令，让把复制后的新文件打印出来：</p>
+<pre><code>from sys import argv
+from os.path import exists
+script, from_file, to_file = argv
+print(&quot;Copying from %s to %s&quot; % (from_file, to_file))
+#We could do these two on one line too, how?
+in_file = open(from_file)
+indata = in_file.read()
+print(&quot;The input file is %d bytes long&quot; % len(indata))
+print(&quot;Does the output file exist? %r&quot; % exists(to_file))
+print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
+input(&quot;&gt;&quot;)
+out_file = open(to_file, 'w')
+out_file.write(indata)
+print(&quot;Alright, all done.&quot;)
+out_file.close()
+in_file.close()
+new_file = open(to_file)
+new_txt = new_file.read()
+print(new_txt)
+</code></pre>
+<p>⚠️注<strong>意：如果按这种方式写，一定要把out_file.close()和in_file.close()写上，否则文件并没有被保存进磁盘，只是内存而已。</strong></p>
+<p>如果这里不加最后的打印步骤，可以在Linux或者OSX下面，在终端里直接输入<strong>cat</strong> copied.txt命令，会显示：</p>
+<pre><code>xiaojinyudeMBP:AtomProjects isaking$ cat copied.txt
+last new line 1.xiaojinyudeMBP:AtomProjects isaking$ 
+</code></pre>
+<p>这个命令的用处是将两个文件“连接（concatenate）到一起，不过实际上它最大的用途是打印文件内容到屏幕上。
+<strong>cat命令：</strong>
+命令格式：
+cat [选项][文件]…
+命令功能：</p>
+<ol>
+<li>一次显示整个文件：cat filename</li>
+<li>从键盘创建一个文件：cat&gt;filename 只能创建新文件，不能编辑已有文件</li>
+<li>将几个文件合并为一个文件：cat file1 file2 &gt; file</li>
+</ol>
+<p>在ex17_1.py中对原本的脚本进行修改，尝试操作其他文件，看看是否能够正常使用(尝试将ex15_sample.txt复制到ex17_1_copied.txt)：</p>
+<pre><code>from sys import argv #导入argv模组
+from os.path import exists #导入exists模组
+script, old_file, new_file = argv #赋予参数
+print(&quot;Copying from %s to %s.&quot; % (old_file, new_file))
+#We could do these two on one line too, how?
+data = open(old_file).read() #尝试用一行表达
+print(data)
+print(&quot;The old file is %d bytes long.&quot; % len(data)) #就文件多长？
+print(&quot;Does the new file exist? %r&quot; % exists(new_file)) #查看新文件是否存在
+print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
+input(&quot;Your choice is:&quot;)
+out_file = open(new_file, 'w')
+out_file.write(data) #尝试用一行表达
+print(&quot;Alright, all done.&quot;)
+out_file.close()
+open(old_file).close()
+</code></pre>
+<p>上面这样是可以正常运行的，脚本运行结束后在终端用cat ex17_1_copied.txt也可以正常显示出复制后的文本内容。</p>
+<p><strong>len() 函数的功能</strong>是：以数字形式返回传递的字符串的长度。
+例如：
+len(“abcde”)</p>
+<p><strong>read() 一旦运行，文件就会被读到结尾并且被close掉。</strong></p>
+<p>和sys一样，os也是python自带的基本库中的一员，主要提供和操作系统有关的功能。path提供了和路径操作有关的功能。</p>
+<p>这里尝试把脚本精简，保存为ex17_2.py，将text.txt复制到ex17_2_copied.txt：</p>
+<pre><code>#这是精简ex17.py的尝试1
+from sys import argv #载入sys.argv模组
+script, from_file, to_file = argv #解包argv，将脚本名赋值给变量script，将参数赋值给from_file和to_file
+#we could do these two on one line, how?
+indata = open(from_file).read()#打开需要复制的文件并读取内容
+open(to_file, 'w').write(indata)#打开需要复制到的文件并写入之前读取的就文件内容
+</code></pre>
+<p>结果：已经去除所有提示语，因此运行结束后不会打印任何东西，但终端cat ex17_2_copied.txt可以显示出已经成功复制。
+再次尝试继续精简，保存为ex17_3.py，将ex12.html复制到ex17_3_copied.html：</p>
+<pre><code>#这里是第二次精简版本，尝试精简到一行
+from sys import argv
+script, from_file, to_file = argv
+open(to_file, 'w').write(open(from_file).read())
+</code></pre>
+<p>结果：运行成功。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-ex16]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex16</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex16">
+        </link>
+        <updated>2019-06-01T04:16:41.000Z</updated>
+        <content type="html"><![CDATA[<p>close：关闭文件
+read：读取文件内容，可以把结果赋给一个变量
+readline：读取文本文件中的一行
+truncate：清空文件，需要小心使用
+write(stuff)：将stuff写入文件</p>
+<pre><code>from sys import argv #从sys导入argv模组
+script, filename = argv #将argv解包，并将脚本名赋值给变量script；将参数赋值给变量filename
+print(&quot;We're going to erase %r.&quot; % filename) #询问是否继续编辑文件filename
+print(&quot;If you don't want that, hit CRTL-C (^C).&quot;)
+print(&quot;If you do want that, hit RETURN.&quot;)
+input(&quot;?&quot;) #用户输入是否继续编辑
+print(&quot;Opening the file...&quot;) #如果用户未输入ctrl-c则继续执行
+target = open(filename, 'w') #打开文件对象，并写入覆盖内容
+print(&quot;Truncating the file. Goodbye!&quot;) #没有指定truncate()的大小，所以实际上删除了文件的内容
+target.truncate()
+print(&quot;Now I'm going to ask you for three lines.&quot;)
+line1 = input(&quot;line 1: &quot;) #获取三个input变量的内容
+line2 = input(&quot;line 2: &quot;)
+line3 = input(&quot;line 3: &quot;)
+print(&quot;I'm going to write these to the file.&quot;) #将内容写入文件（只在内存中，没有写入磁盘
+target.write(line1)
+target.write(&quot;\n&quot;)
+target.write(line2)
+target.write(&quot;\n&quot;)
+target.write(line3)
+target.write(&quot;\n&quot;)
+print(&quot;And finally, we close it.&quot;)
+target.close() #关闭文件，将文件写入硬盘
+</code></pre>
+<p>使用read和argv写一个结合ex15.py和ex16.py的脚本：</p>
+<pre><code>from sys import argv
+script, filename = argv
+print(&quot;We're going to erase %r.&quot; % filename)
+print(&quot;If you don't want that, hit CTRL-C (^C).&quot;)
+print(&quot;If you want that, hit RETURN.&quot;)
+input(&quot;&gt;&quot;)
+print(&quot;Opening the file...&quot;)
+target = open(filename, 'w')
+print(&quot;Truncating the file. Goodbye!&quot;)
+target.truncate()
+print(&quot;Now what do you want to rewrite in the new file?&quot;)
+line1 = input(&quot;line1: &quot;)
+line2 = input(&quot;line2: &quot;)
+line3 = input(&quot;line3: &quot;)
+print(&quot;&quot;&quot;
+Ok, I've got three new lines,
+now I'm going to write
+them to the file.&quot;&quot;&quot;)
+target.write(line1)
+target.write(&quot;\n&quot;)
+target.write(line2)
+target.write(&quot;\n&quot;)
+target.write(line3)
+target.write(&quot;\n&quot;)
+print(&quot;And finally, we close it.&quot;)
+target.close()
+txt = open(filename)
+print(&quot;Here is your new file %r.&quot; % filename)
+print(txt.read())
+print(&quot;Type the filename again:&quot;)
+file_again = input(&quot;&gt;&quot;)
+txt_again = open(file_again)
+print(txt_again.read())
+</code></pre>
+<p>上面这个脚本是直接嫁接了ex16.py里的清空、覆盖重写和ex15.py里的读取文件</p>
+<p>这里的ex16_2.py只是用read和argv来读取ex16_1.py中新创建的文件：</p>
+<pre><code>from sys import argv
+script, filename = argv
+file = open(filename)
+print(&quot;Aquí está tu texto %r.&quot; % filename)
+print(file.read())
+print(&quot;Vamos a ver el texto otra vez:&quot;)
+name_again = input(&quot;nombre del texto:&quot;)
+file_again = open(name_again)
+print(file_again.read())
+</code></pre>
+<p>ex16.py中重复的地方太多，这里尝试用一个target.write()将line1，line2，line3打印出来，可以使用字符串、格式化字符、转义字符：</p>
+<p>这里有个问题，如果使用：</p>
+<pre><code>from sys import argv
+script, filename = argv
+print(&quot;The Machine is going to erase %r.&quot; % filename)
+print(&quot;If you don't want that, hit CTRL-C(^C).&quot;)
+print(&quot;If you want that, please hit RETURN.&quot;)
+input(&quot;&gt; &quot;)
+print(&quot;The Machine is opening the file...&quot;)
+target = open(filename, 'w')
+print(&quot;Truncating the %r. Goodbye!&quot; % filename)
+target.truncate()
+print(&quot;What do you want to write in the new file?&quot;)
+new_text = input()
+print(&quot;Ok, I'm going to write these to the file.&quot;)
+target.write(new_text)
+print(&quot;Here is the new file.&quot;)
+
+print(&quot;Now the Machine is going to cloase the file.&quot;)
+target.close()
+print(&quot;Now here is the new file.&quot;)
+file = open(filename)
+print(file.read())
+</code></pre>
+<p>这个方法里<code>new_text = input()</code>，那么只能在终端输入一行内容，不能像之前<code>line1=input()</code>那样输入多行。在最后让把新内容读取打印出来了，比较方便看是否真的写入进去了。</p>
+<p>因此可以再改一种输入方式：</p>
+<pre><code>from sys import argv
+script, filename = argv
+print(&quot;Now we're going to erase the %r.&quot; % filename)
+print(&quot;If you don't want to erase it, hit CTRL-C (^C).&quot;)
+print(&quot;If you want to erase it, hit RETURN.&quot;)
+input(&quot;&gt;&quot;)
+print(&quot;We're opening the file...&quot;)
+target = open(filename, 'w')
+print(&quot;We're going to truncate the %r. Goodbye!&quot; % filename)
+target.truncate()
+print(&quot;Now what do you want to write to the new %r?&quot; % filename)
+line1 = input(&quot;line1: &quot;)
+line2 = input(&quot;line2: &quot;)
+line3 = input(&quot;line3: &quot;)
+print(&quot;We're going to write these three lines to the %r.&quot; % filename)
+target.write('\n'+line1+'\n'+line2+'\n'+line3+'\n')
+print(&quot;Now we're going to close the file to save.&quot;)
+target.close()
+print(&quot;Ok, now here is your new file:&quot;)
+file = open(filename)
+print(file.read())
+</code></pre>
+<p>这里需要注意，如果写成
+<code>target.write(‘\n’, line1, ‘\n’, line2, ‘\n’, line3, ‘\n')</code>
+<strong>会报错</strong>
+<code>TypeError: write( ) takes exactly one argument (7 given)</code>
+也就是说write里只能输入一个string，所以要用+连接起来。</p>
+<p><strong>用格式化字符更改的话可以是：</strong>
+<code>target.write(‘%s\n%s\n%s\n’ % (line1, line2, line3))</code>
+<strong>或者用新format()格式串：</strong>
+<code>target.write(‘()\n()\n()\n’.format(line1, line2, line3))</code></p>
+<p>🤔<strong>思考：代码里open(filename, ‘w’)这里的’w’是什么意思？</strong></p>
+<p><strong>找到一些open的打开方式：</strong>
+r
+只读
+r+
+读写，不创建
+可读可写，若文件不存在，报错。r+会对之前写入的东西进行覆盖写（见例1）
+w
+新建只写，不能读出
+w和w+这两个都会将文件内容清零
+w+
+新建写读，可读写
+可读可写，若文件不存在，创建
+a
+附加写的方式打开，不可读
+a+
+附加读写的方式打开</p>
+<p>w是写入模式：write
+r是读取模式：read
+a是追加模式：append
++是修饰符，文件将以同时读写的方式打开</p>
+<p>例1:</p>
+<pre><code>fd = open(“1.txt”, ‘w+’)
+fd.write(‘123’)
+fd = open(“1.txt”, ‘r+’)
+fd.write(‘456’)
+fd = open(“1.txt”, ‘a+’)
+fd.write(‘789’)
+</code></pre>
+<p>结果是456789</p>
+<p><strong>总结：</strong>
+不可读的打开方式：w和a
+若不存在会创建新文件的打开方式：a，a+，w，w+</p>
+<p>open本身对于文件的写入操作态度是安全第一，所以只有特别制定以后，才会进行写入操作。
+如果只写open(filename)会默认用’r’ 也就是read的模式打开，这是open()的默认工作方式</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Learn Python the hard way-ex15]]></title>
         <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex15</id>

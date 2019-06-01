@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-ex17 | Learning with Writing</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559417325687">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1559417325687" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-ex17</h2>
+            <div class="post-date">2019-06-01</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex17.png')">
+              </div>
+            
+            <div class="post-content">
+              <pre><code>from sys import argv
+from os.path import exists
+script, from_file, to_file = argv
+print(&quot;Copying from %s to %s&quot; % (from_file, to_file))
+#We could do these two on one line too, how?
+in_file = open(from_file)
+indata = in_file.read()
+print(&quot;The input file is %d bytes long&quot; % len(indata))
+print(&quot;Does the output file exist? %r&quot; % exists(to_file))
+print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
+input(&quot;&gt;&quot;)
+out_file = open(to_file, 'w')
+out_file.write(indata)
+print(&quot;Alright, all done.&quot;)
+out_file.close()
+in_file.close()
+</code></pre>
+<p>上面是正常ex17.py的代码内容，如果用text.txt作为要复制的文件，copied.txt作为复制文件的目标，会显示：</p>
+<pre><code>Copying from test.txt to copied.txt
+The input file is 16 bytes long
+Does the output file exist? False
+Ready, hit RETURN to continue, CTRL-C to abort.
+&gt;
+Alright, all done.
+</code></pre>
+<p>在这个ex17.py里，<strong>import了新的模组exists</strong>，<strong>这个命令将文件名字符串作为参数，如果文件存在则返回True，否则返回False</strong></p>
+<p>这里我在最后多出了一个打印命令，让把复制后的新文件打印出来：</p>
+<pre><code>from sys import argv
+from os.path import exists
+script, from_file, to_file = argv
+print(&quot;Copying from %s to %s&quot; % (from_file, to_file))
+#We could do these two on one line too, how?
+in_file = open(from_file)
+indata = in_file.read()
+print(&quot;The input file is %d bytes long&quot; % len(indata))
+print(&quot;Does the output file exist? %r&quot; % exists(to_file))
+print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
+input(&quot;&gt;&quot;)
+out_file = open(to_file, 'w')
+out_file.write(indata)
+print(&quot;Alright, all done.&quot;)
+out_file.close()
+in_file.close()
+new_file = open(to_file)
+new_txt = new_file.read()
+print(new_txt)
+</code></pre>
+<p>⚠️注<strong>意：如果按这种方式写，一定要把out_file.close()和in_file.close()写上，否则文件并没有被保存进磁盘，只是内存而已。</strong></p>
+<p>如果这里不加最后的打印步骤，可以在Linux或者OSX下面，在终端里直接输入<strong>cat</strong> copied.txt命令，会显示：</p>
+<pre><code>xiaojinyudeMBP:AtomProjects isaking$ cat copied.txt
+last new line 1.xiaojinyudeMBP:AtomProjects isaking$ 
+</code></pre>
+<p>这个命令的用处是将两个文件“连接（concatenate）到一起，不过实际上它最大的用途是打印文件内容到屏幕上。
+<strong>cat命令：</strong>
+命令格式：
+cat [选项][文件]…
+命令功能：</p>
+<ol>
+<li>一次显示整个文件：cat filename</li>
+<li>从键盘创建一个文件：cat&gt;filename 只能创建新文件，不能编辑已有文件</li>
+<li>将几个文件合并为一个文件：cat file1 file2 &gt; file</li>
+</ol>
+<p>在ex17_1.py中对原本的脚本进行修改，尝试操作其他文件，看看是否能够正常使用(尝试将ex15_sample.txt复制到ex17_1_copied.txt)：</p>
+<pre><code>from sys import argv #导入argv模组
+from os.path import exists #导入exists模组
+script, old_file, new_file = argv #赋予参数
+print(&quot;Copying from %s to %s.&quot; % (old_file, new_file))
+#We could do these two on one line too, how?
+data = open(old_file).read() #尝试用一行表达
+print(data)
+print(&quot;The old file is %d bytes long.&quot; % len(data)) #就文件多长？
+print(&quot;Does the new file exist? %r&quot; % exists(new_file)) #查看新文件是否存在
+print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
+input(&quot;Your choice is:&quot;)
+out_file = open(new_file, 'w')
+out_file.write(data) #尝试用一行表达
+print(&quot;Alright, all done.&quot;)
+out_file.close()
+open(old_file).close()
+</code></pre>
+<p>上面这样是可以正常运行的，脚本运行结束后在终端用cat ex17_1_copied.txt也可以正常显示出复制后的文本内容。</p>
+<p><strong>len() 函数的功能</strong>是：以数字形式返回传递的字符串的长度。
+例如：
+len(“abcde”)</p>
+<p><strong>read() 一旦运行，文件就会被读到结尾并且被close掉。</strong></p>
+<p>和sys一样，os也是python自带的基本库中的一员，主要提供和操作系统有关的功能。path提供了和路径操作有关的功能。</p>
+<p>这里尝试把脚本精简，保存为ex17_2.py，将text.txt复制到ex17_2_copied.txt：</p>
+<pre><code>#这是精简ex17.py的尝试1
+from sys import argv #载入sys.argv模组
+script, from_file, to_file = argv #解包argv，将脚本名赋值给变量script，将参数赋值给from_file和to_file
+#we could do these two on one line, how?
+indata = open(from_file).read()#打开需要复制的文件并读取内容
+open(to_file, 'w').write(indata)#打开需要复制到的文件并写入之前读取的就文件内容
+</code></pre>
+<p>结果：已经去除所有提示语，因此运行结束后不会打印任何东西，但终端cat ex17_2_copied.txt可以显示出已经成功复制。
+再次尝试继续精简，保存为ex17_3.py，将ex12.html复制到ex17_3_copied.html：</p>
+<pre><code>#这里是第二次精简版本，尝试精简到一行
+from sys import argv
+script, from_file, to_file = argv
+open(to_file, 'w').write(open(from_file).read())
+</code></pre>
+<p>结果：运行成功。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex16">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex16
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
