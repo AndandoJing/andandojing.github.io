@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Learn Python the Hard Way-ex13 | Learning with Writing</title>
+<title>Learn Python the hard way-ex18 | Learning with Writing</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,61 +98,76 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Learn Python the Hard Way-ex13</h2>
-            <div class="post-date">2019-05-27</div>
+            <h2 class="post-title">Learn Python the hard way-ex18</h2>
+            <div class="post-date">2019-06-01</div>
             
-              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex13.png')">
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex18.png')">
               </div>
             
             <div class="post-content">
-              <pre><code>from sys import argv
-script, first, second, third = argv
-print(&quot;The script is called:&quot;, script)
-print(&quot;Your first variable is:&quot;, first)
-print(&quot;Your second variable is:&quot;, second)
-print(&quot;Your third variable is:&quot;, third)
+              <p><strong>函数的三个作用：</strong></p>
+<ol>
+<li>给代码片段命名，就和“变量”给字符串和数字命名一样；</li>
+<li>可以接受参数，就像脚本接受argv一样；</li>
+<li>通过使用#1和#2，可以创建“微型脚本”或者“小命令”</li>
+</ol>
+<p>这个是ex18.py的代码部分：</p>
+<pre><code>#this one is like your scripts with argv
+def print_two (*args):
+    arg1, arg2 = args
+    print(&quot;arg1: %r, arg2: %r&quot; % (arg1, arg2))
+#ok, that *args is actually pointless, we can just do this
+def print_two_again(arg1,arg2):
+    print(&quot;arg1: %r, arg2: %r&quot; % (arg1, arg2))
+#this just takes one argument
+def print_one(arg1):
+    print(&quot;arg1: %r&quot; % arg1)
+#this one takes no arguments
+def print_none():
+    print(&quot;I got nothin.&quot;)
+
+print_two(&quot;Zed&quot;,&quot;Shaw&quot;)
+print_two_again(&quot;Zed&quot;,&quot;Shaw&quot;)
+print_one(&quot;First!&quot;)
+print_none()
 </code></pre>
-<p>终端输入python ex13.py first second third
-终端的python ex13.py命令种，ex13.py部分就是所谓的“参数（argument）”
-这章说的就是写一个可以接受参数的脚本</p>
-<p>import语句：
-将python的功能引入脚本。但实际上术语应该称这些“功能”为模组（modules）
-argv，所谓的“参数变量（argument variable），是一个非常标准的编程术语。这个变量包含了你传递给python的参数
-第3行将argv“解包（unpack）”，与其将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名：script，first，second，third。解包的含义就是：把argv中的东西解包，将所有的参数一次赋予左边的变量名</p>
-<p>如果给的参数不够，会出现错误
-举例：</p>
-<pre><code>File &quot;ex/ex13.py&quot;, line 3, in &lt;module&gt;
-    script, first, second, third = argv
-ValueError: need more than 3 values to unpack
-</code></pre>
-<p>还有一种情况是
-ValueError: too many values to unpack (expected 4)
-这是因为实际在输入python 13_1.py时，后面跟的是除了script外的几个变量。举例来说：</p>
-<pre><code>#从sys模组导入argv参数变量
-from sys import argv
-#认定name, location, age, nationality为参数变量
-script, name, location, age, nationality = argv
-print(&quot;Who are you?&quot;,)
-name = input()
-print(&quot;Where are you?&quot;,)
-location = input()
-print(&quot;How old are you?&quot;,)
-age = input()
-print(&quot;Where are you from?&quot;,)
-nationality = input()
-print(&quot;The script is called:&quot;, script)  #这一行可以去除不显示
-print(&quot;So, your name is:&quot;, name)
-print(&quot;And you are now in:&quot;, location)
-print(&quot;Now you are %r years old&quot; % age)
-print(&quot;You are from:&quot;, nationality)
-</code></pre>
-<p>上面这样结合input()和argv，在终端执行时应该写入python ex13_1.py Jing Spain 28 China
-而不是python ex13_1.py script Jing Spain 28 China</p>
-<p>无论如何，在<code>script, name, location, age, nationality = argv</code>这一行中，script这个占第一的词要在，后面可以不显示</p>
-<p>argv和input( )有什么区别？
-argv：参数是在用户执行命令时就要输入
-input( ): 脚本运行过程中需要用户输入
-命令行参数是字符串，就算在命令行输入数字，也需要用int()把它先转成数字</p>
+<p>这里拆解ex18.py中第一个print_two的每一部分：</p>
+<ol>
+<li>首先是用def命令创建一个函数，def是定义（define）的意思。</li>
+<li>def是函数的名称，在这里它的名称是”print_two”，名称可以随便更改，但最好能够体现函数的功能。</li>
+<li>告诉函数需要*args（asterisk args），折合脚本的argv很像，参数必须在()中才能正常工作。</li>
+<li>用冒号结束本行，开始下一行缩进。</li>
+<li>冒号以下，使用4个空格缩进的行都是属于print_two这个函数的内容。其中第一行的作用是将参数解包。这也和argv差不多</li>
+<li>把解包后的参数都打印出来。</li>
+</ol>
+<p>这里的print_two并不是最精简的创建函数的办法，python中可以跳过解包过程，直接使用()里面的名称作为变量名。也就是print_two_again表现出来的。</p>
+<p>print_one展示函数如何接受单个参数。
+print_none展示函数可以不接受任何参数。</p>
+<p><strong><em>args的</em>的意思：</strong>
+告诉python让它把函数的所有参数都接受进来，然后放到名字叫args的列表中，和argv差不多，但这个args用在函数上。没特殊情况一般不会用到这个东西。</p>
+<p><strong>函数注意事项：</strong></p>
+<ol>
+<li>函数定义以def开始</li>
+<li>函数名称用字符和下划线_组成，不可以用数字开始</li>
+<li>函数名称后紧跟()</li>
+<li>()中包含参数，多个参数时用逗号,隔开</li>
+<li>参数名称不可重复（不能使用重复的参数名）</li>
+<li>(参数)之后跟着冒号:</li>
+<li>下一行需要缩进，4个空格的缩进（indent），但凡是后面这样缩进的都在这个函数里</li>
+<li>函数结束的位置要取消缩进（dedent）
+<strong>例子：</strong>
+def first(variable1, variable2):</li>
+</ol>
+<p><strong>运行函数时（use或者call）要检查：</strong></p>
+<ol>
+<li>调运函数时是否使用了函数的名称？</li>
+<li>函数名称是否紧跟着()？</li>
+<li>()内有无参数？多个参数是否以逗号隔开？</li>
+<li>函数是否以)结尾？
+也就是是否符合上面的书写规范。</li>
+</ol>
+<p><strong>运行函数（run）=调用函数（call）=使用函数（use）</strong>
+说法不同而已</p>
 
             </div>
             
@@ -164,6 +179,15 @@ input( ): 脚本运行过程中需要用户输入
                 
               </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex17">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex17
+                  </h3>
+                </a>
+              </div>
             
 
             

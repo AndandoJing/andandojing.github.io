@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-ex19 | Learning with Writing</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559685643640">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1559685643640" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-ex19</h2>
+            <div class="post-date">2019-06-02</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex19.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>函数里的变量和脚本里的变量之间没有连接。</p>
+<p>这里是ex19.py的内容：</p>
+<pre><code>#定义函数cheese_and_crackers，设定两个变量cheese_count和boxes_of_crackers
+def cheese_and_crackers(cheese_count, boxes_of_crackers):
+    print(&quot;You have %d cheeses!&quot; % cheese_count)
+    print(&quot;You have %d boxes of crackers!&quot; % boxes_of_crackers)
+    print(&quot;Man that's enough for a party!&quot;)
+    print(&quot;Get a blanket.\n&quot;)
+#设定这个函数要执行的操作一共是四个打印步骤
+#第一种赋予函数变量的值的方式，直接赋予变量相应的值，两个变量对应20和30的值
+print(&quot;We can just give the function numbers directly:&quot;)
+cheese_and_crackers(20, 30)
+#第二种赋予函数变量的值的方式，用脚本定义两个变量的值
+print(&quot;OR, we can use variables from our script:&quot;)
+amount_of_cheese = 10
+amount_of_crackers = 50
+#再把脚本定义的变量架到函数变量上。
+cheese_and_crackers(amount_of_cheese, amount_of_crackers)
+#注意，这种办法需要先定义脚本变量，不然没出现过，后面不能识别
+#第三种赋予函数变量的值的方式，可以用运算的方式在函数内赋予。
+print(&quot;We can even do math inside too:&quot;)
+cheese_and_crackers(10 + 20, 5 + 6)
+#第四种赋予函数变量的值的方式，可以结合脚本变量和运算，在函数内赋予。
+print(&quot;And we can cobine the two, variables and math:&quot;)
+cheese_and_crackers(amount_of_cheese + 100,
+amount_of_crackers + 1000)
+</code></pre>
+<p>可以看出我们在给函数cheese_and_crackers很多参数，然后在函数里把他们打印出来。函数中可以用变量名，可以在函数中运算，也可以将变量和运算结合。
+函数的参数和我们生成变量时用的 = 赋值符类似。如果一个物件可以用 = 将其命名，一般也可以将其作为参数传递给一个函数。
+<strong>如果要处理用户输入的数字，例如想让用户输入cheese和crackers的数量时，除了input()还要记得用int()把输入的值转为整数。</strong></p>
+<p>第二种赋予函数变量的值的方式里，借用了脚本里创建变量的方式。这种方式里，脚本变量是在函数变量之外的，不会改变函数中的变量，它们被传递到函数中之后，函数会为之创建临时版本。函数运行结束后，这些临时变量就会被丢弃了。
+因此，<strong>在设定这种全局变量的名称时，最好不要用同样的变量名称，会弄混。</strong></p>
+<p>函数的参数个数虽然有限（取决于python版本和操作系统），但限值很大，实际应用中，<strong>5个参数就不少了</strong>。</p>
+<p>可以在函数中调用函数。</p>
+<p>这里尝试自建新函数，并且用十种方式运行：</p>
+<pre><code>#尝试自己编至少一个函数出来，并用10中方法运行这个函数
+def grado_de_amor(amor_mio, amor_tuyo, distancia):
+    print(&quot;If my love is %d degree.&quot; % amor_mio)
+    print(&quot;And your love is %d degree.&quot; % amor_tuyo)
+    print(&quot;When we are %d km apart.&quot; % distancia)
+    print(&quot;Our love degree can be calculated.&quot;)
+    data = (amor_mio + amor_tuyo)/distancia
+    print(&quot;It's %d degree.&quot; % data)
+#第一种赋值方法，直接赋值
+print(&quot;Primera manera:&quot;)
+grado_de_amor(49, 51, 1)
+#第二种赋值方法，脚本参数变量
+print(&quot;Segunda manera:&quot;)
+degree_of_my_love = 40
+degree_of_your_love = 50
+distance = 2
+grado_de_amor(degree_of_my_love, degree_of_your_love, distance)
+#第三种赋值方法，做运算
+print(&quot;Tercera manera:&quot;)
+grado_de_amor(40 + 10, 50 + 10, 3 + 3)
+#第四种赋值方法，脚本参数变量和运算合在一起
+print(&quot;Cuarta manera:&quot;)
+grado_de_amor(degree_of_my_love + 60, degree_of_your_love + 50, distance + 10)
+#第五种赋值方法，颠倒第四种的顺序
+print(&quot;Quinta manera:&quot;)
+grado_de_amor(70 + degree_of_my_love, 1 +
+degree_of_your_love, 3.3 + distance)
+#第六种赋值方式，脚本参数变量，直接赋值，参数+运算
+print(&quot;Sexta manera:&quot;)
+grado_de_amor(degree_of_my_love, 80, distance + 6)
+#第七种赋值方式，用户输入数值，整数
+print(&quot;Séptima manera:&quot;)
+degree_1 = int(input(&quot;my love:&quot;))
+degree_2 = int(input(&quot;your love:&quot;))
+degree_3 = int(input(&quot;distance:&quot;))
+grado_de_amor(degree_1, degree_2, degree_3)
+#第八种赋值方式，用户输入数值上做运算、参数混合，浮点数
+print(&quot;Octava manera:&quot;)
+degree_1_8 = float(input(&quot;my love_8:&quot;))
+degree_2_8 = float(input(&quot;your love_8:&quot;))
+degree_3_8 = float(input(&quot;distance_8:&quot;))
+grado_de_amor(degree_1_8, degree_2_8 + 10, degree_3_8 + degree_1_8)
+#第九种赋值方式，基础值上增加用户输入值
+print(&quot;Novena manera:&quot;)
+degree_1_9 = int(input(&quot;my love_9:&quot;))
+degree_2_9 = int(input(&quot;your love_9:&quot;))
+degree_3_9 = int(input(&quot;distance_9:&quot;))
+grado_de_amor(degree_1_9 + int(input(&quot;plus degree:&quot;)),
+degree_2_9 - int(input(&quot;minus degree:&quot;)),
+degree_3_9 + int(input(&quot;puls distance:&quot;)))
+#第十种复制方式，直接在函数参数写法上写成输入格式，不再使用临时的命名
+print(&quot;Décima manera:&quot;)
+grado_de_amor(float(input(&quot;最后一次我的:&quot;)),
+float(input(&quot;最后一次你的:&quot;)),
+float(input(&quot;最后一次距离：&quot;)))
+</code></pre>
+<p>⚠️注意：因为这个函数里有除法，所以最后一个函数的参数不可以时0，同时因为之前都是用int()做，所以所有的数都是整数形式。最后一个改成了浮点数float形式。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex18">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex18
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

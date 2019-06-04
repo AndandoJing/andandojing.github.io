@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-ex20 | Learning with Writing</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559685643640">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1559685643640" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-ex20</h2>
+            <div class="post-date">2019-06-04</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex20.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>ex20.py的原本代码是：</p>
+<pre><code>from sys import argv
+script, input_file = argv
+def print_all(f):
+    print(f.read())
+def rewind(f):
+    f.seek(0)
+def print_a_line(line_count, f):
+    print(line_count, f.readline())
+current_file = open(input_file)
+print(&quot;First let's print the whole file:\n&quot;)
+print_all(current_file)
+print(&quot;Now let's rewind, kind of like a tape.&quot;)
+rewind(current_file)
+print(&quot;Let's print three lines:&quot;)
+current_line = 1
+print_a_line(current_line, current_file)
+test.txt
+current_line = current_line + 1
+print_a_line(current_line, current_file)
+current_line = current_line + 1
+print_a_line(current_line, current_file)
+</code></pre>
+<p>但是因为我本地的test.txt之前被改写了，所以先用ex16.py中的读写规则改写现有test.txt成原本的样子:</p>
+<pre><code>from sys import argv #导入argv模组
+script, input_file = argv #设定参数
+print(&quot;Opening the file...&quot;)
+target = open(input_file, 'w') #打开文件
+print(&quot;Truncate the file...&quot;) #清空文件内容
+target.truncate()
+print(&quot;Rewrite the file...&quot;) #提示用户重新输入文件内容
+line1 = input(&quot;line1:&quot;)
+line2 = input(&quot;line2:&quot;)
+line3 = input(&quot;line3:&quot;)
+target.write(line1+'\n'+line2+'\n'+line3) #确认重写内容
+target.close() #关闭文件，将内容写入硬盘
+def print_all(f):   #定义打印文件函数
+    print(f.read())
+def rewind(f): #设置开始的偏移量，即从偏移位置开始运行
+    f.seek(0)
+def print_a_line(line_count, f): #打印行数和该行内容
+    print(line_count, f.readline())
+current_file = open(input_file) #打开文件，将内容临时赋值给current_file
+print(&quot;First let's print the whole file:\n&quot;)
+print_all(current_file)
+print(&quot;Now let's rewind, kind of like a tape.&quot;)
+rewind(current_file)
+print(&quot;Let's print three lines:&quot;)
+current_line = 1
+print_a_line(current_line, current_file)
+current_line = current_line + 1
+print_a_line(current_line, current_file)
+current_line = current_line + 1
+print_a_line(current_line, current_file)
+</code></pre>
+<p>终端显示会是：</p>
+<pre><code>xiaojinyudeMBP:AtomProjects isaking$ python ex20.py test.txt
+Opening the file...
+Truncate the file...
+Rewrite the file...
+line1:To all the people out there.
+line2:I say I don't like my hair.
+line3:I need to shave it off.
+First let's print the whole file:
+To all the people out there.
+I say I don't like my hair.
+I need to shave it off.
+Now let's rewind, kind of like a tape.
+Let's print three lines:
+1 To all the people out there.
+2 I say I don't like my hair.
+3 I need to shave it off.
+xiaojinyudeMBP:AtomProjects isaking$ 
+</code></pre>
+<p><strong>file中的seek()是做什么的？</strong>
+seek()用于移动文件读取指针到指定位置
+<strong>seek()的语法：</strong>
+fileObject.seek(offset[,whence])
+offset：开始的偏移量，也就是代表需要移动偏移的字节数
+whence：可选，默认值为0。给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。
+<strong>返回值：</strong>
+该函数没有返回值。
+<strong>seek()函数</strong>
+处理对象是字节而不是行，所以seek(0)只会转到文件的0 byte，也就是第一个byte，不会把current_line设为0。current_line只是一个独立变量，和文件本身没有关系，只能手动为其增值。</p>
+<p><strong>+=这个简写操作符的作用：</strong>
+a += b 是 a = a + b 的简写，也就是将a + b重新赋值给a，一般用于计数。比如这个代码中的current_line = current_line + 1可以写成current_line += 1</p>
+<p><strong>print_all (f)这里的f是什么？</strong>
+f是变量，在这里指一个文件。python里的文件读取和DVD或磁带类似，有一个用来读取数据的“磁头”。
+运行f.seek()可以回到文件的开始，f.readline()会读取文件的一行，然后将“磁头”移动到\n后面。
+readline()函数返回的内容中本来就包括\n（一个空行），print()在打印时也会添加一个\n，这样就会出现两个空行。如果要减掉空行，可以在print()语句结尾加一个逗号，这样print就不会把它自己的\n打印出来了。</p>
+<p><strong>readline()</strong>
+里面的代码会扫描文件的每一个字节，直到找到一个\n为止，然后停止读取文件，并且返回此前的文件内容。文件f会记录每次调用readline()后的读取位置，所以下次调用时可以直接读取接下来的一行。</p>
+<p>📖<strong>重新写一遍复习：</strong></p>
+<pre><code>#尝试写一个自己的类似脚本
+from sys import argv
+script, filename = argv
+print(&quot;新建文本txt为ex20_1.txt：&quot;)
+target = open(filename, 'w')
+print(&quot;写入新文本内容：&quot;)
+line1 = input(&quot;第一行：&quot;)
+line2 = input(&quot;第二行：&quot;)
+line3 = input(&quot;第三行：&quot;)
+target.write(line1+'\n'+line2+'\n'+line3+'\n')
+target.close()
+def print_all(f):
+    print(f.read())
+def rewind(f):
+    f.seek(0)
+def print_every_line(line_count, f):
+    print(line_count, f.readline())
+current_file = open(filename)
+print(&quot;目前文本全文为：&quot;)
+print_all(current_file)
+print(&quot;调回文本开头。&quot;)
+rewind(current_file)
+print(&quot;按照行数依次打印：&quot;)
+current_line = 1
+print_every_line(current_line, current_file)
+current_line += 1
+print_every_line(current_line, current_file)
+current_line += 1
+print_every_line(current_line, current_file)
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex19">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex19
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

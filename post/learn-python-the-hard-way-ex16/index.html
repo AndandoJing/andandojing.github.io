@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559417325687">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1559685643640">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1559417325687" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1559685643640" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -240,21 +240,12 @@ print(file.read())
 <code>target.write(‘()\n()\n()\n’.format(line1, line2, line3))</code></p>
 <p>🤔<strong>思考：代码里open(filename, ‘w’)这里的’w’是什么意思？</strong></p>
 <p><strong>找到一些open的打开方式：</strong>
-r
-只读
-r+
-读写，不创建
-可读可写，若文件不存在，报错。r+会对之前写入的东西进行覆盖写（见例1）
-w
-新建只写，不能读出
-w和w+这两个都会将文件内容清零
-w+
-新建写读，可读写
-可读可写，若文件不存在，创建
-a
-附加写的方式打开，不可读
-a+
-附加读写的方式打开</p>
+r:只读;
+r+:读写，不创建.可读可写，若文件不存在，报错。r+会对之前写入的东西进行覆盖写（见例1）;
+w:新建只写，不能读出;w和w+这两个都会将文件内容清零;
+w+:新建写读，可读写.可读可写，若文件不存在，创建;
+a:附加写的方式打开，不可读;
+a+:附加读写的方式打开</p>
 <p>w是写入模式：write
 r是读取模式：read
 a是追加模式：append
