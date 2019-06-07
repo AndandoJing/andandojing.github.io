@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Learn Python the hard way-ex14 | Learning with Writing</title>
+<title>Learn Python the hard way-ex21 | Learning with Writing</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,62 +98,66 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Learn Python the hard way-ex14</h2>
-            <div class="post-date">2019-05-28</div>
+            <h2 class="post-title">Learn Python the hard way-ex21</h2>
+            <div class="post-date">2019-06-07</div>
             
-              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex14.png')">
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex21.png')">
               </div>
             
             <div class="post-content">
-              <pre><code>from sys import argv
-script, user_name = argv
-prompt = '&gt; '
-print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
-print(&quot;I'd like to ask you a few questions.&quot;)
-print(&quot;Do you like me %s?&quot; % user_name)
-likes = input(prompt)
-print(&quot;Where do you live %s?&quot; % user_name)
-lives = input(prompt)
-print(&quot;What kind of computer do you have?&quot;)
-computer = input(prompt)
-print (&quot;&quot;&quot;
-Alright, so you said %r about liking me.
-You live in %r. Not sure where that is.
-And you have a %r computer. Nice.
-&quot;&quot;&quot; % (likes, lives, computer))
+              <p>使用 = 和return将变量设置为“一个函数的值”。</p>
+<pre><code>ex21.py的代码：
+def add(a, b):
+    print(&quot;ADDING %d + %d&quot; % (a, b))
+    return a + b
+def subtract(a, b):
+    print(&quot;SUBTRACTING %d - %d&quot; % (a, b))
+    return a - b
+def multiply(a, b):
+    print(&quot;MULTIPLYING %d * %d&quot; % (a, b))
+    return a * b
+def divide(a, b):
+    print(&quot;DIVIDING %d / %d&quot; % (a, b))
+    return a / b
+print(&quot;Let's do some math with just functions!&quot;)
+age = add(30, 5)
+height = subtract(78, 4)
+weight = multiply(90, 2)
+iq = divide(100, 2)
+print(&quot;Age: %d, Height: %d, Weight: %d, IQ: %d&quot; % (age, height, weight, iq))
+#A puzzle for the extra credit, type it in anyway.
+print(&quot;Here is a puzzle.&quot;)
+what = add(age, subtract(height, multiply(weight, divide(iq, 2))))
+print(&quot;That becomes: &quot;, what, &quot;Can you do it by hand?&quot;)
 </code></pre>
-<p>这是将用户提示符设置为变量prompt，这样就不用在每次用到input () 时重复输入提示用户的字符了。而且在修改提示符为别的字串时，只需要修改一个位置。
-加上加分习题后的修改版本（忘记另存为ex14_1.py了，只能重新复制粘贴）：</p>
-<pre><code>from sys import argv
-script, user_name = argv
-prompt = 'Your answer is&gt; '
-print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
-print(&quot;I'd like to ask you a few questions.&quot;)
-print(&quot;Do you like me %s?&quot; % user_name)
-likes = input(prompt)
-print(&quot;Where do you live %s?&quot; % user_name)
-lives = input(prompt)
-print(&quot;What kind of computer do you have?&quot;)
-computer = input(prompt)
-print(&quot;And you like your girlfriend, right?&quot;)
-girlfriend = input(prompt)
-print (&quot;&quot;&quot;
-Alright, so you said %r about liking me.
-You live in %r. Not sure where that is.
-And you have a %r computer. Nice.
-You said %r when I asked your about if you do like your girlfriend.
-Maybe you should tell her now.
-&quot;&quot;&quot; % (likes, lives, computer, girlfriend))
-print(&quot;&quot;&quot;
-But maybe I can be smarter if I use some more variables.
-For example, when I use \\t, it means:
-\tI can start here.
-And if I use \\t*, it means:
-\t*Hi everyone, I can start writing from here.
-Isn't it cool?
-&quot;&quot;&quot;)
+<p><strong>创建函数add, subtract, multiply, divide，函数的最后一行是return a + b（举例），实现的功能是：</strong></p>
+<ol>
+<li>调用函数时使用参数a和b</li>
+<li>打印函数的功能</li>
+<li>告诉python让它做回传的动作：将a + b的值返回（return）</li>
+<li>python将两个数字相加，当函数结束时，将a + b的结果赋予一个变量
+用input()输入自定义值的话,in(input())是输入整数值，float(input())可以输入浮点数。</li>
+</ol>
+<p>自建函数尝试运算24 + 34 / 100 -1023:</p>
+<pre><code>#尝试自己写一个新函数，并使用ex21.py中学到的return等
+def add(a, b):  #设定add函数
+    print(&quot;Adding %d + %d&quot; % (a, b))
+    return a + b
+def subtract(a, b): #设定subtract函数
+    print(&quot;Subtract %d - %d&quot; % (a, b))
+    return a - b
+def divide(a, b): #设定divide函数
+    print(&quot;Divide %d / %d&quot; % (a, b))
+    return a / b
+number1 = float(input(&quot;number1:&quot;))  #用户输入四个数字
+number2 = float(input(&quot;number2:&quot;))
+number3 = float(input(&quot;number3:&quot;))
+number4 = float(input(&quot;number4:&quot;))
+#打印四个数字
+print(&quot;Here are the numbers:number1: %d, number2: %d, number3: %d, number4: %d&quot; % (number1, number2, number3, number4))
+result = subtract(add(number1, divide(number2, number3)), number4)
+print(&quot;Here is the result: %d&quot; % result)
 </code></pre>
-<p>Ex14_1.py中添加了新的参数变量girlfriend，复习了一遍之前的\=\和\t用法</p>
 
             </div>
             
@@ -168,9 +172,9 @@ Isn't it cool?
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex13">
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex20">
                   <h3 class="post-title">
-                    Learn Python the Hard Way-ex13
+                    Learn Python the hard way-ex20
                   </h3>
                 </a>
               </div>
