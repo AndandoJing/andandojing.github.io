@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Lean Python the hard way-ex22 中期总结 | Learning with Writing</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1560380317977">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1560380317977" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Lean Python the hard way-ex22 中期总结</h2>
+            <div class="post-date">2019-06-11</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/lean-python-the-hard-way-ex22-zhong-qi-zong-jie.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>复习所有词和符号，制作表格，标注其作用</p>
+<p><strong>终端命令：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">python</td>
+<td style="text-align:left">调入python</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">^D</td>
+<td style="text-align:left">退出（python比如）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">cd目录名</td>
+<td style="text-align:left">进入该目录</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">进入目录后ls</td>
+<td style="text-align:left">显示目录内文件名</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">pydoc</td>
+<td style="text-align:left">生成字符串文档（docstring）。文档可以基于文本呈现，也可以生成web页面，还可以在服务器上以浏览器方式呈现</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">pydoc<name></td>
+<td style="text-align:left">直接查看某个py文件的内容</td>
+<td style="text-align:left">目录下输入pydoc ex3 </br> =&gt; </br> 显示ex3.py的内容、NAME: ex3（文件名）、FILE: /Users/isaking/AtomProjects/ex3.py（文件地址）</td>
+</tr>
+<tr>
+<td style="text-align:center">pydoc&lt;命令名&gt;</td>
+<td style="text-align:left">显示命令的说明</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">q</td>
+<td style="text-align:left">退出（pydoc&lt;命令名&gt;比如）</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<pre><code>|pydoc -k|查找模块|目录下输入pydoc -k ex7&lt;/br&gt; =&gt;&lt;/br&gt; 显示ex7的模块信息（这里会显示ex7，如果有作者信息等也会显示） ||
+|pydoc -p&lt;port&gt;|启动本地服务，在web上查看文档；&lt;/br&gt; Port指定启动的服务的端口号，要在自建的目录下使用这个命令，才能看到这个目录下的内容|目录下输入pydoc -p 1234 &lt;/br&gt; 其中1234是端口号&lt;/br&gt; -p指定启动的服务的端口号，可以随意指定不冲突的端口号||
+|pydoc -w&lt;name&gt;|生成html文件; &lt;/br&gt; 如果要将整个目录生成这种格式，不建议用这种方式，因为如果它展示目录下的子文件的说明时，会去子目录下找对应.html文件，如果文件不存在，就回返回404|目录下输入pydoc -w ex12&lt;/br&gt; =&gt;&lt;/br&gt; 目录下自动生成ex12.html文件||
+</code></pre>
+<p>|pydoc open|open (file, mode = ‘r’, buffering = -1, encoding = None, errors = None, newline = None, closed = True, opener = None)||
+|pydoc file|包括许多命令; Python3 中已经没有这个命令了，可以使用help()来获取|命令举例：</br> readline 逐行读取;</br> seek; </br> tell; </br> write 读写文件;</br> truncate  清空文件|
+|pydoc sys|可供访问由解释器使用或维护的变量，和与解释器进行交互的函数|sys模块负责程序语python解释器的交互，提供了一系列的函数和变量，用于操控python的运行时环境|
+|pydoc os|提供一种方便的使用操作系统函数的方法|os模块负责程序与操作系统的交互，提供访问操作系统底层的接口|
+|cat 文件名|表现：打印文件内容到屏幕上 </br> 作用：将两个文件连接（concatenate）到一起 </br> 命令格式：</br> cat [选项][文件]… </br> 命令功能：</br> 1. 一次显示整个文件：cat filename ; </br> 2. 从键盘创建一个文件：cat&gt;filename只能创建新文件，不能编辑已有文件; </br> 3. 将几个文件合并为一个文件：cat file1 file2 &gt; file|cat copied.txt </br> =&gt; </br> last new line 1|</p>
+<p><strong>pydoc os和pydos sys命令：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">os命令</th>
+<th style="text-align:left">作用</th>
+<th style="text-align:center">sys命令</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">os.remove()</td>
+<td style="text-align:left">删除文件</td>
+<td style="text-align:center">sys.argv</td>
+<td style="text-align:left">命令行参数list，第一个元素是程序本身路径</td>
+</tr>
+<tr>
+<td style="text-align:center">os.rename()</td>
+<td style="text-align:left">重命名文件</td>
+<td style="text-align:center">sys.modules.keys()</td>
+<td style="text-align:left">返回所有已经导入的模块列表</td>
+</tr>
+<tr>
+<td style="text-align:center">os.walk()</td>
+<td style="text-align:left">生成目录树下的所有文件名</td>
+<td style="text-align:center">sys.exc_info()</td>
+<td style="text-align:left">获取当前正在处理的异常类，exc_type、#### exc_value、exc_traceback当前处理的异常详细信息</td>
+</tr>
+<tr>
+<td style="text-align:center">os.chdir()</td>
+<td style="text-align:left">改变目录</td>
+<td style="text-align:center">sys.exit(n)</td>
+<td style="text-align:left">退出程序，正常退出时exit(0)</td>
+</tr>
+<tr>
+<td style="text-align:center">os.mkdir/makedirs</td>
+<td style="text-align:left">创建目录/多层目录</td>
+<td style="text-align:center">sys.hexversion</td>
+<td style="text-align:left">获取python解释程序的版本值，16进制格式如：0x020403F0</td>
+</tr>
+<tr>
+<td style="text-align:center">os.rmdir/removedirs</td>
+<td style="text-align:left">删除目录/多层目录</td>
+<td style="text-align:center">sys.version</td>
+<td style="text-align:left">获取python</td>
+</tr>
+<tr>
+<td style="text-align:center">os.listdir()</td>
+<td style="text-align:left">列出指定目录的文件</td>
+<td style="text-align:center">sys.maxint</td>
+<td style="text-align:left">最大的int值</td>
+</tr>
+<tr>
+<td style="text-align:center">os.getcwd()</td>
+<td style="text-align:left">取得当前工作目录</td>
+<td style="text-align:center">sys.maxunicode</td>
+<td style="text-align:left">最大的Unicode值</td>
+</tr>
+<tr>
+<td style="text-align:center">os.chmod()</td>
+<td style="text-align:left">改变目录权限</td>
+<td style="text-align:center">sys.modules</td>
+<td style="text-align:left">返回系统导入的模块字段，key是模块名，value是模块</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.basename()</td>
+<td style="text-align:left">去掉目录路径，返回文件名</td>
+<td style="text-align:center">sys.path</td>
+<td style="text-align:left">返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.join()</td>
+<td style="text-align:left">将分离的各部分组合成一个路径名</td>
+<td style="text-align:center">sys.platform</td>
+<td style="text-align:left">返回操作系统平台名称</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.split()</td>
+<td style="text-align:left">返回(dirname(), basename())元组</td>
+<td style="text-align:center">sys.stdout</td>
+<td style="text-align:left">标准输出</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.splitext()</td>
+<td style="text-align:left">返回(filename, extension)元组</td>
+<td style="text-align:center">sys.stdin</td>
+<td style="text-align:left">标准输入</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.getatime\ctime\mtime</td>
+<td style="text-align:left">分别返回最近访问、创建、修改时间</td>
+<td style="text-align:center">sys.stderr</td>
+<td style="text-align:left">错误输出</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.getsize()</td>
+<td style="text-align:left">返回文件大小</td>
+<td style="text-align:center">sys.exc_clear()</td>
+<td style="text-align:left">用来清除当前线程所出现的当前的或最近的错误信息</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.exists()</td>
+<td style="text-align:left">是否存在</td>
+<td style="text-align:center">sys.exec_prefix</td>
+<td style="text-align:left">返回平台独立的python文件安装的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.isabs()</td>
+<td style="text-align:left">是否为绝对路径</td>
+<td style="text-align:center">sys.byteorder</td>
+<td style="text-align:left">本地字节规则的指示器，big-endian平台的值时’big’,little-endian平台的值是’little'</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.isdir()</td>
+<td style="text-align:left">是否为目录</td>
+<td style="text-align:center">sys.copyright</td>
+<td style="text-align:left">记录python版权相关的东西</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.isfile()</td>
+<td style="text-align:left">是否为文件</td>
+<td style="text-align:center">sys.api_version</td>
+<td style="text-align:left">解释器的C的API版本</td>
+</tr>
+</tbody>
+</table>
+<p><strong>python内：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">#-- coding: utf-8 --</td>
+<td style="text-align:left">如果出现ASCII编码错误，在python脚本最上面加上这行，可以转换成unicode UTIF-8编码</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td style="text-align:left">ASCII Linefeed（LF）换行符</td>
+<td style="text-align:left">print(‘jhhhh’+’\n’)</td>
+</tr>
+<tr>
+<td style="text-align:center">#放在起始位置</td>
+<td style="text-align:left">注释代码不显示，也可用作暂时性禁用一段代码。需要多段注释时，每段前都要加#</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">#在”&quot;中间</td>
+<td style="text-align:left">被认作是string的一部分，不会被省略</td>
+<td style="text-align:left">print(“Hi # there.”)</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:left">underscore character变量中常用作假想的空格，用来隔开单词</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">=</td>
+<td style="text-align:left">equal;给数据（字符/数字等）取名;将右边的值赋予给左边的变量</td>
+<td style="text-align:left">x=100和x = 100都可以，但最好中间打空格，比较好阅读</td>
+</tr>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:left">测试左右两边的值是否一样</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">|back-slash;可以将难以打印出来的字符放到字符串，针对不同的符号有很多这样的“转义序列(escape sequences)&quot;</td>
+<td style="text-align:left">“I am 6’2\” tall.” #将字符串中的双引号转义</br> ‘I am 6\’2” tall.’ #将字符串中的单引号转义</br> =&gt; </br> I am 6’2’’ tall.哪个引号需要被提示是字符串的一部分，就在其前添加\</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td style="text-align:left">缩进一个tab的距离</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\t*</td>
+<td style="text-align:left">缩进一个tab的距离后输入*</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:left">输出一个反斜杠|\</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">'</td>
+<td style="text-align:left">single quote</br> 单引号</td>
+<td style="text-align:left">'</td>
+</tr>
+<tr>
+<td style="text-align:center">&quot;</td>
+<td style="text-align:left">double quote</br> 双引号</td>
+<td style="text-align:left">&quot;</td>
+</tr>
+<tr>
+<td style="text-align:center">\a</td>
+<td style="text-align:left">ASCII Bell (BEL)响铃符</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:left">ASCII Backspace(BS) 退格符</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\f</td>
+<td style="text-align:left">ASCII Formfeed(FF)进纸符</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\N(name)</td>
+<td style="text-align:left">Unicode数据库中的字符名，括号内是它的名字（Unicode only）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td style="text-align:left">ASCII</td>
+<td style="text-align:left">Carriage Return (CR) 回车符</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td style="text-align:left">Horizontal Tab (TAB) 水平制表符</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\uxxxx</td>
+<td style="text-align:left">值为16位十六进制值xxxx的字符（unicode only）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\Uxxxxxx</td>
+<td style="text-align:left">值为32位十六进制值xxxx的字符（unicode only）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\v</td>
+<td style="text-align:left">ASCII Vertical Tab (VT) 垂直制表符</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\ooo</td>
+<td style="text-align:left">值为八进制值ooo的字符</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">\xhhh</td>
+<td style="text-align:left">值为十六进制数hh的字符</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">&quot;&quot;&quot;   &quot;&quot;&quot;</td>
+<td style="text-align:left">triple-quotes</br> 三个引号框起来的部分可以写多段内容</br> &quot;&quot;&quot;    &quot;&quot;&quot;和 &quot;&quot;  &quot;&quot;的效果相同</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">input()</td>
+<td style="text-align:left">（提示）用户输入内容</br> 接收任何输入，将所有输入默认为字符串处理，并返回字符串类型。</br> input()的括号内添加内容可作为提示。</br> ⚠️注意：python 3.0以后raw_input不可使用</td>
+<td style="text-align:left">input(“We need to input something here:”)</br> =&gt;</br> We need to input something here:</td>
+</tr>
+<tr>
+<td style="text-align:center">int()</td>
+<td style="text-align:left">将输入的内容转换成整数</td>
+<td style="text-align:left">x = int(input())</br> 这种情况下input()里输入的就必须是整数</td>
+</tr>
+<tr>
+<td style="text-align:center">float()</td>
+<td style="text-align:left">将输入的内容转换成浮点数</td>
+<td style="text-align:left">x = float(input())</td>
+</tr>
+<tr>
+<td style="text-align:center">print()</td>
+<td style="text-align:left">打印</br> print(*objects, sep = ‘ ‘, end = ‘\n’, file = sys.stdout)</br> objects: 复数，表示可以一次输出多个对象，输出多个对象时，需要用逗号,分隔。</br> sep：用来间隔多个对象，默认值是一个空格。</br> end：设定以什么结尾，默认值是\n换行符，可以换成其他字符串。</br> file：要写入的文件对象</br> print的内容里加逗号，不会输出新行符而结束这一行跑到下一行去。</td>
+<td style="text-align:left">print(“How old are you?”,)</td>
+</tr>
+<tr>
+<td style="text-align:center">end</td>
+<td style="text-align:left">用来设定以什么结尾，默认值是换行符\n</td>
+<td style="text-align:left">print(end1 + end2 + end3 + end4 + end5 + end6, end=‘ ‘)</br> print(end7 + end8 + end9 + end10 + end11 + end12)</br> =&gt;</br> 这样会显示在同一行，如果去掉end = ‘ ‘则会显示在不同的两行</td>
+</tr>
+<tr>
+<td style="text-align:center">open(filename)</td>
+<td style="text-align:left">open接受一个参数，并返回一个值，可以将这个值赋予一个变量</td>
+<td style="text-align:left">txt = open(filename)</br> 这里返回的不是文件内容，而是”file object”，可以随意访问内容的任意位置的东西，但不是文件内容</td>
+</tr>
+<tr>
+<td style="text-align:center">open(filename, ‘w’)</td>
+<td style="text-align:left">打开文件对象，并写入覆盖内容</td>
+<td style="text-align:left">target = open(filename, ‘w’)</td>
+</tr>
+<tr>
+<td style="text-align:center">txt.read</td>
+<td style="text-align:left">让txt执行read命令，不需要其他参数</td>
+<td style="text-align:left">print(txt.read())</td>
+</tr>
+<tr>
+<td style="text-align:center">close()</td>
+<td style="text-align:left">结束脚本</td>
+<td style="text-align:left">所有open()和write()都要记得在最后close()，否则文件只是内存，没被保存进磁盘</td>
+</tr>
+<tr>
+<td style="text-align:center">read()</td>
+<td style="text-align:left">读取文件内容，可以把结果赋给一个变量</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">readline()</td>
+<td style="text-align:left">读取文本文件中的一行，然后将“磁头”移动到\n后面。</br> readline()函数返回的内容中本来就包括\n（一个空行），print()在打印时也会添加一个\n空行。可以在print()的语句结尾加一个逗号,这样就不会把\n打印出来了。</br> readline()会扫描文件的每一个字节，知道找到一个\n为止，然后停止读取文件，并返回此前的文件内容。文件f会记录每次调用readline()后的读取位置，所以下次调用时可以直接读取接下来的一行。</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">truncate()</td>
+<td style="text-align:left">清空文件，需要小心使用</td>
+<td style="text-align:left">target.truncate()</td>
+</tr>
+<tr>
+<td style="text-align:center">write(stuff)</td>
+<td style="text-align:left">将stuff写入文件</td>
+<td style="text-align:left">target.write()</td>
+</tr>
+<tr>
+<td style="text-align:center">len()</td>
+<td style="text-align:left">以数字形式返回传递的字符串的长度</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">exists()</td>
+<td style="text-align:left">os.path里导入的</br> os和sys一样，是python自带的基本库中的一员，主要提供和操作系统有关的功能。</br> Path提供了和路径操作有关的功能。</td>
+<td style="text-align:left">from os.path import exists</br> exists(filename)</td>
+</tr>
+<tr>
+<td style="text-align:center">def</td>
+<td style="text-align:left">define</br> 创建函数</br> 函数名称用字符和下划线_组成，不可以用数字开始。</br> 函数内容的缩进：4个空格（indent），但凡是后面这样缩进的都在这个函数里。函数结束的位置要取消缩进（dedent）。</br> 运行（run）函数=调用（call）函数=使用（use）函数。</br> 函数的参数变量个数虽然有限，但限制很大，实际应用中，5个参数就不少了。</br> 可以在函数中调用函数。</br> 可以使用=和return将函数变量设置为“一个函数的值”。</br> return的功能：调用函数时使用函数里的参数变量，运行函数，告诉python做回传动作，函数结束时，将return的结果赋予一个变量</td>
+<td style="text-align:left"><ul> <li> def 函数名称(函数变量):</br> 变量1, 变量2 = 变量</li> 函数命令</br> <li>  def first (variable1, variable2):</li> </br> </ul> <strong>函数参数变量赋值方法：</strong> </br> <ul><li>直接赋值：变量(值1, 值2)</li> <li> 分别赋值：</br>变量1 = 值1</br> 变量2 = 值2</br> </li> <li> 数字运算赋值：</br>  变量(值x+值y, 值o+值q)</br> </li> <li>  参数变量和数字运算赋值：</br>  变量(变量x+数x)</br> </li> <li> 用户输入数值来赋值：</br>  input()</br> 如果输入数值的话，需要int(input())来变为整数</br>   float()</br> 这样变成浮点数</br> </li></ul> def add(a, b):</br>  print(“ADDING %d + %d” % (a, b))</br>  return a + b</td>
+</tr>
+<tr>
+<td style="text-align:center">seek()</td>
+<td style="text-align:left">移动文件读取指针到指定位置</br> seek()：fileObject.seek(offset[,whence])</br> offset: 开始偏移量，也就是代表需要移动偏移的字节数</br> whence：可选，默认值为0.给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。</br> 返回值：该函数没有返回值</br> 处理对象是字节而不是行。所以seek(0)只会转到文件的0 byte，也就是第一个byte，不会影响行数。</td>
+<td style="text-align:left">f.seek()可以回到文件的开始</td>
+</tr>
+</tbody>
+</table>
+<p><strong>open()的打开方式：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模式</th>
+<th style="text-align:left">符号</th>
+<th style="text-align:left">意义</th>
+<th style="text-align:left">注意点</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">读取模式read</td>
+<td style="text-align:left">r</td>
+<td style="text-align:left">只读</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">r+</td>
+<td style="text-align:left">读写，不创建</td>
+<td style="text-align:left">可读可写，若文件不存在，报错。r+会对之前写入的东西进行覆盖写</td>
+<td style="text-align:left">fd = open(“1.txt”, ‘r+’)</br> fd.write(‘456’)</td>
+</tr>
+<tr>
+<td style="text-align:left">写入模式write</td>
+<td style="text-align:left">w</td>
+<td style="text-align:left">新建只写，不能读出</td>
+<td style="text-align:left">w和w+这两个都会将文件内容清零</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">w+</td>
+<td style="text-align:left">新建写读，可读写</td>
+<td style="text-align:left">可读可写，若文件不存在，创建</td>
+<td style="text-align:left">fd = open(“1.txt”, ‘w+’)</br> fd.write(‘123’)</td>
+</tr>
+<tr>
+<td style="text-align:left">追加模式 append</td>
+<td style="text-align:left">a</td>
+<td style="text-align:left">附加写的方式打开，不可读</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">a+</td>
+<td style="text-align:left">附加读写的方式打开</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">fd = open(“1.txt”, ‘a+’)</br> fd.write(‘789’)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">=&gt;</br> 456789</td>
+</tr>
+</tbody>
+</table>
+<p>+：修饰符，文件将以同时读写的方式打开
+w和a：不可读
+a，a+，w，w+：若不存在会创建新文件
+open(filename)的默认打开方式是’r’。open本身对文件的写入操作态度是安全第一，只有特定后才会进入写入操作。</p>
+<p><strong>数值和数字运算部分：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">plus, 加</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">minus，减</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">/</td>
+<td style="text-align:left">slash，除，返回浮点数</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">asterisk，乘</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%</td>
+<td style="text-align:left">percet，取余数</td>
+<td style="text-align:left">15%4 = 3</td>
+</tr>
+<tr>
+<td style="text-align:left">//</td>
+<td style="text-align:left">取商整数，返回商的整数部分。如果是浮点数，向下取整。</td>
+<td style="text-align:left">2//4 = 0</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;</td>
+<td style="text-align:left">less-than，小于</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;</td>
+<td style="text-align:left">greater-than，大于</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;=</td>
+<td style="text-align:left">less-than-equal，小于等于</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;=</td>
+<td style="text-align:left">greater-than-equal，大于等于</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">abs(x)</td>
+<td style="text-align:left">取绝对值</td>
+<td style="text-align:left">abs(-0.4) = 0.4</td>
+</tr>
+<tr>
+<td style="text-align:left">int(x)</td>
+<td style="text-align:left">x转换为整数</td>
+<td style="text-align:left">int(5.9) = 5</td>
+</tr>
+<tr>
+<td style="text-align:left">float(x)</td>
+<td style="text-align:left">x转换为浮点数</td>
+<td style="text-align:left">float(5) = 5.0</td>
+</tr>
+<tr>
+<td style="text-align:left">complex(re,im)</td>
+<td style="text-align:left">返回复数-re为实数部分，im为虚数部分</td>
+<td style="text-align:left">comples(4,3) = 4+3j</td>
+</tr>
+<tr>
+<td style="text-align:left">c.conjugate()</td>
+<td style="text-align:left">返回c的共轭复数</td>
+<td style="text-align:left">c = 4 + 3j;</br> c.conjugate() = 4 - 3j</td>
+</tr>
+<tr>
+<td style="text-align:left">divmod(x,y)</td>
+<td style="text-align:left">返回一个数值对(x//y, x%y)</td>
+<td style="text-align:left">divmod(8,3) = (2,2)</td>
+</tr>
+<tr>
+<td style="text-align:left">pow(x,y)</td>
+<td style="text-align:left">x的y次幂</td>
+<td style="text-align:left">pow(2,5) = 32</td>
+</tr>
+<tr>
+<td style="text-align:left">x ** y</td>
+<td style="text-align:left">x的y次幂</td>
+<td style="text-align:left">2 ** 5 = 32</td>
+</tr>
+<tr>
+<td style="text-align:left">+=</td>
+<td style="text-align:left">a += b 是a = a + b的简写，也就是将a + b重新赋值给a，一般用于计数。比如 a += 1</td>
+<td style="text-align:left">current_line = current_line + 1可以写成：current_line += 1</td>
+</tr>
+</tbody>
+</table>
+<p>字符串格式化来限定长度的有效位数：
+format(math.pi, ‘.12g’) # give 12 significant digits
+‘3.14159265359’
+format(math.pi, ‘.2f’) # give 2 digits after the point ‘3.14’
+‘3.14’
+repre(math.pi)
+‘3.141592653589793’</p>
+<p><strong>符号串，格式化符号串：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">format(f可代表)</td>
+<td style="text-align:left">格式化&quot; &quot;之间的字符串</td>
+<td style="text-align:left"><ul><li>f “Hello{somera}”</br> 这里f和{}就是告诉系统，””里的是需要被格式化的符号串，且{}里的是变量</li> <li>  year = 2016</br>  event = ‘Referendum’</br> f’Results of the {year}{event}’</br>  =&gt;</br> ‘Results of the 2016 Referendum’</li> <li> f”some stuff here {avariable}&quot;</br>  f”some other stuff {anothervar}&quot;</li> </ul></td>
+</tr>
+<tr>
+<td style="text-align:left">{ }</td>
+<td style="text-align:left">放置””符号串中的变量</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">.format()</td>
+<td style="text-align:left">把一个已经创建的string转换成一个format时，比如在一个loop中</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">str.format()</td>
+<td style="text-align:left">可以用{}标记变量可被替换的位置</td>
+<td style="text-align:left">yes_votes = 42_572_654</br> no_votes = 43_132_495</br> percentage = yes_votes / (yes_votes + no_votes)</br> ‘{:9} YES votes {:2.2%}’.format(yes_votes, percentage)</br> =&gt;</br> ‘42572654 YES votes 49.67%'</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">字符串可以用+连在一起，但实际上创建了一个新的对象，然后将两个都复制进去，所以进行大量+运算时，会需要创建多个临时的string对象，会影响效率</td>
+<td style="text-align:left">w + e = we</td>
+</tr>
+<tr>
+<td style="text-align:left">' '.join(str_list)</td>
+<td style="text-align:left">字符串的创建和拷贝时一次性完成的，不需要临时string对象</td>
+<td style="text-align:left">str_list = [‘love’, ‘Python’]</br> print('第五种方式通过join形式连接:’ + ‘’.join(str_list) + ‘\n’)</br> =&gt;</br> 第五种方式通过join形式连接: lovePython</td>
+</tr>
+<tr>
+<td style="text-align:left">True</td>
+<td style="text-align:left">python的默认关键词，不需要””，如果增加了”&quot;则会变成strings</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">False</td>
+<td style="text-align:left">python的默认关键词，不需要””，如果增加了”&quot;则会变成strings</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">repr()</td>
+<td style="text-align:left">生成解释器可读的表示</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">str()</td>
+<td style="text-align:left">返回人类可读的值</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%s</td>
+<td style="text-align:left">格式化一个对象为字符</br> %s - str()</br> 用作显示</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%r</td>
+<td style="text-align:left">%r - repr()</br> 用作debug</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%d</td>
+<td style="text-align:left">有符号整数（十进制）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%</td>
+<td style="text-align:left">标记转换说明符的开始。%左侧放一个符号串（格式化符号串），右侧放希望格式化的值。</td>
+<td style="text-align:left"><ul> <li> “Hello, %s” % “zhang3” =&gt; “Hello, zhang3”</li><li> “%d” % 33 =&gt; “33”</li><li>“%s: %d” % (“ab”, 3) =&gt; “ab: 3&quot;</li></ul></td>
+</tr>
+<tr>
+<td style="text-align:left">%%</td>
+<td style="text-align:left">百分号标记</td>
+<td style="text-align:left">输出一个%</td>
+</tr>
+<tr>
+<td style="text-align:left">%c</td>
+<td style="text-align:left">字符及其ASCII码</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%u</td>
+<td style="text-align:left">无符号整数（十进制）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%o</td>
+<td style="text-align:left">无符号整数（八进制）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%x</td>
+<td style="text-align:left">无符号整数（十六进制）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%X</td>
+<td style="text-align:left">无符号整数（十六进制大写字符）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%e</td>
+<td style="text-align:left">浮点数字（科学技术法）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%E</td>
+<td style="text-align:left">浮点数字（科学技术发，用E代替e）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%f</td>
+<td style="text-align:left">浮点数字（用小数点符号）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%g</td>
+<td style="text-align:left">浮点数字（根据值的大小采用%e或%f）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%G</td>
+<td style="text-align:left">浮点数字（类似于%g）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%p</td>
+<td style="text-align:left">指针（用十六进制打印值的内存地址）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">%n</td>
+<td style="text-align:left">存储输出字符的数量放进参数列表的下一个变量中</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>sys中argv模组</p>
+<pre><code>from sys import argv
+script, first, second, third = argv
+</code></pre>
+<p><strong>argv和input( )之间的区别：</strong>
+参数在用户执行命令时就输入
+脚本运行过程中需要用户输入</p>
+<p>os.path中exists模组
+<code>from os.path import exists</code></p>
+<p><strong>函数的三个作用：</strong></p>
+<ol>
+<li>给代码片段命名，类似变量给字符串和数字命名；</li>
+<li>可以接受参数，类似脚本接受argv；</li>
+<li>创建“微型脚本”或者“小命令”</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex21">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex21
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
