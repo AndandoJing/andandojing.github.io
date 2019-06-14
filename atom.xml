@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-06-12T23:05:35.661Z</updated>
+    <updated>2019-06-14T18:25:56.797Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -10,6 +10,321 @@
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex26 恭喜你，现在可以考试了！]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex26-gong-xi-ni-xian-zai-ke-yi-kao-shi-liao</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex26-gong-xi-ni-xian-zai-ke-yi-kao-shi-liao">
+        </link>
+        <updated>2019-06-14T12:24:29.000Z</updated>
+        <content type="html"><![CDATA[<p>这章练习目标是对以下代码进行改错：</p>
+<pre><code>def break_words(stuff):
+    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
+    words = stuff.split(' ')
+    return words
+ 
+def sort_words(words):
+    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
+    return sorted(words)
+ 
+def print_first_word(words)
+    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
+    word = words.poop(0)
+    print word
+ 
+def print_last_word(words):
+    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
+    word = words.pop(-1
+    print word
+ 
+def sort_sentence(sentence):
+    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
+    words = break_words(sentence)
+    return sort_words(words)
+ 
+def print_first_and_last(sentence):
+    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
+    words = break_words(sentence)
+    print_first_word(words)
+    print_last_word(words)
+ 
+def print_first_and_last_sorted(sentence):
+    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
+    words = sort_sentence(sentence)
+    print_first_word(words)
+    print_last_word(words)
+ 
+ 
+print &quot;Let's practice everything.&quot;
+print 'You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.'
+ 
+poem = &quot;&quot;&quot;
+\tThe lovely world
+with logic so firmly planted
+cannot discern \n the needs of love
+nor comprehend passion from intuition
+and requires an explantion
+\n\t\twhere there is none.
+&quot;&quot;&quot;
+ 
+ 
+print &quot;--------------&quot;
+print poem
+print &quot;--------------&quot;
+ 
+five = 10 - 2 + 3 - 5
+print &quot;This should be five: %s&quot; % five
+ 
+def secret_formula(started):
+    jelly_beans = started * 500
+    jars = jelly_beans \ 1000
+    crates = jars / 100
+    return jelly_beans, jars, crates
+ 
+ 
+start_point = 10000
+beans, jars, crates == secret_formula(start-point)
+ 
+print &quot;With a starting point of: %d&quot; % start_point
+print &quot;We'd have %d jeans, %d jars, and %d crates.&quot; % (beans, jars, crates)
+ 
+start_point = start_point / 10
+ 
+print &quot;We can also do that this way:&quot;
+print &quot;We'd have %d beans, %d jars, and %d crabapples.&quot; % secret_formula(start_pont
+ 
+ 
+sentence = &quot;All god\tthings come to those who weight.&quot;
+ 
+words = ex25.break_words(sentence)
+sorted_words = ex25.sort_words(words)
+ 
+print_first_word(words)
+print_last_word(words)
+.print_first_word(sorted_words)
+print_last_word(sorted_words)
+sorted_words = ex25.sort_sentence(sentence)
+prin sorted_words
+ 
+print_irst_and_last(sentence)
+ 
+   print_first_a_last_sorted(senence)
+</code></pre>
+<p>先全部复制粘贴到ex26.py中，然后进行改错。
+修改后的代码：</p>
+<pre><code>def break_words(stuff):
+    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
+    words = stuff.split(' ')
+    return words
+def sort_words(words):
+    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
+    return sorted(words)
+def print_first_word(words):
+    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
+    word = words.pop(0)
+    print(word)
+def print_last_word(words):
+    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
+    word = words.pop(-1)
+    print(word)
+def sort_sentence(sentence):
+    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
+    words = break_words(sentence)
+    return sort_words(words)
+def print_first_and_last(sentence):
+    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
+    words = break_words(sentence)
+    print_first_word(words)
+    print_last_word(words)
+def print_first_and_last_sorted(sentence):
+    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
+    words = sort_sentence(sentence)
+    print_first_word(words)
+    print_last_word(words)
+
+print(&quot;Let's practice everything.&quot;)
+print('You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.')
+poem = &quot;&quot;&quot;
+\tThe lovely world
+with logic so firmly planted
+cannot discern \n the needs of love
+nor comprehend passion from intuition
+and requires an explantion
+\n\t\twhere there is none.
+&quot;&quot;&quot;
+
+print(&quot;--------------&quot;)
+print(poem)
+print(&quot;--------------&quot;)
+five = 10 - 2 + 3 - 5
+print(&quot;This should be five: %s&quot; % five)
+def secret_formula(started):
+    jelly_beans = started * 500
+    jars = jelly_beans / 1000
+    crates = jars / 100
+    return jelly_beans, jars, crates
+
+start_point = 10000
+beans, jars, crates = secret_formula(start_point)
+print(&quot;With a starting point of: %d&quot; % start_point)
+print(&quot;We'd have %d jeans, %d jars, and %d crates.&quot; % (beans, jars, crates))
+start_point = start_point / 10
+print(&quot;We can also do that this way:&quot;)
+print(&quot;We'd have %d beans, %d jars, and %d crabapples.&quot; % secret_formula(start_point))
+
+sentence = &quot;All good\tthings come to those who wait.&quot;
+words = break_words(sentence)
+sorted_words = sort_words(words)
+print_first_word(words)
+print_last_word(words)
+print_first_word(sorted_words)
+print_last_word(sorted_words)
+sorted_words = sort_sentence(sentence)
+print(sorted_words)
+print_first_and_last(sentence)
+print_first_and_last_sorted(sentence)
+</code></pre>
+<p><strong>主要错误：</strong></p>
+<ol>
+<li>函数的()需要成对出现，()后需要带:</li>
+<li>单词（变量）拼写错误</li>
+<li>\和/</li>
+<li>==和=</li>
+<li>-和_</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-ex25]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex25</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex25">
+        </link>
+        <updated>2019-06-14T11:45:34.000Z</updated>
+        <content type="html"><![CDATA[<p>Ex25 代码部分：</p>
+<pre><code>#测试练习
+def break_words(stuff):
+    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
+    words = stuff.split(' ')
+    return words
+def sort_words(words):
+    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
+    return sorted(words)
+def print_first_word(words):
+    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
+    word = words.pop(0)
+    print(word)
+def print_last_word(words):
+    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
+    word = words.pop(-1)
+    print(word)
+def sort_sentence(sentence):
+    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
+    words = break_words(sentence)
+    return sort_words(words)
+def print_first_and_last(sentence):
+    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
+    words = break_words(sentence)
+    print_first_word(words)
+    print_last_word(words)
+def print_first_and_last_sorted(sentence):
+    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
+    words = sort_sentence(sentence)
+    print_first_word(words)
+    print_last_word(words)
+</code></pre>
+<p>打开终端后输入python回车，然后按照这个顺序输入并得到结果：</p>
+<pre><code>1 $ python 
+2 Python 2.5.1 (r251:54863, Feb 6 2009, 19:02:12) 
+3 [GCC 4.0.1 (Apple Inc. build 5465)] on darwin 
+4 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. 
+5 &gt;&gt;&gt; import ex25    #这里对ex25.py进行了import，在import时不需要加py。这个过程中是将ex25.py当作一个“模组（module）”使用，在这个模组里定义的函数也可以直接调用出来。
+6 &gt;&gt;&gt; sentence = &quot;All good things come to those who wait.” #这里创建了一个用来处理的“句子（sentence）”。
+7 &gt;&gt;&gt; words = ex25.break_words(sentence) #使用ex25调用第一个函数ex25.break_words。其中的.(dot, period)可以告诉python：“我要运行ex25里那个叫break_words的函数”
+8 &gt;&gt;&gt; words #输入words，python会在下一行打印出这个变量里有什么。这其实是一个“列表（list）”。
+9 ['All', 'good', 'things', 'come', 'to', 'those', 'who', 'wait.’] 
+10&gt;&gt;&gt;sorted_words=ex25.sort_words(words) #使用ex25.sort_words来得到一个排序过的句子。
+11 &gt;&gt;&gt; sorted_words
+12 ['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who’] 
+13 &gt;&gt;&gt; ex25.print_first_word(words) #打印第一个词
+14 All 
+15 &gt;&gt;&gt; ex25.print_last_word(words) #打印最后一个词
+16 wait.
+17 &gt;&gt;&gt; wrods #故意写错words，所以后面几行给出了错误信息。
+18 Traceback (most recent call last):
+19 File &quot;&lt;stdin&gt;&quot; , line 1, in &lt;module&gt; 
+20 NameError: name 'wrods' is not defined 
+21 &gt;&gt;&gt; words #打印修改过的词汇列表。
+22 ['good', 'things', 'come', 'to', 'those', 'who’] 
+23 &gt;&gt;&gt; ex25.print_first_word(sorted_words) 
+24 All 
+25 &gt;&gt;&gt; ex25.print_last_word(sorted_words) 
+26 who 
+27 &gt;&gt;&gt; sorted_words 
+28 ['come', 'good', 'things', 'those', 'to', 'wait.’] 
+29 &gt;&gt;&gt; sorted_words = ex25.sort_sentence(sentence) 
+30 &gt;&gt;&gt; sorted_words 
+31 ['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who’] 
+32 &gt;&gt;&gt; ex25.print_first_and_last(sentence) 
+33 All 
+34 wait.
+35 &gt;&gt;&gt; ex25.print_first_and_last_sorted(sentence) 
+36 All 
+37 who 
+38 &gt;&gt;&gt; ^D 
+39 $
+</code></pre>
+<p>“””  “””之间的东西是文件注解（documentation comments）</p>
+<p>重复键入ex25.太繁琐，一个捷径是 **from ex25 import * **的方式导入模组，相当于“把ex25中所有东西import进来”。
+这一份练习主要是在python脚本中做函数定义，然后在终端里输入函数里的变量，从而获得脚本函数的运算结果。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-ex24]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex24</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex24">
+        </link>
+        <updated>2019-06-14T10:38:49.000Z</updated>
+        <content type="html"><![CDATA[<p>ex24.py的代码：</p>
+<pre><code>print(&quot;Let's practice everything.&quot;)
+print('You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabes.')
+poem = &quot;&quot;&quot;
+\tThe lovely world
+with logic so firmly planted
+cannot discern \n the needs of lovelynor comprehend passion from intuition
+and requires an explanation
+\n\t\twhere there is none.
+&quot;&quot;&quot;
+print(&quot;--------------&quot;)
+print(poem)
+print(&quot;--------------&quot;)
+five = 10 - 2 + 3 - 6
+print(&quot;This should be five: %s&quot; % five)
+def secret_formula(started):
+    jelly_beans = started * 500
+    jars = jelly_beans / 1000
+    crates = jars / 100
+    return jelly_beans, jars, crates
+start_point = 10000
+beans, jars, crates = secret_formula(start_point)
+print(&quot;With a starting point of: %d&quot; % start_point)
+print(&quot;We'd have %d beans, %d jars, and %d crates.&quot; % (beans, jars, crates))
+start_point = start_point / 10
+print(&quot;We can also do that this way:&quot;)
+print(&quot;We'd have %d beans, %d jars, and %d crates.&quot; % secret_formula(start_point))
+</code></pre>
+<p><strong>为什么jelly_beans变量名变成了beans？</strong>
+函数内部变量都是临时的，函数返回后可以被赋予一个变量。新变量用来存放函数的返回值。</p>
+<p>这一章主要包括的要点：</p>
+<ol>
+<li>打印</li>
+<li>&quot;&quot;&quot;    &quot;&quot;&quot;多段打印</li>
+<li>\t和\n</li>
+<li>数字运算</li>
+<li>%s</li>
+<li>def定义函数和return值</li>
+<li>函数变量的转换</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Lean Python the hard way-ex22 中期总结]]></title>
         <id>https://andandojing.github.io/post/lean-python-the-hard-way-ex22-zhong-qi-zong-jie</id>
@@ -1441,237 +1756,6 @@ fd.write(‘789’)
 若不存在会创建新文件的打开方式：a，a+，w，w+</p>
 <p>open本身对于文件的写入操作态度是安全第一，所以只有特别制定以后，才会进行写入操作。
 如果只写open(filename)会默认用’r’ 也就是read的模式打开，这是open()的默认工作方式</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex15]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex15</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex15">
-        </link>
-        <updated>2019-05-28T06:47:23.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>from sys import argv
-script, filename = argv
-txt = open(filename)
-print(&quot;Here's your file %r:&quot; % filename)
-print(txt.read())
-print(&quot;Type the filename again:&quot;)
-file_again = input(&quot;&gt;&quot;)
-txt_again = open(file_again)
-print(txt_again.read())
-</code></pre>
-<p>这里出现了新的命令open，简单来说就是open接受一个参数，并返回一个值，我们可以将这个值赋予一个变量。
-如果写一个硬命令，要求open某一个特定的文件，会破坏打开的可变性，所以进行使用变量来使得open任何一个文件（当然还是要输入文件名，但不是特定某一个了）</p>
-<p><strong>🤔思考：这样可以，cd进目录然后ls浏览目前目录内已有文件，来先知道有哪些再选取，但不够自动化
-另一个新的命令是txt.read，这是在让txt执行read命令，不需要其他新参数</strong></p>
-<p>在执行这个ex15.py文件时，终端输入python ex15.py ex15_sample.txt</p>
-<p>这里是给每一行增加了注释的版本：</p>
-<pre><code>#从sys代码库导入argv模组
-from sys import argv
-#设定argv的变量关键词filename，这里注意script是必需的（可以改成其他单词
-script, filename = argv #也可以保持script这个习惯
-#定义txt的命令动作是打开一个已被定义为filename的东西
-txt = open(filename) #这里返回的是一个file object的东西
-#打印提示语，打印出txt.read命令
-print(&quot;Here's your file %r:&quot; % filename)
-print(txt.read())
-#打印提示语，把用户输入的东西定义为file_again
-print(&quot;Type the filename again:&quot;)
-file_again = input(&quot;&gt;&quot;)
-#定义txt_again的命令动作是打开一个file_again的东西
-txt_again = open(file_again)
-#打印出txt_again.read
-print(txt_again.read())
-txt.close()
-txt_again.close()
-</code></pre>
-<p>此外最后还需要对txt和txt_again进行clase()使脚本结束，不然终端就卡在那了，也无法保存。</p>
-<p>txt = open(filename) 返回的不是文件内容，而是一个叫做”file object”的东西，是一个可以随意访问内容的任意位置的东西（比如dvd机或者磁带），但object本身不是文件内容</p>
-<p><strong>关于open的说明：</strong></p>
-<pre><code>open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, clo
-sefd=True, opener=None)
-    Open file and return a stream.  Raise OSError upon failure.
-    
-    file is either a text or byte string giving the name (and the path if the file isn't in the current working directory) of the file to be opened or an integer file descriptor of the file to be wrapped. (If a file descriptor is given, it is closed when the returned I/O object is closed, unless closefd is set to False.)
-    
-    mode is an optional string that specifies the mode in which the file  is opened. It defaults to 'r' which means open for reading in text mode.  Other common values are 'w' for writing (truncating the file if it already exists), 'x' for creating and writing to a new file, and 'a' for appending (which on some Unix systems, means that all writes append to the end of the file regardless of the current seek position).
-    In text mode, if encoding is not specified the encoding used is platform dependent: locale.getpreferredencoding(False) is called to get the current locale encoding. (For reading and writing raw bytes use binary mode and leave encoding unspecified.) The available modes are:
-========= ===============================================================
-    Character Meaning
-    --------- ---------------------------------------------------------------
-    'r'       open for reading (default) 只读
-    'w'       open for writing, truncating the file first 写入，会覆盖源文件内容
-    'x'       create a new file and open it for writing   创建新文件，并写入内容，如果文件已经存在，会报错
-    'a'       open for writing, appending to the end of the file if it exists    卸乳，如果文件有内容，会在末尾追加写入
-    'b'       binary mode    二进制模式
-    't'       text mode (default)   文本模式
-    '+'       open a disk file for updating (reading and writing)    更新磁盘文件，读写
-    'U'       universal newline mode (deprecated)  在python3中已经弃用
-    ========= ===============================================================
-    
-    The default mode is 'rt' (open for reading text). For binary random access, the mode 'w+b' opens and truncates the file to 0 bytes, while 'r+b' opens the file without truncation. The 'x' mode implies 'w' and raises an `FileExistsError` if the file already exists.
-    
-    Python distinguishes between files opened in binary and text modes, even when the underlying operating system doesn't. Files opened in  binary mode (appending 'b' to the mode argument) return contents as bytes objects without any decoding. In text mode (the default, or when 't' is appended to the mode argument), the contents of the file are returned as strings, the bytes having been first decoded using a platform-dependent encoding or using the specified encoding if given.
-    
-    'U' mode is deprecated and will raise an exception in future versions of Python.  It has no effect in Python 3.  Use newline to control universal newlines mode.
-    
-    buffering is an optional integer used to set the buffering policy.    用于设置缓存策略
-    Pass 0 to switch buffering off (only allowed in binary mode), 1 to select line buffering (only usable in text mode), and an integer &gt; 1 to indicate the size of a fixed-size chunk buffer.  When no buffering argument is given, the default buffering policy works as follows:
-    
-    * Binary files are buffered in fixed-size chunks; the size of the buffer is chosen using a heuristic trying to determine the underlying device's
-      &quot;block size&quot; and falling back on `io.DEFAULT_BUFFER_SIZE`.
-      On many systems, the buffer will typically be 4096 or 8192 bytes long.
-    
-* &quot;Interactive&quot; text files (files for which isatty() returns True) use line buffering.  Other text files use the policy described above for binary files.
-    
-    encoding is the name of the encoding used to decode or encode the file. This should only be used in text mode. The default encoding is platform dependent, but any encoding supported by Python can be passed.  See the codecs module for the list of supported encodings.  编码或者解码方式
-    
-    errors is an optional string that specifies how encoding errors are to be handled---this argument should not be used in binary mode. Pass 'strict' to raise a ValueError exception if there is an encoding error (the default of None has the same effect), or pass 'ignore' to ignore errors. (Note that ignoring encoding errors can lead to data loss.)
-    See the documentation for codecs.register or run 'help(codecs.Codec)'
-    for a list of the permitted encoding error strings.
-    
-    newline controls how universal newlines works (it only applies to text mode). It can be None, '', '\n', '\r', and '\r\n'.  It works as follows:
-   换行控制（仅适用于文本模式），参数有None, ‘\n’,’\r’,’\r\n’ 输入时如果是None，那么行结束的标志可以是其他三个钟任意一个，且三个都会先被转化成’\n’然后被调用
-    * On input, if newline is None, universal newlines mode is  enabled. Lines in the input can end in '\n', '\r', or '\r\n', and these are translated into '\n' before being returned to the caller. If it is '', universal newline mode is enabled, but line endings are returned to the caller untranslated. If it has any of the other legal values, input lines are only terminated by the given string, and the line ending is returned to the caller untranslated.
-    
-    * On output, if newline is None, any '\n' characters written are translated to the system default line separator, os.linesep. If newline is '' or '\n', no translation takes place. If newline is any of the other legal values, any '\n' characters written are translated to the given string.
-    
-    If closefd is False, the underlying file descriptor will be kept open when the file is closed. This does not work when a file name is given and must be True in that case.
-A custom opener can be used by passing a callable as *opener*. The underlying file descriptor for the file object is then obtained by calling *opener* with (*file*, *flags*). *opener* must return an open file descriptor (passing os.open as *opener* results in functionality similar to passing None).
-    
-    open() returns a file object whose type depends on the mode, and through which the standard file operations such as reading and writing are performed. When open() is used to open a file in a text mode ('w', 'r', 'wt', 'rt', etc.), it returns a TextIOWrapper. When used to open a file in a binary mode, the returned class varies: in read binary mode, it returns a BufferedReader; in write binary and append binary modes, it returns a BufferedWriter, and in read/write mode, it returns a BufferedRandom.
-    
-    It is also possible to use a string or bytearray as a file for both reading and writing. For strings StringIO can be used like a file opened in a text mode, and for bytes a BytesIO can be used like a file opened in a binary mode.
-</code></pre>
-<p>但是需要注意的是，<strong>python3中已经没有pydoc file</strong>，<strong>会报错</strong>。大概是python2到3的过程中已经移除file。 但是可以使用help()来获取</p>
-<p>如果只用input()来写这个脚本：</p>
-<pre><code>#这里如果先写了print会报错没有定义filename
-filename = input(&quot;filename is:&quot;)
-print(&quot;Here's your file %r:&quot; % filename)
-txt = open(filename)
-print(txt.read())
-print(&quot;Type the filename again:&quot;)
-file_again = input()
-txt_again = open(file_again)
-print(txt_again.read())
-txt.close()
-txt_again.close()
-</code></pre>
-<p><strong>🤔思考：input和argv脚本都能够达到效果，那么哪种更好？</strong>
-兼容性上来说，如果遇到文件名有空格的时候，input更好操作。用参数需要为文件名添加引号，防止程序误认为是两个参数。
-但是程序执行速度来说，input需要人工两次录入（执行一次，文件名一次），会增加程序运行时间。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex14]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex14</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex14">
-        </link>
-        <updated>2019-05-27T22:41:35.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>from sys import argv
-script, user_name = argv
-prompt = '&gt; '
-print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
-print(&quot;I'd like to ask you a few questions.&quot;)
-print(&quot;Do you like me %s?&quot; % user_name)
-likes = input(prompt)
-print(&quot;Where do you live %s?&quot; % user_name)
-lives = input(prompt)
-print(&quot;What kind of computer do you have?&quot;)
-computer = input(prompt)
-print (&quot;&quot;&quot;
-Alright, so you said %r about liking me.
-You live in %r. Not sure where that is.
-And you have a %r computer. Nice.
-&quot;&quot;&quot; % (likes, lives, computer))
-</code></pre>
-<p>这是将用户提示符设置为变量prompt，这样就不用在每次用到input () 时重复输入提示用户的字符了。而且在修改提示符为别的字串时，只需要修改一个位置。
-加上加分习题后的修改版本（忘记另存为ex14_1.py了，只能重新复制粘贴）：</p>
-<pre><code>from sys import argv
-script, user_name = argv
-prompt = 'Your answer is&gt; '
-print(&quot;Hi %s, I'm the %s script.&quot; % (user_name, script))
-print(&quot;I'd like to ask you a few questions.&quot;)
-print(&quot;Do you like me %s?&quot; % user_name)
-likes = input(prompt)
-print(&quot;Where do you live %s?&quot; % user_name)
-lives = input(prompt)
-print(&quot;What kind of computer do you have?&quot;)
-computer = input(prompt)
-print(&quot;And you like your girlfriend, right?&quot;)
-girlfriend = input(prompt)
-print (&quot;&quot;&quot;
-Alright, so you said %r about liking me.
-You live in %r. Not sure where that is.
-And you have a %r computer. Nice.
-You said %r when I asked your about if you do like your girlfriend.
-Maybe you should tell her now.
-&quot;&quot;&quot; % (likes, lives, computer, girlfriend))
-print(&quot;&quot;&quot;
-But maybe I can be smarter if I use some more variables.
-For example, when I use \\t, it means:
-\tI can start here.
-And if I use \\t*, it means:
-\t*Hi everyone, I can start writing from here.
-Isn't it cool?
-&quot;&quot;&quot;)
-</code></pre>
-<p>Ex14_1.py中添加了新的参数变量girlfriend，复习了一遍之前的\=\和\t用法</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the Hard Way-ex13]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex13</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex13">
-        </link>
-        <updated>2019-05-27T21:51:21.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>from sys import argv
-script, first, second, third = argv
-print(&quot;The script is called:&quot;, script)
-print(&quot;Your first variable is:&quot;, first)
-print(&quot;Your second variable is:&quot;, second)
-print(&quot;Your third variable is:&quot;, third)
-</code></pre>
-<p>终端输入python ex13.py first second third
-终端的python ex13.py命令种，ex13.py部分就是所谓的“参数（argument）”
-这章说的就是写一个可以接受参数的脚本</p>
-<p>import语句：
-将python的功能引入脚本。但实际上术语应该称这些“功能”为模组（modules）
-argv，所谓的“参数变量（argument variable），是一个非常标准的编程术语。这个变量包含了你传递给python的参数
-第3行将argv“解包（unpack）”，与其将所有参数放到同一个变量下面，我们将每个参数赋予一个变量名：script，first，second，third。解包的含义就是：把argv中的东西解包，将所有的参数一次赋予左边的变量名</p>
-<p>如果给的参数不够，会出现错误
-举例：</p>
-<pre><code>File &quot;ex/ex13.py&quot;, line 3, in &lt;module&gt;
-    script, first, second, third = argv
-ValueError: need more than 3 values to unpack
-</code></pre>
-<p>还有一种情况是
-ValueError: too many values to unpack (expected 4)
-这是因为实际在输入python 13_1.py时，后面跟的是除了script外的几个变量。举例来说：</p>
-<pre><code>#从sys模组导入argv参数变量
-from sys import argv
-#认定name, location, age, nationality为参数变量
-script, name, location, age, nationality = argv
-print(&quot;Who are you?&quot;,)
-name = input()
-print(&quot;Where are you?&quot;,)
-location = input()
-print(&quot;How old are you?&quot;,)
-age = input()
-print(&quot;Where are you from?&quot;,)
-nationality = input()
-print(&quot;The script is called:&quot;, script)  #这一行可以去除不显示
-print(&quot;So, your name is:&quot;, name)
-print(&quot;And you are now in:&quot;, location)
-print(&quot;Now you are %r years old&quot; % age)
-print(&quot;You are from:&quot;, nationality)
-</code></pre>
-<p>上面这样结合input()和argv，在终端执行时应该写入python ex13_1.py Jing Spain 28 China
-而不是python ex13_1.py script Jing Spain 28 China</p>
-<p>无论如何，在<code>script, name, location, age, nationality = argv</code>这一行中，script这个占第一的词要在，后面可以不显示</p>
-<p>argv和input( )有什么区别？
-argv：参数是在用户执行命令时就要输入
-input( ): 脚本运行过程中需要用户输入
-命令行参数是字符串，就算在命令行输入数字，也需要用int()把它先转成数字</p>
 ]]></content>
     </entry>
 </feed>

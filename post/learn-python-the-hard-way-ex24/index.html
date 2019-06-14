@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Learning with Writing</title>
+<title>Learn Python the hard way-ex24 | Learning with Writing</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,16 +98,73 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">Learn Python the hard way-ex24</h2>
+            <div class="post-date">2019-06-14</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex24.png')">
+              </div>
             
             <div class="post-content">
-              <p>一直在路上，可能不会停。</p>
-<p>希望能成为不辍执笔的一个新地方，而不是半途而废星人的另一个废域名。</p>
-<p>学习笔记和练习笔记。</p>
+              <p>ex24.py的代码：</p>
+<pre><code>print(&quot;Let's practice everything.&quot;)
+print('You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabes.')
+poem = &quot;&quot;&quot;
+\tThe lovely world
+with logic so firmly planted
+cannot discern \n the needs of lovelynor comprehend passion from intuition
+and requires an explanation
+\n\t\twhere there is none.
+&quot;&quot;&quot;
+print(&quot;--------------&quot;)
+print(poem)
+print(&quot;--------------&quot;)
+five = 10 - 2 + 3 - 6
+print(&quot;This should be five: %s&quot; % five)
+def secret_formula(started):
+    jelly_beans = started * 500
+    jars = jelly_beans / 1000
+    crates = jars / 100
+    return jelly_beans, jars, crates
+start_point = 10000
+beans, jars, crates = secret_formula(start_point)
+print(&quot;With a starting point of: %d&quot; % start_point)
+print(&quot;We'd have %d beans, %d jars, and %d crates.&quot; % (beans, jars, crates))
+start_point = start_point / 10
+print(&quot;We can also do that this way:&quot;)
+print(&quot;We'd have %d beans, %d jars, and %d crates.&quot; % secret_formula(start_point))
+</code></pre>
+<p><strong>为什么jelly_beans变量名变成了beans？</strong>
+函数内部变量都是临时的，函数返回后可以被赋予一个变量。新变量用来存放函数的返回值。</p>
+<p>这一章主要包括的要点：</p>
+<ol>
+<li>打印</li>
+<li>&quot;&quot;&quot;    &quot;&quot;&quot;多段打印</li>
+<li>\t和\n</li>
+<li>数字运算</li>
+<li>%s</li>
+<li>def定义函数和return值</li>
+<li>函数变量的转换</li>
+</ol>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/lean-python-the-hard-way-ex22-zhong-qi-zong-jie">
+                  <h3 class="post-title">
+                    Lean Python the hard way-ex22 中期总结
+                  </h3>
+                </a>
+              </div>
             
 
             

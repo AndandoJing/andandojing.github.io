@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-ex25 | Learning with Writing</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1560536748536">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1560536748536" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-ex25</h2>
+            <div class="post-date">2019-06-14</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex25.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>Ex25 代码部分：</p>
+<pre><code>#测试练习
+def break_words(stuff):
+    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
+    words = stuff.split(' ')
+    return words
+def sort_words(words):
+    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
+    return sorted(words)
+def print_first_word(words):
+    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
+    word = words.pop(0)
+    print(word)
+def print_last_word(words):
+    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
+    word = words.pop(-1)
+    print(word)
+def sort_sentence(sentence):
+    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
+    words = break_words(sentence)
+    return sort_words(words)
+def print_first_and_last(sentence):
+    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
+    words = break_words(sentence)
+    print_first_word(words)
+    print_last_word(words)
+def print_first_and_last_sorted(sentence):
+    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
+    words = sort_sentence(sentence)
+    print_first_word(words)
+    print_last_word(words)
+</code></pre>
+<p>打开终端后输入python回车，然后按照这个顺序输入并得到结果：</p>
+<pre><code>1 $ python 
+2 Python 2.5.1 (r251:54863, Feb 6 2009, 19:02:12) 
+3 [GCC 4.0.1 (Apple Inc. build 5465)] on darwin 
+4 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. 
+5 &gt;&gt;&gt; import ex25    #这里对ex25.py进行了import，在import时不需要加py。这个过程中是将ex25.py当作一个“模组（module）”使用，在这个模组里定义的函数也可以直接调用出来。
+6 &gt;&gt;&gt; sentence = &quot;All good things come to those who wait.” #这里创建了一个用来处理的“句子（sentence）”。
+7 &gt;&gt;&gt; words = ex25.break_words(sentence) #使用ex25调用第一个函数ex25.break_words。其中的.(dot, period)可以告诉python：“我要运行ex25里那个叫break_words的函数”
+8 &gt;&gt;&gt; words #输入words，python会在下一行打印出这个变量里有什么。这其实是一个“列表（list）”。
+9 ['All', 'good', 'things', 'come', 'to', 'those', 'who', 'wait.’] 
+10&gt;&gt;&gt;sorted_words=ex25.sort_words(words) #使用ex25.sort_words来得到一个排序过的句子。
+11 &gt;&gt;&gt; sorted_words
+12 ['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who’] 
+13 &gt;&gt;&gt; ex25.print_first_word(words) #打印第一个词
+14 All 
+15 &gt;&gt;&gt; ex25.print_last_word(words) #打印最后一个词
+16 wait.
+17 &gt;&gt;&gt; wrods #故意写错words，所以后面几行给出了错误信息。
+18 Traceback (most recent call last):
+19 File &quot;&lt;stdin&gt;&quot; , line 1, in &lt;module&gt; 
+20 NameError: name 'wrods' is not defined 
+21 &gt;&gt;&gt; words #打印修改过的词汇列表。
+22 ['good', 'things', 'come', 'to', 'those', 'who’] 
+23 &gt;&gt;&gt; ex25.print_first_word(sorted_words) 
+24 All 
+25 &gt;&gt;&gt; ex25.print_last_word(sorted_words) 
+26 who 
+27 &gt;&gt;&gt; sorted_words 
+28 ['come', 'good', 'things', 'those', 'to', 'wait.’] 
+29 &gt;&gt;&gt; sorted_words = ex25.sort_sentence(sentence) 
+30 &gt;&gt;&gt; sorted_words 
+31 ['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who’] 
+32 &gt;&gt;&gt; ex25.print_first_and_last(sentence) 
+33 All 
+34 wait.
+35 &gt;&gt;&gt; ex25.print_first_and_last_sorted(sentence) 
+36 All 
+37 who 
+38 &gt;&gt;&gt; ^D 
+39 $
+</code></pre>
+<p>“””  “””之间的东西是文件注解（documentation comments）</p>
+<p>重复键入ex25.太繁琐，一个捷径是 **from ex25 import * **的方式导入模组，相当于“把ex25中所有东西import进来”。
+这一份练习主要是在python脚本中做函数定义，然后在终端里输入函数里的变量，从而获得脚本函数的运算结果。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex24">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex24
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

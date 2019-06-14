@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-Ex26 恭喜你，现在可以考试了！ | Learning with Writing</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1560536748536">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1560536748536" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-Ex26 恭喜你，现在可以考试了！</h2>
+            <div class="post-date">2019-06-14</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex26-gong-xi-ni-xian-zai-ke-yi-kao-shi-liao.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>这章练习目标是对以下代码进行改错：</p>
+<pre><code>def break_words(stuff):
+    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
+    words = stuff.split(' ')
+    return words
+ 
+def sort_words(words):
+    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
+    return sorted(words)
+ 
+def print_first_word(words)
+    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
+    word = words.poop(0)
+    print word
+ 
+def print_last_word(words):
+    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
+    word = words.pop(-1
+    print word
+ 
+def sort_sentence(sentence):
+    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
+    words = break_words(sentence)
+    return sort_words(words)
+ 
+def print_first_and_last(sentence):
+    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
+    words = break_words(sentence)
+    print_first_word(words)
+    print_last_word(words)
+ 
+def print_first_and_last_sorted(sentence):
+    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
+    words = sort_sentence(sentence)
+    print_first_word(words)
+    print_last_word(words)
+ 
+ 
+print &quot;Let's practice everything.&quot;
+print 'You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.'
+ 
+poem = &quot;&quot;&quot;
+\tThe lovely world
+with logic so firmly planted
+cannot discern \n the needs of love
+nor comprehend passion from intuition
+and requires an explantion
+\n\t\twhere there is none.
+&quot;&quot;&quot;
+ 
+ 
+print &quot;--------------&quot;
+print poem
+print &quot;--------------&quot;
+ 
+five = 10 - 2 + 3 - 5
+print &quot;This should be five: %s&quot; % five
+ 
+def secret_formula(started):
+    jelly_beans = started * 500
+    jars = jelly_beans \ 1000
+    crates = jars / 100
+    return jelly_beans, jars, crates
+ 
+ 
+start_point = 10000
+beans, jars, crates == secret_formula(start-point)
+ 
+print &quot;With a starting point of: %d&quot; % start_point
+print &quot;We'd have %d jeans, %d jars, and %d crates.&quot; % (beans, jars, crates)
+ 
+start_point = start_point / 10
+ 
+print &quot;We can also do that this way:&quot;
+print &quot;We'd have %d beans, %d jars, and %d crabapples.&quot; % secret_formula(start_pont
+ 
+ 
+sentence = &quot;All god\tthings come to those who weight.&quot;
+ 
+words = ex25.break_words(sentence)
+sorted_words = ex25.sort_words(words)
+ 
+print_first_word(words)
+print_last_word(words)
+.print_first_word(sorted_words)
+print_last_word(sorted_words)
+sorted_words = ex25.sort_sentence(sentence)
+prin sorted_words
+ 
+print_irst_and_last(sentence)
+ 
+   print_first_a_last_sorted(senence)
+</code></pre>
+<p>先全部复制粘贴到ex26.py中，然后进行改错。
+修改后的代码：</p>
+<pre><code>def break_words(stuff):
+    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
+    words = stuff.split(' ')
+    return words
+def sort_words(words):
+    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
+    return sorted(words)
+def print_first_word(words):
+    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
+    word = words.pop(0)
+    print(word)
+def print_last_word(words):
+    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
+    word = words.pop(-1)
+    print(word)
+def sort_sentence(sentence):
+    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
+    words = break_words(sentence)
+    return sort_words(words)
+def print_first_and_last(sentence):
+    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
+    words = break_words(sentence)
+    print_first_word(words)
+    print_last_word(words)
+def print_first_and_last_sorted(sentence):
+    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
+    words = sort_sentence(sentence)
+    print_first_word(words)
+    print_last_word(words)
+
+print(&quot;Let's practice everything.&quot;)
+print('You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.')
+poem = &quot;&quot;&quot;
+\tThe lovely world
+with logic so firmly planted
+cannot discern \n the needs of love
+nor comprehend passion from intuition
+and requires an explantion
+\n\t\twhere there is none.
+&quot;&quot;&quot;
+
+print(&quot;--------------&quot;)
+print(poem)
+print(&quot;--------------&quot;)
+five = 10 - 2 + 3 - 5
+print(&quot;This should be five: %s&quot; % five)
+def secret_formula(started):
+    jelly_beans = started * 500
+    jars = jelly_beans / 1000
+    crates = jars / 100
+    return jelly_beans, jars, crates
+
+start_point = 10000
+beans, jars, crates = secret_formula(start_point)
+print(&quot;With a starting point of: %d&quot; % start_point)
+print(&quot;We'd have %d jeans, %d jars, and %d crates.&quot; % (beans, jars, crates))
+start_point = start_point / 10
+print(&quot;We can also do that this way:&quot;)
+print(&quot;We'd have %d beans, %d jars, and %d crabapples.&quot; % secret_formula(start_point))
+
+sentence = &quot;All good\tthings come to those who wait.&quot;
+words = break_words(sentence)
+sorted_words = sort_words(words)
+print_first_word(words)
+print_last_word(words)
+print_first_word(sorted_words)
+print_last_word(sorted_words)
+sorted_words = sort_sentence(sentence)
+print(sorted_words)
+print_first_and_last(sentence)
+print_first_and_last_sorted(sentence)
+</code></pre>
+<p><strong>主要错误：</strong></p>
+<ol>
+<li>函数的()需要成对出现，()后需要带:</li>
+<li>单词（变量）拼写错误</li>
+<li>\和/</li>
+<li>==和=</li>
+<li>-和_</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex25">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex25
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
