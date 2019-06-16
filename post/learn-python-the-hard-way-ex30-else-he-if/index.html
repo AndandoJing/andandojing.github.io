@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Learning with Writing</title>
+<title>Learn Python the hard way-Ex30 Else和If | Learning with Writing</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,16 +98,59 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">Learn Python the hard way-Ex30 Else和If</h2>
+            <div class="post-date">2019-06-15</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex30-else-he-if.png')">
+              </div>
             
             <div class="post-content">
-              <p>一直在路上，可能不会停。</p>
-<p>希望能成为不辍执笔的一个新地方，而不是半途而废星人的另一个废域名。</p>
-<p>学习笔记和练习笔记。</p>
+              <p>python的规则里，只要一行已冒号colon结尾，接下来的内容就应该有缩进。</p>
+<p>ex30.py的代码部分：</p>
+<pre><code>people = 30
+cars = 40
+buses = 15
+if cars &gt; people:
+    print(&quot;We should take the cars.&quot;)
+elif cars &lt; people:
+    print(&quot;We should not take the cars.&quot;)
+else:
+    print(&quot;We can't decide.&quot;)
+if buses &gt; cars:
+    print(&quot;That's too many buses.&quot;)
+elif buses &lt; cars:
+    print(&quot;Maybe we could take the buses.&quot;)
+else:
+    print(&quot;We still can't decide.&quot;)
+if people &gt; buses:
+    print(&quot;Alright, let's just take the buses.&quot;)
+else:
+    print(“F.ine, let's stay home then.&quot;)
+</code></pre>
+<p>练习用多写一些复杂的布尔表达式：
+<code>cars &gt; people and buses &lt; cars</code></p>
+<p><strong>⚠️注意</strong>
+如果多个elif区块都是True，Python只会运行它碰到的第一个True的区块。</p>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex27-ji-zhu-luo-ji-guan-xi">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex27 记住逻辑关系
+                  </h3>
+                </a>
+              </div>
             
 
             

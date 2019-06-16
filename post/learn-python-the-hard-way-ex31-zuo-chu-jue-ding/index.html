@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Learning with Writing</title>
+<title>Learn Python the hard way-Ex31 作出决定 | Learning with Writing</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,16 +98,68 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">Learn Python the hard way-Ex31 作出决定</h2>
+            <div class="post-date">2019-06-15</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex31-zuo-chu-jue-ding.png')">
+              </div>
             
             <div class="post-content">
-              <p>一直在路上，可能不会停。</p>
-<p>希望能成为不辍执笔的一个新地方，而不是半途而废星人的另一个废域名。</p>
-<p>学习笔记和练习笔记。</p>
+              <p>通过if，else，elif可以进行程序流向的分支，创建包含条件判断的脚本。
+这一章的重点是if从句中套用if从句。这种嵌套（nested）可以把分支引向下一分支。</p>
+<p><strong>如何判断数字处于某个值域中？</strong></p>
+<ol>
+<li>1 &lt; x &lt; 10</li>
+<li>x in range(1, 10)</li>
+</ol>
+<p>四个以上条件判断，多用几个if/elif/else区块实现。</p>
+<p>ex31.py代码：</p>
+<pre><code>print(&quot;You enter a dark room with two doors. Do you go through dorr #1 or door #2?&quot;)
+door = input(&quot;&gt; &quot;)
+if door == &quot;1&quot;:
+    print(&quot;There's a giant bear here eating a cheese cake. What do you do?&quot;)
+    print(&quot;1. Take the cake.&quot;)
+    print(&quot;2. Scream at the bear.&quot;)
+    bear = input(&quot;&gt; &quot;)
+    if bear == &quot;1&quot;:
+        print(&quot;The bear eats your face off. Good job!&quot;)
+    elif bear == &quot;2&quot;:
+        print(&quot;The bear eats your legs off. Good job!&quot;)
+    else:
+        print(&quot;Well, doing %s is probably better. Bear runs away.&quot; % bear)
+elif door == &quot;2&quot;:
+    print(&quot;You stare into the endless abyss at Cthulhu's retina.&quot;)
+    print(&quot;1. Blueberries.&quot;)
+    print(&quot;2. Yellow jacket clothespins.&quot;)
+    print(&quot;3. Understanding revolvers yelling melodies.&quot;)
+    insanity = input(&quot;&gt; &quot;)
+    if insanity == &quot;1&quot; or insanity == &quot;2&quot;:
+        print(&quot;Your body survives powered by a mind of jello. Good job!&quot;)
+    else:
+        print(&quot;The insanity rots your eyes into a pool of muck. Good job!&quot;)
+else:
+    print(&quot;You stumble around and fall on a knife and die. Good job!&quot;)
+</code></pre>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex29-ru-guo-if">
+                  <h3 class="post-title">
+                    Learn Python the hard way-ex29 如果（if）
+                  </h3>
+                </a>
+              </div>
             
 
             

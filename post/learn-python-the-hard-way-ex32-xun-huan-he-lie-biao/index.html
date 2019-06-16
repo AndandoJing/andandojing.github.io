@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Learn Python the hard way-ex18 | Learning with Writing</title>
+<title>Learn Python the hard way-Ex32 循环和列表 | Learning with Writing</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,76 +98,96 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Learn Python the hard way-ex18</h2>
-            <div class="post-date">2019-06-01</div>
+            <h2 class="post-title">Learn Python the hard way-Ex32 循环和列表</h2>
+            <div class="post-date">2019-06-16</div>
             
-              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex18.png')">
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex32-xun-huan-he-lie-biao.png')">
               </div>
             
             <div class="post-content">
-              <p><strong>函数的三个作用：</strong></p>
-<ol>
-<li>给代码片段命名，就和“变量”给字符串和数字命名一样；</li>
-<li>可以接受参数，就像脚本接受argv一样；</li>
-<li>通过使用#1和#2，可以创建“微型脚本”或者“小命令”</li>
-</ol>
-<p>这个是ex18.py的代码部分：</p>
-<pre><code>#this one is like your scripts with argv
-def print_two (*args):
-    arg1, arg2 = args
-    print(&quot;arg1: %r, arg2: %r&quot; % (arg1, arg2))
-#ok, that *args is actually pointless, we can just do this
-def print_two_again(arg1,arg2):
-    print(&quot;arg1: %r, arg2: %r&quot; % (arg1, arg2))
-#this just takes one argument
-def print_one(arg1):
-    print(&quot;arg1: %r&quot; % arg1)
-#this one takes no arguments
-def print_none():
-    print(&quot;I got nothin.&quot;)
-
-print_two(&quot;Zed&quot;,&quot;Shaw&quot;)
-print_two_again(&quot;Zed&quot;,&quot;Shaw&quot;)
-print_one(&quot;First!&quot;)
-print_none()
+              <p><strong>for-loop（for循环）</strong>
+在开始for循环之前，需要在某个位置存放循环的结果，最好的办法是使用列表list。
+for-loop可以使用未定义的变量，因为循环开始时变量就被定义了，每次循环时会被重新定义一次。</p>
+<p><strong>创建列表：
+举例：</strong>
+hairs = ['brown', 'blond', 'red']
+eyes = ['brown', 'blue', 'green']
+weights = [1, 2, 3, 4]</p>
+<p><strong>列表构成：</strong>
+列表名 = [‘元素1’, ‘元素2’, ‘元素3’]</p>
+<p><strong>ex32.py的代码：</strong></p>
+<pre><code>the_count = [1, 2, 3, 4, 5]
+fruits = ['apples', 'oranges', 'pears', 'apricots']
+change = [1, 'pennies', 2, 'dimes', 3, 'quarters']
+#this first kind of for-loop goes through a list
+for number in the_count:
+    print(&quot;This is count %d&quot; % number)
+#same as above
+for fruit in fruits:
+    print(&quot;A fruit of type: %s&quot; % fruit)
+#also we can go through mixed lists too
+#notice we have to use %r since we don't know what's in ti
+for i in change:
+    print(&quot;I got %r&quot; % i)
+#we can also build lists, first start with an empty one
+elements = []
+#then use the range function to do 0 to 5 counts
+for i in range(0, 6):
+    print(&quot;Adding %d to the list.&quot; % i)
+    # append is a function that lists understand
+    elements.append(i)
+#now we can print them out too
+for i in elements:
+    print(&quot;Element was: %d&quot; % i)
 </code></pre>
-<p>这里拆解ex18.py中第一个print_two的每一部分：</p>
-<ol>
-<li>首先是用def命令创建一个函数，def是定义（define）的意思。</li>
-<li>def是函数的名称，在这里它的名称是”print_two”，名称可以随便更改，但最好能够体现函数的功能。</li>
-<li>告诉函数需要*args（asterisk args），折合脚本的argv很像，参数必须在()中才能正常工作。</li>
-<li>用冒号结束本行，开始下一行缩进。</li>
-<li>冒号以下，使用4个空格缩进的行都是属于print_two这个函数的内容。其中第一行的作用是将参数解包。这也和argv差不多</li>
-<li>把解包后的参数都打印出来。</li>
-</ol>
-<p>这里的print_two并不是最精简的创建函数的办法，python中可以跳过解包过程，直接使用()里面的名称作为变量名。也就是print_two_again表现出来的。</p>
-<p>print_one展示函数如何接受单个参数。
-print_none展示函数可以不接受任何参数。</p>
-<p><strong><em>args的</em>的意思：</strong>
-告诉python让它把函数的所有参数都接受进来，然后放到名字叫args的列表中，和argv差不多，但这个args用在函数上。没特殊情况一般不会用到这个东西。</p>
-<p><strong>函数注意事项：</strong></p>
-<ol>
-<li>函数定义以def开始</li>
-<li>函数名称用字符和下划线_组成，不可以用数字开始</li>
-<li>函数名称后紧跟()</li>
-<li>()中包含参数，多个参数时用逗号,隔开</li>
-<li>参数名称不可重复（不能使用重复的参数名）</li>
-<li>(参数)之后跟着冒号:</li>
-<li>下一行需要缩进，4个空格的缩进（indent），但凡是后面这样缩进的都在这个函数里</li>
-<li>函数结束的位置要取消缩进（dedent）
-<strong>例子：</strong>
-def first(variable1, variable2):</li>
-</ol>
-<p><strong>运行函数时（use或者call）要检查：</strong></p>
-<ol>
-<li>调运函数时是否使用了函数的名称？</li>
-<li>函数名称是否紧跟着()？</li>
-<li>()内有无参数？多个参数是否以逗号隔开？</li>
-<li>函数是否以)结尾？
-也就是是否符合上面的书写规范。</li>
-</ol>
-<p><strong>运行函数（run）=调用函数（call）=使用函数（use）</strong>
-说法不同而已</p>
+<p><strong>range函数的用法</strong>
+<code>range(start, stop[, step])</code></p>
+<ul>
+<li>start：计数从start开始。默认是从0开始。例如：range(5)等价于range(0, 5) =&gt; [0, 1, 2, 3, 4]；</li>
+<li>stop：计数到stop结束，但不包括stop。例如：range(0, 5)是[1, 2, 3, 4]没有5；</li>
+<li>step：步长，默认是1.例如：range(0, 30, 5)等价于range(0, 5, 10, 15, 20, 25)
+<strong>实例：</strong>
+range在for中使用，循环出runoob的每个字母：</li>
+</ul>
+<pre><code>x = ‘runoob’
+for i in range(len(x)):
+    print(x[I])
+=&gt;
+r
+u
+n
+o
+o
+b
+</code></pre>
+<p>Python3 中range()函数返回的是一个可迭代对象（类型是对象），而不是列表类型，所以打印的时候不会打印列表。
+Python3 中list()函数是对象迭代器，可以把range()返回的可迭代对象转为一个列表，返回的变量类型为列表。
+Python2 range()函数返回的是列表。</p>
+<p><strong>尝试将elements直接赋值为range(0, 6)：</strong></p>
+<pre><code>#直接将elements赋值为range(0. 6)且不使用for循环
+elements = range(0, 6)
+</code></pre>
+<p><strong>python中的append()用法：</strong>
+list.append(obj)
+obj：添加到列表末尾的对象
+返回值：该方法无返回值，但是会修改原来的列表
+<strong>作用：在列表里添加新的项</strong>
+<strong>举例：</strong></p>
+<pre><code>aList = [123, ‘xyz’, ‘zara’, ‘abc’];
+aList.append( 2009 );
+print(“Updated List: “, aList);
+=&gt;
+Updated List: [123, ‘xyz’, ‘zara’, ‘abc’, 2009]
+</code></pre>
+<p><strong>append()和extend()的区别：</strong>
+extend将它的参数视为list，extende的行为是把两个list接到一起。
+append将它的参数视为element，作为一个整体添加上去的。</p>
+<p><strong>二维列表：</strong>
+在列表中包含列表。
+<strong>举例：</strong>
+<code>list1 = [[1, 2], [3, 4], [5, 6]]</code>
+访问元素：list1[0] =&gt;[1, 2]</p>
+<p>for i in range(1, 3)中range(1, 3)只包括首项到倒数第二项。</p>
 
             </div>
             
@@ -182,9 +202,9 @@ def first(variable1, variable2):</li>
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex17">
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex31-zuo-chu-jue-ding">
                   <h3 class="post-title">
-                    Learn Python the hard way-ex17
+                    Learn Python the hard way-Ex31 作出决定
                   </h3>
                 </a>
               </div>

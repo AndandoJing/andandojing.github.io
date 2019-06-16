@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-06-14T18:25:56.797Z</updated>
+    <updated>2019-06-16T22:26:35.872Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -10,6 +10,500 @@
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex32 循环和列表]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex32-xun-huan-he-lie-biao</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex32-xun-huan-he-lie-biao">
+        </link>
+        <updated>2019-06-16T16:22:46.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>for-loop（for循环）</strong>
+在开始for循环之前，需要在某个位置存放循环的结果，最好的办法是使用列表list。
+for-loop可以使用未定义的变量，因为循环开始时变量就被定义了，每次循环时会被重新定义一次。</p>
+<p><strong>创建列表：
+举例：</strong>
+hairs = ['brown', 'blond', 'red']
+eyes = ['brown', 'blue', 'green']
+weights = [1, 2, 3, 4]</p>
+<p><strong>列表构成：</strong>
+列表名 = [‘元素1’, ‘元素2’, ‘元素3’]</p>
+<p><strong>ex32.py的代码：</strong></p>
+<pre><code>the_count = [1, 2, 3, 4, 5]
+fruits = ['apples', 'oranges', 'pears', 'apricots']
+change = [1, 'pennies', 2, 'dimes', 3, 'quarters']
+#this first kind of for-loop goes through a list
+for number in the_count:
+    print(&quot;This is count %d&quot; % number)
+#same as above
+for fruit in fruits:
+    print(&quot;A fruit of type: %s&quot; % fruit)
+#also we can go through mixed lists too
+#notice we have to use %r since we don't know what's in ti
+for i in change:
+    print(&quot;I got %r&quot; % i)
+#we can also build lists, first start with an empty one
+elements = []
+#then use the range function to do 0 to 5 counts
+for i in range(0, 6):
+    print(&quot;Adding %d to the list.&quot; % i)
+    # append is a function that lists understand
+    elements.append(i)
+#now we can print them out too
+for i in elements:
+    print(&quot;Element was: %d&quot; % i)
+</code></pre>
+<p><strong>range函数的用法</strong>
+<code>range(start, stop[, step])</code></p>
+<ul>
+<li>start：计数从start开始。默认是从0开始。例如：range(5)等价于range(0, 5) =&gt; [0, 1, 2, 3, 4]；</li>
+<li>stop：计数到stop结束，但不包括stop。例如：range(0, 5)是[1, 2, 3, 4]没有5；</li>
+<li>step：步长，默认是1.例如：range(0, 30, 5)等价于range(0, 5, 10, 15, 20, 25)
+<strong>实例：</strong>
+range在for中使用，循环出runoob的每个字母：</li>
+</ul>
+<pre><code>x = ‘runoob’
+for i in range(len(x)):
+    print(x[I])
+=&gt;
+r
+u
+n
+o
+o
+b
+</code></pre>
+<p>Python3 中range()函数返回的是一个可迭代对象（类型是对象），而不是列表类型，所以打印的时候不会打印列表。
+Python3 中list()函数是对象迭代器，可以把range()返回的可迭代对象转为一个列表，返回的变量类型为列表。
+Python2 range()函数返回的是列表。</p>
+<p><strong>尝试将elements直接赋值为range(0, 6)：</strong></p>
+<pre><code>#直接将elements赋值为range(0. 6)且不使用for循环
+elements = range(0, 6)
+</code></pre>
+<p><strong>python中的append()用法：</strong>
+list.append(obj)
+obj：添加到列表末尾的对象
+返回值：该方法无返回值，但是会修改原来的列表
+<strong>作用：在列表里添加新的项</strong>
+<strong>举例：</strong></p>
+<pre><code>aList = [123, ‘xyz’, ‘zara’, ‘abc’];
+aList.append( 2009 );
+print(“Updated List: “, aList);
+=&gt;
+Updated List: [123, ‘xyz’, ‘zara’, ‘abc’, 2009]
+</code></pre>
+<p><strong>append()和extend()的区别：</strong>
+extend将它的参数视为list，extende的行为是把两个list接到一起。
+append将它的参数视为element，作为一个整体添加上去的。</p>
+<p><strong>二维列表：</strong>
+在列表中包含列表。
+<strong>举例：</strong>
+<code>list1 = [[1, 2], [3, 4], [5, 6]]</code>
+访问元素：list1[0] =&gt;[1, 2]</p>
+<p>for i in range(1, 3)中range(1, 3)只包括首项到倒数第二项。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex31 作出决定]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex31-zuo-chu-jue-ding</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex31-zuo-chu-jue-ding">
+        </link>
+        <updated>2019-06-15T08:20:54.000Z</updated>
+        <content type="html"><![CDATA[<p>通过if，else，elif可以进行程序流向的分支，创建包含条件判断的脚本。
+这一章的重点是if从句中套用if从句。这种嵌套（nested）可以把分支引向下一分支。</p>
+<p><strong>如何判断数字处于某个值域中？</strong></p>
+<ol>
+<li>1 &lt; x &lt; 10</li>
+<li>x in range(1, 10)</li>
+</ol>
+<p>四个以上条件判断，多用几个if/elif/else区块实现。</p>
+<p>ex31.py代码：</p>
+<pre><code>print(&quot;You enter a dark room with two doors. Do you go through dorr #1 or door #2?&quot;)
+door = input(&quot;&gt; &quot;)
+if door == &quot;1&quot;:
+    print(&quot;There's a giant bear here eating a cheese cake. What do you do?&quot;)
+    print(&quot;1. Take the cake.&quot;)
+    print(&quot;2. Scream at the bear.&quot;)
+    bear = input(&quot;&gt; &quot;)
+    if bear == &quot;1&quot;:
+        print(&quot;The bear eats your face off. Good job!&quot;)
+    elif bear == &quot;2&quot;:
+        print(&quot;The bear eats your legs off. Good job!&quot;)
+    else:
+        print(&quot;Well, doing %s is probably better. Bear runs away.&quot; % bear)
+elif door == &quot;2&quot;:
+    print(&quot;You stare into the endless abyss at Cthulhu's retina.&quot;)
+    print(&quot;1. Blueberries.&quot;)
+    print(&quot;2. Yellow jacket clothespins.&quot;)
+    print(&quot;3. Understanding revolvers yelling melodies.&quot;)
+    insanity = input(&quot;&gt; &quot;)
+    if insanity == &quot;1&quot; or insanity == &quot;2&quot;:
+        print(&quot;Your body survives powered by a mind of jello. Good job!&quot;)
+    else:
+        print(&quot;The insanity rots your eyes into a pool of muck. Good job!&quot;)
+else:
+    print(&quot;You stumble around and fall on a knife and die. Good job!&quot;)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-ex29 如果（if）]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex29-ru-guo-if</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex29-ru-guo-if">
+        </link>
+        <updated>2019-06-15T05:43:59.000Z</updated>
+        <content type="html"><![CDATA[<p>ex29.py的代码部分：</p>
+<pre><code>people = 20
+cats = 30
+dogs = 15
+
+if people &lt; cats:
+    print(&quot;Too many cats! The world is doomed!&quot;)
+if people &gt; cats:
+    print(&quot;Not many cats! The world is saved!&quot;)
+if people &lt; dogs:
+    print(&quot;The world is drooled on!&quot;)
+if people &gt; dogs:
+    print(&quot;The world is dry!&quot;)
+dogs += 5
+if people &gt;= dogs:
+    print(&quot;People are greater than or equal to dogs.&quot;)
+if people &lt;= dogs:
+    print(&quot;People are less than or equal to dogs.&quot;)
+if people == dogs:
+    print(&quot;People are dogs.&quot;)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-ex28 布尔表达式练习]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex28-bu-er-biao-da-shi-lian-xi</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex28-bu-er-biao-da-shi-lian-xi">
+        </link>
+        <updated>2019-06-15T05:40:50.000Z</updated>
+        <content type="html"><![CDATA[<p>布尔逻辑表达式Boolean logic expression</p>
+<p>Ex28.py的代码部分：</p>
+<pre><code>True and True
+False and True
+1 == 1 and 2 == 1
+&quot;test&quot; == &quot;test&quot;
+1 == 1 or 2 != 1
+True and 1 == 1
+False and 0 != 0
+True or 1 == 1
+&quot;test&quot; == &quot;testing&quot;
+1 != 0 and 2 == 1
+&quot;test&quot; != &quot;testing&quot;
+&quot;test&quot; == 1
+not (True and False)
+not (1 == 1 and 0 != 1)
+not (10 == 1 or 1000 == 1000)
+not (1 != 10 or 3 == 4)
+not (&quot;testing&quot; == &quot;testing&quot; and &quot;Zed&quot; == &quot;Cool Guy&quot;)
+1 == 1 and not (&quot;testing&quot; == 1 or 1 == 0)
+&quot;chunky&quot; == &quot;bacon&quot; and not (3 == 4 or 3 == 3)
+3 == 3 and not (&quot;testing&quot; == &quot;testing&quot; or &quot;Python&quot; == &quot;Fun&quot;)
+</code></pre>
+<p>这部分实际上是在终端输入python后，一行一行输入后可以得出结果。
+所有的布尔逻辑表达式都可以用简单流程得到结果：</p>
+<ol>
+<li>找到相等判断的部分（==或者!=），将其改写为最终值（True或者False）</li>
+<li>找到括号里的and或者or，先算出他们的值</li>
+<li>找到每一个not，算出其反过来的值</li>
+<li>找到剩下的and或者or，解出他们的值</li>
+<li>全部做完后，得出最后的结果是True还是False</li>
+</ol>
+<p>举一个例子：
+<code>3 != 4 and not (&quot;testing&quot; != &quot;test&quot; or &quot;Python&quot; == &quot;Python”)</code></p>
+<p>解答过程：</p>
+<ol>
+<li>拆分出3 != 4为True：True and not (“testing”  != “test” or “Python” == “Python”)</li>
+<li>“testing” 1= “test” 为True：True and not (True or “Python” == “Python”)</li>
+<li>“Python” == “Python”: True and not (True or True)</li>
+<li>找到括号中的and和or: (True or True) 为True：True and not (True)</li>
+<li>找到not并将其逆转： not (True) 为False：True and False</li>
+<li>找到剩下的and和or，解出值：True and False为False</li>
+</ol>
+<p><strong>⚠️注意：</strong>
+虽然字节符中’testing’和”testing”是一样的，但是如果在python中直接输入：
+’testing’ = “testing”  =&gt; False
+如果输入”test” and “test” =&gt; “test”
+如果输入 1 and 1 =&gt; 1
+python中返回两个被操作对象中的一个，会得到第一个操作字元。
+如果输入False and 1 =&gt; False
+如果输入1 and False =&gt; False
+如果输入True and 1 + 0 =&gt; 1
+如果输入1 + 0 and False =&gt; False
+也就是说and和or运算符总会返回对象（不是左边的就是右边的）</p>
+<p><strong>短路逻辑：</strong>
+任何False开头的and语句都会处理成False，并不会继续检查后面的语句。
+任何包括了True和or的语句，只要处理到True字样，就不会继续向下推算，直接返回True。
+不过尽量保证整个语句能正常处理。</p>
+<p>!= 是主流用法，&lt;和&gt;将逐渐弃用</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex30 Else和If]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex30-else-he-if</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex30-else-he-if">
+        </link>
+        <updated>2019-06-15T01:50:03.000Z</updated>
+        <content type="html"><![CDATA[<p>python的规则里，只要一行已冒号colon结尾，接下来的内容就应该有缩进。</p>
+<p>ex30.py的代码部分：</p>
+<pre><code>people = 30
+cars = 40
+buses = 15
+if cars &gt; people:
+    print(&quot;We should take the cars.&quot;)
+elif cars &lt; people:
+    print(&quot;We should not take the cars.&quot;)
+else:
+    print(&quot;We can't decide.&quot;)
+if buses &gt; cars:
+    print(&quot;That's too many buses.&quot;)
+elif buses &lt; cars:
+    print(&quot;Maybe we could take the buses.&quot;)
+else:
+    print(&quot;We still can't decide.&quot;)
+if people &gt; buses:
+    print(&quot;Alright, let's just take the buses.&quot;)
+else:
+    print(“F.ine, let's stay home then.&quot;)
+</code></pre>
+<p>练习用多写一些复杂的布尔表达式：
+<code>cars &gt; people and buses &lt; cars</code></p>
+<p><strong>⚠️注意</strong>
+如果多个elif区块都是True，Python只会运行它碰到的第一个True的区块。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-ex27 记住逻辑关系]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex27-ji-zhu-luo-ji-guan-xi</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex27-ji-zhu-luo-ji-guan-xi">
+        </link>
+        <updated>2019-06-14T12:38:37.000Z</updated>
+        <content type="html"><![CDATA[<p>python使用下列术语定义事物的True或False：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>符号</strong></th>
+<th style="text-align:center"><strong>意义</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">and</td>
+<td style="text-align:center">与</td>
+</tr>
+<tr>
+<td style="text-align:center">or</td>
+<td style="text-align:center">或</td>
+</tr>
+<tr>
+<td style="text-align:center">not</td>
+<td style="text-align:center">非</td>
+</tr>
+<tr>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">not equal</br> 不等于</td>
+</tr>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:center">equal</br> 等于</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;=</td>
+<td style="text-align:center">greater-than-equal</br> 大于等于</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:center">less-than-equal</br> 小于等于</td>
+</tr>
+<tr>
+<td style="text-align:center">True</td>
+<td style="text-align:center">真</td>
+</tr>
+<tr>
+<td style="text-align:center">False</td>
+<td style="text-align:center">假</td>
+</tr>
+</tbody>
+</table>
+<p><strong>真值表</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>NOT</strong></th>
+<th style="text-align:center"><strong>True?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">not False</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">not True</td>
+<td style="text-align:center">False</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>OR</strong></th>
+<th style="text-align:center"><strong>True?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">True or False</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">True or True</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">False or True</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">False or False</td>
+<td style="text-align:center">False</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>AND</strong></th>
+<th style="text-align:center"><strong>True?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">True and False</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">True and True</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">False and True</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">False and False</td>
+<td style="text-align:center">False</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>NOT OR</strong></th>
+<th style="text-align:center"><strong>True?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">not (True or False)</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">not (True or True)</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">not (False or True)</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">not (False or False)</td>
+<td style="text-align:center">True</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>NOT AND</strong></th>
+<th style="text-align:center"><strong>True?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">not (True and False)</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">not (True and True)</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">not (False and True)</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">not (False and False)</td>
+<td style="text-align:center">True</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>!=</strong></th>
+<th style="text-align:center"><strong>True?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1 != 0</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">1 != 1</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">0 != 1</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">0 != 0</td>
+<td style="text-align:center">False</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>==</strong></th>
+<th style="text-align:center"><strong>True?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1 == 0</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">1 == 1</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">0 == 1</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">0 == 0</td>
+<td style="text-align:center">False</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Learn Python the hard way-Ex26 恭喜你，现在可以考试了！]]></title>
         <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex26-gong-xi-ni-xian-zai-ke-yi-kao-shi-liao</id>
@@ -1116,646 +1610,6 @@ script, first, second, third = argv
 <li>可以接受参数，类似脚本接受argv；</li>
 <li>创建“微型脚本”或者“小命令”</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex21]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex21</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex21">
-        </link>
-        <updated>2019-06-07T04:48:54.000Z</updated>
-        <content type="html"><![CDATA[<p>使用 = 和return将变量设置为“一个函数的值”。</p>
-<pre><code>ex21.py的代码：
-def add(a, b):
-    print(&quot;ADDING %d + %d&quot; % (a, b))
-    return a + b
-def subtract(a, b):
-    print(&quot;SUBTRACTING %d - %d&quot; % (a, b))
-    return a - b
-def multiply(a, b):
-    print(&quot;MULTIPLYING %d * %d&quot; % (a, b))
-    return a * b
-def divide(a, b):
-    print(&quot;DIVIDING %d / %d&quot; % (a, b))
-    return a / b
-print(&quot;Let's do some math with just functions!&quot;)
-age = add(30, 5)
-height = subtract(78, 4)
-weight = multiply(90, 2)
-iq = divide(100, 2)
-print(&quot;Age: %d, Height: %d, Weight: %d, IQ: %d&quot; % (age, height, weight, iq))
-#A puzzle for the extra credit, type it in anyway.
-print(&quot;Here is a puzzle.&quot;)
-what = add(age, subtract(height, multiply(weight, divide(iq, 2))))
-print(&quot;That becomes: &quot;, what, &quot;Can you do it by hand?&quot;)
-</code></pre>
-<p><strong>创建函数add, subtract, multiply, divide，函数的最后一行是return a + b（举例），实现的功能是：</strong></p>
-<ol>
-<li>调用函数时使用参数a和b</li>
-<li>打印函数的功能</li>
-<li>告诉python让它做回传的动作：将a + b的值返回（return）</li>
-<li>python将两个数字相加，当函数结束时，将a + b的结果赋予一个变量
-用input()输入自定义值的话,in(input())是输入整数值，float(input())可以输入浮点数。</li>
-</ol>
-<p>自建函数尝试运算24 + 34 / 100 -1023:</p>
-<pre><code>#尝试自己写一个新函数，并使用ex21.py中学到的return等
-def add(a, b):  #设定add函数
-    print(&quot;Adding %d + %d&quot; % (a, b))
-    return a + b
-def subtract(a, b): #设定subtract函数
-    print(&quot;Subtract %d - %d&quot; % (a, b))
-    return a - b
-def divide(a, b): #设定divide函数
-    print(&quot;Divide %d / %d&quot; % (a, b))
-    return a / b
-number1 = float(input(&quot;number1:&quot;))  #用户输入四个数字
-number2 = float(input(&quot;number2:&quot;))
-number3 = float(input(&quot;number3:&quot;))
-number4 = float(input(&quot;number4:&quot;))
-#打印四个数字
-print(&quot;Here are the numbers:number1: %d, number2: %d, number3: %d, number4: %d&quot; % (number1, number2, number3, number4))
-result = subtract(add(number1, divide(number2, number3)), number4)
-print(&quot;Here is the result: %d&quot; % result)
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex20]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex20</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex20">
-        </link>
-        <updated>2019-06-04T15:55:11.000Z</updated>
-        <content type="html"><![CDATA[<p>ex20.py的原本代码是：</p>
-<pre><code>from sys import argv
-script, input_file = argv
-def print_all(f):
-    print(f.read())
-def rewind(f):
-    f.seek(0)
-def print_a_line(line_count, f):
-    print(line_count, f.readline())
-current_file = open(input_file)
-print(&quot;First let's print the whole file:\n&quot;)
-print_all(current_file)
-print(&quot;Now let's rewind, kind of like a tape.&quot;)
-rewind(current_file)
-print(&quot;Let's print three lines:&quot;)
-current_line = 1
-print_a_line(current_line, current_file)
-test.txt
-current_line = current_line + 1
-print_a_line(current_line, current_file)
-current_line = current_line + 1
-print_a_line(current_line, current_file)
-</code></pre>
-<p>但是因为我本地的test.txt之前被改写了，所以先用ex16.py中的读写规则改写现有test.txt成原本的样子:</p>
-<pre><code>from sys import argv #导入argv模组
-script, input_file = argv #设定参数
-print(&quot;Opening the file...&quot;)
-target = open(input_file, 'w') #打开文件
-print(&quot;Truncate the file...&quot;) #清空文件内容
-target.truncate()
-print(&quot;Rewrite the file...&quot;) #提示用户重新输入文件内容
-line1 = input(&quot;line1:&quot;)
-line2 = input(&quot;line2:&quot;)
-line3 = input(&quot;line3:&quot;)
-target.write(line1+'\n'+line2+'\n'+line3) #确认重写内容
-target.close() #关闭文件，将内容写入硬盘
-def print_all(f):   #定义打印文件函数
-    print(f.read())
-def rewind(f): #设置开始的偏移量，即从偏移位置开始运行
-    f.seek(0)
-def print_a_line(line_count, f): #打印行数和该行内容
-    print(line_count, f.readline())
-current_file = open(input_file) #打开文件，将内容临时赋值给current_file
-print(&quot;First let's print the whole file:\n&quot;)
-print_all(current_file)
-print(&quot;Now let's rewind, kind of like a tape.&quot;)
-rewind(current_file)
-print(&quot;Let's print three lines:&quot;)
-current_line = 1
-print_a_line(current_line, current_file)
-current_line = current_line + 1
-print_a_line(current_line, current_file)
-current_line = current_line + 1
-print_a_line(current_line, current_file)
-</code></pre>
-<p>终端显示会是：</p>
-<pre><code>xiaojinyudeMBP:AtomProjects isaking$ python ex20.py test.txt
-Opening the file...
-Truncate the file...
-Rewrite the file...
-line1:To all the people out there.
-line2:I say I don't like my hair.
-line3:I need to shave it off.
-First let's print the whole file:
-To all the people out there.
-I say I don't like my hair.
-I need to shave it off.
-Now let's rewind, kind of like a tape.
-Let's print three lines:
-1 To all the people out there.
-2 I say I don't like my hair.
-3 I need to shave it off.
-xiaojinyudeMBP:AtomProjects isaking$ 
-</code></pre>
-<p><strong>file中的seek()是做什么的？</strong>
-seek()用于移动文件读取指针到指定位置
-<strong>seek()的语法：</strong>
-fileObject.seek(offset[,whence])
-offset：开始的偏移量，也就是代表需要移动偏移的字节数
-whence：可选，默认值为0。给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。
-<strong>返回值：</strong>
-该函数没有返回值。
-<strong>seek()函数</strong>
-处理对象是字节而不是行，所以seek(0)只会转到文件的0 byte，也就是第一个byte，不会把current_line设为0。current_line只是一个独立变量，和文件本身没有关系，只能手动为其增值。</p>
-<p><strong>+=这个简写操作符的作用：</strong>
-a += b 是 a = a + b 的简写，也就是将a + b重新赋值给a，一般用于计数。比如这个代码中的current_line = current_line + 1可以写成current_line += 1</p>
-<p><strong>print_all (f)这里的f是什么？</strong>
-f是变量，在这里指一个文件。python里的文件读取和DVD或磁带类似，有一个用来读取数据的“磁头”。
-运行f.seek()可以回到文件的开始，f.readline()会读取文件的一行，然后将“磁头”移动到\n后面。
-readline()函数返回的内容中本来就包括\n（一个空行），print()在打印时也会添加一个\n，这样就会出现两个空行。如果要减掉空行，可以在print()语句结尾加一个逗号，这样print就不会把它自己的\n打印出来了。</p>
-<p><strong>readline()</strong>
-里面的代码会扫描文件的每一个字节，直到找到一个\n为止，然后停止读取文件，并且返回此前的文件内容。文件f会记录每次调用readline()后的读取位置，所以下次调用时可以直接读取接下来的一行。</p>
-<p>📖<strong>重新写一遍复习：</strong></p>
-<pre><code>#尝试写一个自己的类似脚本
-from sys import argv
-script, filename = argv
-print(&quot;新建文本txt为ex20_1.txt：&quot;)
-target = open(filename, 'w')
-print(&quot;写入新文本内容：&quot;)
-line1 = input(&quot;第一行：&quot;)
-line2 = input(&quot;第二行：&quot;)
-line3 = input(&quot;第三行：&quot;)
-target.write(line1+'\n'+line2+'\n'+line3+'\n')
-target.close()
-def print_all(f):
-    print(f.read())
-def rewind(f):
-    f.seek(0)
-def print_every_line(line_count, f):
-    print(line_count, f.readline())
-current_file = open(filename)
-print(&quot;目前文本全文为：&quot;)
-print_all(current_file)
-print(&quot;调回文本开头。&quot;)
-rewind(current_file)
-print(&quot;按照行数依次打印：&quot;)
-current_line = 1
-print_every_line(current_line, current_file)
-current_line += 1
-print_every_line(current_line, current_file)
-current_line += 1
-print_every_line(current_line, current_file)
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex19]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex19</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex19">
-        </link>
-        <updated>2019-06-02T08:47:27.000Z</updated>
-        <content type="html"><![CDATA[<p>函数里的变量和脚本里的变量之间没有连接。</p>
-<p>这里是ex19.py的内容：</p>
-<pre><code>#定义函数cheese_and_crackers，设定两个变量cheese_count和boxes_of_crackers
-def cheese_and_crackers(cheese_count, boxes_of_crackers):
-    print(&quot;You have %d cheeses!&quot; % cheese_count)
-    print(&quot;You have %d boxes of crackers!&quot; % boxes_of_crackers)
-    print(&quot;Man that's enough for a party!&quot;)
-    print(&quot;Get a blanket.\n&quot;)
-#设定这个函数要执行的操作一共是四个打印步骤
-#第一种赋予函数变量的值的方式，直接赋予变量相应的值，两个变量对应20和30的值
-print(&quot;We can just give the function numbers directly:&quot;)
-cheese_and_crackers(20, 30)
-#第二种赋予函数变量的值的方式，用脚本定义两个变量的值
-print(&quot;OR, we can use variables from our script:&quot;)
-amount_of_cheese = 10
-amount_of_crackers = 50
-#再把脚本定义的变量架到函数变量上。
-cheese_and_crackers(amount_of_cheese, amount_of_crackers)
-#注意，这种办法需要先定义脚本变量，不然没出现过，后面不能识别
-#第三种赋予函数变量的值的方式，可以用运算的方式在函数内赋予。
-print(&quot;We can even do math inside too:&quot;)
-cheese_and_crackers(10 + 20, 5 + 6)
-#第四种赋予函数变量的值的方式，可以结合脚本变量和运算，在函数内赋予。
-print(&quot;And we can cobine the two, variables and math:&quot;)
-cheese_and_crackers(amount_of_cheese + 100,
-amount_of_crackers + 1000)
-</code></pre>
-<p>可以看出我们在给函数cheese_and_crackers很多参数，然后在函数里把他们打印出来。函数中可以用变量名，可以在函数中运算，也可以将变量和运算结合。
-函数的参数和我们生成变量时用的 = 赋值符类似。如果一个物件可以用 = 将其命名，一般也可以将其作为参数传递给一个函数。
-<strong>如果要处理用户输入的数字，例如想让用户输入cheese和crackers的数量时，除了input()还要记得用int()把输入的值转为整数。</strong></p>
-<p>第二种赋予函数变量的值的方式里，借用了脚本里创建变量的方式。这种方式里，脚本变量是在函数变量之外的，不会改变函数中的变量，它们被传递到函数中之后，函数会为之创建临时版本。函数运行结束后，这些临时变量就会被丢弃了。
-因此，<strong>在设定这种全局变量的名称时，最好不要用同样的变量名称，会弄混。</strong></p>
-<p>函数的参数个数虽然有限（取决于python版本和操作系统），但限值很大，实际应用中，<strong>5个参数就不少了</strong>。</p>
-<p>可以在函数中调用函数。</p>
-<p>这里尝试自建新函数，并且用十种方式运行：</p>
-<pre><code>#尝试自己编至少一个函数出来，并用10中方法运行这个函数
-def grado_de_amor(amor_mio, amor_tuyo, distancia):
-    print(&quot;If my love is %d degree.&quot; % amor_mio)
-    print(&quot;And your love is %d degree.&quot; % amor_tuyo)
-    print(&quot;When we are %d km apart.&quot; % distancia)
-    print(&quot;Our love degree can be calculated.&quot;)
-    data = (amor_mio + amor_tuyo)/distancia
-    print(&quot;It's %d degree.&quot; % data)
-#第一种赋值方法，直接赋值
-print(&quot;Primera manera:&quot;)
-grado_de_amor(49, 51, 1)
-#第二种赋值方法，脚本参数变量
-print(&quot;Segunda manera:&quot;)
-degree_of_my_love = 40
-degree_of_your_love = 50
-distance = 2
-grado_de_amor(degree_of_my_love, degree_of_your_love, distance)
-#第三种赋值方法，做运算
-print(&quot;Tercera manera:&quot;)
-grado_de_amor(40 + 10, 50 + 10, 3 + 3)
-#第四种赋值方法，脚本参数变量和运算合在一起
-print(&quot;Cuarta manera:&quot;)
-grado_de_amor(degree_of_my_love + 60, degree_of_your_love + 50, distance + 10)
-#第五种赋值方法，颠倒第四种的顺序
-print(&quot;Quinta manera:&quot;)
-grado_de_amor(70 + degree_of_my_love, 1 +
-degree_of_your_love, 3.3 + distance)
-#第六种赋值方式，脚本参数变量，直接赋值，参数+运算
-print(&quot;Sexta manera:&quot;)
-grado_de_amor(degree_of_my_love, 80, distance + 6)
-#第七种赋值方式，用户输入数值，整数
-print(&quot;Séptima manera:&quot;)
-degree_1 = int(input(&quot;my love:&quot;))
-degree_2 = int(input(&quot;your love:&quot;))
-degree_3 = int(input(&quot;distance:&quot;))
-grado_de_amor(degree_1, degree_2, degree_3)
-#第八种赋值方式，用户输入数值上做运算、参数混合，浮点数
-print(&quot;Octava manera:&quot;)
-degree_1_8 = float(input(&quot;my love_8:&quot;))
-degree_2_8 = float(input(&quot;your love_8:&quot;))
-degree_3_8 = float(input(&quot;distance_8:&quot;))
-grado_de_amor(degree_1_8, degree_2_8 + 10, degree_3_8 + degree_1_8)
-#第九种赋值方式，基础值上增加用户输入值
-print(&quot;Novena manera:&quot;)
-degree_1_9 = int(input(&quot;my love_9:&quot;))
-degree_2_9 = int(input(&quot;your love_9:&quot;))
-degree_3_9 = int(input(&quot;distance_9:&quot;))
-grado_de_amor(degree_1_9 + int(input(&quot;plus degree:&quot;)),
-degree_2_9 - int(input(&quot;minus degree:&quot;)),
-degree_3_9 + int(input(&quot;puls distance:&quot;)))
-#第十种复制方式，直接在函数参数写法上写成输入格式，不再使用临时的命名
-print(&quot;Décima manera:&quot;)
-grado_de_amor(float(input(&quot;最后一次我的:&quot;)),
-float(input(&quot;最后一次你的:&quot;)),
-float(input(&quot;最后一次距离：&quot;)))
-</code></pre>
-<p>⚠️注意：因为这个函数里有除法，所以最后一个函数的参数不可以时0，同时因为之前都是用int()做，所以所有的数都是整数形式。最后一个改成了浮点数float形式。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex18]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex18</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex18">
-        </link>
-        <updated>2019-06-01T15:41:26.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>函数的三个作用：</strong></p>
-<ol>
-<li>给代码片段命名，就和“变量”给字符串和数字命名一样；</li>
-<li>可以接受参数，就像脚本接受argv一样；</li>
-<li>通过使用#1和#2，可以创建“微型脚本”或者“小命令”</li>
-</ol>
-<p>这个是ex18.py的代码部分：</p>
-<pre><code>#this one is like your scripts with argv
-def print_two (*args):
-    arg1, arg2 = args
-    print(&quot;arg1: %r, arg2: %r&quot; % (arg1, arg2))
-#ok, that *args is actually pointless, we can just do this
-def print_two_again(arg1,arg2):
-    print(&quot;arg1: %r, arg2: %r&quot; % (arg1, arg2))
-#this just takes one argument
-def print_one(arg1):
-    print(&quot;arg1: %r&quot; % arg1)
-#this one takes no arguments
-def print_none():
-    print(&quot;I got nothin.&quot;)
-
-print_two(&quot;Zed&quot;,&quot;Shaw&quot;)
-print_two_again(&quot;Zed&quot;,&quot;Shaw&quot;)
-print_one(&quot;First!&quot;)
-print_none()
-</code></pre>
-<p>这里拆解ex18.py中第一个print_two的每一部分：</p>
-<ol>
-<li>首先是用def命令创建一个函数，def是定义（define）的意思。</li>
-<li>def是函数的名称，在这里它的名称是”print_two”，名称可以随便更改，但最好能够体现函数的功能。</li>
-<li>告诉函数需要*args（asterisk args），折合脚本的argv很像，参数必须在()中才能正常工作。</li>
-<li>用冒号结束本行，开始下一行缩进。</li>
-<li>冒号以下，使用4个空格缩进的行都是属于print_two这个函数的内容。其中第一行的作用是将参数解包。这也和argv差不多</li>
-<li>把解包后的参数都打印出来。</li>
-</ol>
-<p>这里的print_two并不是最精简的创建函数的办法，python中可以跳过解包过程，直接使用()里面的名称作为变量名。也就是print_two_again表现出来的。</p>
-<p>print_one展示函数如何接受单个参数。
-print_none展示函数可以不接受任何参数。</p>
-<p><strong><em>args的</em>的意思：</strong>
-告诉python让它把函数的所有参数都接受进来，然后放到名字叫args的列表中，和argv差不多，但这个args用在函数上。没特殊情况一般不会用到这个东西。</p>
-<p><strong>函数注意事项：</strong></p>
-<ol>
-<li>函数定义以def开始</li>
-<li>函数名称用字符和下划线_组成，不可以用数字开始</li>
-<li>函数名称后紧跟()</li>
-<li>()中包含参数，多个参数时用逗号,隔开</li>
-<li>参数名称不可重复（不能使用重复的参数名）</li>
-<li>(参数)之后跟着冒号:</li>
-<li>下一行需要缩进，4个空格的缩进（indent），但凡是后面这样缩进的都在这个函数里</li>
-<li>函数结束的位置要取消缩进（dedent）
-<strong>例子：</strong>
-def first(variable1, variable2):</li>
-</ol>
-<p><strong>运行函数时（use或者call）要检查：</strong></p>
-<ol>
-<li>调运函数时是否使用了函数的名称？</li>
-<li>函数名称是否紧跟着()？</li>
-<li>()内有无参数？多个参数是否以逗号隔开？</li>
-<li>函数是否以)结尾？
-也就是是否符合上面的书写规范。</li>
-</ol>
-<p><strong>运行函数（run）=调用函数（call）=使用函数（use）</strong>
-说法不同而已</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex17]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex17</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex17">
-        </link>
-        <updated>2019-06-01T13:17:58.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>from sys import argv
-from os.path import exists
-script, from_file, to_file = argv
-print(&quot;Copying from %s to %s&quot; % (from_file, to_file))
-#We could do these two on one line too, how?
-in_file = open(from_file)
-indata = in_file.read()
-print(&quot;The input file is %d bytes long&quot; % len(indata))
-print(&quot;Does the output file exist? %r&quot; % exists(to_file))
-print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
-input(&quot;&gt;&quot;)
-out_file = open(to_file, 'w')
-out_file.write(indata)
-print(&quot;Alright, all done.&quot;)
-out_file.close()
-in_file.close()
-</code></pre>
-<p>上面是正常ex17.py的代码内容，如果用text.txt作为要复制的文件，copied.txt作为复制文件的目标，会显示：</p>
-<pre><code>Copying from test.txt to copied.txt
-The input file is 16 bytes long
-Does the output file exist? False
-Ready, hit RETURN to continue, CTRL-C to abort.
-&gt;
-Alright, all done.
-</code></pre>
-<p>在这个ex17.py里，<strong>import了新的模组exists</strong>，<strong>这个命令将文件名字符串作为参数，如果文件存在则返回True，否则返回False</strong></p>
-<p>这里我在最后多出了一个打印命令，让把复制后的新文件打印出来：</p>
-<pre><code>from sys import argv
-from os.path import exists
-script, from_file, to_file = argv
-print(&quot;Copying from %s to %s&quot; % (from_file, to_file))
-#We could do these two on one line too, how?
-in_file = open(from_file)
-indata = in_file.read()
-print(&quot;The input file is %d bytes long&quot; % len(indata))
-print(&quot;Does the output file exist? %r&quot; % exists(to_file))
-print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
-input(&quot;&gt;&quot;)
-out_file = open(to_file, 'w')
-out_file.write(indata)
-print(&quot;Alright, all done.&quot;)
-out_file.close()
-in_file.close()
-new_file = open(to_file)
-new_txt = new_file.read()
-print(new_txt)
-</code></pre>
-<p>⚠️注<strong>意：如果按这种方式写，一定要把out_file.close()和in_file.close()写上，否则文件并没有被保存进磁盘，只是内存而已。</strong></p>
-<p>如果这里不加最后的打印步骤，可以在Linux或者OSX下面，在终端里直接输入<strong>cat</strong> copied.txt命令，会显示：</p>
-<pre><code>xiaojinyudeMBP:AtomProjects isaking$ cat copied.txt
-last new line 1.xiaojinyudeMBP:AtomProjects isaking$ 
-</code></pre>
-<p>这个命令的用处是将两个文件“连接（concatenate）到一起，不过实际上它最大的用途是打印文件内容到屏幕上。
-<strong>cat命令：</strong>
-命令格式：
-cat [选项][文件]…
-命令功能：</p>
-<ol>
-<li>一次显示整个文件：cat filename</li>
-<li>从键盘创建一个文件：cat&gt;filename 只能创建新文件，不能编辑已有文件</li>
-<li>将几个文件合并为一个文件：cat file1 file2 &gt; file</li>
-</ol>
-<p>在ex17_1.py中对原本的脚本进行修改，尝试操作其他文件，看看是否能够正常使用(尝试将ex15_sample.txt复制到ex17_1_copied.txt)：</p>
-<pre><code>from sys import argv #导入argv模组
-from os.path import exists #导入exists模组
-script, old_file, new_file = argv #赋予参数
-print(&quot;Copying from %s to %s.&quot; % (old_file, new_file))
-#We could do these two on one line too, how?
-data = open(old_file).read() #尝试用一行表达
-print(data)
-print(&quot;The old file is %d bytes long.&quot; % len(data)) #就文件多长？
-print(&quot;Does the new file exist? %r&quot; % exists(new_file)) #查看新文件是否存在
-print(&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;)
-input(&quot;Your choice is:&quot;)
-out_file = open(new_file, 'w')
-out_file.write(data) #尝试用一行表达
-print(&quot;Alright, all done.&quot;)
-out_file.close()
-open(old_file).close()
-</code></pre>
-<p>上面这样是可以正常运行的，脚本运行结束后在终端用cat ex17_1_copied.txt也可以正常显示出复制后的文本内容。</p>
-<p><strong>len() 函数的功能</strong>是：以数字形式返回传递的字符串的长度。
-例如：
-len(“abcde”)</p>
-<p><strong>read() 一旦运行，文件就会被读到结尾并且被close掉。</strong></p>
-<p>和sys一样，os也是python自带的基本库中的一员，主要提供和操作系统有关的功能。path提供了和路径操作有关的功能。</p>
-<p>这里尝试把脚本精简，保存为ex17_2.py，将text.txt复制到ex17_2_copied.txt：</p>
-<pre><code>#这是精简ex17.py的尝试1
-from sys import argv #载入sys.argv模组
-script, from_file, to_file = argv #解包argv，将脚本名赋值给变量script，将参数赋值给from_file和to_file
-#we could do these two on one line, how?
-indata = open(from_file).read()#打开需要复制的文件并读取内容
-open(to_file, 'w').write(indata)#打开需要复制到的文件并写入之前读取的就文件内容
-</code></pre>
-<p>结果：已经去除所有提示语，因此运行结束后不会打印任何东西，但终端cat ex17_2_copied.txt可以显示出已经成功复制。
-再次尝试继续精简，保存为ex17_3.py，将ex12.html复制到ex17_3_copied.html：</p>
-<pre><code>#这里是第二次精简版本，尝试精简到一行
-from sys import argv
-script, from_file, to_file = argv
-open(to_file, 'w').write(open(from_file).read())
-</code></pre>
-<p>结果：运行成功。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex16]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex16</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex16">
-        </link>
-        <updated>2019-05-31T22:16:41.000Z</updated>
-        <content type="html"><![CDATA[<p>close：关闭文件
-read：读取文件内容，可以把结果赋给一个变量
-readline：读取文本文件中的一行
-truncate：清空文件，需要小心使用
-write(stuff)：将stuff写入文件</p>
-<pre><code>from sys import argv #从sys导入argv模组
-script, filename = argv #将argv解包，并将脚本名赋值给变量script；将参数赋值给变量filename
-print(&quot;We're going to erase %r.&quot; % filename) #询问是否继续编辑文件filename
-print(&quot;If you don't want that, hit CRTL-C (^C).&quot;)
-print(&quot;If you do want that, hit RETURN.&quot;)
-input(&quot;?&quot;) #用户输入是否继续编辑
-print(&quot;Opening the file...&quot;) #如果用户未输入ctrl-c则继续执行
-target = open(filename, 'w') #打开文件对象，并写入覆盖内容
-print(&quot;Truncating the file. Goodbye!&quot;) #没有指定truncate()的大小，所以实际上删除了文件的内容
-target.truncate()
-print(&quot;Now I'm going to ask you for three lines.&quot;)
-line1 = input(&quot;line 1: &quot;) #获取三个input变量的内容
-line2 = input(&quot;line 2: &quot;)
-line3 = input(&quot;line 3: &quot;)
-print(&quot;I'm going to write these to the file.&quot;) #将内容写入文件（只在内存中，没有写入磁盘
-target.write(line1)
-target.write(&quot;\n&quot;)
-target.write(line2)
-target.write(&quot;\n&quot;)
-target.write(line3)
-target.write(&quot;\n&quot;)
-print(&quot;And finally, we close it.&quot;)
-target.close() #关闭文件，将文件写入硬盘
-</code></pre>
-<p>使用read和argv写一个结合ex15.py和ex16.py的脚本：</p>
-<pre><code>from sys import argv
-script, filename = argv
-print(&quot;We're going to erase %r.&quot; % filename)
-print(&quot;If you don't want that, hit CTRL-C (^C).&quot;)
-print(&quot;If you want that, hit RETURN.&quot;)
-input(&quot;&gt;&quot;)
-print(&quot;Opening the file...&quot;)
-target = open(filename, 'w')
-print(&quot;Truncating the file. Goodbye!&quot;)
-target.truncate()
-print(&quot;Now what do you want to rewrite in the new file?&quot;)
-line1 = input(&quot;line1: &quot;)
-line2 = input(&quot;line2: &quot;)
-line3 = input(&quot;line3: &quot;)
-print(&quot;&quot;&quot;
-Ok, I've got three new lines,
-now I'm going to write
-them to the file.&quot;&quot;&quot;)
-target.write(line1)
-target.write(&quot;\n&quot;)
-target.write(line2)
-target.write(&quot;\n&quot;)
-target.write(line3)
-target.write(&quot;\n&quot;)
-print(&quot;And finally, we close it.&quot;)
-target.close()
-txt = open(filename)
-print(&quot;Here is your new file %r.&quot; % filename)
-print(txt.read())
-print(&quot;Type the filename again:&quot;)
-file_again = input(&quot;&gt;&quot;)
-txt_again = open(file_again)
-print(txt_again.read())
-</code></pre>
-<p>上面这个脚本是直接嫁接了ex16.py里的清空、覆盖重写和ex15.py里的读取文件</p>
-<p>这里的ex16_2.py只是用read和argv来读取ex16_1.py中新创建的文件：</p>
-<pre><code>from sys import argv
-script, filename = argv
-file = open(filename)
-print(&quot;Aquí está tu texto %r.&quot; % filename)
-print(file.read())
-print(&quot;Vamos a ver el texto otra vez:&quot;)
-name_again = input(&quot;nombre del texto:&quot;)
-file_again = open(name_again)
-print(file_again.read())
-</code></pre>
-<p>ex16.py中重复的地方太多，这里尝试用一个target.write()将line1，line2，line3打印出来，可以使用字符串、格式化字符、转义字符：</p>
-<p>这里有个问题，如果使用：</p>
-<pre><code>from sys import argv
-script, filename = argv
-print(&quot;The Machine is going to erase %r.&quot; % filename)
-print(&quot;If you don't want that, hit CTRL-C(^C).&quot;)
-print(&quot;If you want that, please hit RETURN.&quot;)
-input(&quot;&gt; &quot;)
-print(&quot;The Machine is opening the file...&quot;)
-target = open(filename, 'w')
-print(&quot;Truncating the %r. Goodbye!&quot; % filename)
-target.truncate()
-print(&quot;What do you want to write in the new file?&quot;)
-new_text = input()
-print(&quot;Ok, I'm going to write these to the file.&quot;)
-target.write(new_text)
-print(&quot;Here is the new file.&quot;)
-
-print(&quot;Now the Machine is going to cloase the file.&quot;)
-target.close()
-print(&quot;Now here is the new file.&quot;)
-file = open(filename)
-print(file.read())
-</code></pre>
-<p>这个方法里<code>new_text = input()</code>，那么只能在终端输入一行内容，不能像之前<code>line1=input()</code>那样输入多行。在最后让把新内容读取打印出来了，比较方便看是否真的写入进去了。</p>
-<p>因此可以再改一种输入方式：</p>
-<pre><code>from sys import argv
-script, filename = argv
-print(&quot;Now we're going to erase the %r.&quot; % filename)
-print(&quot;If you don't want to erase it, hit CTRL-C (^C).&quot;)
-print(&quot;If you want to erase it, hit RETURN.&quot;)
-input(&quot;&gt;&quot;)
-print(&quot;We're opening the file...&quot;)
-target = open(filename, 'w')
-print(&quot;We're going to truncate the %r. Goodbye!&quot; % filename)
-target.truncate()
-print(&quot;Now what do you want to write to the new %r?&quot; % filename)
-line1 = input(&quot;line1: &quot;)
-line2 = input(&quot;line2: &quot;)
-line3 = input(&quot;line3: &quot;)
-print(&quot;We're going to write these three lines to the %r.&quot; % filename)
-target.write('\n'+line1+'\n'+line2+'\n'+line3+'\n')
-print(&quot;Now we're going to close the file to save.&quot;)
-target.close()
-print(&quot;Ok, now here is your new file:&quot;)
-file = open(filename)
-print(file.read())
-</code></pre>
-<p>这里需要注意，如果写成
-<code>target.write(‘\n’, line1, ‘\n’, line2, ‘\n’, line3, ‘\n')</code>
-<strong>会报错</strong>
-<code>TypeError: write( ) takes exactly one argument (7 given)</code>
-也就是说write里只能输入一个string，所以要用+连接起来。</p>
-<p><strong>用格式化字符更改的话可以是：</strong>
-<code>target.write(‘%s\n%s\n%s\n’ % (line1, line2, line3))</code>
-<strong>或者用新format()格式串：</strong>
-<code>target.write(‘()\n()\n()\n’.format(line1, line2, line3))</code></p>
-<p>🤔<strong>思考：代码里open(filename, ‘w’)这里的’w’是什么意思？</strong></p>
-<p><strong>找到一些open的打开方式：</strong>
-r:只读;
-r+:读写，不创建.可读可写，若文件不存在，报错。r+会对之前写入的东西进行覆盖写（见例1）;
-w:新建只写，不能读出;w和w+这两个都会将文件内容清零;
-w+:新建写读，可读写.可读可写，若文件不存在，创建;
-a:附加写的方式打开，不可读;
-a+:附加读写的方式打开</p>
-<p>w是写入模式：write
-r是读取模式：read
-a是追加模式：append
-+是修饰符，文件将以同时读写的方式打开</p>
-<p>例1:</p>
-<pre><code>fd = open(“1.txt”, ‘w+’)
-fd.write(‘123’)
-fd = open(“1.txt”, ‘r+’)
-fd.write(‘456’)
-fd = open(“1.txt”, ‘a+’)
-fd.write(‘789’)
-</code></pre>
-<p>结果是456789</p>
-<p><strong>总结：</strong>
-不可读的打开方式：w和a
-若不存在会创建新文件的打开方式：a，a+，w，w+</p>
-<p>open本身对于文件的写入操作态度是安全第一，所以只有特别制定以后，才会进行写入操作。
-如果只写open(filename)会默认用’r’ 也就是read的模式打开，这是open()的默认工作方式</p>
 ]]></content>
     </entry>
 </feed>
