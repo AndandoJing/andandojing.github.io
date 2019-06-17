@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Hello Gridea | Learning with Writing</title>
+<title>Learn Python the hard way-Ex33 while循环 | Learning with Writing</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,45 +98,100 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Hello Gridea</h2>
-            <div class="post-date">2018-12-11</div>
+            <h2 class="post-title">Learn Python the hard way-Ex33 while循环</h2>
+            <div class="post-date">2019-06-16</div>
             
-              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/hello-gridea.png')">
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex33-while-xun-huan.png')">
               </div>
             
             <div class="post-content">
-              <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+              <p><strong>while-loop（while 循环）会一直执行代码，直到对应的布尔表达式为False时才会停下来。</strong></p>
+<p>如果某一行是以冒号colon结尾，那就意味着接下来的内容是一个新的代码片段，新的代码片段是需要被缩进的。</p>
+<p><strong>因为while如果不给一个结束点会一直循环，所以：</strong></p>
+<ul>
+<li>尽量少用while-loop，大部分时候用for-loop就行；</li>
+<li>检查while语句，确定布尔表达式最后会变成False；</li>
+<li>如果不确定，就在while-loop的结尾打印出要测试的值。</li>
+</ul>
+<p><strong>ex33.py的代码：</strong></p>
+<pre><code>i = 0
+numbers = []
+while i &lt; 6:
+    print(&quot;At the top i is %d&quot; % i)
+    numbers.append(i)
+    i = i + 1
+    print(&quot;Numbers now: &quot;, numbers)
+    print(&quot;At the bottom i is %d&quot; % i)
+print(&quot;The numbers:&quot;)
+for num in numbers:
+    print(num)
+</code></pre>
+<p><strong>加分习题：</strong></p>
+<ul>
+<li>将while循环改成一个函数，将测试条件（i &lt; 6）中的6换成一个变量；</li>
+<li>使用这个函数重写脚本，并用不同的数字测试；</li>
+<li>为函数添加另一个参数，这个参数用来定义i = i + 1的加值+ 1，这样就可以任意加值；</li>
+<li>再使用该函数重写一遍这个脚本，看看效果；</li>
+<li>使用for-loop和range把脚本再写一遍，看是否还需要中间的加值操作。</li>
+</ul>
+<p><strong>加分代码：
+练习1:</strong></p>
+<pre><code>import random
+i = 0
+numbers = []
+plus = random.randint(1,5)
+replace_num = plus + 1
+print(&quot;Plus number is %d&quot; % plus)
+print(&quot;Replace number is %d&quot; % replace_num)
+for i in range(0, 10):
+    if i &lt; replace_num:
+        print(&quot;At the top i is %d&quot; % i)
+        numbers.append(i)
+        i += plus
+        print(&quot;Numbers now: &quot;, numbers)
+        print(&quot;At the bottom i is %d&quot; % i)
+    else:
+        print(&quot;i: %d is greater or equal to replace number.&quot; % i)
+print(&quot;The numbers:&quot;)
+for num in numbers:
+    print(num)
+</code></pre>
+<p><strong>练习2:</strong></p>
+<pre><code>def list(i, plus):
+    numbers = []
+    start = 0
+    while start &lt; i:
+        print(&quot;The last number is %d&quot; % start)
+        numbers.append(start)
+        start += plus
+        print(&quot;Numbers now:&quot;, numbers)
+        print(&quot;The next number is %d&quot; % start)
+i = int(input(&quot;Type a number here:&quot;))
+plus = int(input(&quot;Type the plus number here:&quot;))
+list(i, plus)
+</code></pre>
+<p><strong>for-loop和while-loop的区别：</strong>
+for-loop只能对一些东西的集合进行循环，while-loop可以对任何对象进行驯化。while-loop更难使用，一般任务用for-loop更容易。</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://andandojing.github.io/tag/gridea" class="tag">
-                    Gridea
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
                   </a>
                 
               </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex32-xun-huan-he-lie-biao">
+                  <h3 class="post-title">
+                    Learn Python the hard way-Ex32 循环和列表
+                  </h3>
+                </a>
+              </div>
             
 
             
