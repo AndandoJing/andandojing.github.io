@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Learning with Writing</title>
+<title>Learning with Writing</title>
 <meta name="description" content="温故而知新
 余生也无涯">
 
@@ -14,12 +14,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -103,28 +97,34 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
-            
-            <div class="post-content">
-              <p>一直在路上，可能不会停。</p>
-<p>希望能成为不辍执笔的一个新地方，而不是半途而废星人的另一个废域名。</p>
-<p>学习笔记和练习笔记。</p>
-
-            </div>
-            
-            
-
-            
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex13">
+                  <h2 class="post-title">Learn Python the Hard Way-ex13</h2>
+                </a>
+                <div class="post-date">
+                  2019-05-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
               
-                <div id="gitalk-container" data-aos="fade-in"></div>
+                <a class="right" href="https://andandojing.github.io/post/learn-python-the-hard-way-ex13">
+                  <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex13.png')">
+                  </div>
+                </a>
               
+            </article>
+          
 
-              
-            
-
-          </div>
+          <div class="pagination-container">
+  
+    <a href="https://andandojing.github.io/page/2/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
 
         </div>
       </div>
@@ -146,29 +146,6 @@ var app = new Vue({
 })
 
 </script>
-
-
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-
-      var gitalk = new Gitalk({
-        clientID: 'c23ccbb3f1897aadbc0e',
-        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
-        repo: 'andandojing.github.io',
-        owner: 'AndandoJing',
-        admin: ['AndandoJing'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
-    </script>
-  
-
-  
 
 
 

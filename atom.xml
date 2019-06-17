@@ -2,14 +2,45 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-06-17T01:19:35.725Z</updated>
+    <updated>2019-06-17T18:48:20.706Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>温故而知新
+余生也无涯</subtitle>
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex34 访问列表的元素]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex34-fang-wen-lie-biao-de-yuan-su</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex34-fang-wen-lie-biao-de-yuan-su">
+        </link>
+        <updated>2019-06-17T12:47:10.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>访问列表中第一个元素：</strong></p>
+<pre><code>animals = [‘bear’, ‘tiger’, ‘penguin’, ‘zebra’]
+bear = animals[0]
+</code></pre>
+<p><strong>cordinal == 有序，从1开始
+cardinal == 随机选取，从0开始</strong></p>
+<pre><code>animals = ['bear', 'python', 'peacock', 'kangaroo', 'whale', 'platypus']
+The animal at 1.
+The 3rd animal.
+The 1st animal.
+The animal at 3.
+The 5th animal.
+The animal at 2.
+The 6th animal.
+The animal at 4.
+print(&quot;The 1st animal is %s&quot; % animals[0])
+print(&quot;The 2nd animal is %s&quot; % animals[1])
+print(&quot;The 3rd animal is %s&quot; % animals[2])
+print(&quot;The 4th animal is %s&quot; % animals[3])
+print(&quot;The 5th animal is %s&quot; % animals[4])
+print(&quot;The 6th animal is %s&quot; % animals[5])
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Learn Python the hard way-Ex33 while循环]]></title>
         <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex33-while-xun-huan</id>
@@ -844,54 +875,6 @@ def print_first_and_last_sorted(sentence):
 <p>“””  “””之间的东西是文件注解（documentation comments）</p>
 <p>重复键入ex25.太繁琐，一个捷径是 **from ex25 import * **的方式导入模组，相当于“把ex25中所有东西import进来”。
 这一份练习主要是在python脚本中做函数定义，然后在终端里输入函数里的变量，从而获得脚本函数的运算结果。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-ex24]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex24</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex24">
-        </link>
-        <updated>2019-06-14T10:38:49.000Z</updated>
-        <content type="html"><![CDATA[<p>ex24.py的代码：</p>
-<pre><code>print(&quot;Let's practice everything.&quot;)
-print('You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabes.')
-poem = &quot;&quot;&quot;
-\tThe lovely world
-with logic so firmly planted
-cannot discern \n the needs of lovelynor comprehend passion from intuition
-and requires an explanation
-\n\t\twhere there is none.
-&quot;&quot;&quot;
-print(&quot;--------------&quot;)
-print(poem)
-print(&quot;--------------&quot;)
-five = 10 - 2 + 3 - 6
-print(&quot;This should be five: %s&quot; % five)
-def secret_formula(started):
-    jelly_beans = started * 500
-    jars = jelly_beans / 1000
-    crates = jars / 100
-    return jelly_beans, jars, crates
-start_point = 10000
-beans, jars, crates = secret_formula(start_point)
-print(&quot;With a starting point of: %d&quot; % start_point)
-print(&quot;We'd have %d beans, %d jars, and %d crates.&quot; % (beans, jars, crates))
-start_point = start_point / 10
-print(&quot;We can also do that this way:&quot;)
-print(&quot;We'd have %d beans, %d jars, and %d crates.&quot; % secret_formula(start_point))
-</code></pre>
-<p><strong>为什么jelly_beans变量名变成了beans？</strong>
-函数内部变量都是临时的，函数返回后可以被赋予一个变量。新变量用来存放函数的返回值。</p>
-<p>这一章主要包括的要点：</p>
-<ol>
-<li>打印</li>
-<li>&quot;&quot;&quot;    &quot;&quot;&quot;多段打印</li>
-<li>\t和\n</li>
-<li>数字运算</li>
-<li>%s</li>
-<li>def定义函数和return值</li>
-<li>函数变量的转换</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
