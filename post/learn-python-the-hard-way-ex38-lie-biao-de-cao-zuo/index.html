@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-Ex38 列表的操作 | Learning with Writing</title>
+<meta name="description" content="温故而知新
+余生也无涯">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1561332073854">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1561332073854" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/spaindoctorwang/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+余生也无涯
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-Ex38 列表的操作</h2>
+            <div class="post-date">2019-06-23</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex38-lie-biao-de-cao-zuo.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>列表追加append操作，做一个复习</p>
+<p><strong>举例：mystuff.append(‘hello’)的工作原理：</strong></p>
+<ol>
+<li>python看到使用到了mystuff，于是去找到这个变量；</li>
+<li>找到mystuff后，开始处理句点.period这个操作符，开始查看mystuff内部的一些变量。由于mystuff是一个列表，python知道mystuff支持一些函数；</li>
+<li>处理append。python会将append和mystuff支持的所有函数的名称一一对比，如果确实其中有一个叫append的函数，那么python就会去使用这个函数；</li>
+<li>python看到了括号( )parenthesis并且意识到这是一个函数。到这里，就正常调用这个函数，不过这里的函数还要多一个参数才行；</li>
+<li>这个额外的参数就是mystuff。可能有点奇怪，但是可以直接记住使用。真正发生的是append(mystuff, ‘hello’)，不过我们看到的是mystuff.append(‘hello’)。</li>
+</ol>
+<p><strong>举例：</strong></p>
+<pre><code>$ python Python 2.6.5 (r265:79063, Apr 16 2010, 13:57:41) [GCC 4.4.3] on linux2 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. &gt;&gt;&gt; class Thing(object): ... def test(hi):
+... print &quot;hi&quot; ...
+&gt;&gt;&gt; a = Thing() &gt;&gt;&gt; a.test(&quot;hello&quot; ) Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot; , line 1, in &lt;module&gt; TypeError: test() takes exactly 1 argument (2 given)
+&gt;&gt;&gt;
+</code></pre>
+<p>这里的错误显示的是
+<code>test() takes exactly 1 argument (2 given)</code>
+也就是说test()只可以接受两个参数，但实际上给了一个。意味着python把a.test(“hello”)改成了test(a, “hello”)，有人弄错了，没有添加a参数。</p>
+<p><strong>ex38.py代码：</strong></p>
+<pre><code>ten_things = &quot;Apples Oranges Crows Telephone Light Sugar&quot;
+print(&quot;Wait there's not 10 things in that list, let's fix that.&quot;)
+stuff = ten_things.split(' ')
+more_stuff = [&quot;Day&quot;, &quot;Night&quot;, &quot;Song&quot;, &quot;Frisbee&quot;, &quot;Corn&quot;, &quot;Banana&quot;, &quot;Girl&quot;, &quot;Boy&quot;]
+while len(stuff) != 10:
+    next_one = more_stuff.pop()
+    print(&quot;Adding: &quot;, next_one)
+    stuff.append(next_one)
+    print(&quot;There's %d items now.&quot; % len(stuff))
+print(&quot;There we go: &quot;, stuff)
+print(&quot;Let's do some things with stuff.&quot;)
+print(stuff[1])
+print(stuff[-1]) #whoa! fancy
+print(stuff.pop())
+print(''.join(stuff)) # what? cool!
+print('#'.join(stuff[3:5]))#super stellar!
+</code></pre>
+<p><strong>针对代码的部分疑惑及解释：</strong>
+<strong>pop()函数</strong>
+用于移除列表中的一个元素（默认最后一个元素），并且返回该元素的值。
+**语法：**list.pop([index = -1])
+<strong>参数：</strong>
+obj——可选参数，要移除列表元素的索引值，不能超过列表总长度，默认为index= -1，删除最后一个列表值。
+<strong>返回值：</strong>
+该方法返回从列表中移除的元素对象
+<strong>实例：</strong></p>
+<pre><code>#!/user/bin/python3
+#coding=utf-8
+list1 = [‘Google’, ‘Runoff’, ’Taobao’]
+list_pop = list1.pop(1)
+print(“删除的项为：”, list_pop)
+print(“列表现在为：”, list1)
+=&gt;
+删除的项为：Runoob
+列表现在为：[‘Google’, ’Taobao’]
+</code></pre>
+<p><strong>len()函数：</strong>
+len()方法返回对象（字符、列表、元组等）长度或项目个数。
+**语法：**len(s)
+**参数：**s--对象
+**返回值：**返回对象长度
+<strong>实例：</strong></p>
+<pre><code>&gt;&gt;&gt;str = “runoob”
+&gt;&gt;&gt;len(str) #字符串长度
+6
+&gt;&gt;&gt; l = [1, 2, 3, 4, 5]
+&gt;&gt;&gt; len(l)  #列表元素个数
+5
+</code></pre>
+<p><strong>加分习题：</strong>
+<strong>1. 将每个被调用函数按照本课方式翻译成python实际执行的动作。</strong>
+例如：’ ‘.join(things)其实是join(‘ ‘, things)。
+stuff = ten_things.split(' ')实际执行为stuff = split(ten_things, ‘ ‘)
+next_one = more_stuff.pop()实际执行为next_one = pop(more_stuff)
+stuff.append(next_one)实际执行为append(stuff, next_one)
+stuff.pop()实际执行为pop(stuff)</p>
+<p><strong>2. 将这两种方式翻译成自然语言。</strong>
+例如：’ ‘.join(things)可以翻译成“用’ ‘连接(join) things”，而join(‘ ‘, things)的意思是“为’ ‘和things调用join函数”.其实是同一件事情。</p>
+<p><strong>3. 面向对象编程object oriented programming（简称OOP）。</strong></p>
+<p><strong>4. python中的class是什么。</strong>
+python中定义类是通过class关键字，例如：
+class Student(object):
+pass
+这样定义一个储存学生信息的类。
+class后面紧接着类名，即Student，类名通常是大写开头的单词，紧接着是(object)，表示该类是从哪个类继承下来的。通常，如果没有合适的继承类，就是用object类，这事所有类最终都会继承的类。
+定义好了Student类，就可以根据Student类创建出Student的实例，创建实例是通过类名+()实现的：
+&gt;&gt;&gt;bart = Student()
+&gt;&gt;&gt;bart
+&lt;<strong>main</strong>.Student object at 0x10a67a590&gt;
+&gt;&gt;&gt;Student
+&lt;class ‘<strong>main</strong>.Student’&gt;</p>
+<pre><code>        可以看出，变量bart指向的就是一个Student的实例，后面的0x10a67a590是内存地址，每个object的地址都不一样，而Student本身则是一个类。
+        可以自由地给一个实例变量绑定属性，比如，给实例bart绑定一个name属性：
+        &gt;&gt;&gt;bart.name = ‘Bart Simpson’
+        &gt;&gt;&gt;bart.name
+        ‘Bart Simpson’
+</code></pre>
+<p><strong>5. dir(something)和something的class有什么关系。</strong>
+dir()函数返回的是list，用来寻找一个对象的所有属性。
+dir()函数不带参数时，返回当前范围内的变量、方法和定义的类型列表；带参数时，返回参数的属性、方法列表。如果参数包含方法__dir__()，该方法将被调用。如果参数不包含__dir__()，该方法将最大限度地收集参数信息。</p>
+<p><strong>6. 了解OOP（object oriented programming）和函数编程functional programming。</strong>
+<strong>函数编程（functional programming）</strong>
+或称函数程序设计，是一种编程范型，将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。
+<strong>面向对象程序设计（object-oriented programming，OOP）</strong>
+是具有对象概念的程序编程范型，也是一种程序开发方法。可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和拓展性，对象里的程序可以访问及经常修改对象相关联的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。
+对象与对象之间的关系是面向对象编程首要考虑的问题，而在函数编程中，所有的数据都是不可变的，不同的函数之间通过数据流来交换信息，函数作为FP中的一等公民，享有和数据一样的地位，可以作为参数传递给下一个函数，同时也可以作为返回值。</p>
+<p><strong>stuff[3:5]实现了什么功能？</strong>
+列表切片动作，会从stuff列表的第3个元素取值取到第5个元素（但不包括第5个元素）。这和range(3,5)是一样的。</p>
+<p><strong>为什么join(‘ ‘, stuff)不灵？</strong>
+join的文档写的有问题，其实它是要插入的字符串的一个方法函数，函数的参数是你要连接的字符串构成的数组，所以应该写成’ ‘.join(stuff)。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex37-fu-xi-ge-chong-fu-hao">
+                  <h3 class="post-title">
+                    Learn Python the hard way-Ex37 复习各种符号
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
