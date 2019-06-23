@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-06-18T00:30:57.980Z</updated>
+    <updated>2019-06-23T02:35:59.954Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -11,6 +11,254 @@
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex36设计和调试]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex36-she-ji-he-diao-shi</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex36-she-ji-he-diao-shi">
+        </link>
+        <updated>2019-06-22T20:33:13.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>If语句的规则：</strong></p>
+<ol>
+<li>每一个if语句必须包含一个else；</li>
+<li>如果这个else永远都不应该被执行（比如本身无意义），则必须在else语句后面实用一个叫做die的函数；</li>
+<li>If语句的嵌套不要超过2层，最好尽量保持只有1层。也就是说，如果你在if里又嵌套了一个if，那需要把第二个if移到另一个函数里；</li>
+<li>If语句当作段落来对待，其中的每一个if，elif，else组合就和一个段落的句子组合一样，这种组合的最前面和最后面留一个空行作区分；</li>
+<li>布尔测试应该很简单，如果复杂，就需要将它们的运算事先放到一个变量里，并为变量取一个好名字。</li>
+</ol>
+<p><strong>循环的原则：</strong></p>
+<ol>
+<li>while循环是永不停止的循环，务必注意；</li>
+<li>其他类型实用for循环，尤其是循环的对象数量固定或有限的情况。</li>
+</ol>
+<p><strong>调试debug的小技巧</strong></p>
+<ol>
+<li>debugger类似全身扫描，不会根据特定方面得到信息；</li>
+<li>最好的调试方法是每一步都print，从而检查哪里有问题；</li>
+<li>写一点运行一点，不要等脚本太长了才运行。</li>
+</ol>
+<p><strong>作业：</strong>
+结合列表、函数、模组等设计一个脚本游戏（类似ex35的选择游戏）。
+<strong>我的作业代码：</strong></p>
+<pre><code>from sys import argv #导入argv模组
+from sys import exit #导入exit模组
+import random #导入随机数random
+choice_game, first, second, third = argv #定义script，ice，forest，water为argv参数
+
+life = 100
+
+first = input(&quot;Name the first choice:&quot;)
+second = input(&quot;Name the second choice:&quot;)
+third = input(&quot;Name the third choice:&quot;)
+
+print(&quot;Now we start the game, the game is calle:&quot;, choice_game)
+print(&quot;Your first choice is:&quot;, first)
+print(&quot;Your second choice is:&quot;, second)
+print(&quot;Your third choice is:&quot;, third)
+print(&quot;At the beginning, you have %d life.&quot; % life)
+
+def first_choice():
+    print(&quot;&quot;&quot;The first choice is full of ice.
+    It's the ice world.
+    Which choice do you want to face?
+    The 1, 2 or 3?
+    You can change to other choices.&quot;&quot;&quot;)
+		
+    choice = input(&quot;Your choice:&quot;)
+		
+    if choice == &quot;1&quot;:
+        choice_1 = &quot;ice wolf&quot;
+        print(&quot;You are facing the %s, you can survive but your life will lose 50.&quot; % choice_1)
+        print(&quot;Your life now is %d&quot; % (life - 50))
+    elif choice == &quot;2&quot;:
+        choice_2 = &quot;ice bear&quot;
+        print(&quot;You are facing the %s, you can survive but your life will lose 70.&quot; % choice_2)
+        print(&quot;Your life now is %d&quot; % (life - 70))
+    elif choice == &quot;3&quot;:
+        choice_3 = 'no food'
+        print(&quot;You are facing the %s, your life will lose 100 and you can't survive.&quot; % choice_3)
+        print(&quot;Your life now is %d&quot; % (life - 100))
+        dead(&quot;There's no food to eat, You can't survive in the %s.&quot; % first)
+    elif choice == &quot;change to the second choice&quot;:
+        second_choice()
+    elif choice == &quot;change to the third choice&quot;:
+        third_choice()
+    else:
+        dead(&quot;Man, learn to type a number.&quot;)
+				
+def second_choice():
+    print(&quot;&quot;&quot;The second choice is full of tree.
+    It's the forest world.
+    Which choice do you want to face?
+    The 1, 2, 3 or 4?
+    You can change to other choices.&quot;&quot;&quot;)
+		
+    while True:
+        choice = input(&quot;Your choice:&quot;)
+				
+        if choice == &quot;1&quot;:
+            choice_1 = &quot;forest deer&quot;
+            print(&quot;You are facing the %s, you can survive and your life will add 70.&quot; % choice_1)
+            print(&quot;Your life now is %d&quot; % (life + 70))
+        elif choice == &quot;2&quot;:
+            choice_2 = &quot;forest rabit&quot;
+            print(&quot;You are facing the %s, you can survive and your life will and 20.&quot; % choice_2)
+            print(&quot;Your life now is %d&quot; % (life + 20))
+        elif choice == &quot;3&quot;:
+            choice_3 = &quot;forest tiger&quot;
+            print(&quot;You are facing the %s, you can survive but your life will lose 80.&quot; % choice_3)
+            print(&quot;Your life now is %d&quot; % (life - 80))
+        elif choice == &quot;4&quot;:
+            choice_4 = &quot;no food&quot;
+            print(&quot;You are facing the %s, your life will lose 100 and you can't survive.&quot; % choice_4)
+            print(&quot;Your life now is %d&quot; % (life - 100))
+            dead(&quot;There's no food to eat, You can't survive in the %s.&quot; % second)
+        elif choice == &quot;change to the first choice&quot;:
+            first_choice()
+        elif choice == &quot;change to the third choice&quot;:
+            third_choice()
+        else:
+            dead(&quot;Man, learn to type a number.&quot;)
+						
+def third_choice():
+    print(&quot;&quot;&quot;The third choice is full of water.
+    It's the water world.
+    Which choice do you want to face?
+    The bird, fish, monster or else?
+    You can change to other choices.&quot;&quot;&quot;)
+		
+    fish_escaped = False
+		
+    while True:
+        choice = input(&quot;Your choice:&quot;)
+				
+        if choice == &quot;bird&quot;:
+            choice_1 = &quot;water bird&quot;
+            print(&quot;You are facing the %s, you can survive and your life will add 30.&quot; % choice_1)
+            print(&quot;Your life now is %d&quot; % (life + 30))
+        elif choice == &quot;fish&quot; and not fish_escaped:
+            choice_2 = &quot;water fish&quot;
+            print(&quot;You are facing the %s.&quot; % choice_2)
+            print(&quot;The fish hasn't escaped, you get the fish to eat. Your life will add 50.&quot;)
+            print(&quot;Your life now is %d&quot; % (life + 50))
+            fish_escaped = True
+        elif choice == &quot;fish&quot; and fish_escaped:
+            print(&quot;The fish has escaped, you can't get the fish to eat. Your life will lose 100.&quot;)
+            print(&quot;Your life now is %s&quot; % (life - 100))
+            dead(&quot;You have nothing to eat, so you die.&quot;)
+        elif choice == &quot;monster&quot;:
+            choice_3 = &quot;monster&quot;
+            print(&quot;You are facing the %s&quot; % choice_3)
+            print(&quot;You can't beat the monster&quot;)
+            dead(&quot;The monster eat you.&quot;)
+        elif choice == &quot;change to the first choice&quot;:
+            first_choice()
+        elif choice == &quot;change to the second choice&quot;:
+            second_choice()
+        else:
+            print(&quot;Try another choice.&quot;)
+            dead(&quot;Game over. Try again.&quot;)
+						
+def dead(why):
+    print(why, &quot;Good job!&quot;)
+    exit(0)
+		
+def start():
+    print(&quot;&quot;&quot;You are starting the game.
+    There are three choices in the game.
+    Which one do you want to take?
+    the first choice, the second choice or the third choice?&quot;&quot;&quot;)
+		
+    choice = input(&quot;&gt;&quot;)
+		
+    if choice == &quot;first choice&quot;:
+        first_choice()
+    elif choice == &quot;second choice&quot;:
+        second_choice()
+    elif choice == &quot;third choice&quot;:
+        third_choice()
+    else:
+        dead(&quot;You need to make a choice to hunt or you will die.&quot;)
+				
+start()
+</code></pre>
+<p><strong>我的代码所构建的“游戏”是这样的选择顺序：</strong>
+共三个主选项，原始生命100</p>
+<ul>
+<li>first choice - ice world
+<ul>
+<li>wolf
+<ul>
+<li>survive but lose 50 blood</li>
+</ul>
+</li>
+<li>bear
+<ul>
+<li>survive but los 70 blood</li>
+</ul>
+</li>
+<li>no food
+<ul>
+<li>dead</li>
+</ul>
+</li>
+<li>change to the second choice</li>
+<li>change to the third choice</li>
+<li>dead</li>
+</ul>
+</li>
+<li>second choice - forest world
+<ul>
+<li>deer
+<ul>
+<li>survive and add 70 blood</li>
+</ul>
+</li>
+<li>rabbit
+<ul>
+<li>survive and add 20 blood</li>
+</ul>
+</li>
+<li>tiger
+<ul>
+<li>survive but loose 80 blood</li>
+</ul>
+</li>
+<li>no food
+<ul>
+<li>dead</li>
+</ul>
+</li>
+<li>change to the first choice</li>
+<li>change to the third choice</li>
+<li>dead</li>
+</ul>
+</li>
+<li>third choice - water world
+<ul>
+<li>bird
+<ul>
+<li>survive and add 30 blood</li>
+</ul>
+</li>
+<li>fish
+<ul>
+<li>第一遍-fish not escaped, survive and add 50 blood</li>
+<li>第二遍-fish escaped, loose 100 blood, dead</li>
+</ul>
+</li>
+<li>monster
+<ul>
+<li>dead</li>
+</ul>
+</li>
+<li>change to the first choice</li>
+<li>change to the second choice</li>
+<li>dead</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Learn Python the hard way-Ex35 分支和函数]]></title>
         <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex35-fen-zhi-he-han-shu</id>
@@ -726,189 +974,6 @@ else:
 </tr>
 </tbody>
 </table>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-Ex26 恭喜你，现在可以考试了！]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex26-gong-xi-ni-xian-zai-ke-yi-kao-shi-liao</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex26-gong-xi-ni-xian-zai-ke-yi-kao-shi-liao">
-        </link>
-        <updated>2019-06-14T12:24:29.000Z</updated>
-        <content type="html"><![CDATA[<p>这章练习目标是对以下代码进行改错：</p>
-<pre><code>def break_words(stuff):
-    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
-    words = stuff.split(' ')
-    return words
- 
-def sort_words(words):
-    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
-    return sorted(words)
- 
-def print_first_word(words)
-    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
-    word = words.poop(0)
-    print word
- 
-def print_last_word(words):
-    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
-    word = words.pop(-1
-    print word
- 
-def sort_sentence(sentence):
-    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
-    words = break_words(sentence)
-    return sort_words(words)
- 
-def print_first_and_last(sentence):
-    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
-    words = break_words(sentence)
-    print_first_word(words)
-    print_last_word(words)
- 
-def print_first_and_last_sorted(sentence):
-    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
-    words = sort_sentence(sentence)
-    print_first_word(words)
-    print_last_word(words)
- 
- 
-print &quot;Let's practice everything.&quot;
-print 'You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.'
- 
-poem = &quot;&quot;&quot;
-\tThe lovely world
-with logic so firmly planted
-cannot discern \n the needs of love
-nor comprehend passion from intuition
-and requires an explantion
-\n\t\twhere there is none.
-&quot;&quot;&quot;
- 
- 
-print &quot;--------------&quot;
-print poem
-print &quot;--------------&quot;
- 
-five = 10 - 2 + 3 - 5
-print &quot;This should be five: %s&quot; % five
- 
-def secret_formula(started):
-    jelly_beans = started * 500
-    jars = jelly_beans \ 1000
-    crates = jars / 100
-    return jelly_beans, jars, crates
- 
- 
-start_point = 10000
-beans, jars, crates == secret_formula(start-point)
- 
-print &quot;With a starting point of: %d&quot; % start_point
-print &quot;We'd have %d jeans, %d jars, and %d crates.&quot; % (beans, jars, crates)
- 
-start_point = start_point / 10
- 
-print &quot;We can also do that this way:&quot;
-print &quot;We'd have %d beans, %d jars, and %d crabapples.&quot; % secret_formula(start_pont
- 
- 
-sentence = &quot;All god\tthings come to those who weight.&quot;
- 
-words = ex25.break_words(sentence)
-sorted_words = ex25.sort_words(words)
- 
-print_first_word(words)
-print_last_word(words)
-.print_first_word(sorted_words)
-print_last_word(sorted_words)
-sorted_words = ex25.sort_sentence(sentence)
-prin sorted_words
- 
-print_irst_and_last(sentence)
- 
-   print_first_a_last_sorted(senence)
-</code></pre>
-<p>先全部复制粘贴到ex26.py中，然后进行改错。
-修改后的代码：</p>
-<pre><code>def break_words(stuff):
-    &quot;&quot;&quot;This function will break up words for us.&quot;&quot;&quot;
-    words = stuff.split(' ')
-    return words
-def sort_words(words):
-    &quot;&quot;&quot;Sorts the words.&quot;&quot;&quot;
-    return sorted(words)
-def print_first_word(words):
-    &quot;&quot;&quot;Prints the first word after popping it off.&quot;&quot;&quot;
-    word = words.pop(0)
-    print(word)
-def print_last_word(words):
-    &quot;&quot;&quot;Prints the last word after popping it off.&quot;&quot;&quot;
-    word = words.pop(-1)
-    print(word)
-def sort_sentence(sentence):
-    &quot;&quot;&quot;Takes in a full sentence and returns the sorted words.&quot;&quot;&quot;
-    words = break_words(sentence)
-    return sort_words(words)
-def print_first_and_last(sentence):
-    &quot;&quot;&quot;Prints the first and last words of the sentence.&quot;&quot;&quot;
-    words = break_words(sentence)
-    print_first_word(words)
-    print_last_word(words)
-def print_first_and_last_sorted(sentence):
-    &quot;&quot;&quot;Sorts the words then prints the first and last one.&quot;&quot;&quot;
-    words = sort_sentence(sentence)
-    print_first_word(words)
-    print_last_word(words)
-
-print(&quot;Let's practice everything.&quot;)
-print('You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.')
-poem = &quot;&quot;&quot;
-\tThe lovely world
-with logic so firmly planted
-cannot discern \n the needs of love
-nor comprehend passion from intuition
-and requires an explantion
-\n\t\twhere there is none.
-&quot;&quot;&quot;
-
-print(&quot;--------------&quot;)
-print(poem)
-print(&quot;--------------&quot;)
-five = 10 - 2 + 3 - 5
-print(&quot;This should be five: %s&quot; % five)
-def secret_formula(started):
-    jelly_beans = started * 500
-    jars = jelly_beans / 1000
-    crates = jars / 100
-    return jelly_beans, jars, crates
-
-start_point = 10000
-beans, jars, crates = secret_formula(start_point)
-print(&quot;With a starting point of: %d&quot; % start_point)
-print(&quot;We'd have %d jeans, %d jars, and %d crates.&quot; % (beans, jars, crates))
-start_point = start_point / 10
-print(&quot;We can also do that this way:&quot;)
-print(&quot;We'd have %d beans, %d jars, and %d crabapples.&quot; % secret_formula(start_point))
-
-sentence = &quot;All good\tthings come to those who wait.&quot;
-words = break_words(sentence)
-sorted_words = sort_words(words)
-print_first_word(words)
-print_last_word(words)
-print_first_word(sorted_words)
-print_last_word(sorted_words)
-sorted_words = sort_sentence(sentence)
-print(sorted_words)
-print_first_and_last(sentence)
-print_first_and_last_sorted(sentence)
-</code></pre>
-<p><strong>主要错误：</strong></p>
-<ol>
-<li>函数的()需要成对出现，()后需要带:</li>
-<li>单词（变量）拼写错误</li>
-<li>\和/</li>
-<li>==和=</li>
-<li>-和_</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
