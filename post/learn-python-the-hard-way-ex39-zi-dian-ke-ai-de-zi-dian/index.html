@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-Ex39 字典，可爱的字典 | Learning with Writing</title>
+<meta name="description" content="温故而知新
+余生也无涯">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1561341889934">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1561341889934" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/spaindoctorwang/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+余生也无涯
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-Ex39 字典，可爱的字典</h2>
+            <div class="post-date">2019-06-23</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex39-zi-dian-ke-ai-de-zi-dian.png')">
+              </div>
+            
+            <div class="post-content">
+              <p><strong>字典dictionary</strong>：容器型数据结构
+python中将这种数据类型叫做“dict”，重点是字典和列表的区别。</p>
+<p><strong>针对列表可以做：</strong></p>
+<pre><code>&gt;&gt;&gt; things = [‘a’, ‘b’, ‘c’, ‘d’]
+&gt;&gt;&gt; print(things[1])
+b
+&gt;&gt;&gt; things[1] = ‘z’
+&gt;&gt;&gt; print(things[1])
+z
+&gt;&gt;&gt; print(things)
+[‘a’, ‘b’, ‘c’, ‘d’]
+&gt;&gt;&gt;
+</code></pre>
+<p>可以使用数字作为列表的索引，也即可以通过数字找到列表中的元素。<strong>而dic所做的，是让人可以通过任何东西找到元素，不只是数字。</strong>
+字典可以将一个物件和另外一个东西关联，不管它们的类型是什么。</p>
+<p><strong>举例：</strong></p>
+<pre><code>&gt;&gt;&gt; stuff = {‘name’: ‘Zed’, ‘age’: 36, ‘height’: 6*12+2}
+&gt;&gt;&gt; print(stuff[‘name’])
+Zed
+&gt;&gt;&gt; print(stuff[‘age’])
+36
+&gt;&gt;&gt; stuff[‘city’] = “San Francisco”
+&gt;&gt;&gt; print(stuff[‘city’])
+San Francisco
+&gt;&gt;&gt;
+</code></pre>
+<p>也就是说，除了数字，还可以用字符串从字典中获取stuff。此外还<strong>可以用字符串往字典中添加元素</strong>。（不仅支持字符串）</p>
+<p><strong>举例：</strong></p>
+<pre><code>&gt;&gt;&gt; stuff[1] = “Wow”
+&gt;&gt;&gt; stuff[2] = “Neato”
+&gt;&gt;&gt; print(stuff[1])
+Wow
+&gt;&gt;&gt; print(stuff[2])
+Neato
+&gt;&gt;&gt; print(stuff)
+{‘city’: ‘San Francisco’, 2: ‘Neato’, ‘name’: ‘Zed’, 1: ‘Wow’, ‘age’: 36, ‘height’: 74}
+&gt;&gt;&gt;
+</code></pre>
+<p>这里使用两个数字，也可以使用其他方式。</p>
+<p>还<strong>可以使用del关键字删除元素</strong>：</p>
+<pre><code>&gt;&gt;&gt; del stuff[‘city’]
+&gt;&gt;&gt; del stuff[1]
+&gt;&gt;&gt; del stuff[2]
+&gt;&gt;&gt; stuff
+{‘name’: ‘Zed’, ‘age’: 36, ‘height’: 74}
+&gt;&gt;&gt;
+</code></pre>
+<p><strong>ex39.py的代码：</strong></p>
+<pre><code>#create a mapping of state to abbreviation
+
+states = {
+    'Oregon': 'OR',
+    'Florida': 'FL',
+    'California': 'CA',
+    'New York': 'NY',
+    'Michigan': 'MI'
+}
+
+#create a basic set of states and some cities in them
+cities = {
+    'CA': 'San Francisco',
+    'MI': 'Detroit',
+    'FL': 'Jacksonville'
+}
+
+#add some more cities
+cities['NY'] = 'New York'
+cities['OR'] = 'Portland'
+
+#print out some cities
+print('-' * 10)
+print(&quot;NY State has: &quot;, cities['NY'])
+print(&quot;OR State has: &quot;, cities['OR'])
+
+#print some states
+print('-' * 10)
+print(&quot;Michigan's abbreviation is: &quot;, states['Michigan'])
+print(&quot;Florida's abbreviation is: &quot;, states['Florida'])
+
+#do it by using the state then cities dict
+print('-' * 10)
+print(&quot;Michigan has: &quot;, cities[states['Michigan']])
+print(&quot;Florida has: &quot;, cities[states['Florida']])
+
+#print every state abbreviation
+print('-' * 10)
+for state, abbrev in states.items():
+    print(&quot;%s is abbreviated %s&quot; % (state, abbrev))
+		
+#print every city in state
+print('-' * 10)
+for abbrev, city in cities.items():
+    print(&quot;%s has the city %s&quot; % (abbrev, city))
+		
+#now do both at the same time
+print('-' * 10)
+for state, abbrev in states.items():
+    print(&quot;%s state is abbreviated %s and has city %s&quot; %(
+        state, abbrev, cities[abbrev]
+    ))
+print('-' * 10)
+
+#safely get a abbreviation by state that might not be there
+state = states.get('Texas', None)
+if not state:
+    print(&quot;Sorry, no Texas.&quot;)
+		
+#get a city with a default value
+city = cities.get('TX', 'Does Not Exist')
+print(&quot;The city for the state 'TX' is: %s&quot; % city)
+</code></pre>
+<p><strong>这个的结果是：</strong></p>
+<pre><code>##xiaojinyudeMBP:AtomProjects isaking$ python ex39.py
+----------
+NY State has:  New York
+OR State has:  Portland
+----------
+Michigan's abbreviation is:  MI
+Florida's abbreviation is:  FL
+----------
+Michigan has:  Detroit
+Florida has:  Jacksonville
+----------
+Oregon is abbreviated OR
+Florida is abbreviated FL
+California is abbreviated CA
+New York is abbreviated NY
+Michigan is abbreviated MI
+----------
+CA has the city San Francisco
+MI has the city Detroit
+FL has the city Jacksonville
+NY has the city New York
+OR has the city Portland
+----------
+Oregon state is abbreviated OR and has city Portland
+Florida state is abbreviated FL and has city Jacksonville
+California state is abbreviated CA and has city San Francisco
+New York state is abbreviated NY and has city New York
+Michigan state is abbreviated MI and has city Detroit
+----------
+Sorry, no Texas.
+The city for the state 'TX' is: Does Not Exist
+xiaojinyudeMBP:AtomProjects isaking$ 
+</code></pre>
+<p><strong>加分习题：</strong>
+<strong>1. 查看dictionary（dict，dicts）的相关内容</strong>
+<strong>字典格式：d = {key1: value1, key2: value2}</strong>
+<strong>键一般是唯一的，如果重复最后的一个键值对会替换前面的，值不需要唯一。</strong>
+举例：
+&gt;&gt;&gt; dict = {‘a’: 1, ‘b’: 2, ‘b’: 3}
+&gt;&gt;&gt; dict[‘b’]
+‘3’
+&gt;&gt;&gt; dict
+{‘a’:1, ‘b’: ‘3’}</p>
+<p><strong>python字典包含了以下内置函数：</strong>
+a. cmp(dict1, dict2) 比较两个字典元素
+b. len(dict) 计算字典元素个数，即键的总数
+c. str(dict) 输出字典可打印的字符串表示
+d. type(variable) 返回输入的变量类型，如果变量就返回字典类型</p>
+<p><strong>python字典包含了以下内置方法：</strong></p>
+<ol>
+<li>
+<p>dict.clear()：删除字典内所有元素</p>
+</li>
+<li>
+<p>dict.copy()：返回一个字典的浅复制</p>
+</li>
+<li>
+<p>dict.fromkeys(sea[,val])：创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值</p>
+</li>
+<li>
+<p>dict.get(key, default=None)：返回指定键的值，如果值不在字典中返回default值</p>
+</li>
+<li>
+<p>dict.has_key(key)：如果键在字典dict里返回true，否则返回false</p>
+</li>
+<li>
+<p>dict.items()：以列表返回可遍历的(键，值)元组数据</p>
+</li>
+<li>
+<p>dict.keys()：以列表返回一个字典所有的键</p>
+</li>
+<li>
+<p>dict.setdefault(key, default=None)：和get()类似，但如果键不存在于字典中，将会添加键并将值设为default</p>
+</li>
+<li>
+<p>dict.update(dict2)：把字典dict2的键/值对更新到dict里</p>
+</li>
+<li>
+<p>dict.values()：以列表返回字典中的所有值</p>
+</li>
+<li>
+<p>pop(key[, default])：删除字典给定键key所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值</p>
+</li>
+<li>
+<p>popitem()：随即返回并删除字典中的一对键和值。</p>
+</li>
+<li>
+<p>找出dict无法做到的事情。例如比较重要的一个就是dict的内容是无序的。</p>
+</li>
+<li>
+<p>试着把for-loop执行到dict上面，然后试着在for-loop中使用dict 的items()函数，看看会有什么结果。</p>
+</li>
+</ol>
+<p><strong>列表和字典的区别：</strong>
+列表是有序排列的元素，字典是将keys对应到另一些values的数据结构。
+<strong>字典可以用在哪里？</strong>
+需要通过某个值去查看另一个值的场合。可以把字典当作一个“查询表”.
+<strong>列表可以用在哪里？</strong>
+列表是专供有序排列的数据使用的，只要知道索引就能查到对应的值。
+<strong>是否有办法做可排序的字典？</strong>
+查看Python里的<strong>collections.OrderedDict</strong>数据结构。
+python中的字典对象可以以&quot;key: value”的方式存取数据。OrderedDict是它的一个子类，实现了对字典对象中元素的排序。使用OrderedDict会根据放入元素的先后顺序进行排序。由于进行了排序，所以OrderedDict对象的字典对象，如果其顺序不同那么Python会把他们当作是两个不同的对象。</p>
+<p><strong>举例1:</strong>
+import collections
+print(‘Regular dictionary:’)
+d = {}
+d[‘a’] = ‘A’
+d[‘b’] = ‘B’
+d[‘c’] = ‘C’
+for k, v in d.items():
+print(k, v)</p>
+<p>print(‘\nOrderedDict:’)
+d = collections.OrderedDict()
+d[‘a’] = ‘A’
+d[‘b’] = ‘B’
+d[‘c’] = ‘C’
+for k, v in d.items():
+print(k, v)</p>
+<p><strong>输出结果：</strong>
+Regular dictionary:
+a A
+b B
+c C
+OrderedDict:
+a A
+b B
+c C</p>
+<p><strong>举例2：</strong>
+import collections
+print(‘Regular dictionary:’)
+d1 = {}
+d1[‘a’] = ‘A’
+d1[‘b’] = ‘B’
+d1[‘c’] = ‘C’
+d2 = {}
+d2[‘a’] = ‘A’
+d2[‘b’] = ‘B’
+d2[‘c’] = ‘C’
+print(d1 == d2)</p>
+<p>print(‘\nOrderedDict:’)
+d1 = collections.OrderedDict()
+d1[‘a’] = ‘A’
+d1[‘b’] = ‘B’
+d1[‘c’] = ‘C’
+d2 = collections.OrderedDict()
+d2[‘a’] = ‘A’
+d2[‘b’] = ‘B’
+d2[‘c’] = ‘C’
+print(d1 == d2)</p>
+<p><strong>输出结果：</strong>
+Regular dictionary:
+True
+OrderedDict:
+False</p>
+<p><strong>练习中代码的几点运用：</strong>
+<strong>dict.get()：</strong>
+返回指定键的值，如果值不在字典中返回默认值。
+dict.get(key, default=None)</p>
+<p><strong>dicts中for循环的运用：</strong>
+<strong>举例：</strong></p>
+<pre><code>for state, abbrev in states.items():
+    print(&quot;%s is abbreviated %s” % (state, abbrev))
+</code></pre>
+<p>这里因为state的字典中每个单元都有key和value两个元素，所以for循环中的字符串需要两个变量来赋值，in后面的也是states.items()</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex37-fu-xi-ge-chong-fu-hao">
+                  <h3 class="post-title">
+                    Learn Python the hard way-Ex37 复习各种符号
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
