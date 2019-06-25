@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-Ex40 模块、类、对象 | Learning with Writing</title>
+<meta name="description" content="温故而知新
+余生也无涯">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1561447421897">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1561447421897" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/spaindoctorwang/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+余生也无涯
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-Ex40 模块、类、对象</h2>
+            <div class="post-date">2019-06-24</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex40-mo-kuai-lei-dui-xiang.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>python是一种“面向对象编程语言（object-oriented programming language）”，也即python中有一种叫做class的结构，通过它可以用一种特殊的方式构造软件。（理论上来说）使用class（类）可以让程序架构更加整齐，使用起来更干净。</p>
+<p><strong>模组和字典差不多</strong></p>
+<p><strong>举例：</strong></p>
+<pre><code>mystuff = {‘apple’: “I AM APPLES!”}
+pirnt(mystify[‘apple’])
+</code></pre>
+<p>这样是从字典中取除key为’apple’的对应值。</p>
+<p><strong>“从Y获取X”的概念是字典的基本逻辑。</strong></p>
+<p><strong>模组module：</strong></p>
+<ol>
+<li>模组是包含函数和变量的python文件</li>
+<li>可以import这个文件</li>
+<li>可以使用’.’操作符访问到模组中的函数和变量
+<strong>举例：</strong></li>
+</ol>
+<pre><code>#this goes in mystuff.py
+def apple():
+    print(“I AM APPLES!”)
+</code></pre>
+<p>这是在mystuff.py的模组中放了一个叫apple的函数。</p>
+<p>现在来import调用这个模块并访问到apple函数：</p>
+<pre><code>import mystuff
+mystuff.apple()
+</code></pre>
+<p>还可以放一个叫做tangerine的变量到模块里：</p>
+<pre><code>def apple():
+    print(“I AM APPLES!”)
+#this is just a variable
+tangerine = “Living reflection of a dream”
+</code></pre>
+<p>添加变量后还可以访问到这个变量：</p>
+<pre><code>import mystuff
+mystuff.apple()
+print(mystify.tangerine)
+</code></pre>
+<p>回到字典概念，<strong>对比模组和字典的使用方法和语法</strong>：</p>
+<pre><code>mystuff[‘apple’] #get apple from dict
+mystuff.apple() #get apple from the module
+mystuff.tangerine #same thing, it’s just a variable
+</code></pre>
+<p>也就是说，<strong>python 里有一个通用的模式</strong>：</p>
+<ol>
+<li>拿一个类似key=value风格的数据容器</li>
+<li>通过key的名称获取其中的value
+对于字典来说，key是一个字符串，获得值的语法是[key]。对于模组来说，key是函数或者变量的名称，而语法是.key。</li>
+</ol>
+<p><strong>类和模组差不多</strong>
+也可以把模组当作一种特殊的字典，用来储存一些python代码，通过’.’操作符访问这些代码。python还有另一种代码结构来实现类似目的，也就是类（class），通过类，可以把一组函数和数据放到一个容器中，并用’.’操作符访问到它们。
+<strong>举例：</strong></p>
+<pre><code>class MyStuff(object):
+    def __init__(self):
+        self.tangerine = “And now a thousand years between”
+    def apple(self):
+        print(“I AM CLASSY APPLES!”)
+</code></pre>
+<p>这里是用创建mystuff模块的方法来创建一个类。</p>
+<p>这段代码大概就是模拟了一个叫MyStuff的迷你模块，里面有一个叫apple()的函数，还有一个叫__init__()的函数（暂时不懂什么意思），同时设置了tangerine变量时用了self.tangerine的语法。</p>
+<p><strong>类与模组使用上的区别：</strong>
+类可以重复创建很多出来，哪怕一次一百万个，也不会互相干涉（相对独立）。但模组，一次import后，整个程序里就只有这一个内容，只有把模组内部探索得更深才行。</p>
+<p><strong>对象object是什么？</strong>
+对象相当于迷你版的import
+如果说类和迷你模组差不多，那么对于类来说，也有一个类似import的概念，这个概念叫做“实例（instance）”，意思就是“创建”。当讲一个类“实例化”以后，就会得到一个对象（object）。
+<strong>举例：</strong></p>
+<pre><code>thing = MyStuff() #“实例化”操作，类似调用函数
+thing.apple()
+print(thing.tangerine)
+</code></pre>
+<p>实现实例化的方法，就是像调用函数一样调用一个类。</p>
+<p><strong>解释：</strong></p>
+<ol>
+<li>python看到了MyStuff()并且知道了它时定义过的一个类；</li>
+<li>python创建了一个空的对象，里面包含了在类中用def创建的所有函数；</li>
+<li>python回去检查你是不是在里面创建了一个__init__魔法函数，如果有创建，就回调用这个函数，从而对你的空对象实现初始化；</li>
+<li>在MyStuff中的__init__函数里，我们有一个多余的函数叫做self，这就是python为我们创建的空对象，而我可以对它进行类似模组、字典等操作，为它设置一些变量进去；</li>
+<li>这里把self.tangerine设成一段歌词，这样就初始化了该对象；</li>
+<li>最后python将这个新建的对象赋给一个叫thing的变量，以供以后使用。</li>
+</ol>
+<p><strong>⚠️注意：</strong>
+类和对象和模组是完全不同的东西。
+从东西里获取东西的三种办法：</p>
+<pre><code>#dict style
+mystuff[‘apples’]
+
+#module style
+mystuff.apples()
+print(mystuff.tangerine)
+
+#class style
+thing = MyStuff()
+thing.apples()
+print(thing.tangerine)
+</code></pre>
+<p><strong>ex40.py代码：</strong></p>
+<pre><code>class Song(object):
+    def __init__(self, lyrics):
+        self.lyrics =lyrics
+    def sing_me_a_song(self):
+        for line in self.lyrics:
+            print(line)
+
+happy_bday = Song([&quot;Happy birthday to you&quot;,
+                   &quot;I don't want to get sued&quot;,
+                   &quot;So I'll stop right there&quot;])
+bulls_on_parade = Song([&quot;They rally around the family&quot;,
+                         &quot;With pockets full of shells&quot;])
+happy_bday.sing_me_a_song()
+bulls_on_parade.sing_me_a_song()
+</code></pre>
+<p><strong>加分习题：</strong></p>
+<ol>
+<li>使用这种方式写更多的歌进去，确定自己懂得了传入的歌词是一个字符串列表；</li>
+<li>将歌词放到另一个变量里，然后在类里使用这个新定义的变量；</li>
+<li>试着看能不能添加新功能；</li>
+<li>多了解object-oriented programming面向对象编程</li>
+</ol>
+<p><strong>尝试把列表、字典、类放在一起写：</strong></p>
+<pre><code>class Song(object):
+    def __init__(self, lyrics):
+        self.lyrics = lyrics
+    def sing(self):
+        for line in self.lyrics:
+            print(line)
+song1 = Song([&quot;first line&quot;,
+              &quot;second line&quot;,
+              &quot;third line&quot;])
+song2 = ['4th line',
+         '5th line',
+         '6th line']
+song3 = {'7th': '7th line',
+        '8th': '8th line',
+        '9th': '9th line'}
+song1.sing()
+print(song2)
+print(song3)
+</code></pre>
+<p><strong>结果是：</strong></p>
+<pre><code>xiaojinyudeMacBook-Pro:AtomProjects isaking$ python ex40_1.py
+first line
+second line
+third line
+['4th line', '5th line', '6th line']
+{'7th': '7th line', '8th': '8th line', '9th': '9th line'}
+xiaojinyudeMacBook-Pro:AtomProjects isaking$ 
+</code></pre>
+<p>上面的结果中song2和song3的打印都在一行，且song3中带上了key，下面尝试逐行打印，且去掉key，只保留value：</p>
+<pre><code>class Song(object):
+    def __init__(self, lyrics):
+        self.lyrics = lyrics
+    def sing(self):
+        for line in self.lyrics:
+            print(line)
+song1 = Song([&quot;first line&quot;,
+              &quot;second line&quot;,
+              &quot;third line&quot;])
+song2 = ['4th line',
+         '5th line',
+         '6th line']
+song3 = {'7th': '7th line',
+        '8th': '8th line',
+        '9th': '9th line'}
+song1.sing()
+print(song2)
+print(song3)
+for line in song2:
+    print(line)
+for key, value in song3.items():
+    print(&quot;%s&quot; % value)
+</code></pre>
+<p><strong>结果：</strong></p>
+<pre><code>xiaojinyudeMacBook-Pro:AtomProjects isaking$ python ex40_1.py
+first line
+second line
+third line
+['4th line', '5th line', '6th line']
+{'7th': '7th line', '8th': '8th line', '9th': '9th line'}
+4th line
+5th line
+6th line
+7th line
+8th line
+9th line
+xiaojinyudeMacBook-Pro:AtomProjects isaking$ 
+</code></pre>
+<p><strong>可能出现的错误：</strong>
+song1.sing()
+这里不能依样画葫芦写song2.sing()，会出现错误：</p>
+<pre><code>Traceback (most recent call last):
+  File &quot;ex40_1.py&quot;, line 22, in &lt;module&gt;
+    song2.sing()
+AttributeError: 'list' object has no attribute ‘sing'
+</code></pre>
+<p>也就是说，列表不能套用类的方式来打印。</p>
+<p><strong>为什么创建init或者别的类函数时需要多加一个self变量？</strong>
+如果不加self，cheese = ‘Frank’这样的代码意义就不明确了，它指的既可能是实例的cheese属性，或者一个叫做cheese的局部变量。有了self.cheese = ‘Frank’就清楚地知道这指的是实例的属性self.cheese.</p>
+<p><strong>class类的详细解释：</strong>
+<strong>class包括：</strong></p>
+<ol>
+<li>类的属性：类中涉及的变量</li>
+<li>类的方法；类中的函数</li>
+</ol>
+<p><strong><strong>init</strong>()是什么？</strong></p>
+<ol>
+<li><strong>xx</strong>()这类的函数（方法）是声明该属性为私有，不能再类的外部被使用或者直接访问。</li>
+<li><strong>init</strong>()支持带参数的类的初始化，也可以声明该类的属性。</li>
+<li><strong>init</strong>()的第一个参数必须是self（self为习惯用法，可以改成别的名字），后续参数可以自由指定，和
+定义函数没有区别。</li>
+</ol>
+<p><strong>函数定义</strong>
+在类中，def可以为类定义一个函数（方法），与一般函数定义不同，类方法必须包含参数self，且为第一个参数。</p>
+<p><strong>self参数含义</strong>
+在类的代码（函数）中，需要访问当前的实例中的变量和函数。
+<strong>举例：</strong>
+访问Instance中的对应变量property：
+Instance.ProperyNam，读取之前的值和写入新的值
+调用对应函数function：
+Instance.function()，即执行对应动作
+这里的Instance本身就是self</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex38-lie-biao-de-cao-zuo">
+                  <h3 class="post-title">
+                    Learn Python the hard way-Ex38 列表的操作
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
