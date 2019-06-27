@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1561584591894">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1561660803696">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1561584591894" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1561660803696" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -123,7 +123,6 @@
 <li>attribute：class的一个属性，它来自于composition，而且通常是一个变量。</li>
 <li>is-a：用来描述集成关系，例如Salmon is-a Fish。</li>
 <li>has-a：用来描述某个东西时另外一些东西组成的，或者某个东西有某个特征。例如Salmon has-a mouth。</li>
-<li></li>
 </ul>
 <p><strong>描述方式：</strong></p>
 <ul>
@@ -140,7 +139,8 @@
 <li>foo.K = Q
 “From foo get the K attribute and set it to Q.” #从foo中获取K属性，并将其设为Q。</li>
 </ul>
-<p>每一条中的X、Y、M、J、K、Q、foo，都可以将它们当作空白点来对待。<strong>举例：</strong></p>
+<p>每一条中的X、Y、M、J、K、Q、foo，都可以将它们当作空白点来对待。
+<strong>举例：</strong></p>
 <ol>
 <li>“Make a class named ??? that is-a Y.”——创建一个叫???的class，让它从属于Y。</li>
 <li>“class ??? has-a <strong>init</strong> that takes self and ??? parameters.”——class???有一个__init__能接收self和???作为参数。</li>
@@ -241,7 +241,7 @@ except EOFError:
 <li>取出PHRASES字典中对应该snippet键的值value，为phrase；</li>
 <li>进入convert函数。确认phrase（value）中有几个“%%%”，就随机从WORDS（单词列表）中取几个单词放入class_names；</li>
 <li>将class_names中的单词首字母大写；</li>
-<li>phrase中有几个“***”就随机从WORDS（单词列表）中取几个单词放入other_names；</li>
+<li>phrase中有几个“** *” 就随机从WORDS（单词列表）中取几个单词放入other_names；</li>
 <li>检查phrase中是否有“@@@”：
 <ul>
 <li>有“@@@”的情况下：
@@ -285,20 +285,20 @@ except EOFError:
 <li>结束</li>
 </ul>
 <p><strong>几个遇见的错误：</strong></p>
-<ul>
+<ol>
 <li>
-<p>原文写的是from urllib import urlopen，但是python3中应该是from urllib.request import urlopen.</p>
+<p>原文写的是from urllib import urlopen，但是python3中<strong>应该是from urllib.request import urlopen.</strong></p>
 </li>
-<li>
-<p>if len(sys.argv) == 2 and sys.argv[1] == &quot;english&quot;:#判断参数长度是否为2，第二个参数是否为“english”
-PHRASE_FIRST = True #字典的第一个元素是True还是False
-else:
-PHRASE_FIRST = False
-上面这段代码中的sys.argv和len(sys.argv)一开始没明白。这里做个解释。
-<strong>举例：</strong>
-代码文件为a.py</p>
-</li>
-</ul>
+<li></li>
+</ol>
+<pre><code>if len(sys.argv) == 2 and sys.argv[1] == &quot;english&quot;:#判断参数长度是否为2，第二个参数是否为“english”
+                PHRASE_FIRST = True #字典的第一个元素是True还是False
+            else:
+                PHRASE_FIRST = False
+</code></pre>
+<p>上面这段代码中的sys.argv和len(sys.argv)一开始没明白。这里做个解释。</p>
+<p><strong>举例：</strong>
+<strong>代码文件为a.py</strong></p>
 <pre><code>import sys
 a = sys.argv
 b = len(sys.argv)
@@ -319,172 +319,154 @@ print(b)
 </code></pre>
 <p>因此，<strong>filename本身就是argv的第一个参数</strong>，所以sys.argv[1]确实是我理解的第二个参数。同时<strong>len(sys.argv)也是按照（文件名算1个）参数个数来计算的</strong>。</p>
 <ul>
-<li><strong>函数strip()</strong>
-```
-for word in urlopen(WORD_URL).readline():
-WORDS.append(word.strip())</li>
+<li><strong>函数strip()</strong></li>
 </ul>
-<pre><code>            一直报错 `AttributeError: 'int' object has no attribute 'strip'`
-            实际应该：
-             ```
-for word in urlopen(WORD_URL).readlines():     
+<pre><code>for word in urlopen(WORD_URL).readline():
+                   WORDS.append(word.strip())
+</code></pre>
+<p>**一直报错 **
+<code>AttributeError: 'int' object has no attribute 'strip'</code></p>
+<p><strong>实际应该：</strong></p>
+<pre><code>for word in urlopen(WORD_URL).readlines():     
                     WORDS.append(str(word.strip(), encoding = &quot;utf-8”))
 </code></pre>
-<pre><code>            这里少了str，把找到的单词转换成string字符串才行。
-        第30行
-        **函数原型：str.strip([chars])**
-        参数：chars-移除字符串头尾制定的字符，默认为空格。
-        返回值：返回移除字符串头尾制定的字符生成的新字符串，移除的是chars中的任意字符。
-        举例：
-						&gt;&gt;&gt; a = “   123”
-						&gt;&gt;&gt; print(a.strip())
-						123
-						&gt;&gt;&gt; a = “123abc”
-						&gt;&gt;&gt; print(a.strip(“1cb”)
-						23a
-</code></pre>
+<p>这里少了str，把找到的单词转换成string字符串才行。
+第30行
+<strong>函数原型：str.strip([chars])</strong>
+参数：chars-移除字符串头尾制定的字符，默认为空格。
+返回值：返回移除字符串头尾制定的字符生成的新字符串，移除的是chars中的任意字符。
+<strong>举例：</strong>
+<code>&gt;&gt;&gt; a = “ 123” 							&gt;&gt;&gt; print(a.strip()) 							123 							&gt;&gt;&gt; a = “123abc” 							&gt;&gt;&gt; print(a.strip(“1cb”) 							23a</code></p>
 <ul>
 <li><strong>函数str.capitalize()</strong>
-```
-def convert(snippet, phrase):
-class_names = [w. capitalize() for w in random.sample(WORDS, snippet.count(&quot;%%%&quot;))]</li>
+<code>def convert(snippet, phrase): class_names = [w. capitalize() for w in random.sample(WORDS, snippet.count(&quot;%%%&quot;))]</code>
+第35行
+参数：None
+返回值：返回一个首字母大写，其余字母小写的字符串
+<strong>举例：</strong></li>
 </ul>
-<pre><code>           第35行
-           参数：None
-           返回值：返回一个首字母大写，其余字母小写的字符串
-            举例：
-            ```
-&gt;&gt;&gt; a = “this is a book called HARRY POTTER”
-            &gt;&gt;&gt; print(a.capitalize())
-            This is a book called harry potter.
+<pre><code>&gt;&gt;&gt; a = “this is a book called HARRY POTTER”
+           &gt;&gt;&gt; print(a.capitalize())
+           This is a book called harry potter.
 </code></pre>
 <ul>
-<li>函数<strong>random.sample()</strong>
-```
-def convert(snippet, phrase):
-class_names = [w. capitalize() for w in random.sample(WORDS, snippet.count(&quot;%%%&quot;))]</li>
+<li><strong>函数random.sample()</strong>
+<code>def convert(snippet, phrase): class_names = [w. capitalize() for w in random.sample(WORDS, snippet.count(&quot;%%%&quot;))]</code>
+第35行
+函数原型：<strong>ramdom.sample(sequence, k)</strong>
+参数：sequence是一个list，k是一个整数
+返回值：返回一个list，该list由sequence中随机的k个元素组成，sequence不变
+<strong>实例：</strong></li>
 </ul>
-<pre><code>           第35行
-            函数原型：**ramdom.sample(sequence, k)**
-            参数：sequence是一个list，k是一个整数
-            返回值：返回一个list，该list由sequence中随机的k个元素组成，sequence不变
-            实例：
-            ```
-&gt;&gt;&gt; list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-            &gt;&gt;&gt; slice = random.sample(list, 5)
-            &gt;&gt;&gt; print(slice)
-            [3, 6, 8, 2, 4] #截取的序列元素并没有顺序
+<pre><code>&gt;&gt;&gt; list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+&gt;&gt;&gt; slice = random.sample(list, 5)
+&gt;&gt;&gt; print(slice)
+[3, 6, 8, 2, 4] #截取的序列元素并没有顺序
 </code></pre>
 <ul>
-<li><strong>函数count()</strong>
-```
-def convert(snippet, phrase):
-class_names = [w. capitalize() for w in random.sample(WORDS, snippet.count(&quot;%%%&quot;))]</li>
+<li><strong>函数count()</strong></li>
 </ul>
-<pre><code>            第35行
-            函数原型：**str.count(sub, start = 0, end = len(str))**
-            参数：
-                sub--搜索的子字符串
-                start--字符串开始搜索的位置，默认为第一个字符，第一个字符索引值为0
-                end--字符串中结束搜索的位置，字符中第一个字符的索引为0，默认为字符串的最后一个位置
-            返回值：返回子字符串在字符串中出现的次数
-            实例：
-           ```
- &gt;&gt;&gt; a = “this is a book called HARRY POTTER”
-            &gt;&gt;&gt; print(a.count(“i”))
-            2
+<pre><code>def convert(snippet, phrase):
+                class_names = [w. capitalize() for w in random.sample(WORDS, snippet.count(&quot;%%%&quot;))]
+</code></pre>
+<p>第35行
+函数原型：<strong>str.count(sub, start = 0, end = len(str))</strong>
+参数：
+sub--搜索的子字符串
+start--字符串开始搜索的位置，默认为第一个字符，第一个字符索引值为0
+end--字符串中结束搜索的位置，字符中第一个字符的索引为0，默认为字符串的最后一个位置
+返回值：返回子字符串在字符串中出现的次数
+<strong>实例：</strong></p>
+<pre><code> &gt;&gt;&gt; a = “this is a book called HARRY POTTER”
+&gt;&gt;&gt; print(a.count(“i”))
+2
 </code></pre>
 <ul>
 <li><strong>join()函数</strong>
 函数原型：<strong>str.join(sequence)</strong>
 参数：sequence-要连接元素的list
 返回值：返回通过str连接序列中元素后生成的字符串
-实例：
-```
-<blockquote>
-<blockquote>
-<blockquote>
-<p>str = “-“
-sea = [“a”, “b”, “c”]
-print(str.join(sea))
-a-b-c</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</li>
+<strong>实例：</strong></li>
 </ul>
-<pre><code>
-* **replace()函数**
-            函数原型：**str.replace(old, new[, max])**
-            参数：
-                old--将被替换的子字符串
-                new--新字符串，用于替换old子字符串
-                max--可选字符串，替换不超过max次
-            返回值：返回以new代替old不超过max次的新字符串
-            实例：
-            ```
-&gt;&gt;&gt; a = “this is a book called HARRY POTTER”
-            &gt;&gt;&gt; print(a.replace(“is”, “was”, 1)
-            thwas is a book called HARRY POTTER
-            &gt;&gt;&gt; print(a.replace(“is”, “was”)
-            thwas was a book called HARRY POTTER
+<pre><code>&gt;&gt;&gt; str = “-“
+&gt;&gt;&gt; sea = [“a”, “b”, “c”]
+&gt;&gt;&gt; print(str.join(sea))
+a-b-c
+</code></pre>
+<ul>
+<li><strong>replace()函数</strong>
+函数原型：<strong>str.replace(old, new[, max])</strong>
+参数：
+old--将被替换的子字符串
+new--新字符串，用于替换old子字符串
+max--可选字符串，替换不超过max次
+返回值：返回以new代替old不超过max次的新字符串
+<strong>实例：</strong></li>
+</ul>
+<pre><code>&gt;&gt;&gt; a = “this is a book called HARRY POTTER”
+&gt;&gt;&gt; print(a.replace(“is”, “was”, 1)
+thwas is a book called HARRY POTTER
+&gt;&gt;&gt; print(a.replace(“is”, “was”)
+thwas was a book called HARRY POTTER
 </code></pre>
 <ul>
 <li><strong>key()函数</strong>
 函数原型：<strong>dict.key()</strong>
 参数：None
 返回值：返回一个字典所有的键
-实例：
-```</li>
+<strong>实例：</strong></li>
 </ul>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>dict = {“name”: “moverzp”, “age”: “23”, “height”: “180”}
-print(dict.keys())
-[‘age’, ’name’, ‘height’]</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>
-* ****shuffle()函数****
-            函数原型：**random.shuffle(lst)**
-            参数：lst--可以是一个序列或者元组
-            返回值：None。直接修改lst的顺序
-            实例：
-            ```
-&gt;&gt;&gt; list = [1, 2, 3, 4]
-            &gt;&gt;&gt; random.shuffle(list)
-            &gt;&gt;&gt; print(list)
-            [3, 1, 4, 2]
-            &gt;&gt;&gt; random.shuffle(list)
-            &gt;&gt;&gt;print(list)
-            [1, 4, 2, 3]
+<pre><code>&gt;&gt;&gt; dict = {“name”: “moverzp”, “age”: “23”, “height”: “180”}
+            &gt;&gt;&gt; print(dict.keys())
+            [‘age’, ’name’, ‘height’]
+</code></pre>
+<ul>
+<li><strong>shuffle()函数</strong>
+函数原型：<strong>random.shuffle(lst)</strong>
+参数：lst--可以是一个序列或者元组
+返回值：None。直接修改lst的顺序
+<strong>实例：</strong></li>
+</ul>
+<pre><code>&gt;&gt;&gt; list = [1, 2, 3, 4]
+&gt;&gt;&gt; random.shuffle(list)
+&gt;&gt;&gt; print(list)
+[3, 1, 4, 2]
+&gt;&gt;&gt; random.shuffle(list)
+&gt;&gt;&gt;print(list)
+[1, 4, 2, 3]
 </code></pre>
 <p><strong>result = sentence[:]实现了什么？</strong>
 python中用来复制列表的一种方式。这里使用了列表的分割切片语法[:]，得到列表从第一个到最后一个元素的切片。</p>
-<p><strong>urllib模组的使用</strong>
-** 基本用法：**
+<ul>
+<li><strong>urllib模组的使用</strong>
+<strong>基本用法：</strong>
 <strong>urllib.request.urlopen(url, data = None, [timeout,]*, cafile = None, capath = None, cadefault = False, context = None)</strong>
 url：需要打开的网址；
 data：post提交的数据；
 timeout：设置网站的访问超时时间。
 直接用urllib.request模组的urlopen()获取页面，page的数据格式为bytes类型，需要decode()解码，转换成str类型。
-<strong>举例：</strong></p>
+<strong>举例：</strong></li>
+</ul>
 <pre><code>from urllib import request
 response = request.urlopen(r’http://python.org/') #&lt;http.client.HTTPResponse object at 0x00000000048BC908&gt; HTTPResponse类型
 page = response.read()
 page = page.decode(‘utf-8’)
 </code></pre>
+<ul>
+<li>
 <p><strong>urlopen返回对象提供方法：</strong>
 read(), readline(), readlines(), fileno(), close()：对HTTPResponse类型数据进行操作；
 info()：返回HTTPMessage对象，表示远程服务器返回的头信息；
 getcode()：返回Http状态码。如果是http请求，200清酒成功完成，404未找到。
 geturl()：返回请求的url</p>
+</li>
+<li>
 <p><strong>使用request：</strong>
 <strong>urllib.request.Request(url, data = None, headers = {}, method = None)</strong>
 使用request()来包装请求，再通过urlopen()获取页面。
 <strong>举例：</strong></p>
+</li>
+</ul>
 <pre><code>url = r’http://www.lagou.com/zhaopin/Python/?labelWords=label’
 headers = { 
     ‘User-Agent’: r’mozilla/5.0 (Windos NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)’
@@ -500,10 +482,12 @@ page = page.decode(‘utf-8’)
 User-Agent：这个头部可以携带以下几条信息：浏览器名和版本号、操作系统名和版本号、默认语言；
 Referer：可以用来防止盗链，有一些网站图片显示来源http://***.com，用来检查Referer来鉴定；
 Connection：表示连接状态，记录Session的状态。</p>
-<p><strong>异常处理（使用try）：</strong>
+<ul>
+<li><strong>异常处理（使用try）：</strong>
 python中捕捉异常可以使用<strong>try/except语句</strong>，用来检测try语句块中的错误，从而让except语句捕捉异常信息并处理。
 如果不想再异常发生时结束程序，就可以用try来捕捉。
-<strong>语法举例(try…except…else)：</strong></p>
+<strong>语法举例(try…except…else)：</strong></li>
+</ul>
 <pre><code>try:
 &lt;语句&gt;  #运行别的代码
 except&lt;名字&gt;:
