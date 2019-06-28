@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Learn Python the hard way-Ex42 对象、类、以及从属关系 | Learning with Writing</title>
+<meta name="description" content="温故而知新
+余生也无涯">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1561754682271">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1561754682271" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/spaindoctorwang/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+余生也无涯
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Learn Python the hard way-Ex42 对象、类、以及从属关系</h2>
+            <div class="post-date">2019-06-28</div>
+            
+              <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/ex42-dui-xiang-lei-yi-ji-cong-shu-guan-xi.png')">
+              </div>
+            
+            <div class="post-content">
+              <p><strong>类class和对象object的区别：</strong>
+<strong>举例：</strong>
+鱼是一个类class，泥鳅是一个类class，一只叫小方的泥鳅是一个对象object。
+这里的小方其实是泥鳅的一个实例instance，泥鳅也是鱼的一个实例instance。使用了这个实例之后，它就会变成对象object。
+所以：小方是泥鳅的成员，泥鳅是鱼的成员。对象属于某个类，这个类又属于另一个类。</p>
+<p><strong>ex42.py代码（用于阅读练习）：</strong></p>
+<pre><code>##Animal is-a object (yes, sort of confusing) look at the extra credit
+class Animal(object):
+    pass
+		
+##Dog is-a Animal class
+class Dog(Animal):
+    #class Dog has-a __init__ that takes self and name parameters.
+    def __init__(self, name):
+        ##Dog has-a name
+        self.name = name
+				
+##Cat is-a Animal class
+class Cat(Animal):
+    #class Cat has-a __init__ that takes self and name parameters.
+    def __init__(self, name):
+        ##Cat has-a name
+        self.name = name
+				
+##Person is-a object class
+class Person(object):
+    def __init__(self, name):
+        ##Person has-a name
+        self.name = name
+        ##Person has-a pet of some kind
+        self.pet = None #宠物不是必须的，可以赋予宠物，调用的时候人只有一个属性“name”
+				
+##Employee is-a Person class
+class Employee(Person):
+    def __init__(self, name, salary):
+        ##?? hmm what is this strange magic?    Employee inherit Person
+        super(Employee, self).__init__(name)
+        ##Employee has-a salary
+        self.salary = salary
+				
+##Fish is-a object class
+class Fish(object):
+    pass
+		
+##Salmon is-a Fish class
+class Salmon(Fish):
+    pass
+		
+##Halibut is-a Fish class
+class Halibut(Fish):
+    pass
+		
+##rover is-a Dog
+rover = Dog(&quot;Rover&quot;)
+
+##satan is-a Cat
+satan = Cat(&quot;Satan&quot;)
+
+##mary is-a Person
+mary = Person(&quot;Mary&quot;)
+
+##mary has-a pet, satan is-a Cat   mary has-a pet Cat named satan
+mary.pet = satan
+
+##frank is-a Employee
+frank = Employee(&quot;Frank&quot;, 120000)
+
+##frank has-a pet, rover is-a Dog    frank has-a pet Dog named rover
+frank.pet = rover
+
+##flipper is-a Fish
+flipper = Fish()
+
+##crous is-a Salmon
+crouse = Salmon()
+
+##harry is-a Halibut
+harry = Halibut()
+</code></pre>
+<p><strong>加分习题：</strong></p>
+<ol>
+<li>python为什么添加叫做object的class，有什么含义</li>
+<li>是有可以把class当作object使用</li>
+</ol>
+<p><strong>3. 习题中为animals、fish、peopel添加了一些函数，这种函数在Animal这样的“基类base class”里和在Dog里有什么区别?</strong></p>
+<p>比如我们编写了一个名为Animal的class，有一个run()方法可以直接打印一句话，然后新建一个Dog的类，继承了Animal类：</p>
+<pre><code>&gt;&gt;&gt; class Animal(object):
+            def run(self):
+                print(‘running…’)
+&gt;&gt;&gt; class Dog(Animal):
+            pass
+&gt;&gt;&gt; little_dog = Dog()
+&gt;&gt;&gt; little_dog.run()
+running…
+</code></pre>
+<p>对于Dog来说，Animal就是它的父类，对于Animal来说，Dog就是它的子类。
+子类获得了父类的全部功能。Dog()里继承了run()函数，可以给自己的实例里直接用。</p>
+<p><strong>如果子类和父类定义的时候都有个run()，会怎样？</strong></p>
+<pre><code>class Animal(object):
+    def run(self):
+        print(‘running…’)
+class Dog(Animal):
+    def run(self):
+        print(“Dog running…”)
+class Cat(Animal):
+    def run(self):
+        print(“Cat running…”)
+#结果如下
+Dog is running…
+Cat is running…
+</code></pre>
+<p>也就是说，子类的方法如果和父类的方法重名，子类会覆盖掉父类。因为这个特性，就获得了一个继承的好处“多态”。</p>
+<ol start="4">
+<li>使用列表和字典创建一些新的一对多的“has-many”的关系。查看 <strong>“多重继承multiple inheritance”</strong> 的资料，尽量避免这种用法。</li>
+</ol>
+<p><strong>多重继承：子类有多个父类。</strong>
+多重继承来说，使用super()只会调用第一个父类的属性方法，如果想要调用特定父类的构造器智能使用父类名<code>.__init__</code>方式。</p>
+<p><strong>举例：</strong></p>
+<pre><code>class Human:
+    def __init__(self, sex):
+        sefl.sex = sex
+    def p(self):
+        print(“这是Human的方法”)
+				
+class Person:
+    def __init__(self, name):
+        self.name = name
+    def p(self):
+        print(“这是Person的方法”)
+    def person(self):
+        print(“这是我person特有的方法”)
+				
+class Teacher(Person):
+    def __init__(self, name, age):
+        super().__init__(name)
+        self.age = age
+				
+class Student(Human, Person):
+    def __init__(self, name, sex, grade):
+        #super().__init__(name)
+        #super().__init__(sex)
+        
+        Human.__init__(self, sex)
+        Person.__init__(self, name)
+        self.grade = grade
+				
+class Son(Human, Teacher):
+    def __init__(self, sex, name, age, fan):
+        Human.__init__(self, sex)
+        Teacher.__init__(self, name, age)
+        self.fan = fan
+#---------创建对象----------
+stu = Student(“tom”, “male”, 88)
+print(stu.name, stu.sex, stu.grade)
+stu.p()  #虽然父类Human和Person都有同名p()方法，但是调用的是括号里的第一个父类Human的方法
+
+son1 = Son(“jerry”, “female”, 18, “打球”)
+son1.person()  #可以调用父类的父类的方法
+son1.p()  #子类调用众多父类中同名的方法，按继承的顺序查找
+======================
+tom male 88
+这是Human的方法
+这是我person特有的方法
+这是Human的方法
+</code></pre>
+<p><strong>总结：</strong></p>
+<ol>
+<li>需要注意圆括号中继承父类的顺序，<strong>若是父类中有相同的方法名，而在子类使用时未制定，python从左至右搜索</strong>，即方法在子类中未找到时，从左到右查找父类中是否包含方法。</li>
+<li>支持多层父类继承，子类会继承父类所有的属性和方法，包括父类的父类的所有属性和方法。</li>
+</ol>
+<p><strong>子类从多个父类派生，而子类又没有自己的构造函数时：</strong></p>
+<ol>
+<li>按顺序继承，哪个父类在最前面且它又有自己的构造函数，就继承它的构造函数。</li>
+<li>如果最前面第一个父类没有构造函数，则继承第2个的构造函数，第2个没有的话，再往后着，以此类推。</li>
+</ol>
+<p><strong>常见问题：</strong>
+<strong>self.pet = None的作用是什么？</strong>
+确保类的self.pet属性被设置为None。</p>
+<p><code>super(Employee, self).__init__(name)</code><strong>的作用是什么？</strong>
+<strong>函数super()</strong>
+<strong>用来实现类的继承，可以把父类的<code>__init__</code>方法运行起来。</strong>
+语法：super(type[, object-or-type])
+type--类
+object-or-type--类，一般是self
+<strong>作用：</strong>
+用来解决多重继承问题。
+python3中可以直接用super().xxx代替super(Class, self).xxx
+<strong>举例：</strong></p>
+<pre><code>class A:
+    def add(self, x):
+        y = x + 1
+        print(y)
+class B(A)：
+    def add(self, x):
+        super().add(x)
+b = B()
+b.add(2)   #3
+</code></pre>
+<p><strong>结合ex42.py中的代码：</strong></p>
+<pre><code>class Employee(Person):
+    def __init__(self, name, salary):
+        ##?? hmm what is this strange magic?    Employee inherit Person
+        super(Employee, self).__init__(name)
+        ##Employee has-a salary
+        self.salary = salary
+</code></pre>
+<p>这里的<code>super(Employee, self).__init__(name)</code>是指：
+首先找到Employee的父类（也就是Person类），然后把类Employee的对象转换为类Person的对象</p>
+<p><strong>梳理object对象、class类的关系：</strong>
+<strong>举例：</strong></p>
+<pre><code>class Student(object):
+    pass
+</code></pre>
+<p>这里Student是一个类，(objcet)表示该类从哪个类总继承下来的，(object)类是所有类都会继承的类。</p>
+<p>#定义好了类，就可以通过Student创建处Student的实例：
+<code>student = Student()</code></p>
+<p>#因为类class起到模版作用，因此在创建实例时，要把我们认为必须绑定的属性强制填写进去，需要用到__init__方法。这里Student类中要写name和score等属性：</p>
+<pre><code>class Student(object):
+    def __init__(self, name, score):
+        self.name = name    
+        self.score = score
+</code></pre>
+<p>#<code>__init__</code>方法的第一参数永远是<code>self</code>，表示创建的类实例本身，把属性绑定到<code>self</code>等于绑定到实例本身。
+#<code>__init__</code>方法在创建实例时，不能传入空的参数，必须传入与<code>__init__</code>方法匹配的参数。但<code>self</code>不需要传。</p>
+<pre><code>&gt;&gt;&gt;student = Student(“Hugh”, 99)
+&gt;&gt;&gt;student.name
+“Hugh”
+&gt;&gt;&gt;student.score
+99
+</code></pre>
+<p>这里<code>self</code>是指类本身，<code>self.name</code>是Student类的属性变量，归Student所有。<code>name</code>是外部传来的参数，不是Student自带的，所以<code>self.name = name</code>的意思就是把外部传来的参数name赋值给Student类自己的属相变量self.name。</p>
+<p><strong>在类中定义函数只有一点和普通函数不同</strong>，就是<strong>第一参数永远是类的本身实例变量self，并且调用时，不用传递该参数。</strong> 除此之外，类的方法（函数）和普通函数没有区别，既可以用默认参数、可变参数或者关键字参数（<code>*args</code>是可变参数，<code>args</code>接收的是一个tuple，<code>**kw</code>是关键字参数，<code>kw</code>接收的是一个dict）。</p>
+<p>既然Student类实例本身就拥有这些数据，那么要访问这些数据，就没必要从外面的函数去访问，而可以直接在Student类的内部定义访问数据的函数（方法），这样，就可以把“数据”封装起来。这些封装数据的函数是和Student类本身是关联起来的，<strong>称之为类的方法：</strong></p>
+<pre><code>class Student(object):
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+    def print_score(self):
+        print(“%s: %s” % (self.name, self.score))
+&gt;&gt;&gt;student = Student(“Hugh”, 99)
+&gt;&gt;&gt;student.print_score
+Hugh: 99
+</code></pre>
+<p>从外部看Student类，只需要知道创建实例需要给出name和score，如何打印，都是在Student类的内部定义的。这些数据和逻辑被封装起来了，调用很容易，但却不知道内部实现的细节。</p>
+<p>如果要让内部属性不被外部访问，可以把属性的名称前加上<code>__</code>，python中，<strong>实例的变量名如果以<code>__</code>开头，就变成了一个私有变量private，只有内部可以访问，外部不能访问。</strong>
+如果这样，可以改一下Student类：</p>
+<pre><code>class Student(object):
+    def __init__(self, name, score):
+        self.__name = name
+        self.__score = score
+    def print_socre(self):
+        print(“%s: %s” % (self.__name, self.__socre))
+</code></pre>
+<p>这样改完后，对外部代码来说，没什么变动，但是已经无法从外部访问实例变量<code>.__name</code>和实例变量<code>.__score</code>了：</p>
+<pre><code>&gt;&gt;&gt;student = Student(‘Hugh’, 99)
+&gt;&gt;&gt;student.__name
+Traceback (most recent call last):
+    File “&lt;stdin&gt;”, line 1, in &lt;module&gt;
+AttributeError: ‘Student’ object has no attribute ‘__name’
+</code></pre>
+<p>这样就确保了外部代码不能随意修改对象内部的状态，这样通过访问限制的保护，代码更加健壮。
+如果外部代码要获取name和score怎么办呢？可以给Student类增加get_name和get_score这样的方法：</p>
+<pre><code>class Student(object):
+    …
+    def get_name(self):
+        return self.__name
+    def get_score(self):
+        return self.__score
+</code></pre>
+<p>此外，<strong>如果要允许外部代码修改score怎么办？可以给Student类增加set_score方法：</strong></p>
+<pre><code>class Student(object):
+    …
+    def set_score(self, score):
+        self.__score = score
+</code></pre>
+<p><strong>⚠️注意：</strong>
+python中，变量名类似<code>__xxx__</code>的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以不能用<code>__name__</code>和<code>__score__</code>这样的变量名。
+如果看到一个下划线开头的实例变量名，比如<code>_name</code>，<strong>这样的实例变量外部是可以访问的，但是按照约定俗成的规定，它的意思是“虽然我可以被访问，但是请把我当作私有变量，不要随意访问”。</strong></p>
+<p>封装的另一个好处是可以随时给Student类增加新的方法，比如get_grade：</p>
+<pre><code>class Student(object):
+    …
+    def get_grade(self):
+        if self.socre &gt;= 90:
+            return ‘A’
+        elif self.score &gt;= 60:
+            return ‘B’
+        else:
+            return ‘C’
+</code></pre>
+<p>get_grade方法可以直接在实例变量上调用，不需要知道内部实现细节：</p>
+<pre><code>&gt;&gt;&gt;student.get_grade()
+‘A’
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex41-xue-xi-mian-xiang-dui-xiang-zhu-yu">
+                  <h3 class="post-title">
+                    Learn Python the hard way-Ex41 学习面向对象术语
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
