@@ -4,13 +4,13 @@
     <meta charset="utf-8" >
 
 <title>Learn Python the hard way-Ex43 基本的面向对象的分析和设计 | Learning with Writing</title>
-<meta name="description" content="温故而知新
-余生也无涯">
+<meta name="description" content="温故而知新，
+余生也无涯。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562091396949">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562091715420">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562091396949" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1562091715420" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -91,8 +91,8 @@
       
     </div>
     <div class="site-description">
-      温故而知新
-余生也无涯
+      温故而知新，
+余生也无涯。
     </div>
     <div class="site-footer">
       Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
@@ -105,22 +105,22 @@
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
             <h2 class="post-title">Learn Python the hard way-Ex43 基本的面向对象的分析和设计</h2>
-            <div class="post-date">2019-07-02</div>
+            <div class="post-date">2019-07-01</div>
             
               <div class="feature-container" style="background-image: url('https://andandojing.github.io/post-images/learn-python-the-hard-way-ex43-ji-ben-de-mian-xiang-dui-xiang-de-fen-xi-he-she-ji.png')">
               </div>
             
             <div class="post-content">
-              <p><strong>自上而下的执行方式：</strong>
-<strong>1. 先设计出框架：</strong>
-画图表或流程图
-<strong>2. 再提炼关键问题:</strong>
-根据图表/流程图，列出所有的名词和动词，写出它们是如何相关的。
-<strong>3. 然后根据问题创建有层次结构的类和对象映射:</strong>
-创建简单的树来说明概念之间的关系（名词和动词），比如确定概念的子父类关系，直到得到一个有层次结构的类（树状图）。检查这个树状图的概念关系清晰。
-<strong>4. 最后编写代码并测试:</strong>
-写基本框架代码，代码中先只包括之前提到的各种类和每个类中包含的函数。然后用测试例子逐段测试代码。一定要逐段测试，不要一起写完再一起测试，那样不容易发现问题到底出在哪里。
-<strong>5. 精简代码。</strong></p>
+              <p><strong>自上而下的执行方式：</strong></p>
+<p><strong>1. 先设计出框架：</strong>
+画图表或流程图</p>
+<p><strong>2. 再提炼关键问题:</strong>
+根据图表/流程图，列出所有的名词和动词，写出它们是如何相关的。</p>
+<p><strong>3. 然后根据问题创建有层次结构的类和对象映射:</strong>
+创建简单的树来说明概念之间的关系（名词和动词），比如确定概念的子父类关系，直到得到一个有层次结构的类（树状图）。检查这个树状图的概念关系清晰。</p>
+<p><strong>4. 最后编写代码并测试:</strong>
+写基本框架代码，代码中先只包括之前提到的各种类和每个类中包含的函数。然后用测试例子逐段测试代码。一定要逐段测试，不要一起写完再一起测试，那样不容易发现问题到底出在哪里。</p>
+<p><strong>5. 精简代码。</strong></p>
 <p>ex43.py会是一个叫做“Gothons from Planet Percal #25”的游戏，我们按照上述的步骤来构建游戏并写出对应代码。</p>
 <p><strong>游戏描述：</strong>
 “外星人乘坐一个宇宙飞船入侵,我们的英雄需要通过一个迷宫似的房间击败他们,然后他才能逃入一个逃生舱到达下面的行星。游戏将更像一个有着文本输出和有趣的死法的Zork或冒险类型游戏。游戏将包括一个引擎运行充满房间或场景的地图。 当玩家进入房间，每个房间将打印自己的描述,然后告诉引擎运行下一个地图。”</p>
@@ -265,8 +265,11 @@ Good bye!
 <li>移动到其他问题上，重复步骤。</li>
 </ol>
 <p>👇下面拆分ex43.py的代码并附加分析：</p>
-<p><code>from sys import exit from random import randint from textwrap import dedent</code>
-这里多出一个从textwrap导入dedent模组的行动。
+<pre><code>from sys import exit
+from random import randint
+from textwrap import dedent
+</code></pre>
+<p>这里多出一个从textwrap导入dedent模组的行动。
 textwrap.dedent(text)：反缩进去除每航行首的空白。这方便显示三引号”””   “””中的内容而不修改其源代码中的缩进。</p>
 <pre><code>class Scene(object):
 
@@ -370,8 +373,8 @@ exit(0)：无错误退出，认为一切正常的时候退出。
             print(&quot;DOES NOT COMPUTE!&quot;)
             return 'central_corridor'
 </code></pre>
-<p>👆这里创建了CentralCorridor，这是游戏的开始。在写Map之前，为游戏制作了这个场景，后面要引用它们。这里还用了dedent。
-⚠️<strong>dedent用法</strong>：print(dedent(“”” “””))，三引号内部正常书写。</p>
+<p>👆这里创建了CentralCorridor，这是游戏的开始。在写Map之前，为游戏制作了这个场景，后面要引用它们。这里还用了dedent。</p>
+<p>⚠️<strong>dedent用法</strong>：print(dedent(“”” “””))，三引号内部正常书写。</p>
 <pre><code>class LaserWeaponArmory(Scene):
 
     def enter(self):
@@ -784,11 +787,17 @@ a_game.play()  #开始游戏
 </li>
 <li>
 <p><strong>代码中有一个bug，为什么门锁了11次？</strong>
-因为代码中是:
-<code>while guess != code and guesses &lt; 10: print(“BZZZZEDDD!”) guesses += 1 guess = input(“[keypad]&gt; “)</code>
-也就是说，在第一次猜测结束，即将输入第二次猜测结果时，系统统计的仍然是1次猜测。那么在第9次猜测结束时，即将输入第10次，系统统计是9次。第10次猜测结束后，系统计数10次，但仍然会出现input提示让输入第11次密码猜测。
-只需要把一开始的guess设置为1就行了（原来是设置为0的）</p>
+因为代码中是:</p>
 </li>
+</ol>
+<pre><code>while guess != code and guesses &lt; 10:
+    print(“BZZZZEDDD!”)
+    guesses += 1
+    guess = input(“[keypad]&gt; “)
+</code></pre>
+<p>也就是说，在第一次猜测结束，即将输入第二次猜测结果时，系统统计的仍然是1次猜测。那么在第9次猜测结束时，即将输入第10次，系统统计是9次。第10次猜测结束后，系统计数10次，但仍然会出现input提示让输入第11次密码猜测。
+只需要把一开始的guess设置为1就行了（原来是设置为0的）</p>
+<ol start="3">
 <li>
 <p>解释一下反悔至下一个房间的工作原理
 在return到下一个场景前置入return到上一个场景的代码。</p>
