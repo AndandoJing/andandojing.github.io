@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-07-02T18:21:58.331Z</updated>
+    <updated>2019-07-02T18:23:41.376Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -16,7 +16,7 @@
         <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex43-ji-ben-de-mian-xiang-dui-xiang-de-fen-xi-he-she-ji</id>
         <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex43-ji-ben-de-mian-xiang-dui-xiang-de-fen-xi-he-she-ji">
         </link>
-        <updated>2019-07-01T18:05:19.000Z</updated>
+        <updated>2019-07-01T12:05:19.000Z</updated>
         <content type="html"><![CDATA[<p><strong>自上而下的执行方式：</strong></p>
 <p><strong>1. 先设计出框架：</strong>
 画图表或流程图</p>
@@ -706,7 +706,7 @@ a_game.play()  #开始游戏
 <ol start="3">
 <li>
 <p>解释一下反悔至下一个房间的工作原理
-在return到下一个场景前置入return到上一个场景的代码。</p>
+为毛不是反悔到上一个房间？在return到下一个场景前置入return到上一个场景的代码。返回下一个房间同理，把return的场景修改一下就可以了。ex43_1.py中用的是返回上一场景。</p>
 </li>
 <li>
 <p>增加作弊代码，这样可以通过一些更难的房间。只在一行上加上两个单词就可以做到。</p>
