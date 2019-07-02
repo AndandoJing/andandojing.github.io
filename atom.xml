@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-06-28T20:44:45.774Z</updated>
+    <updated>2019-07-02T18:16:38.930Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -11,6 +11,1018 @@
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex43 基本的面向对象的分析和设计]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex43-ji-ben-de-mian-xiang-dui-xiang-de-fen-xi-he-she-ji</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex43-ji-ben-de-mian-xiang-dui-xiang-de-fen-xi-he-she-ji">
+        </link>
+        <updated>2019-07-02T12:05:19.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>自上而下的执行方式：</strong>
+<strong>1. 先设计出框架：</strong>
+画图表或流程图
+<strong>2. 再提炼关键问题:</strong>
+根据图表/流程图，列出所有的名词和动词，写出它们是如何相关的。
+<strong>3. 然后根据问题创建有层次结构的类和对象映射:</strong>
+创建简单的树来说明概念之间的关系（名词和动词），比如确定概念的子父类关系，直到得到一个有层次结构的类（树状图）。检查这个树状图的概念关系清晰。
+<strong>4. 最后编写代码并测试:</strong>
+写基本框架代码，代码中先只包括之前提到的各种类和每个类中包含的函数。然后用测试例子逐段测试代码。一定要逐段测试，不要一起写完再一起测试，那样不容易发现问题到底出在哪里。
+<strong>5. 精简代码。</strong></p>
+<p>ex43.py会是一个叫做“Gothons from Planet Percal #25”的游戏，我们按照上述的步骤来构建游戏并写出对应代码。</p>
+<p><strong>游戏描述：</strong>
+“外星人乘坐一个宇宙飞船入侵,我们的英雄需要通过一个迷宫似的房间击败他们,然后他才能逃入一个逃生舱到达下面的行星。游戏将更像一个有着文本输出和有趣的死法的Zork或冒险类型游戏。游戏将包括一个引擎运行充满房间或场景的地图。 当玩家进入房间，每个房间将打印自己的描述,然后告诉引擎运行下一个地图。”</p>
+<p><strong>游戏场景：</strong>
+Death : 这是玩家死亡的场景，应该是有趣的。Central Corridor : 这是游戏的起点，在这里已经有一个外星人等待英雄的到来，它们需要被一个玩笑打败。
+Laser Weapon Armory : 这是英雄得到了中子弹获得的逃生舱之前要炸毁的船。它有一个需要英雄猜数的键盘。
+The Bridge : 和外星人战斗的另一个场景，英雄防止炸弹的地方。
+Escape Pod : 英雄逃脱的场景，但是需要英雄找对正确的逃生舱</p>
+<p><strong>游戏关键概念：</strong></p>
+<ul>
+<li>Alien</li>
+<li>Player</li>
+<li>Ship</li>
+<li>Maze</li>
+<li>Room</li>
+<li>Scene</li>
+<li>Gothon</li>
+<li>Escape Pod</li>
+<li>Planet</li>
+<li>Map</li>
+<li>Engine</li>
+<li>Death</li>
+<li>Central Corridor</li>
+<li>Laser Weapon Armory</li>
+<li>The Bridge</li>
+</ul>
+<p><strong>创建有层次结构的类和对象映射的概念：</strong>
+把名词列表转换成一个有层次结构的类树。
+比如：</p>
+<ul>
+<li>”Room”和”Scene”对我来说要做的事情是一样的。在举例中作者选择了”Scene”，所有的特殊房间比如”Central Corridor”基本上也跟”Scene”一样。”Death”也是一个”Scene”，所以游戏中展现的是一个“死亡场景”而非“死亡房间”。</li>
+<li>“Maze”和”Map”基本一样，作者选择用”Map”。</li>
+<li>不想做战斗系统，所以先忽略”Alien”和”Player”，但保存下来以后使用。</li>
+<li>“Planet&quot;也可能只是一个场景，不是什么具体事情。
+所以梳理下来：</li>
+<li>Map</li>
+<li>Engine</li>
+<li>Scene
+<ul>
+<li>Death</li>
+<li>Central Corridor</li>
+<li>Laser Weapon Armory</li>
+<li>The Bridge</li>
+<li>Escape Pod</li>
+</ul>
+</li>
+</ul>
+<p><strong>确认每个动词需要什么行动。</strong>
+比如从描述中知道，需要一个方法来“run”这个引擎，通过地图获得下一个场景“get the next scene”，获得“opening scene”，或者“enter”一个场景。把这部分添加到上面的类树中：</p>
+<ul>
+<li>Map - next_scene - opening_scene</li>
+<li>Engine - play</li>
+<li>Scene - enter * Death * Central Corridor * Laser Weapon Armory * The Bridge * Escape Pod
+⚠️注意，这里把-enter放在Scene下面，因为知道所有的场景都会继承它并重写它。</li>
+</ul>
+<p><strong>编码类和测试代码并运行</strong>
+这里是一个小例子，附有简单的测试用例：</p>
+<pre><code>class Scene(object):
+
+    def enter(self):
+        pass
+
+
+class Engine(object):
+
+    def __init__(self, scene_map):
+        pass
+
+    def play(self):
+        pass
+
+class Death(Scene):
+
+    def enter(self):
+        pass
+
+class CentralCorridor(Scene):
+
+    def enter(self):
+        pass
+
+class LaserWeaponArmory(Scene):
+
+    def enter(self):
+        pass
+
+class TheBridge(Scene):
+
+    def enter(self):
+        pass
+
+class EscapePod(Scene):
+
+    def enter(self):
+        pass
+
+class Map(object):
+
+    def __init__(self, start_scene):
+        pass
+
+    def next_scene(self, scene_name):
+        pass
+
+    def opening_scene(self):
+        pass
+
+a_map = Map('central_corridor')
+a_game = Engine(a_map)
+a_game.play()
+</code></pre>
+<p><strong>🤔几个疑惑：
+pass什么意思？</strong>
+python中的pass是空语句，是为了保持程序结构的完整性。pass不做任何事情，一般用作占位语句。
+<strong>举例：</strong></p>
+<pre><code>#!/usr/bin/python
+#-*- coding: UTF-8 -*-
+#输出python的每个字母
+for letter in ‘Python’:
+    if letter == ‘h’:
+        pass
+        print(‘这是pass快’)
+    print(‘当前字母：’, letter)
+print(“Good bye!”)
+结果：
+当前字母：P
+当前字母：y
+当前字母：t
+这是pass块
+当前字母：h
+当前字母：o
+当前字母：n
+Good bye!
+</code></pre>
+<p>除了自上而下的方法，还有<strong>自下而上的方法构建代码</strong>。自上而下的方法适合于已经知道整体构架，需要进行细化并执行的时候；自下而上则适用于暂时只看到局部需要解决的问题，还没有足够的信息把握整个概念。<strong>自下而上的方法如下：</strong></p>
+<ol>
+<li>取一小块问题，编写一些代码，让它们勉强运行；</li>
+<li>完善代码，将其转换成一些更正式的包含类和自动化测试的代码；</li>
+<li>提取其中的关键概念，并尝试找出研究它们；</li>
+<li>写出到底发生了什么的描述；</li>
+<li>继续完善代码，也可能是把它们扔掉，并重新开始；</li>
+<li>移动到其他问题上，重复步骤。</li>
+</ol>
+<p>👇下面拆分ex43.py的代码并附加分析：</p>
+<p><code>from sys import exit from random import randint from textwrap import dedent</code>
+这里多出一个从textwrap导入dedent模组的行动。
+textwrap.dedent(text)：反缩进去除每航行首的空白。这方便显示三引号”””   “””中的内容而不修改其源代码中的缩进。</p>
+<pre><code>class Scene(object):
+
+    def enter(self):
+        print(&quot;This scene is not yet configured.&quot;)
+        print(&quot;Subclass it and implement enter().&quot;)
+        exit(1)
+</code></pre>
+<p>这里只是把框架中要创建的基础类Scene创建出来，将包括Scene要做的所有的事。这段代码里👆还没有做什么，只是一个创建基类的示范。</p>
+<pre><code>class Engine(object):
+
+    def __init__(self, scene_map):
+        self.scene_map = scene_map
+
+    def play(self):
+        current_scene = self.scene_map.opening_scene()
+        last_scene = self.scene_map.next_scene('finished')
+
+        while current_scene != last_scene
+            next_scene_name = current_scene.enter()
+            current_scene = self.scene_map.next_scene(next_scene_name)
+
+        #be sure to print out the last scene_map
+        current_scene.enter()
+</code></pre>
+<p>👆这样也同样创建了类Engine，而且使用Map.opening_scene和Map-next_scene。这是在写Map类之前做的计划铺垫，假设之后会写到这些，然后提前使用它们。</p>
+<pre><code>class Death(Scene):
+
+    quips = [
+        &quot;You died. You kinda suck at this.&quot;,
+        &quot;Your Mom would be proud...if she were smarter.&quot;,
+        &quot;Such a luser.&quot;
+        &quot;I have a small puppy that's better at this.&quot;,
+        &quot;You're worse than your Dad's jokes.&quot;
+        
+    ]
+
+    def enter(self):
+        print(Death.quips[randint(0, len(self.quips)-1)])
+        exit(1)
+</code></pre>
+<p>第一个场景是Death场景，展现了一个最简单的场景。</p>
+<p>🤔<strong>这里的exit(1)是什么意思？</strong>
+exit(0)：无错误退出，认为一切正常的时候退出。
+<strong>exit(1)：有错误退出，异常退出。</strong> 比如代码出现在不应该出现的分支，要求终止程序。
+退出代码是告诉解释器的（或操作系统）</p>
+<pre><code>class CentralCorridor(Scene):
+
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+                The Gothons of Planet Percal #25 have invaded your ship and
+                destroyed your entire crew. You are the last surviving
+                member and your last mission is to get the neutron destructu
+                bomb from the Weapons Armory, put it in the bridge, and
+                blow the ship up after getting into an escape pod.
+
+                You're running down the central corridor to the Ewapons
+                Armory when a Gothon jumps out, red scaly skin, dark grimy
+                teeth, and evil clown costume flowing around his hate
+                filled body. He's blocking the door to the Armory and
+                about to pull a weapon to blast you.
+                &quot;&quot;&quot;))
+        action = input(&quot;&gt; &quot;)
+
+        if action == &quot;shoot!&quot;:
+            print(dedent(&quot;&quot;&quot;
+                    Quick on the draw you yank out your blaste and fire
+                    it at the Gothon. His clown costume is flowing and
+                    moving around his body, which throws off your aim.
+                    Your laser hits his costume but misses him entirely.
+                    This completely ruins his brand new costume his mother
+                    bought him, which makes him fly into an insane rage
+                    and blast you repeatedly in the face untill you are
+                    dead. THen he eats you.
+                    &quot;&quot;&quot;))
+            return 'death'
+    elif action == &quot;dodge!&quot;:
+            print(dedent(&quot;&quot;&quot;
+                    Like a world class boxer you dodge, weave, slip and
+                    slide right as the Gothon's blaster cranks a laser
+                    past your head. In the middle of your artful dodge
+                    your foot slips and you bang your head on the metal
+                    wall and pass out. You wake up shortly after only to
+                    die as the Gothon stomps on your head and eats you.
+                    &quot;&quot;&quot;))
+            return 'death'
+        elif action == &quot;tell a joke&quot;:
+            print(dedent(&quot;&quot;&quot;
+                    Lucky for you they made you learn Gothon insults in
+                    the academy. You tell the one Gothon joke you know:
+                    Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr,
+                    fur fvgf nebhaq gur ubhfr. The Gothon stops, tries
+                    not to laugh, then busts out laughing and can't move.
+                    While he's laughing you run up and shoot him square in
+                    the head putting him down, then jump through the
+                    Weapon Armory door.
+                    &quot;&quot;&quot;))
+            return 'laser_weapon_armory'
+
+        else:
+            print(&quot;DOES NOT COMPUTE!&quot;)
+            return 'central_corridor'
+</code></pre>
+<p>👆这里创建了CentralCorridor，这是游戏的开始。在写Map之前，为游戏制作了这个场景，后面要引用它们。这里还用了dedent。
+⚠️<strong>dedent用法</strong>：print(dedent(“”” “””))，三引号内部正常书写。</p>
+<pre><code>class LaserWeaponArmory(Scene):
+
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+                You do a dive roll into the Ewapon Armory, crouch and scan 
+                the room for more Gothons that might be hiding. It's dead
+                quiet, too quiet. You stand up and run to the far side of 
+                the room and find the neutron bomb in its container. 
+                There's a keypad lock on the box and you need the code to 
+                get the bomb out. If you get the code wrong 10 times then 
+                the lock closes forever and you can't get the bomb. The 
+                code is 3 digits.
+                &quot;&quot;&quot;))
+
+        code = f&quot;{randint(1, 9)}{randint(1, 9)}{randint(1, 9)}
+        guess = input(&quot;[keypad]&gt; &quot;)
+        guesses = 0
+
+        while guess != code and guesses &lt; 10:
+            print(&quot;BZZZZEDDD!&quot;)
+            guesses += 1
+            guess = input(&quot;[keypad]&gt; &quot;)
+
+        if guess == code:
+            print(dedent(&quot;&quot;&quot;
+                    The container clickes open and the seal breaks, letting
+                    gas out. You grab the neutron bomb and run as fast as 
+                    you can to the bridge where you must place it in the 
+                    right spot.
+                    &quot;&quot;&quot;))
+            return 'the_bridge'
+
+        else:
+            print(dedent(&quot;&quot;&quot;
+                    The lock buzzes one last time and then you hear a
+                    sickening melting sound as the mechanism is fused 
+                    together. You decide to sit there, and finally the
+                    Gothons blow up the ship from their ship and you die.
+                    &quot;&quot;&quot;))
+            return 'death'
+
+class TheBridge(Scene):
+
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+                You brust onto the Bridge with the netron destruct bomb 
+                under your arm and surprise 5 Gothons who are trying to 
+                take control of the ship. Each of them has an even uglier
+                clown costume than the las. They haven't pulled their 
+                weapons out yet, as they see the active bomb under your 
+                arm and don't want to set it off.
+                &quot;&quot;&quot;))
+
+        action = input(&quot;&gt; &quot;)
+
+        if action == &quot;throw the bomb&quot;:
+            print(dedent(&quot;&quot;&quot;
+                    In a panic you throw the bomb at the group of Gothons
+                    and make a leap for the door. Right as you drop it a 
+                    Gothon shoots your right in the back killing you. As 
+                    you die you see another Gothon franticall try to 
+                    disarm the bomb. You die knowing they will probably 
+                    blow up when it goes off.
+                    &quot;&quot;&quot;))
+            return 'death'
+
+        elif action == &quot;slowly place the bomb&quot;:
+            print(dedent(&quot;&quot;&quot;
+                    You point your blaster at the bomb under your arm and 
+                    the Gothons put their hands up and start to sweat.
+                    You inch backward to the door, open it, and then 
+                    carefully place the bomb on the floor, pointing your
+                    blaster at it. You then jump back through the door,
+                    punch the close button and blast the lock so the 
+                    Gothon can't get out. Now that the bomb is placed
+                    you run to the escape pod to get off this tin can.
+                    &quot;&quot;&quot;))
+
+            return 'escape_pod'
+        else:
+            print(&quot;DOES NOT COMPUTE!&quot;)
+            return &quot;the_bridge&quot;
+
+class EscapePod(Scene):
+
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+                You rush through the ship desperately trying to make it to
+                the escape pod before the whole ship explodes. It seems 
+                like hardly and Gothons are on the ship, so your run is 
+                clear of interference. You get to the chamber with the 
+                escape pods, and now need to pick one to take. Some of 
+                them could be damaged but you don't have time to look.
+                There's 5 pods, which one do you take?
+                &quot;&quot;&quot;))
+
+        good_pod = randint(1, 5)
+        guess = input(&quot;[pod #]&gt; &quot;)
+
+        if int(guess) != good_pod:
+            print(dedent(&quot;&quot;&quot;
+                    You jump into pod {guess} and hit the eject button.
+                    The pod escapes out into the void of space, then 
+                    implodes as the hull ruptures, crushing your body into
+                    jam jelly.
+                    &quot;&quot;&quot;))
+            return 'death'
+        else:
+            print(dedent(&quot;&quot;&quot;
+                    You jump into pod {guess} and hit the eject button.
+                    The pod easily slides out into space heading to the 
+                    planet below. As it flies to the planet, you look
+                    back and see your ship implode then explode like a 
+                    bright star, taking out the Gothon ship at the same
+                    time. You won!
+                    &quot;&quot;&quot;))
+
+            return 'finished'
+
+class Finished(Scene):
+
+    def enter(self):
+        print(&quot;You won! Good job.&quot;)
+        return 'finished'
+</code></pre>
+<p>👆这是游戏下的场景。不需要一次性全部写出来，可以一次只写一小部分。</p>
+<pre><code>class Map(object):
+
+    scenes = {
+        'central_corridor': CentralCorridor(),
+        'laser_weapon_armory': LaserWeaponArmory(),
+        'the_bridge': TheBridge(),
+        'escape_pod': EscapePod(),
+        'death': Death(),
+        'finished': Finished(),
+    }
+
+    def __init__(self, start_scene):
+        self.start_scene = start_scene
+
+    def next_scene(self, scene_name):
+        val = Map.scenes.get(scene_name)
+        return val
+
+    def opening_scene(self):
+        return self.next_scene(self.start_)
+</code></pre>
+<p>👆这里写了Map类，把所有场景都放在了字典中，这个字典叫Map.scenes。因为这个字典要包括所有已存在的场景，所以map要在scene之后再写。</p>
+<pre><code>a_map = Map('central_corridor')
+a_game = Engine(a_map)
+a_game.play()
+</code></pre>
+<p>创建Map，调用play之前把map交给Engine，运行游戏。</p>
+<p>👇这里是ex43.py的完整代码：</p>
+<pre><code>from sys import exit  #导入exit模组
+from random import randint  #导入randint模组
+from textwrap import dedent  #导入dedent模组
+
+class Scene(object):  #创建Scene场景类
+
+    def enter(self):  #创建Scene下enter函数
+        print(&quot;This scene is not yet configured.&quot;) #enter函数包括两个打印
+        print(&quot;Subclass it and implement enter().&quot;)
+        exit(1)  #exit(1是有错误退出/异常退出
+
+class Engine(object): #创建Engine类
+
+    def __init__(self, scene_map):  #创建Engine自己的函数scene_map
+        self.scene_map = scene_map
+
+    def play(self):  #创建play
+        current_scene = self.scene_map.opening_scene()  #当前场景类的实例化， current_scene就是当前场景类名()
+        last_scene = self.scene_map.next_scene('finished')  #创建一个胜利结束场景类对象，准备好下面进入关键的循环阶段
+
+        while current_scene != last_scene:  #如果游戏没有胜利（当前场景非胜利场景），进入循环后先进行目前场景的游戏部分，.enter()运行，结束后返回的是下一个场景的key
+            next_scene_name = current_scene.enter()
+            current_scene = self.scene_map.next_scene(next_scene_name)
+            #一个场景enter结束后要开始进入下一个场景，下一个场景类的实例化。如果.enter()进入Death场景，无返回值，游戏结束
+        #be sure to print out the last scene_map
+        current_scene.enter()  #current_scene == last_scene，所以是last_scene.enter()，结束循环，游戏胜利
+
+class Death(Scene):
+
+    quips = [
+        &quot;You died. You kinda suck at this.&quot;,
+        &quot;Your Mom would be proud...if she were smarter.&quot;,
+        &quot;Such a luser.&quot;
+        &quot;I have a small puppy that's better at this.&quot;,
+        &quot;You're worse than your Dad's jokes.&quot;
+
+    ]  #Death场景会出现的游戏结束提示语列表，共5句。
+
+    def enter(self):  #定义Death场景下的enter函数
+        print(Death.quips[randint(0, len(self.quips)-1)])  #在quips的[0,4]项中随机选一个打印，实际就是第1项到第5项
+        exit(1)  #异常退出
+
+class CentralCorridor(Scene):  #创建Scene类下的CentralCorridor类（对象）
+
+    def enter(self):  #创建CentralCorridor下的enter函数
+        print(dedent(&quot;&quot;&quot;
+                The Gothons of Planet Percal #25 have invaded your ship and
+                destroyed your entire crew. You are the last surviving
+                member and your last mission is to get the neutron destructu
+                bomb from the Weapons Armory, put it in the bridge, and
+                blow the ship up after getting into an escape pod.
+
+                You're running down the central corridor to the Ewapons
+                Armory when a Gothon jumps out, red scaly skin, dark grimy
+                teeth, and evil clown costume flowing around his hate
+                filled body. He's blocking the door to the Armory and
+                about to pull a weapon to blast you.
+                &quot;&quot;&quot;))   #enter函数的打印内容
+        action = input(&quot;&gt; &quot;)   #提示用户输入内容
+
+        if action == &quot;shoot!&quot;:   #如果输入内容为shoot!
+            print(dedent(&quot;&quot;&quot;
+                    Quick on the draw you yank out your blaste and fire
+                    it at the Gothon. His clown costume is flowing and
+                    moving around his body, which throws off your aim.
+                    Your laser hits his costume but misses him entirely.
+                    This completely ruins his brand new costume his mother
+                    bought him, which makes him fly into an insane rage
+                    and blast you repeatedly in the face untill you are
+                    dead. THen he eats you.
+                    &quot;&quot;&quot;))   #shoot!的对应打印内容
+            return 'death'  #返回'death'，进入Death场景
+
+        elif action == &quot;dodge!&quot;:  #如果输入内容为dodge!
+            print(dedent(&quot;&quot;&quot;
+                    Like a world class boxer you dodge, weave, slip and
+                    slide right as the Gothon's blaster cranks a laser
+                    past your head. In the middle of your artful dodge
+                    your foot slips and you bang your head on the metal
+                    wall and pass out. You wake up shortly after only to
+                    die as the Gothon stomps on your head and eats you.
+                    &quot;&quot;&quot;))   #dodge!的打印内容
+            return 'death'  #返回‘death’，进入Death场景
+
+        elif action == &quot;tell a joke&quot;:  #如果输入内容为tell a joke
+            print(dedent(&quot;&quot;&quot;
+                    Lucky for you they made you learn Gothon insults in
+                    the academy. You tell the one Gothon joke you know:
+                    Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr,
+                    fur fvgf nebhaq gur ubhfr. The Gothon stops, tries
+                    not to laugh, then busts out laughing and can't move.
+                    While he's laughing you run up and shoot him square in
+                    the head putting him down, then jump through the
+                    Weapon Armory door.
+                    &quot;&quot;&quot;))   #tell a joke的打印内容
+            return 'laser_weapon_armory'  #返回‘laser_weapon_armory’，进入该场景
+
+        else:  #如果输入其他内容
+            print(&quot;DOES NOT COMPUTE!&quot;)  #其他内容的对应打印内容
+            return 'central_corridor'  #返回'central_corridor'，进入该场景
+
+class LaserWeaponArmory(Scene):  #创建LaserWeaponArmory场景
+
+    def enter(self):   #创建该类的enter
+        print(dedent(&quot;&quot;&quot;
+                You do a dive roll into the Weapon Armory, crouch and scan
+                the room for more Gothons that might be hiding. It's dead
+                quiet, too quiet. You stand up and run to the far side of
+                the room and find the neutron bomb in its container.
+                There's a keypad lock on the box and you need the code to
+                get the bomb out. If you get the code wrong 10 times then
+                the lock closes forever and you can't get the bomb. The
+                code is 3 digits.
+                &quot;&quot;&quot;))  #enter的打印内容
+
+        code = f&quot;{randint(1, 9)}{randint(1, 9)}{randint(1, 9)}&quot;  #在1-9中取三次任意整数，并转换成格式化字符，赋值给code密码
+        guess = input(&quot;[keypad]&gt; &quot;) #提示用户输入数字，赋值给guess
+        guesses = 0  #用户猜测次数guesses目前为0
+
+        while guess != code and guesses &lt; 10:  #当用户猜测数不等于密码，且猜测次数小于10时
+            print(&quot;BZZZZEDDD!&quot;)  #打印内容
+            guesses += 1    #猜测次数+1
+            guess = input(&quot;[keypad]&gt; &quot;)   #再次提示用户猜密码
+
+        if guess == code:  #当猜测数和密码吻合时
+            print(dedent(&quot;&quot;&quot;
+                    The container clickes open and the seal breaks, letting
+                    gas out. You grab the neutron bomb and run as fast as
+                    you can to the bridge where you must place it in the
+                    right spot.
+                    &quot;&quot;&quot;))  #打印内容
+            return 'the_bridge' #返回'the_bridge'，进去该场景
+
+        else:   #其他情况下
+            print(dedent(&quot;&quot;&quot;
+                    The lock buzzes one last time and then you hear a
+                    sickening melting sound as the mechanism is fused
+                    together. You decide to sit there, and finally the
+                    Gothons blow up the ship from their ship and you die.
+                    &quot;&quot;&quot;))  #打印内容
+            return 'death'  #返回death，进入该场景
+
+class TheBridge(Scene):  #创建Scene下TheBridge类
+
+    def enter(self):  #创建enter
+        print(dedent(&quot;&quot;&quot;
+                You brust onto the Bridge with the netron destruct bomb
+                under your arm and surprise 5 Gothons who are trying to
+                take control of the ship. Each of them has an even uglier
+                clown costume than the las. They haven't pulled their
+                weapons out yet, as they see the active bomb under your
+                arm and don't want to set it off.
+                &quot;&quot;&quot;))  #打印内容
+
+        action = input(&quot;&gt; &quot;)  #提示用户输入内容，赋值给action
+
+        if action == &quot;throw the bomb&quot;:  #用户输入throw the bomb
+            print(dedent(&quot;&quot;&quot;
+                    In a panic you throw the bomb at the group of Gothons
+                    and make a leap for the door. Right as you drop it a
+                    Gothon shoots your right in the back killing you. As
+                    you die you see another Gothon franticall try to
+                    disarm the bomb. You die knowing they will probably
+                    blow up when it goes off.
+                    &quot;&quot;&quot;))  #打印内容
+            return 'death'  #返回death，进入该场景
+
+        elif action == &quot;slowly place the bomb&quot;:  #用户输入slowly place the bomb
+            print(dedent(&quot;&quot;&quot;
+                    You point your blaster at the bomb under your arm and
+                    the Gothons put their hands up and start to sweat.
+                    You inch backward to the door, open it, and then
+                    carefully place the bomb on the floor, pointing your
+                    blaster at it. You then jump back through the door,
+                    punch the close button and blast the lock so the
+                    Gothon can't get out. Now that the bomb is placed
+                    you run to the escape pod to get off this tin can.
+                    &quot;&quot;&quot;))  #打印内容
+
+            return 'escape_pod'  #返回escape_pod，进入该场景
+        else:  #用户输入其他内容情况下
+            print(&quot;DOES NOT COMPUTE!&quot;)  #打印内容
+            return &quot;the_bridge&quot;  #返回the_bridge，进入该场景
+
+class EscapePod(Scene):  #创建Scene下的EscapePod类
+
+    def enter(self):  #创建enter
+        print(dedent(&quot;&quot;&quot;
+                You rush through the ship desperately trying to make it to
+                the escape pod before the whole ship explodes. It seems
+                like hardly and Gothons are on the ship, so your run is
+                clear of interference. You get to the chamber with the
+                escape pods, and now need to pick one to take. Some of
+                them could be damaged but you don't have time to look.
+                There's 5 pods, which one do you take?
+                &quot;&quot;&quot;))  #打印内容
+
+        good_pod = randint(1, 5)  #取1-5中的随机整数，赋值给good_pod
+        guess = input(&quot;[pod #]&gt; &quot;)  #提示用户输入猜测数字
+
+        if int(guess) != good_pod:  #如果猜测数字（转换为整数）不等于good_pod
+            print(dedent(&quot;&quot;&quot;
+                    You jump into pod {guess} and hit the eject button.
+                    The pod escapes out into the void of space, then
+                    implodes as the hull ruptures, crushing your body into
+                    jam jelly.
+                    &quot;&quot;&quot;))  #打印内容
+            return 'death'  #返回death，进入该场景
+        else:  #其他情况
+            print(dedent(&quot;&quot;&quot;
+                    You jump into pod {guess} and hit the eject button.
+                    The pod easily slides out into space heading to the
+                    planet below. As it flies to the planet, you look
+                    back and see your ship implode then explode like a
+                    bright star, taking out the Gothon ship at the same
+                    time. You won!
+                    &quot;&quot;&quot;))  #打印内容
+
+            return 'finished'  #返回finished，进入该场景
+
+class Finished(Scene): #创建Scene下的Finished类
+
+    def enter(self):  #创建enter
+        print(&quot;You won! Good job.&quot;)  #打印内容
+        return 'finished'  #返回finished
+        
+class Map(object):  #创建Map类
+
+    scenes = {
+        'central_corridor': CentralCorridor(),
+        'laser_weapon_armory': LaserWeaponArmory(),
+        'the_bridge': TheBridge(),
+        'escape_pod': EscapePod(),
+        'death': Death(),
+        'finished': Finished(),
+    }   #创建scenes字典，对应全部场景key及其对应的类value
+
+    def __init__(self, start_scene):  #创建Map的start_scene
+        self.start_scene = start_scene
+
+    def next_scene(self, scene_name):  #创建Map中scene_name定义为next_scene
+        val = Map.scenes.get(scene_name)
+        return val
+
+    def opening_scene(self):  #创建opening_scene
+        return self.next_scene(self.start_scene)
+
+a_map = Map('central_corridor')  #创建一个map类对象并赋予初始场景
+a_game = Engine(a_map)   #建立Engine类对象并将map类对象作为参数传入
+a_game.play()  #开始游戏
+</code></pre>
+<p><strong>附加题：</strong></p>
+<ol>
+<li>
+<p>修改游戏然后再运行一次</p>
+</li>
+<li>
+<p><strong>代码中有一个bug，为什么门锁了11次？</strong>
+因为代码中是:
+<code>while guess != code and guesses &lt; 10: print(“BZZZZEDDD!”) guesses += 1 guess = input(“[keypad]&gt; “)</code>
+也就是说，在第一次猜测结束，即将输入第二次猜测结果时，系统统计的仍然是1次猜测。那么在第9次猜测结束时，即将输入第10次，系统统计是9次。第10次猜测结束后，系统计数10次，但仍然会出现input提示让输入第11次密码猜测。
+只需要把一开始的guess设置为1就行了（原来是设置为0的）</p>
+</li>
+<li>
+<p>解释一下反悔至下一个房间的工作原理
+在return到下一个场景前置入return到上一个场景的代码。</p>
+</li>
+<li>
+<p>增加作弊代码，这样可以通过一些更难的房间。只在一行上加上两个单词就可以做到。</p>
+</li>
+<li>
+<p>回到描述和分析步骤，尝试为英雄和他遇见的哥顿人创作小型作战系统</p>
+</li>
+</ol>
+<p><strong>1.3.4.5合并，创建新代码ex43_1.py：</strong></p>
+<pre><code>from sys import exit
+from random import randint
+from textwrap import dedent
+
+class Scene(object):
+    def enter(self):
+        print(&quot;该场景尚未定义。&quot;)
+        print(&quot;请先定义分场景。&quot;)
+        exit(1)
+
+class Engine(object):
+    def __init__(self, scene_map):
+        self.scene_map = scene_map
+
+    def play(self):
+        current_scene = self.scene_map.opening_scene()
+        last_scene = self.scene_map.next_scene('finished')
+
+        while current_scene != last_scene:
+            next_scene_name = current_scene.enter()
+            current_scene = self.scene_map.next_scene(next_scene_name)
+
+        current_scene.enter()
+
+class Death(Scene):
+    quips = [
+        &quot;任务失败，游戏结束。&quot;,
+        &quot;Game Over.&quot;,
+        &quot;英雄不如从头来过。&quot;,
+        &quot;大侠慢走。&quot;,
+        &quot;游戏输了，你还有生活。&quot;,
+    ]
+    def enter(self):
+        print(Death.quips[randint(0, len(self.quips)-1)])
+        exit(1)
+
+class CentralCorridor(Scene):
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+                你已成功登陆飞船主控通道。
+                现在迎面走来几个外星人，每个外星人都配备武器。
+                战局一触即发。
+            &quot;&quot;&quot;))
+        action = input(dedent(&quot;&quot;&quot;
+                接下来你想选择哪种操作？1. 开枪；2. 闪避；3.讲笑话
+                你的选择：
+        &quot;&quot;&quot;))
+
+        if action == &quot;1&quot;:
+            print(dedent(&quot;&quot;&quot;
+                你开枪想要硬闯，但不幸被对方集火。
+                &quot;&quot;&quot;))
+            print(&quot;现在你可以选择重新开始游戏或继续游戏。1.重新开始；2.继续游戏&quot;)
+            choice = input(&quot;你的选择是：&quot;)
+            if choice == &quot;1&quot;:
+                return 'central_corridor'
+            elif choice == &quot;2&quot;:
+                return 'death'
+            else:
+                print(&quot;请输入选项对应的数字&quot;)
+                return 'central_corridor'
+
+        elif action == &quot;2&quot;:
+            print(dedent(&quot;&quot;&quot;
+                你想要闪避，但不幸身后还有敌人，未能成功闪避。
+            &quot;&quot;&quot;))
+            print(&quot;现在你可以选择重新开始游戏或继续游戏。1.重新开始；2.继续游戏&quot;)
+            choice = input(&quot;你的选择是：&quot;)
+            if choice == &quot;1&quot;:
+                return 'central_corridor'
+            elif choice == &quot;2&quot;:
+                return 'death'
+            else:
+                print(&quot;请输入选项对应的数字&quot;)
+                return 'central_corridor'
+
+        elif action == &quot;3&quot;:
+            print(dedent(&quot;&quot;&quot;
+                你尝试说了一个笑话缓减紧张的氛围。
+                外星人纷纷听得入迷，放松了戒备。
+                你乘机偷袭并成功消灭对方。
+            &quot;&quot;&quot;))
+            return 'laser_weapon_armory'
+
+        else:
+            print(&quot;请重新选择已有选项数字&quot;)
+            return 'central_corridor'
+
+class LaserWeaponArmory(Scene):
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+            你成功穿越主控通道，并前往武器库。
+            为了消灭剩下的外星人，你需要获得强力武器。
+            现在你的面前是武器库入口，但入口有一个三位数密码锁，密码数字为0-9任意数。
+            你有5次尝试机会，如不能猜到正确密码，将会引爆自曝系统身亡。
+        &quot;&quot;&quot;))
+
+        code = f&quot;{randint(0, 9)}{randint(0, 9)}{randint(0, 9)}&quot;
+
+        print(&quot;你可以选择看提示或不看提示。1. 看提示；2. 不看提示。&quot;)
+        choice = input(&quot;你的选择是:&quot;)
+
+        if choice == &quot;1&quot;:
+            print(&quot;密码是 %s&quot; % code)
+        elif choice == &quot;2&quot;:
+            print(&quot;有胆量，但你大概会输。&quot;)
+        else:
+            print(&quot;输入已有选项数字。&quot;)
+            return 'laser_weapon_armory'
+
+        guess = input(&quot;请输入密码：&quot;)
+        guesses = 1
+
+        while guess != code and guesses &lt; 5:
+                guesses += 1
+                print(&quot;密码错误。已尝试次数：%s&quot; % (guesses - 1))
+                guess = input(&quot;请输入密码：&quot;)
+
+        if guess == code:
+            print(dedent(&quot;&quot;&quot;
+                密码正确！你已成功开启武器库，并取得强力炸弹武器。
+                现在你将只身前往通往救生舱的桥舱通道。
+            &quot;&quot;&quot;))
+            return 'the_bridge'
+
+        else:
+            print(dedent(&quot;&quot;&quot;
+                你已尝试5次，密码锁已自动锁定。
+                自曝程序已启动。
+            &quot;&quot;&quot;))
+            print(&quot;现在你可以选择退回上个场景或继续游戏。1.退回上个场景；2.继续游戏&quot;)
+            choice_laser = input(&quot;你的选择是：&quot;)
+            if choice_laser == &quot;1&quot;:
+                return 'central_corridor'
+            elif choice_laser == &quot;2&quot;:
+                return 'death'
+            else:
+                print(&quot;请输入选项对应的数字&quot;)
+                return 'laser_weapon_armory'
+
+class TheBridge(Scene):
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+            你已进入通往救生舱的桥舱通道。
+            但前方有外星人把守救生舱入口。
+            你需要合理使用手中的强力炸弹消灭对方。
+        &quot;&quot;&quot;))
+
+        action = input(&quot;接下来你想选择哪种操作？1. 直接扔炸弹；2. 悄悄放置炸弹后躲起来&quot;)
+
+        if action == &quot;1&quot;:
+            print(dedent(&quot;&quot;&quot;
+                你想要直接仍炸弹消灭前方外星人。
+                但对方很快发现了你，并把你打成了筛子。
+            &quot;&quot;&quot;))
+            print(&quot;现在你可以选择退回上个场景或继续游戏。1.退回上个场景；2.继续游戏&quot;)
+            choice_laser = input(&quot;你的选择是：&quot;)
+            if choice_laser == &quot;1&quot;:
+                return 'laser_weapon_armory'
+            elif choice_laser == &quot;2&quot;:
+                return 'death'
+            else:
+                print(&quot;请输入选项对应的数字&quot;)
+                return 'the_bridge'
+
+        elif action == &quot;2&quot;:
+            print(dedent(&quot;&quot;&quot;
+                你想要悄悄放置炸弹后躲起来，趁外星人被消灭后再进入救生舱。
+                很好的计策，对方毫无准备，你成功消灭了他们。
+                你将进入救生舱。
+            &quot;&quot;&quot;))
+            return 'escape_pod'
+
+        else:
+            print(&quot;请重新选择已有选项数字&quot;)
+            return 'the_bridge'
+
+class EscapePod(Scene):
+    def enter(self):
+        print(dedent(&quot;&quot;&quot;
+            你已进入救生舱
+            你面前有5架小型救生用飞行器，但只有一架能够正常使用。
+        &quot;&quot;&quot;))
+
+        good_pod = randint(1, 5)
+
+        print(&quot;这里有一条提示，你是否要看？1.看；2.不看&quot;)
+        choice = input(&quot;你的选择是：&quot;)
+        if choice == &quot;1&quot;:
+            print(good_pod)
+        elif choice == &quot;2&quot;:
+            print(&quot;厉害了，给你点赞，20%可能哟。&quot;)
+        else:
+            print(&quot;请输入已有选项数字&quot;)
+            return 'escape_pod'
+
+        guess = input(&quot;你的选择是: &quot;)
+
+        if int(guess) != good_pod:
+            print(dedent(&quot;&quot;&quot;
+                很遗憾，你选择了一架无法正常使用的救生飞行器。
+            &quot;&quot;&quot;))
+            print(&quot;现在你可以选择退回上个场景或继续游戏。1.退回上个场景；2.继续游戏&quot;)
+            choice_laser = input(&quot;你的选择是：&quot;)
+            if choice_laser == &quot;1&quot;:
+                return 'the_bridge'
+            elif choice_laser == &quot;2&quot;:
+                return 'death'
+            else:
+                print(&quot;请输入选项对应的数字&quot;)
+                return 'escape_pod'
+
+        else:
+            print(&quot;恭喜你，你成功选择了正常使用的救生飞行器，并驾驶它飞离太空船。&quot;)
+            return 'finished'
+
+class Finished(Scene):
+    def enter(self):
+        print(&quot;恭喜你通关游戏！&quot;)
+        return 'finished'
+
+class Map(object):
+    scenes = {
+        'central_corridor': CentralCorridor(),
+        'laser_weapon_armory': LaserWeaponArmory(),
+        'the_bridge': TheBridge(),
+        'escape_pod': EscapePod(),
+        'death': Death(),
+        'finished': Finished(),
+    }
+
+    def __init__(self, start_scene):
+        self.start_scene = start_scene
+
+    def next_scene(self, scene_name):
+        val = Map.scenes.get(scene_name)
+        return val
+
+    def opening_scene(self):
+        return self.next_scene(self.start_scene)
+
+a_map = Map('central_corridor')
+a_game = Engine(a_map)
+a_game.play()
+</code></pre>
+<ol start="6">
+<li>这是一个小版本的 <strong>“有限状态机器finite state machine”</strong> 。找资料了解一下。
+Finite-state machine, FSM，又称有限状态自动机，简称状态机。表示有限个状态以及在这些状态之间的转移和动作等行为的数学模型。FSM是一种算法思想，由一组状态、一个初始状态、输入和根据输入及现有状态转换为下一个状态的转换函数组成。现实世界存在大量具有有限个状态的系统：钟表系统、电梯系统、交通信号灯系统等。
+**  FSM有多种实现方式：**
+** switch-case或if-else**
+比如RPG游戏中的城门这个对象，具有opened，closed，locked，unlocked四种状态。当玩家到达一个locked的门时，如果玩家已有开门的钥匙，那么就可以顺利让门的状态变为unlocked，进一步可以使之变成opened。</li>
+</ol>
+<pre><code>switch (state)  {
+  // 处理状态Opened的分支
+  case (Opened): {
+    // 执行动作Open
+    open();
+    // 检查是否有CloseDoor事件
+    if (closeDoor()) { 
+      // 当前状态转换为Closed
+      changeState(Closed)
+    }
+    break;
+  } 
+  // 处理状态Closed的分支
+  case (Closed): {
+    // 执行动作Close
+    close();
+    // 检查是否有OpenDoor事件
+    if (openDoor()) {
+      // 当前状态转换为Opened
+      changeState(Opened);
+    }
+    // 检查是否有LockDoor事件
+    if (lockDoor()) {
+      // 当前状态转换为Locked
+      changeState(Locked);
+    }
+    break;
+  }
+ 
+  // 处理状态Locked的分支
+  case (Locked): {
+    // 执行动作Lock
+    lock();
+    // 检查是否有UnlockDoor事件
+    if (unlockDoor()) {
+      // 当前状态转换为Unlocked
+      changeState(Unlocked);
+    }
+    break;
+  }
+ 
+  // 处理状态Unlocked的分支
+  case (Unlocked): {
+    // 执行动作Unlock
+    unlock();
+    // 检查是否有LockDoor事件
+    if (lockDoor()) {
+      // 当前状态转换为Locked    
+      changeState(Locked)
+    }
+    // 检查是否有OpenDoor事件    
+    if (openDoor()) {
+      // 当前状态转换为Opened
+      changeSate(Opened);
+    }
+    break;
+  } 
+}
+</code></pre>
+<p>但这种只适用于量较少的状态下，状态量过多则不适合用switch语句来拓展和维护。</p>
+<p><strong>🤔常见问题：</strong>
+经常出现条件判断语句和函数语句的后面忘了加冒号:  需要注意。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Learn Python the hard way-Ex42 对象、类、以及从属关系]]></title>
         <id>https://andandojing.github.io/post/ex42-dui-xiang-lei-yi-ji-cong-shu-guan-xi</id>
@@ -1953,81 +2965,6 @@ print(&quot;The 4th animal is %s&quot; % animals[3])
 print(&quot;The 5th animal is %s&quot; % animals[4])
 print(&quot;The 6th animal is %s&quot; % animals[5])
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-Ex33 while循环]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex33-while-xun-huan</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex33-while-xun-huan">
-        </link>
-        <updated>2019-06-16T19:17:58.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>while-loop（while 循环）会一直执行代码，直到对应的布尔表达式为False时才会停下来。</strong></p>
-<p>如果某一行是以冒号colon结尾，那就意味着接下来的内容是一个新的代码片段，新的代码片段是需要被缩进的。</p>
-<p><strong>因为while如果不给一个结束点会一直循环，所以：</strong></p>
-<ul>
-<li>尽量少用while-loop，大部分时候用for-loop就行；</li>
-<li>检查while语句，确定布尔表达式最后会变成False；</li>
-<li>如果不确定，就在while-loop的结尾打印出要测试的值。</li>
-</ul>
-<p><strong>ex33.py的代码：</strong></p>
-<pre><code>i = 0
-numbers = []
-while i &lt; 6:
-    print(&quot;At the top i is %d&quot; % i)
-    numbers.append(i)
-    i = i + 1
-    print(&quot;Numbers now: &quot;, numbers)
-    print(&quot;At the bottom i is %d&quot; % i)
-print(&quot;The numbers:&quot;)
-for num in numbers:
-    print(num)
-</code></pre>
-<p><strong>加分习题：</strong></p>
-<ul>
-<li>将while循环改成一个函数，将测试条件（i &lt; 6）中的6换成一个变量；</li>
-<li>使用这个函数重写脚本，并用不同的数字测试；</li>
-<li>为函数添加另一个参数，这个参数用来定义i = i + 1的加值+ 1，这样就可以任意加值；</li>
-<li>再使用该函数重写一遍这个脚本，看看效果；</li>
-<li>使用for-loop和range把脚本再写一遍，看是否还需要中间的加值操作。</li>
-</ul>
-<p><strong>加分代码：
-练习1:</strong></p>
-<pre><code>import random
-i = 0
-numbers = []
-plus = random.randint(1,5)
-replace_num = plus + 1
-print(&quot;Plus number is %d&quot; % plus)
-print(&quot;Replace number is %d&quot; % replace_num)
-for i in range(0, 10):
-    if i &lt; replace_num:
-        print(&quot;At the top i is %d&quot; % i)
-        numbers.append(i)
-        i += plus
-        print(&quot;Numbers now: &quot;, numbers)
-        print(&quot;At the bottom i is %d&quot; % i)
-    else:
-        print(&quot;i: %d is greater or equal to replace number.&quot; % i)
-print(&quot;The numbers:&quot;)
-for num in numbers:
-    print(num)
-</code></pre>
-<p><strong>练习2:</strong></p>
-<pre><code>def list(i, plus):
-    numbers = []
-    start = 0
-    while start &lt; i:
-        print(&quot;The last number is %d&quot; % start)
-        numbers.append(start)
-        start += plus
-        print(&quot;Numbers now:&quot;, numbers)
-        print(&quot;The next number is %d&quot; % start)
-i = int(input(&quot;Type a number here:&quot;))
-plus = int(input(&quot;Type the plus number here:&quot;))
-list(i, plus)
-</code></pre>
-<p><strong>for-loop和while-loop的区别：</strong>
-for-loop只能对一些东西的集合进行循环，while-loop可以对任何对象进行驯化。while-loop更难使用，一般任务用for-loop更容易。</p>
 ]]></content>
     </entry>
 </feed>
