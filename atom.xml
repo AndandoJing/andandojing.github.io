@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-07-02T18:23:41.376Z</updated>
+    <updated>2019-07-04T22:35:46.802Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -11,6 +11,792 @@
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Python the hard way-Ex44 继承vs.包含]]></title>
+        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex44-ji-cheng-vsbao-han</id>
+        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex44-ji-cheng-vsbao-han">
+        </link>
+        <updated>2019-07-04T16:34:36.000Z</updated>
+        <content type="html"><![CDATA[<p>大多数继承的用途，可以简化或用组合物所取代，并应不计一切代价避免多重继承。</p>
+<h4 id="什么是继承"><strong>什么是继承</strong></h4>
+<p>继承是用来描述一个类从它的父类哪里获得大部分甚至全部父类的功能。
+比如<code>class Foo(Bar)</code>就是指“创建一个叫做Foo的类，并继承Bar”。执行这句的时候，编程语言使得<code>Foo</code>的实例所有的行为都跟<code>Bar</code>的实例一样。这么做，可以让<code>Bar</code>类中放一些通用功能，那些需要特殊定制的函数或功能则放在子类<code>Foo</code>中。</p>
+<p>当需要做这些特殊化函数编写时，父子类之间有3种交互方法：</p>
+<blockquote>
+<ol>
+<li>子类的方法隐性继承父类方法</li>
+<li>子类重写父类的方法</li>
+<li>对子类的操作改变父类</li>
+</ol>
+</blockquote>
+<h4 id="隐性继承implicit-inheritance"><strong>隐性继承implicit inheritance</strong></h4>
+<p>父类中定义了方法，而子类中没有。举例：</p>
+<pre><code>class Parent(object):
+
+    def implicit(self):
+        print(&quot;PARENT implicit()&quot;)
+
+class Child(Parent):
+    pass
+
+dad = Parent()
+son = Child()
+
+dad.implicit()
+son.implicit()
+</code></pre>
+<p>这里在<code>class Child</code>下使用pass是在告诉python，这里要的是一个空白的块。这里创建了<code>Child</code>类，但没有在<code>Child</code>中定义任何方法。它会从类<code>Parent</code>中继承所有的方法。所以执行时会得到：</p>
+<pre><code>$ python ex44a.py
+PARENT implicit()
+PARENT implicit()
+</code></pre>
+<p>可见，虽然在代码中写的是<code>son.implicit()</code>，且<code>Child</code>中并没有关于<code>implicit()</code>的方法，但代码仍正常运行，因为它调用了<code>Parent</code>中定义的同名方法。
+也就是说，如果你在<code>Parent</code>中定义了一个方法，那么其所有的子类<code>Child</code>都可以自动获得该方法。</p>
+<h4 id="重写方法override-explicitly"><strong>重写方法override explicitly</strong></h4>
+<p>重写方法主要用于，在子类中有不同于父类的表现，所以需要覆盖父类的隐性继承。比如：</p>
+<pre><code>class Parent(object):
+
+    def override(self):
+        print(&quot;PARENT override()&quot;)
+        
+class Child(Parent):
+
+    def override(self):
+        print(&quot;CHILD override()&quot;)
+
+dad = Parent()
+son = Child()
+
+dad.override()
+son.override()
+</code></pre>
+<p>这里出现了一个<code>override</code>的方法。运行时是这样的：</p>
+<pre><code>$ python ex44b.py
+PARENT override()
+CHILD override()
+</code></pre>
+<p>因为变量<code>dad</code>是一个父类实例，所以执行父类的<code>override</code>方法。同时<code>son</code>是子类实例，所以这个子类重写了方法，定义了自己的版本。</p>
+<p>也就是说，<strong>如果要重写，可以直接在子类中定义需要覆盖父类的部分（同名的方法），这样在表达时父类和子类会分别按照自己定义下的方法表述。</strong></p>
+<h4 id="之前或之后改变父类alter-before-or-after"><strong>之前或之后改变父类alter before or after</strong></h4>
+<p>这种方式是在父类版本的方法执行行为前后给出些提示。先用<strong>重写方法</strong>，然后用python内建的<code>super</code>方法得到父类版本的方法调用。举例：</p>
+<pre><code>class Parent(object):
+
+    def altered(self):
+        print(&quot;PARENT altered()&quot;)
+
+class Child(Parent):
+    
+    def altered(self):
+        print(&quot;CHILD, BEFORE PARENT altered()&quot;)
+        super(Child, self).altered()
+        print(&quot;CHILD, AFTER PARENT altered()&quot;)
+        
+dad = Parent()
+son = Child
+
+dad.altered()
+son.altered()
+</code></pre>
+<p>👆在<code>son.altered()</code>被调用前有以下操作：</p>
+<blockquote>
+<ol>
+<li>因为已经重写了子类的<code>Child.altered</code>方法，所以<code>print(&quot;CHILD, BEFORE PARENT altered()&quot;)</code>会按照目前写的样子展示。</li>
+<li>这里<code>super</code>用来得到父类的<code>Parent.altered</code>版本</li>
+<li>调用<code>super(Child, self).altered()</code>方法，可以意识到继承的发生，并给你获得类<code>Parent</code>。简而言之，这段代码可以历程成“调用<code>super</code>，参数为<code>Child</code>和<code>self</code>，然后不管它返回什么，调用方法<code>altered</code>。</li>
+<li>这种情况下，父类的<code>Parent.altered</code>版本执行，并打印出父类的信息。</li>
+<li>最后，代码从<code>Parent.altered</code>返回，<code>Child.altered</code>方法继续打印出剩下的信息。</li>
+</ol>
+</blockquote>
+<p>运行程序后可得到下面👇的结果：</p>
+<pre><code>$ python ex44c.py
+PARENT altered()
+CHILD, BEFORE PARENT altered()
+PARENT altered()
+CHILD, AFTER PARENT altered()
+</code></pre>
+<p>简而言之，这种方式就是用<code>super(Child, self).xxx()</code>其中<code>xxx</code>是方法，来调用父类的方法。</p>
+<h4 id="三种组合使用all-three-ombined"><strong>三种组合使用all three ombined</strong></h4>
+<p>结合三种方式的文件，举例：</p>
+<pre><code>class Parent(object):
+
+    def override(self):
+        print(&quot;PARENT override()&quot;)
+        
+    def implicit(self):
+        print(&quot;PARENT implicit()&quot;)
+        
+    def altered(self):
+        print(&quot;PARENT altered()&quot;)
+        
+class Child(Parent):
+    
+    def override(self):
+        print(&quot;CHILD override()&quot;)
+        
+    def altered(self):
+        print(&quot;CHILD, BEFORE PARENT altered()&quot;)
+        super(Child, self).altered()
+        print(&quot;CHILD, AFTER PARENT altered()&quot;)
+        
+dad = Parent()
+son = Child()
+
+dad.implicit()
+son.implicit()
+
+dad.override()
+son.override()
+
+dad.altered()
+son.altered()
+</code></pre>
+<p>最后的结果是：</p>
+<pre><code>$python ex44d.py
+PARENT implicit()
+PARENT implicit()
+PARENT override()
+CHILD override()
+PARENT altered()
+CHILD.BEFORE PARENT altered()
+PARENT altered()
+CHILD.AFTER PARENT altered()
+</code></pre>
+<h4 id="使用super的原因"><strong>使用<code>super()</code>的原因</strong></h4>
+<p>多重继承是指，当你定义一个类时，要从一个或多个类继承。例如：</p>
+<pre><code>class SuperFun(Child, BadStuff):
+    pass
+</code></pre>
+<p>也即，创建一个叫做<code>SuperFun</code>的类，同时继承<code>Child</code>和<code>BadStuff</code>两个类。</p>
+<p>在这个例子中，只要隐性调用任何<code>SuperFun</code>的实例，python就需要从<code>Child</code>和<code>BadStuff</code>中查询所有可能的函数。但是，这种查找也需要一个顺序。python使用了“方法解析顺序”（MRO）和一种叫做C3的运算法则来直接获取。</p>
+<p>因为MRO很复杂，且使用了明确定义的算法，python不能让你来获得正确的MRO。相反，python提供给你<code>super()</code>方法，用来处理所有一切你需要改变类型的行为。如同上面在<code>Child.altered</code>所实现的，使用<code>super()</code>不必担心得到的是否是正确的方法，python会自己找到正确的那个。</p>
+<h4 id="__init__中使用super"><strong><code>__init__</code>中使用<code>super()</code></strong></h4>
+<p><code>super()</code>最常见的用途是在基类的<code>__init__</code>方法里。这通畅是需要在子类里实现什么事情，然后完成父类初始化的地方。👇以下是在类<code>Child</code>中的简单例子：</p>
+<pre><code>class Child(Parent):
+
+    def __init__(self, stuff):
+        self.stuff = stuff
+        super(Child, self).__init__()
+</code></pre>
+<p>除了在<code>__init__</code>中初始化父类之前定义了一些变量，这个跟上面的例子<code>Child.altered</code>几乎是一样的。</p>
+<h4 id="包含composition"><strong>包含composition</strong></h4>
+<p>除了继承，也可以通过用其他类和模块来完成同样的事情，且没有隐性继承。举例：</p>
+<pre><code>class Other(object):
+
+    def override(self):
+        print(&quot;OTHER override()&quot;)
+    
+    def implicit(self):
+        print(&quot;OTHER implicit()&quot;)
+        
+    def altered(self):
+        print(&quot;OTHER altered()&quot;)
+
+class Child(object):
+    
+    def __init__(self):
+        self.other = Other()
+    
+    def implicit(self):
+        self.other.implicit()
+        
+    def override(self):
+        print(&quot;CHILD override()&quot;)
+        
+    def altered(self):
+        print(&quot;CHILD, BEFORE OTHER altered()&quot;)
+        self.other.altered()
+        print(&quot;CHILD, AFTER OTHER altered()&quot;)
+        
+son = Child()
+
+son.implicit()
+son.override()
+son.altered()
+</code></pre>
+<p>这段代码中，没有使用<code>Parent</code>，因为没有父子的<code>is-a</code>关系。这里是一个<code>has-a</code>关系，且这个关系中<code>Child has-a Other</code>被用来保证代码的正常工作。运行代码时可见：</p>
+<pre><code>$ python ex44e.py
+OTHER implicit()
+CHILD override()
+CHILD, BEFORE OTHER altered()
+OTHER altered()
+CHILD, AFTER OTHER altered()
+</code></pre>
+<p>👆这里的<code>Child</code>和<code>Other</code>中大部分代码实现了相同的功能，唯一不同之处在于必须定义一个<code>Child.implicit</code>方法取做一个动作。此外，还可以问问自己，如果需要这个<code>Other</code>作为一个类，是不是可以把它放在一个叫做<code>other.py</code>的模块中就行？</p>
+<h4 id="什么时候用继承什么时候用包含"><strong>什么时候用继承，什么时候用包含</strong></h4>
+<p>继承和包含的问题可以归结为试图解决可重复使用代码的问题。
+继承通过创建一种机制，让你在基类中有隐含的功能来解决这个问题。
+包含则是通过给你的模块和函数可以在其他类别被调用来解决这个问题。</p>
+<p>在选择继承或包含时的三个原则：</p>
+<blockquote>
+<ol>
+<li>不惜一切代价避免多重继承，因为太复杂且不可靠。如果必须使用它，则一定要知道类的层次结构，并花时间找到每一个类是从哪里来的。</li>
+<li>将代码封装为模块，这样就可以在许多不同的地方或情况使用。</li>
+<li>只有当有明显相关的可重用的代码，且在一个共同概念下时，可以使用继承。</li>
+</ol>
+</blockquote>
+<p>面对对象编程要牢记：这是一个程序员创建打包和共享代码的社会习俗。所以如果对方使用时，需要取适应用法。</p>
+<h4 id="附加题"><strong>附加题</strong></h4>
+<p>阅读<code>http://www.python.org/dev/peps/pep-0008/</code>并尝试将它引用到自己的代码中。
+这里的文本主要解释的是python的代码规范。
+举例1:</p>
+<pre><code># Alligned with opening delimiter.
+foo = long_function_name(var_one, var_two, 
+                         var_three, var_four)
+
+# Add 4 spaces (an extra level of indentation) to distinguish arguments from the rest.
+def long_function_name(
+    var_one, var_two, var_three
+    var_four):
+    print(var_one)
+
+# Hanging indents should add a level.
+foo = long_function_name(
+    var_one, var_two, 
+    var_three, var_four)
+</code></pre>
+<p>👆要注意锁进，以及一行太长的情况下换多行清晰显示。
+还有一种可选方式：</p>
+<pre><code>#Optional
+# Hanging indents *may* be indented to other than 4 spaces.
+foo = long_funciton_name(
+    var_one, var_two,
+    var_three, var_four)
+</code></pre>
+<p>举例2:</p>
+<pre><code># No extra indentation.
+if (this_is_one_thing and
+    that_is_another_thing):
+    do_something
+    
+# Add a comment, which will provide some distinction in editors
+# supporting syntax highlighting
+if (this_is_one_thing and 
+    that_is_another_thing):
+    # Since both conditions are true, we can frobnicate.
+    do_something()
+    
+# Add some extra indentation on the conditional continuation line.
+if (this_is_one_thing
+        and that_is_another_thing):
+    do_something()
+</code></pre>
+<p>举例3:</p>
+<pre><code>my_list = [
+    1, 2, 3
+    4, 5, 6
+    ]
+result = some_function_that_takes_arguments(
+    'a', 'b', 'c',
+    'd', 'e', 'f',
+    )
+</code></pre>
+<p>另一种方式：</p>
+<pre><code>my_list = [
+    1, 2, 3,
+    4, 5, 6,
+]
+result = some_function_that_takes_arguments(
+    'a', 'b', 'c',
+    'd', 'e', 'f',
+)
+</code></pre>
+<h4 id="️注意">⚠️<strong>注意：</strong></h4>
+<p><strong>用Tab还是用Space空格？</strong>
+最好用空格键。如果代码本来是用Tab的话才用Tab。
+python3中本身不允许tab和空格混用。</p>
+<p><strong>每行代码的长度限制</strong>
+每行的理论最大长度是79个字符。
+如果一行中有部分注释等，正文代码的长度限制在72个字符。
+可以把窗口直接设定为80，这样能够直观地限制每行代码字符数量。
+部分团队会把最大长度设为99字符。
+举例4:</p>
+<pre><code>with open('/path/to/some/file/you/wan/to/resd') as file_1, \
+    open('/path/to/some/file/being/written', 'w') as file_2:
+    file_2.write(file_1.read())
+</code></pre>
+<p><strong>二元运算符之前或之后换行？</strong>
+之前建议在操作符出现后换行，但现在为了阅读方便更建议操作符出现前换行。
+举例5对比，后者目前更推荐：</p>
+<pre><code># No: operators sit far from their operands
+income = (gross_wages +
+         taxable_interest +
+         (dividends - qualified_dividends) -
+         ira_deduction - 
+         student_loan_interest)
+</code></pre>
+<pre><code># Yes: easy to match operators with operands
+income = (gross_wages
+         + taxable_interest
+         + (dividends - qualified_dividends)
+         - ira_deduction
+         - student_loan_interest)
+</code></pre>
+<p><strong>空白行blank line</strong>
+类定义和一级方法上方空两行。
+比如：</p>
+<pre><code>#空第一行
+#空第二行
+class Aron(object):
+</code></pre>
+<p>类里面的方法定义上方空一行。
+比如：</p>
+<pre><code>#空第一行
+#空第二行
+class Aron(object):
+#空一行
+    def write(self):
+</code></pre>
+<p>此外，如果有很多函数，函数与函数中间也需要空行，形成区块。
+python中可以用contrl-L（或^L）来作为空行快捷键。这也是部分文档处理器的分页符。</p>
+<p><strong>源文件编码信息</strong>
+python3默认的编码形式是UTF-8，默认情况下就不需要再做注明。
+python3中，所有标识符必须使用ASCII符号，并且尽可能使用英语单词（很多情况下缩写和技术类术语不是英语）。字符串文字和注释也必须是ASCII格式。
+例外：</p>
+<ol>
+<li>测试非ASCII功能的测试用例</li>
+<li>作者姓名信息，如果作者名非拉丁字母（latin-1，ISO/IEC 8859-1字母）则必须用字母形式提供音译。</li>
+</ol>
+<p><strong>模块引用导入import</strong></p>
+<ul>
+<li>import信息需要分行写：</li>
+</ul>
+<pre><code>Yes: import os
+     import sys
+
+No: import sys, os
+</code></pre>
+<p>或者：</p>
+<pre><code>from subprocess import Popen, PIPE
+</code></pre>
+<ul>
+<li>imports信息需要放在代码的最上方，只在文件注释信息下方，且在其他全局命令前</li>
+</ul>
+<ol>
+<li>基本库imports</li>
+<li>第三方imports</li>
+<li>本地imports</li>
+</ol>
+<ul>
+<li>建议用绝对imports（就是完整的from...import...形式）
+比如：</li>
+</ul>
+<pre><code>import mypkg.sibling
+from mypkg import sibling
+from mypkg.sibling import example
+</code></pre>
+<p>相对导入在处理复杂的包时比较适合，可以减少冗长
+比如：</p>
+<pre><code>from . import sibling
+from .sibling import example
+</code></pre>
+<p>基本库的imports建议绝对导入，复杂的imports。
+python3中已经移除隐性相对导入。</p>
+<ul>
+<li>如果从一个包含类的模组中import类class时，建议格式如下：</li>
+</ul>
+<pre><code>from myclass import MyClass
+from foo.bar.yourclass import YourClass
+</code></pre>
+<p>如果产生了本地名冲突，则需要明确写清楚它们的名字：</p>
+<pre><code>import myclass
+import foo.bar.yourclass
+</code></pre>
+<p>使用<code>myclass.MyClass</code>和<code>foo.bar.yourclass.YourClass</code></p>
+<ul>
+<li>避免使用通配符导入（<code>from &lt;module&gt; import *</code>）因为这样会造成在当前命名空间出现的命名含义不清晰，造成困扰。</li>
+</ul>
+<h4 id="模块级的双下划线命名module-level-dunder-names"><strong>模块级的双下划线命名Module level dunder names</strong></h4>
+<p>双下划线命名比如<code>__all__</code>,<code>__author__</code>,<code>__version__</code>应该卸载文档字符串docstring之后。但在<code>from __future__</code>import的任何其他类型的引用（导入import）语句之前。python要求模块中<code>__future__</code>的导入必须在除文档字符串docstring植物的任何其他代码之前。
+举例：</p>
+<pre><code>&quot;&quot;&quot;This is the example module.
+
+This module does stuff.
+&quot;&quot;&quot;
+
+from __future__ import barry_as_FLUFL
+
+__all__ = ['a', 'b', 'c']
+__version__ = '0.1'
+__author__ = 'Cardinal Biggles'
+
+import os
+import sys
+</code></pre>
+<h4 id="字符串引用string-quotes"><strong>字符串引用string quotes</strong></h4>
+<p>python中单引号和双引号作用相同，但不建议混合使用，建议统一某一种方式使用。如果字符串中需要显示单引号，可将整个字符串用双引号引用，反之亦然。这样可以避免使用反斜杠\来显示字符串内的引号。
+三引号表示的字符串，使用双引号字符来表示。</p>
+<h4 id="表达式和语句中的空格whitespace-in-expressions-and-statements"><strong>表达式和语句中的空格whitespace in expressions and statements</strong></h4>
+<p><strong>一些痛点pet peeves</strong>
+避免使用过多空白行：</p>
+<ul>
+<li>方括号，圆括号和花括号之后：</li>
+</ul>
+<pre><code>Yes: spam(ham[1], {eggs: 2})
+No:  spam( ham[ 1 ], { eggs: 2 } )
+</code></pre>
+<ul>
+<li>逗号和右括号之间：</li>
+</ul>
+<pre><code>Yes: foo = (0,)
+No:  bar = (0, )
+</code></pre>
+<ul>
+<li>逗号，分号或冒号之间：</li>
+</ul>
+<pre><code>Yes: if x == 4: print x, y; x, y = y, x
+No:  if x == 4: print x , y ; x , y = y , x
+</code></pre>
+<ul>
+<li>切片操作时，冒号和二元运算符是一样的，应该在其左右两边保留相同数量的空格。在拓展切片操作中，所有冒号的左右两边空格数都应该向灯。有时也有例外，当切片操作中的参数被省略时，应该也忽略空格。</li>
+</ul>
+<pre><code># Yes
+ham[1:9], ham[1:9:3], ham[:9:3], ham[1::3], ham[1:9:]
+ham[lower:upper], ham[lower:upper:], ham[lower::step]
+ham[lower+offset : upper+offset]
+ham[: upper_fn(x): step_fn(x)], ham[:: step_fn(x)]
+ham[lower + offset : upper + offset]
+</code></pre>
+<pre><code># No
+ham[lower + offset:upper + offset]
+ham[1: 9], ham[1 :9], ham[1:9 :3]
+ham[lower : : upper]
+ham[ : upper]
+</code></pre>
+<ul>
+<li>调用函数时，传递参数list的括号之前不要空格：</li>
+</ul>
+<pre><code># Yes
+spam(1)
+</code></pre>
+<pre><code># No
+spam (1)
+</code></pre>
+<ul>
+<li>索引和切片操作的做括号之前不要空格：</li>
+</ul>
+<pre><code># Yes
+dct['key'] = lst[index]
+</code></pre>
+<pre><code># No
+dct ['key'] = lst [index]
+</code></pre>
+<ul>
+<li>赋值（等）运算符周围不需要使用多个空格来喝其他语句对其：</li>
+</ul>
+<pre><code># Yes
+x = 1
+y = 2
+long_variable = 3
+</code></pre>
+<pre><code># No
+x            = 1
+y            = 2
+long_variable = 3
+</code></pre>
+<h4 id="其他建议"><strong>其他建议</strong></h4>
+<ul>
+<li>避免行末空格。一些编辑器会自动去除行末空格。</li>
+<li>二元运算符的两边都放一个空格。比如：<code>=</code>,<code>+=</code>,<code>-=</code>,<code>==</code>,<code>&lt;</code>,<code>&gt;</code>,<code>!=</code>,<code>&lt;&gt;</code>,<code>&lt;=</code>,<code>&gt;=</code>,<code>in</code>,<code>not in</code>,<code>is</code>,<code>is not</code>,<code>and</code>,<code>or</code>,<code>not</code>。</li>
+<li>如果用了优先级不同的运算符，在优先级较低的操作符周围增加空白。但永远不要用超过1个空格，保持二元运算符两侧的空白数量一致。</li>
+</ul>
+<pre><code># Yes
+i = i + 1
+submitted += 1
+x = x*2 - 1
+hypot2 = x*x + y*y
+c = (a+b) * (a-b(
+</code></pre>
+<pre><code># No
+i=i+1
+submitted +=1
+x = x * 2 - 1
+hypot2 = x * x + y * y
+c = (a + b) * (a - b)
+</code></pre>
+<ul>
+<li>函数注解中<code>:</code>也遵循一般的<code>:</code>加空格的规则，在<code>-&gt;</code>两侧各使用一个空格。</li>
+</ul>
+<pre><code># Yes
+def munge(input: AnyStr): ...
+def munge() -&gt; AnyStr: ...
+</code></pre>
+<pre><code># No
+def munge(input:AnyStr): ...
+def munge()-&gt;PosInt: ...
+</code></pre>
+<ul>
+<li><strong>用<code>=</code>表示关键字参数或参数默认值时，不要加空格。</strong> ⚠️之前常错❌</li>
+</ul>
+<pre><code># Yes
+def complex(real, imag=0.0):
+    return magic(r=real, i=imag)
+</code></pre>
+<pre><code># No
+def complex(real, imag = 0.0):
+    return magic(r = real, i = imag)
+</code></pre>
+<ul>
+<li><strong>使用组合函数注解和参数默认值时，需要在<code>=</code>两侧各放一个空格（只有当这个参数既有函数注解，又有默认值的时候）</strong> ⚠️之前常错❌</li>
+</ul>
+<pre><code># Yes
+def mung(sep: AnyStr = None): ...
+def munge(input: AnyStr, sep: AnyStr = None, limit=1000): ...
+</code></pre>
+<pre><code># No
+def munge(input: AnyStr=None): ...
+def munge(input: AnyStr, limit = 1000): ....
+</code></pre>
+<ul>
+<li>一般不鼓励用符合语句（即将多行语句写在一行）</li>
+</ul>
+<pre><code># Yes
+if foo == 'blah':
+    do_blah_thing()
+do_one()
+do_two()
+do_three()
+</code></pre>
+<pre><code># Rather not
+if foo == 'blah': do_blah_thing()
+do_one(); do_two(); do_three()
+</code></pre>
+<ul>
+<li>有时可以将短小的if/for/while语句写在一行，但如果有多个分句则不可以。</li>
+</ul>
+<pre><code>#最好不要这样：
+if foo == 'blah': do_blah_thing()
+for x in lst: total += x
+while t &lt; 10: t = delay()
+</code></pre>
+<pre><code>#绝对不要这样：
+if foo == 'blah': do_blah_thing()
+else: do_non_blah_thing()
+
+try: something()
+finally: cleanup()
+
+do_one(); do_two(); do_three(long, argument,
+                          list, like, this)
+                          
+if foo == 'blah': one(); two(); three()
+</code></pre>
+<h4 id="什么时候在末尾加逗号"><strong>什么时候在末尾加逗号</strong></h4>
+<p>末尾逗号通常是可选的，除非在定义单元素元组tuple时是必需的。为了清楚起见，最好用括号（虽然技术上来说是冗余）括起来。</p>
+<pre><code># Yes
+FILES = ('setup.cfg',)
+</code></pre>
+<pre><code># 这样写也正确，但容易让人困惑
+FILES = 'setup.cfg',
+</code></pre>
+<p>使用版本控制系统时，在将来有可能拓展的列表末尾添加冗余的逗号是有好处的。具体做法就是将每一个元素写在单独的一行，并在行尾添加逗号，右括号单独占一行。但是，与有括号在同一行的末尾元素后面加逗号是没有意义的（上述的单元素元组除外）。</p>
+<pre><code>#正确的例子
+FILES = [
+    'setup.cfg',
+    'tox.ini',
+    ]
+initialize(FILES,
+          error=True,
+          )
+</code></pre>
+<pre><code>#错误的例子
+FILES = ['setup.cfg', 'tox.ini',]
+initialize(FILES, error=True,)
+</code></pre>
+<h4 id="注释comments"><strong>注释comments</strong></h4>
+<p>注释不可以和代码冲突，修改代码时记得修改注释。
+注释应该是完整的多个句子。如果注释是一个短语或者一个句子，首字母应该大写，除非开头是一个以小写字母开头的标识符（永远不要更改标识符的大小写）。
+如果注释很多，可以忽视结尾的句号。块注释通常由一段或几段完整句子组成，每个句子都应该以句号结束。
+句尾的句号后应该再加上2个空格。
+注释最好都用英语写（方便非本国语言程序猿看懂）。</p>
+<h4 id="块注释block-comments"><strong>块注释block comments</strong></h4>
+<p>块注释一般在对应代码之前，并且和对应代码有同样的缩进级别。块注释的每一行都应该有<code>#</code>和一个空格开头（除非该文本是在注释内缩进对齐的）。
+块注释中的段落应该用汁含邮单个<code>#</code>的一行隔开。</p>
+<h4 id="行内注释inline-comments"><strong>行内注释inline comments</strong></h4>
+<p>尽量少用行内注释。一般也是不必需的。代码含义很明显的时候尤其如此。
+行内注释应该至少和代码之间有两个空格的间隔，并且用<code>#</code>和一个空格开始。</p>
+<pre><code>x = x + 1   # increment x
+</code></pre>
+<p>但有时候可以这样：</p>
+<pre><code>x = x + 1   # Compensate for border
+</code></pre>
+<h4 id="文档字符串documentation-strings"><strong>文档字符串documentation strings</strong></h4>
+<ul>
+<li>所有公共模块，函数，类和方法都应该有文档字符串，非公共的不必要，但应留有注释说明该方法的功能，注释应该在<code>def</code>的下一行。</li>
+<li>多行文档字符串应以<code>&quot;&quot;&quot;</code>结尾，不能有其他字符。例如：</li>
+</ul>
+<pre><code>&quot;&quot;&quot;Return a foobang
+
+Optional plotz says to frobnicate the bizbaz first.
+&quot;&quot;&quot;
+</code></pre>
+<ul>
+<li>对于仅有一行的文档字符串，结尾处的<code>&quot;&quot;&quot;</code>应该也写在这一行。</li>
+</ul>
+<h4 id="命名约定"><strong>命名约定</strong></h4>
+<h5 id="首要原则"><strong>首要原则</strong></h5>
+<p>用户可见的公共部分API，命名应当表达出功能用途而不是具体实现的细节。</p>
+<h5 id="命名风格"><strong>命名风格</strong></h5>
+<p>集中常用命名样式：</p>
+<ul>
+<li><code>b</code>（单个小写字母）</li>
+<li><code>B</code>（单个大写字母）</li>
+<li><code>lowercase</code>（小写）</li>
+<li><code>lower_case_with_underscores</code>（带下划线小写）</li>
+<li><code>UPPERCASE</code>（大写）</li>
+<li><code>UPPER_CASE_WITH_UNDERSCORES</code>（带下划线大写）</li>
+<li><code>CapitalizedWords</code>（也叫做CapWords或者CamelCase，因为单词首字母大写看起来像驼峰）。也称作StudlyCaps。
+注意：当CapWords里包含缩写时，将缩写部分的字母都大写。<code>HTTPServerError</code>比<code>HttpServerError</code>要好。</li>
+<li><code>mixedCase</code>（注意：和CapitalizedWords不同在于其首字母小写）</li>
+<li><code>Capitalized_Words_With_Underscores</code>（这种风格超级丑）</li>
+</ul>
+<p>也有风格使用简短唯一的前缀来表示一组相关的命名。python中不常见，但举个例子：
+<code>os.stat()</code>函数返回一个tuple，其中的元素名原本为<code>st_mode</code>,<code>st_size</code>,<code>st_mtime</code>等。</p>
+<p>此外，要区别以下划线开始或结尾的特殊形式：</p>
+<ul>
+<li><code>_single_leading_underscore</code>：以单个下划线开头是“内部使用”的弱标志。比如，<code>from M import *</code>不会import下划线开头的对象。</li>
+<li><code>single_trailing_underscore_</code>：以单个下划线结尾用来避免和Python关键词产生冲突。例如：</li>
+</ul>
+<pre><code>Tkinter.Toplevel(master, class_='ClassName')
+</code></pre>
+<ul>
+<li><code>__double_leading_underscore</code>：以双下划线开头的风格命名类属性表示触发命名修饰（在FooBar类中，<code>__boo</code>命名会被修饰成<code>_FooBar__boo</code>）</li>
+<li><code>__double_leading_and_trailing_underscore__</code>：以双下划线开头和结尾的命名风格表示“魔术”对象或属性，存在于用户控制的命名空间（user-controlled namespaces）里（也就是说，这些命名已经存在，但通常需要用户覆写来实现用户所需要的功能）。比如，<code>__init__</code>,<code>__import__</code>,<code>__file__</code>。⚠️不要自己发明，按照文档描述来使用命名。</li>
+</ul>
+<h5 id="规范命名约定"><strong>规范：命名约定</strong></h5>
+<p><strong>避免的命名</strong>
+避免使用小写的L，大写的o和大写的i作为单个字符的变量名（因为容易和数字混淆）。</p>
+<p><strong>ASCII兼容性</strong>
+标准库中使用的标识符必须与ASCII兼容。</p>
+<p><strong>包和模块命名</strong>
+模块命名要短小，且全小写。如果下划线能提高可读性，可以在模块命中使用。
+python包命名应该全小写，短小，但不应该使用下划线。</p>
+<p><strong>类命名</strong>
+类命名应该使用驼峰CapWords的命名约定。
+内建命名有特殊约定：大部分内建名都是一个单词（或两个一起使用的单词），驼峰的约定支队一场命名和内建常量使用。</p>
+<p><strong>类型变量命名</strong>
+简短的驼峰命名：
+<code>T</code>,<code>AnyStr</code>,<code>Num</code>等。建议后缀<code>_co</code>或<code>_contra</code>添加倒用于声明相应的covariant和contravariant的行为。例如：</p>
+<pre><code>from typing import TpyeVar
+
+VT_co = TypeVar('VT_co', covariant=True)
+KT_contra = TypeVar('KT_contra', contravariant=True)
+</code></pre>
+<p><strong>异常命名</strong>
+如果异常实际上是抛出错误的话，异常名前应该加上“Error”的前缀。</p>
+<p><strong>全局变量命名</strong>
+前提：这些变量仅在同一个模块内使用，也适用于函数命名。
+引用方式设计为<code>from M import *</code>的模块，应该使用<code>__all__</code>机制来避免import全局变量，或者采用下划线前缀的就约定来命名全局变量，从而表明这些变量是“模块非公开的”。</p>
+<p><strong>函数命名</strong>
+函数命名应该都是小写，必要时使用下划线来提高可读性。
+只有当已有代码风格已经是混合大小写时（比如threading.py），为了保留向后兼容性才使用混合大小写。</p>
+<p><strong>函数和方法参数function and method arguments</strong>
+实例方法的第一参数永远都是<code>self</code>。
+类方法的第一个参数永远都是<code>cls</code>。
+在函数参数名和保留关键字冲突时，使用以下划线结尾的命名一般更好，比如<code>class_</code>比<code>clss</code>更好。</p>
+<p><strong>方法命名和实例变量</strong>
+规则：小写单词，必要时使用下划线分开以提高可读性。仅对非公开方法和变量命名在开头使用一个下划线。
+避免和子类的命名冲突，使用两个下划线开头来出发python的命名修饰机制。
+python类名的命名修饰规则：如果类Foo有一个属性叫<code>__a</code>，不能使用<code>Foo.__a</code>的方式访问该变量。一般来说，两个下划线开头的命名方式仅用于避免与设计为子类的类中的属性名冲突。</p>
+<p><strong>常量</strong>
+常用通常在模块级别定义，使用全部大写并用下划线分割单词。如：<code>MAX_OVERFLOW</code>和<code>TOTAL</code>。</p>
+<p><strong>继承的设计</strong>
+区别：类的方法和实例变量（属性）应该是公开的还是非公开的。
+如果有疑虑，就选择非公开；因为之后将非公开属性变为公开属性更容易。
+另一类属性术语子类API的一部分。一些类是为继承设计的，要么扩展要么修改类的部分行为。设计这样的类时，需要谨慎明确地决定哪些属性是公开的，哪些术语子类API，哪些真的只会被你的基类调用。
+规则指南：</p>
+<ul>
+<li>公开属性不应该有开头下划线</li>
+<li>如果公开属性的名字和保留关键字有冲突，在你的属性名尾部加上一个下划线，这笔采用缩写和简写更好。（但是'cls'对任何变量和参数来说都是一个更好的贫血，因为已经默认了，特别是在类方法的第一个参数里）</li>
+<li>简单的公共数据属性，最后仅公开属性名字，不要公开复杂的调用或设置方法。</li>
+<li>如果你的类被子类继承的话，有一些属性不想让子类访问，可以将他们命名为两个下划线开头并且结尾处没有下划线。比如<code>__xxx</code>。这样会触发python命名修饰算法，类名会被修饰添加到属性名中，这样可以避免属性命名冲突，一面子类会不经意包含相同的命名。</li>
+</ul>
+<h4 id="编程建议"><strong>编程建议</strong></h4>
+<ul>
+<li>代码应该以不影响其他python实现的方式编写
+在库中性能敏感的部分，用<code>' '.join</code>形式代替，这样可以确保在不同的实现中国呢字符串拼接是线性时间的。</li>
+<li>与单例比较，像<code>None</code>应该用<code>is</code>或者<code>is not</code>，从不使用<code>==</code>操作符。
+当心<code>if x is not None</code>这种写法（哪怕你确实想验证它的字面意思）。</li>
+<li>用<code>is not</code>而不是<code>not ... is</code>，虽然表达式功能相同，但前一个更好。
+举例：</li>
+</ul>
+<pre><code># 推荐的写法
+if foo is not None:
+</code></pre>
+<pre><code># 不推荐的写法
+if not foo is None:
+</code></pre>
+<ul>
+<li>用富比较实现排序操作的时候，最好实现所有六个比较操作符（<code>__eq__</code>,<code>__ne__</code>,<code>__lt__</code>,<code>__le__</code>,<code>__gt__</code>,<code>__ge__</code>)，而不是依靠其他代码来进行特定比较。
+<code>functoolstotal_ordering()</code>装饰器提供了一个工具去生成缺少的比较方法。</li>
+<li>始终使用<code>def</code>语句来代替直接绑定了一个<code>lambda</code>表达式的赋值语句。
+举例：</li>
+</ul>
+<pre><code># 推荐的写法：
+def f(x): return 2*x
+</code></pre>
+<pre><code># 不推荐的写法：
+f = lambda x: 2*x
+</code></pre>
+<ul>
+<li>异常类应该派生自<code>Exception</code>而不是<code>BaseException</code>。直接继承<code>BaseException</code>是为<code>Exception</code>保留的。从<code>BaseException</code>继承病补货异常这种做法几乎总是错的。
+设计异常的层次结构，应基于哪些可能出现异常的代码，而不是引发一场的位置。编码的时候，以回答“出了什么问题”而不是“这里出了什么问题”为目标。</li>
+</ul>
+<p>类的命名约定适用于一场，如果异常类是一个错误，应该给异常类加一个后缀<code>Error</code>。用于非本地流程控制或者其他形式的信号的非错误异常不需要一个特殊的后缀。</p>
+<ul>
+<li>捕获异常时，尽可能使用明确的一场，而不是一个空的<code>except:</code>语句。
+举例：</li>
+</ul>
+<pre><code>try:
+    import platform_specific_module
+except ImportError:
+    platform_specific_module = None
+</code></pre>
+<p>一个空的<code>except:</code>语句将会补货到<code>SystemExit</code>和<code>KeyboardInterrupt</code>异常，很难区分程序的终端到底是<code>Ctrl+C</code>还是其他问题引起的。如果想不火程序的所有错误，使用<code>except Exception:</code>（空<code>except:</code>等同于<code>except BaseException</code>）。
+两种情况下可以使用<code>except:</code>语句：</p>
+<ol>
+<li>如果异常处理程序会打印或者记录回溯信息；至少用户意识到错误的存在。</li>
+<li>如果代码需要做一些清理工作，但后面用<code>raise</code>向上抛出异常。<code>try .. finally</code>是处理这种情况更好的方式。</li>
+</ol>
+<ul>
+<li>绑定异常给一个名字时，最好用python 2.6里添加的明确的名字绑定语法：</li>
+</ul>
+<pre><code>try:
+    process_data()
+except Exception as exc:
+    raise DataProcessingFailedError(str(exc))
+</code></pre>
+<p>python3只支持这种语法。</p>
+<ul>
+<li>推荐使用<code>return</code>语句。函数内的<code>return</code>语句都应该返回一个表达式，或者<code>None</code>。如果一个<code>return</code>语句返回一个表达式，另一个没有返回值的应该用<code>return None</code>清晰的说明，并且在一个函数的结尾应该明确使用一个<code>return</code>语句（如果没有返回值的话）。
+推荐写法：</li>
+</ul>
+<pre><code>def foo(x):
+    if x &gt;= 0:
+        return math.sqrt(x)
+    else:
+        return None
+        
+        
+def bar(x):
+    if x &lt; 0:
+        return None
+    return math.sqrt(x)
+</code></pre>
+<ul>
+<li>用<code>' '.startwith()</code>和<code>' '.endwith()</code>代替字符串切片来检查前缀和后缀。
+<code>startswith()</code>和<code>endswith()</code>更简洁，不容易出错。举例：</li>
+</ul>
+<pre><code># 推荐的写法：
+if foo.startswith('bar'):
+
+# 不推荐的写法：
+if foo[:3] == 'bar':
+</code></pre>
+<h4 id="常见问题"><strong>常见问题</strong></h4>
+<p>对象不是复制的类吗？
+有些语言（比如JavaScript）中时这样的，这些被称为原型的语言，这类语言中对象和类没有什么不同。但python中，类作为模版，可以生成新对象，类似于如何使用模具制造硬币。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Learn Python the hard way-Ex43 基本的面向对象的分析和设计]]></title>
         <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex43-ji-ben-de-mian-xiang-dui-xiang-de-fen-xi-he-she-ji</id>
@@ -2943,36 +3729,6 @@ class myThread(threading.Thread):
 thread = myThread(1, “mythrd”, 1)
 thread.run()
 thread.start()
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-Ex34 访问列表的元素]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex34-fang-wen-lie-biao-de-yuan-su</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex34-fang-wen-lie-biao-de-yuan-su">
-        </link>
-        <updated>2019-06-17T12:47:10.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>访问列表中第一个元素：</strong></p>
-<pre><code>animals = [‘bear’, ‘tiger’, ‘penguin’, ‘zebra’]
-bear = animals[0]
-</code></pre>
-<p><strong>cordinal == 有序，从1开始
-cardinal == 随机选取，从0开始</strong></p>
-<pre><code>animals = ['bear', 'python', 'peacock', 'kangaroo', 'whale', 'platypus']
-The animal at 1.
-The 3rd animal.
-The 1st animal.
-The animal at 3.
-The 5th animal.
-The animal at 2.
-The 6th animal.
-The animal at 4.
-print(&quot;The 1st animal is %s&quot; % animals[0])
-print(&quot;The 2nd animal is %s&quot; % animals[1])
-print(&quot;The 3rd animal is %s&quot; % animals[2])
-print(&quot;The 4th animal is %s&quot; % animals[3])
-print(&quot;The 5th animal is %s&quot; % animals[4])
-print(&quot;The 6th animal is %s&quot; % animals[5])
 </code></pre>
 ]]></content>
     </entry>
