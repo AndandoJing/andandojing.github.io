@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Python 网络数据采集-第1章 初见网络爬虫 | Learning with Writing</title>
+<meta name="description" content="温故而知新，
+余生也无涯。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/spaindoctorwang/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新，
+余生也无涯。
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Python 网络数据采集-第1章 初见网络爬虫</h2>
+            <div class="post-date">2019-07-05</div>
+            
+            <div class="post-content">
+              <h2 id="11-网络连接"><strong>1.1 网络连接</strong></h2>
+<p>举例代码：</p>
+<pre><code>from urllib.request import urlopen
+html = urlopen(&quot;http://pythonscraping.com/pages/page1.html&quot;)
+print(html.read())
+</code></pre>
+<p>这里的urllib是python的标准库，包含了从网络请求数据，处理cokkie，甚至改变请求头和用户代理这些元数据的函数。</p>
+<p>urlopen用来打开并读取一个从网络获取的远程对象。因为它是一个非常通用的库（可以轻松读取HTML文件、图像文件，或其他任何文件流）。</p>
+<h2 id="12-beautifulsoup简介"><strong>1.2 BeautifulSoup简介</strong></h2>
+<p>BeautifulSoup通过定位HTML标签来格式化和组织复杂的网络信息，用简单易用的python对象为我们展现XML结构信息。
+举例代码：</p>
+<pre><code>from urllib.request import urlopen
+from bs4 import BeautifulSoup
+html = urlopen(&quot;http://pythonscraping.com/pages/page1.html&quot;)
+bsObj = BeautifulSoup(html.read())
+print(bsObj.h1)
+</code></pre>
+<p>结果：
+<code>&lt;h1&gt;An Interesting Title&lt;/h1&gt;</code></p>
+<p>结构解析：</p>
+<pre><code>- html → &lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;
+
+    - head → &lt;head&gt;&lt;title&gt;A Useful Page&lt;title&gt;&lt;/head&gt;
+
+        - title → &lt;title&gt;A Useful Page&lt;/title&gt;
+
+    - body → &lt;body&gt;&lt;h1&gt;An Int...&lt;/h1&gt;&lt;div&gt;Lorem ip...&lt;/div&gt;&lt;/body&gt;
+
+        - h1 → &lt;h1&gt;An Interesting Title&lt;/h1&gt;
+
+        - div → &lt;div&gt;Lorem Ipsum dolor...&lt;/div&gt;
+</code></pre>
+<p>可见，<code>&lt;h1&gt;</code>标签在BeautifulSoup对象bsObj结构的第二层（html-body-h1）。从对象里提取h1标签时，可以直接调用：
+<code>bsObj.h1</code>
+其他例子：
+<code>bsObj.html.body.h1</code>
+<code>bsObj.body.h1</code>
+<code>bsObj.html.h1</code></p>
+<h3 id="123-可靠的网络连接"><strong>1.2.3 可靠的网络连接</strong></h3>
+<p><code>html = urlopen(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)</code>
+可能存在的两种异常：</p>
+<ul>
+<li>网页在服务器上不存在（或者获取页面的时候出现错误）</li>
+<li>服务器不存在</li>
+</ul>
+<p>第一种错误，程序会返回HTTP错误，可能是“404 Page Not Found”，“500 Internal Server Error”等。所有类似情形，urlopen函数都会抛出“HTTPError”异常。解决方法：</p>
+<pre><code>try:
+    html = urlopen(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)
+except HTTPError as e:
+    print(e)
+    # 返回空值，中断程序，或者执行另一个方案
+else:
+    # 程序继续。注意：如果你已经在上面异常捕捉那一段代码里返回或中断（break）。
+    # 那么就不需要使用else语句了，这段代码也不会执行
+</code></pre>
+<p>第二种错误，服务器不存在（链接打不开或URL链接写错了），urlopen会返回一个None对象。这个对象与其他编程语言中的null类似。我们可以增加一个判断语句检测返回的html是不是None：</p>
+<pre><code>if html is None:
+    print(&quot;URL is not found&quot;)
+else:
+    # 程序继续
+</code></pre>
+<p>此外，也可能网页成功获取，但网页内容并非我们期望的那样。如果自己想调用的标签不存在，BeautifulSoup会返回None对象。如果再调用这个None对象下面的子标签，就会发生AttributeError错误。
+👇这行代码（nonExistentTag是虚拟的标签，BeautifulSoup对象里实际没有）：
+<code>print(bsObj.nonExistentTat)</code>
+会返回一个None对象。处理和检查这个对象十分必要。如果不检查，直接调用这个None对象的子标签，会有麻烦。
+举例；
+<code>print(bsObj.nonExistentTat.someTag)</code>
+会返回异常：
+<code>AttributeError: 'NoneType' object has no attribute 'someTag'</code></p>
+<p>解决方法：进行检查：</p>
+<pre><code>try:
+    badContent = bsObj.nonExistingTag.anotherTag
+except AttributerError as e:
+    print(&quot;Tag was not found&quot;)
+else:
+    if badContent == None:
+        print(&quot;Tag was not found&quot;)
+    else:
+        print(badContent)
+</code></pre>
+<p>结合这个检查，换一种写法写👆爬虫的代码：</p>
+<pre><code>from urllib.request import urlopen
+from urllib.error import HTTPError
+from bs4 import BeautifulSoup
+def getTitle(url):
+    try:
+        html = urlopen(url)
+    except HTTPError as e:
+        return None
+    try:
+        bsObj = BeautifulSoup(html.read())
+        title = bsObj.body.h1
+    except AttributeError as e:
+        return None
+    return title
+title = getTitle(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)
+if title == None:
+    print(&quot;Title could not be found&quot;)
+else:
+    print(title)
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/data-collection" class="tag">
+                    网络数据采集
+                  </a>
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/learn-python-the-hard-way-ex44-ji-cheng-vsbao-han">
+                  <h3 class="post-title">
+                    Learn Python the hard way-Ex44 继承vs.包含
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

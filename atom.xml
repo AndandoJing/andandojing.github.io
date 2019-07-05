@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://andandojing.github.io</id>
     <title>Learning with Writing</title>
-    <updated>2019-07-04T22:35:46.802Z</updated>
+    <updated>2019-07-05T14:02:58.257Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://andandojing.github.io"/>
     <link rel="self" href="https://andandojing.github.io/atom.xml"/>
@@ -11,6 +11,115 @@
     <logo>https://andandojing.github.io/images/avatar.png</logo>
     <icon>https://andandojing.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Learning with Writing</rights>
+    <entry>
+        <title type="html"><![CDATA[Python 网络数据采集-第1章 初见网络爬虫]]></title>
+        <id>https://andandojing.github.io/post/python-data-collection-1-chapter</id>
+        <link href="https://andandojing.github.io/post/python-data-collection-1-chapter">
+        </link>
+        <updated>2019-07-05T07:59:25.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="11-网络连接"><strong>1.1 网络连接</strong></h2>
+<p>举例代码：</p>
+<pre><code>from urllib.request import urlopen
+html = urlopen(&quot;http://pythonscraping.com/pages/page1.html&quot;)
+print(html.read())
+</code></pre>
+<p>这里的urllib是python的标准库，包含了从网络请求数据，处理cokkie，甚至改变请求头和用户代理这些元数据的函数。</p>
+<p>urlopen用来打开并读取一个从网络获取的远程对象。因为它是一个非常通用的库（可以轻松读取HTML文件、图像文件，或其他任何文件流）。</p>
+<h2 id="12-beautifulsoup简介"><strong>1.2 BeautifulSoup简介</strong></h2>
+<p>BeautifulSoup通过定位HTML标签来格式化和组织复杂的网络信息，用简单易用的python对象为我们展现XML结构信息。
+举例代码：</p>
+<pre><code>from urllib.request import urlopen
+from bs4 import BeautifulSoup
+html = urlopen(&quot;http://pythonscraping.com/pages/page1.html&quot;)
+bsObj = BeautifulSoup(html.read())
+print(bsObj.h1)
+</code></pre>
+<p>结果：
+<code>&lt;h1&gt;An Interesting Title&lt;/h1&gt;</code></p>
+<p>结构解析：</p>
+<pre><code>- html → &lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;
+
+    - head → &lt;head&gt;&lt;title&gt;A Useful Page&lt;title&gt;&lt;/head&gt;
+
+        - title → &lt;title&gt;A Useful Page&lt;/title&gt;
+
+    - body → &lt;body&gt;&lt;h1&gt;An Int...&lt;/h1&gt;&lt;div&gt;Lorem ip...&lt;/div&gt;&lt;/body&gt;
+
+        - h1 → &lt;h1&gt;An Interesting Title&lt;/h1&gt;
+
+        - div → &lt;div&gt;Lorem Ipsum dolor...&lt;/div&gt;
+</code></pre>
+<p>可见，<code>&lt;h1&gt;</code>标签在BeautifulSoup对象bsObj结构的第二层（html-body-h1）。从对象里提取h1标签时，可以直接调用：
+<code>bsObj.h1</code>
+其他例子：
+<code>bsObj.html.body.h1</code>
+<code>bsObj.body.h1</code>
+<code>bsObj.html.h1</code></p>
+<h3 id="123-可靠的网络连接"><strong>1.2.3 可靠的网络连接</strong></h3>
+<p><code>html = urlopen(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)</code>
+可能存在的两种异常：</p>
+<ul>
+<li>网页在服务器上不存在（或者获取页面的时候出现错误）</li>
+<li>服务器不存在</li>
+</ul>
+<p>第一种错误，程序会返回HTTP错误，可能是“404 Page Not Found”，“500 Internal Server Error”等。所有类似情形，urlopen函数都会抛出“HTTPError”异常。解决方法：</p>
+<pre><code>try:
+    html = urlopen(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)
+except HTTPError as e:
+    print(e)
+    # 返回空值，中断程序，或者执行另一个方案
+else:
+    # 程序继续。注意：如果你已经在上面异常捕捉那一段代码里返回或中断（break）。
+    # 那么就不需要使用else语句了，这段代码也不会执行
+</code></pre>
+<p>第二种错误，服务器不存在（链接打不开或URL链接写错了），urlopen会返回一个None对象。这个对象与其他编程语言中的null类似。我们可以增加一个判断语句检测返回的html是不是None：</p>
+<pre><code>if html is None:
+    print(&quot;URL is not found&quot;)
+else:
+    # 程序继续
+</code></pre>
+<p>此外，也可能网页成功获取，但网页内容并非我们期望的那样。如果自己想调用的标签不存在，BeautifulSoup会返回None对象。如果再调用这个None对象下面的子标签，就会发生AttributeError错误。
+👇这行代码（nonExistentTag是虚拟的标签，BeautifulSoup对象里实际没有）：
+<code>print(bsObj.nonExistentTat)</code>
+会返回一个None对象。处理和检查这个对象十分必要。如果不检查，直接调用这个None对象的子标签，会有麻烦。
+举例；
+<code>print(bsObj.nonExistentTat.someTag)</code>
+会返回异常：
+<code>AttributeError: 'NoneType' object has no attribute 'someTag'</code></p>
+<p>解决方法：进行检查：</p>
+<pre><code>try:
+    badContent = bsObj.nonExistingTag.anotherTag
+except AttributerError as e:
+    print(&quot;Tag was not found&quot;)
+else:
+    if badContent == None:
+        print(&quot;Tag was not found&quot;)
+    else:
+        print(badContent)
+</code></pre>
+<p>结合这个检查，换一种写法写👆爬虫的代码：</p>
+<pre><code>from urllib.request import urlopen
+from urllib.error import HTTPError
+from bs4 import BeautifulSoup
+def getTitle(url):
+    try:
+        html = urlopen(url)
+    except HTTPError as e:
+        return None
+    try:
+        bsObj = BeautifulSoup(html.read())
+        title = bsObj.body.h1
+    except AttributeError as e:
+        return None
+    return title
+title = getTitle(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)
+if title == None:
+    print(&quot;Title could not be found&quot;)
+else:
+    print(title)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Learn Python the hard way-Ex44 继承vs.包含]]></title>
         <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex44-ji-cheng-vsbao-han</id>
@@ -3612,124 +3721,6 @@ start()
 </ul>
 </li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Learn Python the hard way-Ex35 分支和函数]]></title>
-        <id>https://andandojing.github.io/post/learn-python-the-hard-way-ex35-fen-zhi-he-han-shu</id>
-        <link href="https://andandojing.github.io/post/learn-python-the-hard-way-ex35-fen-zhi-he-han-shu">
-        </link>
-        <updated>2019-06-17T18:27:58.000Z</updated>
-        <content type="html"><![CDATA[<p>前面学了if语句、函数、列表。</p>
-<p><strong>ex35.py的代码：</strong></p>
-<pre><code>from sys import exit
-def gold_room():
-    print(&quot;This room is full of gold. How much do you take?&quot;)
-    next = input(&quot;&gt; &quot;)
-    if &quot;0&quot; in next or &quot;1&quot; in next:
-        how_much = int(next)
-    else:
-        dead(&quot;Man, learn to type a number.&quot;)
-    if how_much &lt; 50:
-        print(&quot;nice, you're not greedy, you win!&quot;)
-        exit(0)
-    else:
-        dead(&quot;You greedy bastard!&quot;)
-
-def bear_room():
-    print(&quot;There is a bear here.&quot;)
-    print(&quot;The bear has a bunch of honey.&quot;)
-    print(&quot;The fat bear is in front of another door.&quot;)
-    print(&quot;How are you going to move the bear?&quot;)
-    bear_moved = False
-    while True:
-        next = input(&quot;&gt; &quot;)
-        if next == &quot;take honey&quot;:
-            dead(&quot;The bear looks at you then slaps your face off.&quot;)
-        elif next == &quot;taunt bear&quot; and not bear_moved:
-            print(&quot;The bear has moved from the door. You can go through it now.&quot;)
-            bear_moved = True
-        elif next == &quot;taunt bear&quot; and bear_moved:
-            dead(&quot;The bear gets pissed off and chews your leg off.&quot;)
-        elif next == &quot;open door&quot; and bear_moved:
-            gold_room()
-        else:
-            print(&quot;I got no idea what that means.&quot;)
-
-def cthulhu_room():
-    print(&quot;Here you see the great evil Cthulhu.&quot;)
-    print(&quot;He, it, whatever stares at you and you go insane.&quot;)
-    print(&quot;Do you flee for your life or eat your head?&quot;)
-    next = input(&quot;&gt; &quot;)
-    if &quot;flee&quot; in next:
-        start()
-    elif &quot;head&quot; in next:
-        dead(&quot;Well that was tasty!&quot;)
-    else:
-        cthulhu_room()
-
-def dead(why):
-    print(why, &quot;Good job!&quot;)
-    exit(0)
-def start():
-    print(&quot;You are in a dark room.&quot;)
-    print(&quot;There is a door to your right and left.&quot;)
-    print(&quot;Which one do you take?&quot;)
-    next = input(&quot;&gt; &quot;)
-    if next == &quot;left&quot;:
-        bear_room()
-    elif next == &quot;right&quot;:
-        cthulhu_room()
-    else:
-        dead(&quot;You stumble around the room until you starve.&quot;)
-
-start()
-</code></pre>
-<p><strong>while True</strong>
-其中的while True可以创建一个无限循环，如果要中途停止，需要有一个break。
-<strong>举例：</strong></p>
-<pre><code>while True:
-    name = input(‘请输入您的用户名’)
-    if name in d:
-        break
-    else:
-        print(‘您输入的用户名不存在，请重新输入’)
-        continue
-</code></pre>
-<p><strong>exit(0)的功能：</strong>
-在很多类型的操作系统里，exit(0)可以终端某个程序，其中的数字参数则用来表示程序是否是碰到错误而中断。exit(1)表示发生了错误，exit(0)表示程序是正常退出的。这和布尔逻辑0 == False正好相反。此外可以用不同的数字表示不同的错误结果，比如可以用exit(100)来表示另一种和exit(2)或exit(1)不同的错误。
-<strong>from sys import exit</strong>
-**sys.exit(n): **退出程序引发SystemExit异常，可以捕获异常执行清理工作。n默认值为0，表示正常退出，其他都是非正常退出。还可以sys.exit(“sorry, goodbye!”)，一般主程序中使用此退出。
-**os._exit(n)：**直接退出，不抛异常，不执行相关清理工作。常用在子进程的退出。
-**exit()/quit()：**抛出SystemExit异常，一般在交互式Shell中退出时使用。</p>
-<p><strong>使用isdigit()函数可以判定是否为数字。</strong>
-<strong>举例：</strong></p>
-<pre><code>next = input(“&gt; “)
-if next.isdigit():
-    how_much = int(next)
-else:
-    dead(“Man, learn to type a number.”)
-</code></pre>
-<p><strong>start()和run()的区别：</strong>
-<strong>start()：</strong>
-开始线程活动。对每一个线程对象来说它只能被调用一次，它安排对象在一个另外的单独线程中调用run()方法（而非当前所处线程）。当该方法在同一个线程对象中被调用超过一次时，会引入RuntimeError（运行时错误）。
-<strong>run()：</strong>
-代表了线程活动的方法。可以在子类中重写此方法。标准run()方法调用了传递给对象的构造函数的可调对象作为目标参数。如果有这样的参数的话，顺序和关键字参数分别从args和kargs取得。
-<strong>举例：</strong></p>
-<pre><code>import threading
-class myThread(threading.Thread):
-    def __init__(self, threadID, name, counter):
-        threading.Thread.__init__(self)
-        self.threadID = threadID
-        self.name = name
-        self.counter = counter
-    def run(self):
-        currentTreadname = threading.currentThread()
-        print(“running in”, currentTreadname)
-thread = myThread(1, “mythrd”, 1)
-thread.run()
-thread.start()
-</code></pre>
 ]]></content>
     </entry>
 </feed>
