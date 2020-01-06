@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -176,8 +176,8 @@ def start():
 
 start()
 </code></pre>
-<p><strong>while True</strong>
-其中的while True可以创建一个无限循环，如果要中途停止，需要有一个break。
+<p><strong>while True</strong><br>
+其中的while True可以创建一个无限循环，如果要中途停止，需要有一个break。<br>
 <strong>举例：</strong></p>
 <pre><code>while True:
     name = input(‘请输入您的用户名’)
@@ -187,13 +187,13 @@ start()
         print(‘您输入的用户名不存在，请重新输入’)
         continue
 </code></pre>
-<p><strong>exit(0)的功能：</strong>
-在很多类型的操作系统里，exit(0)可以终端某个程序，其中的数字参数则用来表示程序是否是碰到错误而中断。exit(1)表示发生了错误，exit(0)表示程序是正常退出的。这和布尔逻辑0 == False正好相反。此外可以用不同的数字表示不同的错误结果，比如可以用exit(100)来表示另一种和exit(2)或exit(1)不同的错误。
-<strong>from sys import exit</strong>
-**sys.exit(n): **退出程序引发SystemExit异常，可以捕获异常执行清理工作。n默认值为0，表示正常退出，其他都是非正常退出。还可以sys.exit(“sorry, goodbye!”)，一般主程序中使用此退出。
-**os._exit(n)：**直接退出，不抛异常，不执行相关清理工作。常用在子进程的退出。
+<p><strong>exit(0)的功能：</strong><br>
+在很多类型的操作系统里，exit(0)可以终端某个程序，其中的数字参数则用来表示程序是否是碰到错误而中断。exit(1)表示发生了错误，exit(0)表示程序是正常退出的。这和布尔逻辑0 == False正好相反。此外可以用不同的数字表示不同的错误结果，比如可以用exit(100)来表示另一种和exit(2)或exit(1)不同的错误。<br>
+<strong>from sys import exit</strong><br>
+**sys.exit(n): **退出程序引发SystemExit异常，可以捕获异常执行清理工作。n默认值为0，表示正常退出，其他都是非正常退出。还可以sys.exit(“sorry, goodbye!”)，一般主程序中使用此退出。<br>
+**os._exit(n)：**直接退出，不抛异常，不执行相关清理工作。常用在子进程的退出。<br>
 **exit()/quit()：**抛出SystemExit异常，一般在交互式Shell中退出时使用。</p>
-<p><strong>使用isdigit()函数可以判定是否为数字。</strong>
+<p><strong>使用isdigit()函数可以判定是否为数字。</strong><br>
 <strong>举例：</strong></p>
 <pre><code>next = input(“&gt; “)
 if next.isdigit():
@@ -201,11 +201,11 @@ if next.isdigit():
 else:
     dead(“Man, learn to type a number.”)
 </code></pre>
-<p><strong>start()和run()的区别：</strong>
-<strong>start()：</strong>
-开始线程活动。对每一个线程对象来说它只能被调用一次，它安排对象在一个另外的单独线程中调用run()方法（而非当前所处线程）。当该方法在同一个线程对象中被调用超过一次时，会引入RuntimeError（运行时错误）。
-<strong>run()：</strong>
-代表了线程活动的方法。可以在子类中重写此方法。标准run()方法调用了传递给对象的构造函数的可调对象作为目标参数。如果有这样的参数的话，顺序和关键字参数分别从args和kargs取得。
+<p><strong>start()和run()的区别：</strong><br>
+<strong>start()：</strong><br>
+开始线程活动。对每一个线程对象来说它只能被调用一次，它安排对象在一个另外的单独线程中调用run()方法（而非当前所处线程）。当该方法在同一个线程对象中被调用超过一次时，会引入RuntimeError（运行时错误）。<br>
+<strong>run()：</strong><br>
+代表了线程活动的方法。可以在子类中重写此方法。标准run()方法调用了传递给对象的构造函数的可调对象作为目标参数。如果有这样的参数的话，顺序和关键字参数分别从args和kargs取得。<br>
 <strong>举例：</strong></p>
 <pre><code>import threading
 class myThread(threading.Thread):

@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -111,10 +111,10 @@
               </div>
             
             <div class="post-content">
-              <p><strong>类class和对象object的区别：</strong>
-<strong>举例：</strong>
-鱼是一个类class，泥鳅是一个类class，一只叫小方的泥鳅是一个对象object。
-这里的小方其实是泥鳅的一个实例instance，泥鳅也是鱼的一个实例instance。使用了这个实例之后，它就会变成对象object。
+              <p><strong>类class和对象object的区别：</strong><br>
+<strong>举例：</strong><br>
+鱼是一个类class，泥鳅是一个类class，一只叫小方的泥鳅是一个对象object。<br>
+这里的小方其实是泥鳅的一个实例instance，泥鳅也是鱼的一个实例instance。使用了这个实例之后，它就会变成对象object。<br>
 所以：小方是泥鳅的成员，泥鳅是鱼的成员。对象属于某个类，这个类又属于另一个类。</p>
 <p><strong>ex42.py代码（用于阅读练习）：</strong></p>
 <pre><code>##Animal is-a object (yes, sort of confusing) look at the extra credit
@@ -206,7 +206,7 @@ harry = Halibut()
 &gt;&gt;&gt; little_dog.run()
 running…
 </code></pre>
-<p>对于Dog来说，Animal就是它的父类，对于Animal来说，Dog就是它的子类。
+<p>对于Dog来说，Animal就是它的父类，对于Animal来说，Dog就是它的子类。<br>
 子类获得了父类的全部功能。Dog()里继承了run()函数，可以给自己的实例里直接用。</p>
 <p><strong>如果子类和父类定义的时候都有个run()，会怎样？</strong></p>
 <pre><code>class Animal(object):
@@ -226,7 +226,7 @@ Cat is running…
 <ol start="4">
 <li>使用列表和字典创建一些新的一对多的“has-many”的关系。查看 <strong>“多重继承multiple inheritance”</strong> 的资料，尽量避免这种用法。</li>
 </ol>
-<p><strong>多重继承：子类有多个父类。</strong>
+<p><strong>多重继承：子类有多个父类。</strong><br>
 多重继承来说，使用super()只会调用第一个父类的属性方法，如果想要调用特定父类的构造器智能使用父类名<code>.__init__</code>方式。</p>
 <p><strong>举例：</strong></p>
 <pre><code>class Human:
@@ -286,18 +286,18 @@ tom male 88
 <li>按顺序继承，哪个父类在最前面且它又有自己的构造函数，就继承它的构造函数。</li>
 <li>如果最前面第一个父类没有构造函数，则继承第2个的构造函数，第2个没有的话，再往后着，以此类推。</li>
 </ol>
-<p><strong>常见问题：</strong>
-<strong>self.pet = None的作用是什么？</strong>
+<p><strong>常见问题：</strong><br>
+<strong>self.pet = None的作用是什么？</strong><br>
 确保类的self.pet属性被设置为None。</p>
-<p><code>super(Employee, self).__init__(name)</code><strong>的作用是什么？</strong>
-<strong>函数super()</strong>
-<strong>用来实现类的继承，可以把父类的<code>__init__</code>方法运行起来。</strong>
-语法：super(type[, object-or-type])
-type--类
-object-or-type--类，一般是self
-<strong>作用：</strong>
-用来解决多重继承问题。
-python3中可以直接用super().xxx代替super(Class, self).xxx
+<p><code>super(Employee, self).__init__(name)</code><strong>的作用是什么？</strong><br>
+<strong>函数super()</strong><br>
+<strong>用来实现类的继承，可以把父类的<code>__init__</code>方法运行起来。</strong><br>
+语法：super(type[, object-or-type])<br>
+type--类<br>
+object-or-type--类，一般是self<br>
+<strong>作用：</strong><br>
+用来解决多重继承问题。<br>
+python3中可以直接用super().xxx代替super(Class, self).xxx<br>
 <strong>举例：</strong></p>
 <pre><code>class A:
     def add(self, x):
@@ -317,15 +317,15 @@ b.add(2)   #3
         ##Employee has-a salary
         self.salary = salary
 </code></pre>
-<p>这里的<code>super(Employee, self).__init__(name)</code>是指：
+<p>这里的<code>super(Employee, self).__init__(name)</code>是指：<br>
 首先找到Employee的父类（也就是Person类），然后把类Employee的对象转换为类Person的对象</p>
-<p><strong>梳理object对象、class类的关系：</strong>
+<p><strong>梳理object对象、class类的关系：</strong><br>
 <strong>举例：</strong></p>
 <pre><code>class Student(object):
     pass
 </code></pre>
 <p>这里Student是一个类，(objcet)表示该类从哪个类总继承下来的，(object)类是所有类都会继承的类。</p>
-<p>#定义好了类，就可以通过Student创建处Student的实例：
+<p>#定义好了类，就可以通过Student创建处Student的实例：<br>
 <code>student = Student()</code></p>
 <p>#因为类class起到模版作用，因此在创建实例时，要把我们认为必须绑定的属性强制填写进去，需要用到__init__方法。这里Student类中要写name和score等属性：</p>
 <pre><code>class Student(object):
@@ -333,7 +333,7 @@ b.add(2)   #3
         self.name = name    
         self.score = score
 </code></pre>
-<p>#<code>__init__</code>方法的第一参数永远是<code>self</code>，表示创建的类实例本身，把属性绑定到<code>self</code>等于绑定到实例本身。
+<p>#<code>__init__</code>方法的第一参数永远是<code>self</code>，表示创建的类实例本身，把属性绑定到<code>self</code>等于绑定到实例本身。<br>
 #<code>__init__</code>方法在创建实例时，不能传入空的参数，必须传入与<code>__init__</code>方法匹配的参数。但<code>self</code>不需要传。</p>
 <pre><code>&gt;&gt;&gt;student = Student(“Hugh”, 99)
 &gt;&gt;&gt;student.name
@@ -355,7 +355,7 @@ b.add(2)   #3
 Hugh: 99
 </code></pre>
 <p>从外部看Student类，只需要知道创建实例需要给出name和score，如何打印，都是在Student类的内部定义的。这些数据和逻辑被封装起来了，调用很容易，但却不知道内部实现的细节。</p>
-<p>如果要让内部属性不被外部访问，可以把属性的名称前加上<code>__</code>，python中，<strong>实例的变量名如果以<code>__</code>开头，就变成了一个私有变量private，只有内部可以访问，外部不能访问。</strong>
+<p>如果要让内部属性不被外部访问，可以把属性的名称前加上<code>__</code>，python中，<strong>实例的变量名如果以<code>__</code>开头，就变成了一个私有变量private，只有内部可以访问，外部不能访问。</strong><br>
 如果这样，可以改一下Student类：</p>
 <pre><code>class Student(object):
     def __init__(self, name, score):
@@ -371,7 +371,7 @@ Traceback (most recent call last):
     File “&lt;stdin&gt;”, line 1, in &lt;module&gt;
 AttributeError: ‘Student’ object has no attribute ‘__name’
 </code></pre>
-<p>这样就确保了外部代码不能随意修改对象内部的状态，这样通过访问限制的保护，代码更加健壮。
+<p>这样就确保了外部代码不能随意修改对象内部的状态，这样通过访问限制的保护，代码更加健壮。<br>
 如果外部代码要获取name和score怎么办呢？可以给Student类增加get_name和get_score这样的方法：</p>
 <pre><code>class Student(object):
     …
@@ -386,8 +386,8 @@ AttributeError: ‘Student’ object has no attribute ‘__name’
     def set_score(self, score):
         self.__score = score
 </code></pre>
-<p><strong>⚠️注意：</strong>
-python中，变量名类似<code>__xxx__</code>的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以不能用<code>__name__</code>和<code>__score__</code>这样的变量名。
+<p><strong>⚠️注意：</strong><br>
+python中，变量名类似<code>__xxx__</code>的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以不能用<code>__name__</code>和<code>__score__</code>这样的变量名。<br>
 如果看到一个下划线开头的实例变量名，比如<code>_name</code>，<strong>这样的实例变量外部是可以访问的，但是按照约定俗成的规定，它的意思是“虽然我可以被访问，但是请把我当作私有变量，不要随意访问”。</strong></p>
 <p>封装的另一个好处是可以随时给Student类增加新的方法，比如get_grade：</p>
 <pre><code>class Student(object):

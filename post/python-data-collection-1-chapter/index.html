@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -117,7 +117,7 @@ print(html.read())
 <p>这里的urllib是python的标准库，包含了从网络请求数据，处理cokkie，甚至改变请求头和用户代理这些元数据的函数。</p>
 <p>urlopen用来打开并读取一个从网络获取的远程对象。因为它是一个非常通用的库（可以轻松读取HTML文件、图像文件，或其他任何文件流）。</p>
 <h2 id="12-beautifulsoup简介"><strong>1.2 BeautifulSoup简介</strong></h2>
-<p>BeautifulSoup通过定位HTML标签来格式化和组织复杂的网络信息，用简单易用的python对象为我们展现XML结构信息。
+<p>BeautifulSoup通过定位HTML标签来格式化和组织复杂的网络信息，用简单易用的python对象为我们展现XML结构信息。<br>
 举例代码：</p>
 <pre><code>from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -125,7 +125,7 @@ html = urlopen(&quot;http://pythonscraping.com/pages/page1.html&quot;)
 bsObj = BeautifulSoup(html.read())
 print(bsObj.h1)
 </code></pre>
-<p>结果：
+<p>结果：<br>
 <code>&lt;h1&gt;An Interesting Title&lt;/h1&gt;</code></p>
 <p>结构解析：</p>
 <pre><code>- html → &lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;
@@ -140,14 +140,14 @@ print(bsObj.h1)
 
         - div → &lt;div&gt;Lorem Ipsum dolor...&lt;/div&gt;
 </code></pre>
-<p>可见，<code>&lt;h1&gt;</code>标签在BeautifulSoup对象bsObj结构的第二层（html-body-h1）。从对象里提取h1标签时，可以直接调用：
-<code>bsObj.h1</code>
-其他例子：
-<code>bsObj.html.body.h1</code>
-<code>bsObj.body.h1</code>
+<p>可见，<code>&lt;h1&gt;</code>标签在BeautifulSoup对象bsObj结构的第二层（html-body-h1）。从对象里提取h1标签时，可以直接调用：<br>
+<code>bsObj.h1</code><br>
+其他例子：<br>
+<code>bsObj.html.body.h1</code><br>
+<code>bsObj.body.h1</code><br>
 <code>bsObj.html.h1</code></p>
 <h3 id="123-可靠的网络连接"><strong>1.2.3 可靠的网络连接</strong></h3>
-<p><code>html = urlopen(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)</code>
+<p><code>html = urlopen(&quot;http://www.pythonscraping.com/pages/page1.html&quot;)</code><br>
 可能存在的两种异常：</p>
 <ul>
 <li>网页在服务器上不存在（或者获取页面的时候出现错误）</li>
@@ -169,13 +169,13 @@ else:
 else:
     # 程序继续
 </code></pre>
-<p>此外，也可能网页成功获取，但网页内容并非我们期望的那样。如果自己想调用的标签不存在，BeautifulSoup会返回None对象。如果再调用这个None对象下面的子标签，就会发生AttributeError错误。
-👇这行代码（nonExistentTag是虚拟的标签，BeautifulSoup对象里实际没有）：
-<code>print(bsObj.nonExistentTat)</code>
-会返回一个None对象。处理和检查这个对象十分必要。如果不检查，直接调用这个None对象的子标签，会有麻烦。
-举例；
-<code>print(bsObj.nonExistentTat.someTag)</code>
-会返回异常：
+<p>此外，也可能网页成功获取，但网页内容并非我们期望的那样。如果自己想调用的标签不存在，BeautifulSoup会返回None对象。如果再调用这个None对象下面的子标签，就会发生AttributeError错误。<br>
+👇这行代码（nonExistentTag是虚拟的标签，BeautifulSoup对象里实际没有）：<br>
+<code>print(bsObj.nonExistentTat)</code><br>
+会返回一个None对象。处理和检查这个对象十分必要。如果不检查，直接调用这个None对象的子标签，会有麻烦。<br>
+举例；<br>
+<code>print(bsObj.nonExistentTat.someTag)</code><br>
+会返回异常：<br>
 <code>AttributeError: 'NoneType' object has no attribute 'someTag'</code></p>
 <p>解决方法：进行检查：</p>
 <pre><code>try:

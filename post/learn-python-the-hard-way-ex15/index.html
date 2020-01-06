@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -121,9 +121,9 @@ file_again = input(&quot;&gt;&quot;)
 txt_again = open(file_again)
 print(txt_again.read())
 </code></pre>
-<p>这里出现了新的命令open，简单来说就是open接受一个参数，并返回一个值，我们可以将这个值赋予一个变量。
+<p>这里出现了新的命令open，简单来说就是open接受一个参数，并返回一个值，我们可以将这个值赋予一个变量。<br>
 如果写一个硬命令，要求open某一个特定的文件，会破坏打开的可变性，所以进行使用变量来使得open任何一个文件（当然还是要输入文件名，但不是特定某一个了）</p>
-<p><strong>🤔思考：这样可以，cd进目录然后ls浏览目前目录内已有文件，来先知道有哪些再选取，但不够自动化
+<p><strong>🤔思考：这样可以，cd进目录然后ls浏览目前目录内已有文件，来先知道有哪些再选取，但不够自动化<br>
 另一个新的命令是txt.read，这是在让txt执行read命令，不需要其他新参数</strong></p>
 <p>在执行这个ex15.py文件时，终端输入python ex15.py ex15_sample.txt</p>
 <p>这里是给每一行增加了注释的版本：</p>
@@ -218,8 +218,8 @@ print(txt_again.read())
 txt.close()
 txt_again.close()
 </code></pre>
-<p><strong>🤔思考：input和argv脚本都能够达到效果，那么哪种更好？</strong>
-兼容性上来说，如果遇到文件名有空格的时候，input更好操作。用参数需要为文件名添加引号，防止程序误认为是两个参数。
+<p><strong>🤔思考：input和argv脚本都能够达到效果，那么哪种更好？</strong><br>
+兼容性上来说，如果遇到文件名有空格的时候，input更好操作。用参数需要为文件名添加引号，防止程序误认为是两个参数。<br>
 但是程序执行速度来说，input需要人工两次录入（执行一次，文件名一次），会增加程序运行时间。</p>
 
             </div>

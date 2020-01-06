@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Python网络数据采集-第2章 复杂HTML解析 | Learning with Writing</title>
+<meta name="description" content="温故而知新，
+余生也无涯。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://andandojing.github.io">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
+        <h1 class="site-title">Learning with Writing</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/spaindoctorwang/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新，
+余生也无涯。
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://andandojing.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Python网络数据采集-第2章 复杂HTML解析</h2>
+            <div class="post-date">2019-07-05</div>
+            
+            <div class="post-content">
+              <h2 id="21-不是一直都要用锤子"><strong>2.1 不是一直都要用锤子</strong></h2>
+<p>不要直接用代码硬性抽取网页数据，因为如果管理员对网站进行了修改，代码就会失效，进而影响整个爬虫。</p>
+<p>解决办法：</p>
+<ul>
+<li>寻找“打印此页”的链接，或者看看网站是否有HTML样式更友好的移动版。</li>
+<li>寻找隐藏在JavaScript文件里的信息。有些内嵌信息会在JavaScript里。</li>
+<li>网页标题有时可以直接从URL链接里获取。</li>
+<li>查找是否有其他网站提供相同的数据。</li>
+</ul>
+<h2 id="22-再端一碗beautifulsoup"><strong>2.2 再端一碗BeautifulSoup</strong></h2>
+<p>这一节介绍通过属性查找标签的方法，标签组的使用，以及标签解析树的导航过程。</p>
+<p>基本上，每个网站都会有层叠样式表（Cascading Style Sheet，CSS）。CSS可以让HTML元素呈现出差异化，是那些具有完全相同修饰的元素呈现出不同的样式。<br>
+举例一些标签：<br>
+<code>&lt;span class=&quot;green&quot;&gt;&lt;/span&gt;</code><br>
+<code>&lt;span class=&quot;red&quot;&gt;&lt;/span&gt;</code><br>
+网络爬虫可以通过class属性的值，轻松区分两种不同的标签。例如，可以用BeautifulSoup抓取网页上所有的红色文字，而绿色的则一个都不抓。因为CSS通过属性准确呈现网站的样式。大多数新式网站上的class和id属性资源都非常丰富。</p>
+<p>举例：<br>
+创建一个网络爬虫来抓取http://www.pythonscraping.com/pages/warandpeace.html网页。<br>
+这个页面中，小说人物的对话内容都是红色的，人物名称都是绿色的。可以看到网页源代码里的span标签，引用了对应的CSS属性：</p>
+<pre><code>&quot;&lt;span class=&quot;red&quot;&gt;Heavens! what a virulent attack!&lt;/span&gt;&quot; replied &lt;span class=&quot;green&quot;&gt;the prince&lt;/span&gt;, not in the least disconcerted by this reception.
+</code></pre>
+<p>我们可以抓出整个页面，然后创建一个BeautifulSoup对象，和第一章使用的程序类似：</p>
+<pre><code>from urllib.request import urlopen
+from bs4 import BeautifulSoup
+html = urlopen(&quot;http://www.pythonscraping.com/pages/warandpeace.html&quot;)
+bsObj = BeautifulSoup(html)
+</code></pre>
+<p>通过BeautifulSou对象，可以用findAll函数抽取只包含在<code>&lt;span class=&quot;green&quot;&gt;&lt;/span&gt;</code>标签里的文字，这样就回得到一个人物名称的python列表（findAll是一个非常灵活的函数，很实用）：</p>
+<pre><code>nameList = bsObj.findAll(&quot;span&quot;, {&quot;class&quot;:&quot;green&quot;})
+for name in nameList:
+    print(name.get_text())
+</code></pre>
+<p>之前调用<code>bsObj.tagName</code>只能获取页面中的第一个指定的标签。现在调用<code>bsObj.findAll(tagName, tagAttributes)</code>可以获取页面中所有指定的标签，不再只是第一个。</p>
+<p>🤔<strong>什么时候使用<code>get_text()</code>与什么时候应该保留标签？</strong></p>
+<p><code>.get_text()</code>会把正在处理的HTML文档中所有标签都清除，然后返回一个只包含文字的字符串。假如正在处理一个包含许多超链接、段落和标签的大段源代码，则<code>.get_text()</code>会把这些超链接、段落和标签都清除掉，只剩下一串不带标签的文字。</p>
+<p>用BeautifulSoup对象查找想要的信息，比直接在HTML文本中查找信息要简单得多。通常在准备打印、存储和操作数据时，应该最后才使用<code>.get_text()</code>。一般情况下，应该尽可能保留HTML文档的标签结构。</p>
+<h3 id="221-beautifulsoup的find和findall"><strong>2.2.1 BeautifulSoup的find()和findAll()</strong></h3>
+<p>BeautifulSoup对<code>find()</code>和<code>findAll()</code>的定义是：</p>
+<pre><code>findAll(tag, attributes, recursive, text, limit, keywords)
+find(tag, attributes, recursive, text, keywords)
+</code></pre>
+<ol>
+<li>
+<p><strong>标签参数tag</strong>，可以传一个或多个标签的名称组成python列表做标签参数。举例，👇代码将返回一个包含HTML文档中所有标题标签的列表：<br>
+<code>.findAll({&quot;h1&quot;,&quot;h2&quot;,&quot;h3&quot;,&quot;h4&quot;,&quot;h5&quot;,&quot;h6&quot;})</code></p>
+</li>
+<li>
+<p><strong>属性参数attributes</strong>是用一个python字典封装一个标签的若干属性和对应的属性值。举例，👇函数会返回HTML文档里红色与绿色两种颜色的span标签：<br>
+<code>.findAll(&quot;span&quot;, {&quot;class&quot;:{&quot;green&quot;, &quot;red&quot;}})</code></p>
+</li>
+<li>
+<p><strong>递归参数recursive</strong>是一个布尔变量。如果recursive设置为True，findAll会根据要求去查找标签参数的所有子标签，以及子标签的子标签。如果recursive设置为False，findAll就只查找文档的一级标签。findAll默认是支持递归查找的（recursive默认值是True）；一般情况下这个参数不用设置，除非真的知道自己需要什么信息，而且抓取速度很重要，那样可以设置递归参数。</p>
+</li>
+<li>
+<p><strong>文本参数text</strong>是用标签的文本内容去匹配，而不是用标签的属性。加入我们想查找前面网页中包含“the prince&quot;内容的标签数量，我们可以把之前的findAll方法换成👇代码：</p>
+</li>
+</ol>
+<pre><code>nameList = bsObj.findAll(text=&quot;the prince&quot;)
+print(len(nameList))
+</code></pre>
+<p>输出结果为&quot;7&quot;。</p>
+<ol start="5">
+<li>
+<p><strong>范围限制参数limit</strong>，只用于findAll方法。find()等价于findAll的limit等于1时的情形。如果只对网页中获取的前x项结果感兴趣，就可以设置它。但是要注意，这个参数设置之后，获得的前几项结果是按照网页上的顺序排序的，未必是自己想要的那前几项。</p>
+</li>
+<li>
+<p><strong>关键词参数keyword</strong>，可以选择哪些具有指定属性的标签。例如：</p>
+</li>
+</ol>
+<pre><code>allText = bsObj.findAll(id=&quot;text&quot;)
+print(allText[0].get_text())
+</code></pre>
+<p><strong>关键词参数的注意事项</strong><br>
+虽然这个keywords在一些场景中很有用，但在BeautifuoSoup中是技术冗余功能。可以用其他方式完成相同的任务。<br>
+例如，👇两行代码是完全一样的：</p>
+<pre><code>bsObj.findAll(id=&quot;text&quot;)
+bsObj.findAll(&quot;&quot;, {&quot;id&quot;:&quot;text&quot;})
+</code></pre>
+<p>用keyword偶尔会出现问题，尤其是在用class属性查找标签的时候。因为class是python中受保护的关键字/保留字。在python中不能当作变量或参数名使用。<br>
+例如，👇代码会因为误用class保留字产生语法错误：</p>
+<pre><code>bsObj.findAll(class=&quot;green&quot;)
+</code></pre>
+<p>但可以用BeautifulSoup提供的臃肿方案，在class后面增加一个下划线解决：</p>
+<pre><code>bsObj.findAll(class_=&quot;green&quot;)
+</code></pre>
+<p>或者，用属性参数把class用引号包起来：</p>
+<pre><code>bsObj.findAll(&quot;&quot;,{&quot;class&quot;:&quot;green&quot;})
+</code></pre>
+<p>虽然之前通过标签参数tag可以把标签列表传到<code>.findAll()</code>里获取一列标签，这是一个“或”关系的过滤器。如果标签列表很长，就需要很长时间。而关键词参数keyword可以用“与”关系的过滤器来简化工作。</p>
+<h3 id="222-其他beautifulsoup对象"><strong>2.2.2 其他BeautifulSoup对象</strong></h3>
+<p>至此已经介绍了BeautifulSoup库里的两种对象：</p>
+<ul>
+<li>BeautifulSoup对象<br>
+前面代码示例中的bsObj</li>
+<li>标签Tag对象<br>
+BeautifulSoup对象通过find和findAll，或者直接调用子标签获取的一列对象或单个对象。就像：<br>
+<code>bsObj.div.h1</code></li>
+</ul>
+<p>此外BeautifulSoup库里还有两种对象，虽然不常用，但作为了解：</p>
+<ul>
+<li>NavigableString对象<br>
+用来表示标签里的文字，不是标签（有些函数可以操作和生成NavigableString对象，而不是标签对象）。</li>
+<li>Comment对象<br>
+用来查找HTML文档的注释标签，<code>&lt;!-- 像这样 --&gt;</code></li>
+</ul>
+<p>👆这四个对象是BeautifulSoup库使用时会遇到的对象。</p>
+<h3 id="223-导航树"><strong>2.2.3 导航树</strong></h3>
+<p>findAll函数通过标签的名称和属性来查找标签。如果要通过标签在文档中的位置来查找标签，可以用导航树（Navigating Trees）。在第一章中，有用过单一方向进行BeautifulSoup标签树的导航：<br>
+<code>bsObj.tag.subTag.anotherSubTag</code></p>
+<p>这里使用虚拟的在线购物网站http://www.pythonscraping.com/pages/page3.html作为要抓取的示例网页，演示HTML导航树的纵向和横向导航。<br>
+<img src="evernotecid://8C7EF702-D9CB-48E0-B49A-EE35BA1EEF42/appyinxiangcom/22704491/ENResource/p3" alt="9bc8c2a8a4c9505c9acb886297d8dcef.png" loading="lazy"><br>
+这个HTML页面可以映射成一棵树（为了简洁，省略一些标签）如下👇：</p>
+<ul>
+<li>html
+<ul>
+<li>body
+<ul>
+<li>div.wrapper
+<ul>
+<li>h1</li>
+<li>div.content</li>
+<li>table#giftList
+<ul>
+<li>tr
+<ul>
+<li>th</li>
+<li>th</li>
+<li>th</li>
+<li>th</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tr.gift#gift1
+<ul>
+<li>td</li>
+<li>td
+<ul>
+<li>span.excitingNote</li>
+</ul>
+</li>
+<li>td</li>
+<li>td
+<ul>
+<li>img</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>......其他表格行省略</li>
+</ul>
+</li>
+<li>div.fotter</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>在后面几节中，仍然以这个HTML标签结构为例。</p>
+<p><strong>1.处理子标签和其他后代标签</strong><br>
+BeautifulSoup库里，子标签children就是父标签的下一级，后代标签descendants是指一个父标签下面所有级别的标签。例如tr标签是tabel标签的子标签，而tr、th、td、img、span都是tabel标签的后代标签。所有子标签都是后代标签，但不是所有后代标签都是子标签。</p>
+<p>一般情况下，<strong>BeautifulSoup函数总是处理当前标签的后代标签</strong>。例如，bsObj.body.h1选择了body标签后代里的<strong>第一个h1标签</strong>，不会去找body外面的标签。</p>
+<p>类似地，bsObj.div.findAll(&quot;img&quot;)会找出文档中<strong>第一个div标签</strong>，然后获取这个div后代里所有的img标签列表。</p>
+<p>如果只想找出子标签，可以用.children标签：</p>
+<pre><code>from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+html = urlopen(&quot;http://www.pythonscraping.com/pages/page3.html&quot;)
+bsObj = BeautifulSoup(html)
+
+for child in bsObj.find(&quot;table&quot;,{&quot;id&quot;:&quot;giftList&quot;}).children:
+    print(child)
+</code></pre>
+<p>这段代码会打印giftList表格中所有产品的数据行。如果用descendants()函数而不是children()函数，那么就会有二十几个标签打印出来，包括img标签，span标签，每个td标签。<br>
+区分子标签和后代标签，并合理使用。</p>
+<p><strong>2.处理兄弟标签</strong><br>
+BeautifulSoup的next_siblings()函数可以让收集表格数据成为简单的事情，尤其是处理带标题行的表格：</p>
+<pre><code>from urllib.request import urlopen
+from bs4 import BeautifulSoup
+html = urlopen(&quot;http://www.pythonscraping.com/pages/page3.html&quot;)
+bsObj = BeautifulSoup(html)
+
+for sibling in bsObj.find(&quot;table&quot;,{&quot;id&quot;:&quot;giftList&quot;}).tr.next_siblings:
+    print(sibling)
+</code></pre>
+<p>👆这段代码会打印产品列表里的所有行的产品，第一行表格标题除外。<br>
+<strong>标题行被跳过的原因：</strong></p>
+<ul>
+<li>对象不能把自己作为兄弟标签。获取一个标签的兄弟标签，不会包括这个标签本身。</li>
+<li>这个函数只调用后面的兄弟标签。因此，选择标签行然后调用next_siblings，可以选择表格中除了标题行以外的所有行。</li>
+</ul>
+<p><strong>让标签的选择更具体</strong><br>
+虽然<code>bsObj.table.tr</code>或者<code>bsObj.tr</code>就可以直接获取表格第一行。但是更倾向采用以下形式来避免各种意外：<br>
+<code>bsObj.find(&quot;table&quot;,{&quot;id&quot;:&quot;giftList&quot;}).tr</code><br>
+即便页面只有一个表格（或其他目标标签），只用标签也很容易丢失细节。此外，页面布局会变动，标签可能会从第一行更换到其他行。想让爬虫更稳定，最好还是让标签的选择更加具体。如果有属性，就利用标签的属性。</p>
+<p>如果很容易能找到一组兄弟标签中的最后一个标签，那么<code>previous_siblings</code>函数也会很有用。<br>
+类似的函数：<code>next_siblings</code>,<code>previous_siblings</code>,<code>next_sibling</code>,<code>previous_sibling</code><br>
+后两个返回的是单个标签，前两个返回一组标签。</p>
+<p><strong>3.父标签处理</strong><br>
+一般抓取网页，会从最上层标签往下找。偶尔需要用BeautifulSoup的父标签查找函数，parent和parents。举例：</p>
+<pre><code>from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+html = urlopen(&quot;http://www.pythonscraping.com/pages/page3.html&quot;)
+bsObj = BeautifulSoup(html)
+print(bsObj.find(&quot;img&quot;,{&quot;src&quot;:&quot;../img/gifts/img1.jpg&quot;
+                    }).parent.previous_sibling.get_text())
+</code></pre>
+<p>👆这段代码会打印../img/gifts/img1.jpg这个图片对应商品的价格（示例中价格是$15.00）。</p>
+<p>它的实现路径：</p>
+<ul>
+<li>
+<tr>
+  - <td>
+  - <td>
+  - <td>(3)
+      - "$15.00"(4)
+  - <td>(2)
+      - <img src="../img/gifts/img1.jpg">(1)
+</li>
+</ul>
+<p>(1)选择图片标签src=&quot;../img/gifts/img1.jpg&quot;;<br>
+(2)选择图片标签的父标签（示例中是<td>标签）；<br>
+(3)选择<td>标签的前一个兄弟标签previous_sibling（示例中是包含美元价格的<td>标签）<br>
+(4)选择标签中的文字&quot;$15.00&quot;。</p>
+<h2 id="23-正则表达式"><strong>2.3 正则表达式</strong></h2>
+<p>正则表达式regular expression，简写regex<br>
+正则表达式可以识别正则字符串regular string。定义简单来说就是“如果你给我的字符串符合规则，我就返回它”/“如果字符串不符合规则，我就忽略它”。对于要求快速浏览大文档，查找电话号码和邮箱地址之类的字符串非常方便。</p>
+<p><strong>什么是正则字符串？</strong><br>
+就是任意可以用一系列先行规则构成的字符串。举例：</p>
+<ol>
+<li>字母“a“至少出现一次；</li>
+<li>后面跟着字母”b”重复5次；</li>
+<li>后面再跟字母“c”重复任意偶数次；</li>
+<li>最后一位是字母“d”，也可以没有。</li>
+</ol>
+<p>满足上面规则的字符串有很多种，比如“aaaabbbbbccccd”，“aabbbbbcc”等。</p>
+<p>正则表达式就是表达这组规则的缩写。👆规则的正则表达式如下：</p>
+<p><code>aa*bbbbb(cc)*(d | )</code></p>
+<p>拆分理解：</p>
+<ul>
+<li><code>aa*</code><br>
+<code>a</code>后面跟着的<code>a*</code>表示“重复任意次a，包括0次”。这样就可以保证字母a至少出现一次。</li>
+<li><code>bbbbb</code><br>
+5次b</li>
+<li><code>(cc)*</code><br>
+任意偶数个字符都可以编组，这个规则是用括号两个c，然后后面跟一个星号，表示有任意次两个c（也可以是0次）。</li>
+<li><code>(d|)</code><br>
+增加一个竖线|在表达式里表示“这个或那个”。本例是表示“增加一个后面跟着空格的d，或者只有一个空格”。这样就可以保证字符串的结尾最多是一个后面跟着空格的d。</li>
+</ul>
+<p>虽然不同邮箱服务器的邮箱地址具体规则不同，但有一些通用的。<br>
+👇以识别邮箱地址为例：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>规则</strong></th>
+<th style="text-align:left"><strong>正则表达式</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1.邮箱地址的第一部分至少包括一种内容：大写字母、小写字母、数字0-9、点号<code>.</code>、加号<code>+</code>、或下划线<code>_</code></td>
+<td style="text-align:left"><code>[A-Za-z0-9\._+]+</code>：“A-Z”表示“任意A-Z的大写字母”。所有啃呢个的序列和符号放在中括号<code>[]</code>里（不是小括号）表示“括号中的符号里任何一个”。最后的+表示“这些符号都可以出现多次，且至少出现1次”。</td>
+</tr>
+<tr>
+<td style="text-align:left">2.邮箱地址会包含一个@符号</td>
+<td style="text-align:left"><code>@</code>:这份符号很直接。@符号必须出现在中间位置，有且仅有1次</td>
+</tr>
+<tr>
+<td style="text-align:left">3.邮箱地址必须至少包含一个大写或小写字母</td>
+<td style="text-align:left"><code>[A-Za-z]+</code>：可能只在域名的前半部分，符号@后面用字母，且至少一个字母</td>
+</tr>
+<tr>
+<td style="text-align:left">有一个点号<code>.</code></td>
+<td style="text-align:left"><code>\.</code>：域名钱必须有一个点号</td>
+</tr>
+<tr>
+<td style="text-align:left">邮箱地址用com、org、net、edu等结尾（这里只做演示用</td>
+<td style="text-align:left"><code>(com|org|edu|net)</code>：这样列出邮箱地址可能出现在点号后的字母序列</td>
+</tr>
+</tbody>
+</table>
+<p>把上述规则连接起来，就是完整的正则表达式：<br>
+<code>[A-Za-z0-9\._+]+@[A-Za-z]+\.(com|org|edu|net)</code></p>
+<p>动手写正则表达式的时候，最好先写一个步骤列表描述目标字符串结构。</p>
+<p><strong>正则表达式常用符号</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>符号</strong></th>
+<th style="text-align:left"><strong>含义</strong></th>
+<th style="text-align:left"><strong>例子</strong></th>
+<th style="text-align:left"><strong>匹配结果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>*</code></td>
+<td style="text-align:left">匹配前面的字符、子表达式或括号里的字符0次或多次</td>
+<td style="text-align:left"><code>a*b*</code></td>
+<td style="text-align:left">aaaaaaaa,aaabbbbb,bbbbbb</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>+</code></td>
+<td style="text-align:left">匹配前面的字符、子表达式或括号里的字符至少1次</td>
+<td style="text-align:left"><code>a+b+</code></td>
+<td style="text-align:left">aaaaaaab,aaabbbbbb,abbbbbb</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[]</code></td>
+<td style="text-align:left">匹配任意一个字符（相当于“任选一个）</td>
+<td style="text-align:left"><code>[A-Z]*</code></td>
+<td style="text-align:left">APPLE, CAPITALS, QWERTY</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>()</code></td>
+<td style="text-align:left">表达式编组（正则表达式规则里编组会有限运行</td>
+<td style="text-align:left"><code>(a*b)*</code></td>
+<td style="text-align:left">aaabaab,abaaab,ababaaaaab</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>{m,n}</code></td>
+<td style="text-align:left">匹配前面的字符、子表达式或括号里的字符m倒n次（包含m或n）</td>
+<td style="text-align:left"><code>a{2,3}b{2,3}</code></td>
+<td style="text-align:left">aabbb,aaabbb,aabb</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[^]</code></td>
+<td style="text-align:left">匹配任意一个不在中括号里的字符</td>
+<td style="text-align:left"><code>]^A-Z]*</code></td>
+<td style="text-align:left">apple,lowercase,qwerty</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>|</code></td>
+<td style="text-align:left">匹配任意一个由竖线分割的字符、子表达式（竖线，不是字母I）</td>
+<td style="text-align:left"><code>b(a|i|e)d</code></td>
+<td style="text-align:left">bad,bid,bed</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.</code></td>
+<td style="text-align:left">匹配任意单个字符（包括符号、数字和空格等）</td>
+<td style="text-align:left"><code>b.d</code></td>
+<td style="text-align:left">bad,bzd,b$d,b d</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>^</code></td>
+<td style="text-align:left">字符串开始位置的字符或子表达式</td>
+<td style="text-align:left"><code>^a</code></td>
+<td style="text-align:left">apple, asdf, a</td>
+</tr>
+<tr>
+<td style="text-align:left">反斜杠<code>\</code></td>
+<td style="text-align:left">转译字符（把特殊含义的字符转换成字面形式）</td>
+<td style="text-align:left"><code>\.\|\\</code></td>
+<td style="text-align:left"><code>.|\</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$</code></td>
+<td style="text-align:left">经常用在正则表达式的末尾，表示“从字符串的末端匹配”。如果不用它，每个正则表达式实际都带着<code>.*</code>模式，只会从字符串开头进行匹配。这个符号可以堪称是<code>^</code>符号的反义词</td>
+<td style="text-align:left"><code>[A-Z]*[a-z]*$</code></td>
+<td style="text-align:left">ABCabc, zzzyx, Bob</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>?!</code></td>
+<td style="text-align:left">“不包含”。这个奇怪的组合通常放在字符或正则表达式前面，表示字符不能出现在目标字符串里。这个符号比较难用，字符通畅会在字符串的不同部位出现。如果要在整个字符串中全部排出某个字符，就加上<code>^</code>和<code>$</code>符号</td>
+<td style="text-align:left"><code>^((?![A-Z]).)*$</code></td>
+<td style="text-align:left">no-caps-here,$ymb01s, a4e f!ne</td>
+</tr>
+</tbody>
+</table>
+<p><strong>正则表达式，并非处处正则！</strong><br>
+其他编程语言的正则表达式可能和python不同，需要注意。</p>
+<h2 id="24-正则表达式和beautifulsoup"><strong>2.4 正则表达式和BeautifulSoup</strong></h2>
+<p>抓取网页时，一般BeautifulSoup和正则表达式配合使用。大多数支持字符串参数的函数（比如<code>find(id=&quot;aTagIdHere&quot;)</code>）都可以用正则表达式实现。</p>
+<p>举例，抓取页面是http://www.pythonscraping.com/pages/page3.html。<br>
+注意观察网页上有几个商品图片——它们的源代码形式如下：<br>
+<code>&lt;img src=&quot;../img/gifts/img3.jpg&quot;&gt;</code></p>
+<p>如果我们想抓取所有图片的URL链接，非常直接的做法就是用<code>findAll(&quot;img&quot;)</code>抓取所有图片。但有个问题，有些图片是多余的（比如logo，广告），有些新式网站里会有隐藏图片，用于网页布局留白和元素对齐的空白图片，以及一些不容易察觉到的图片标签。总之，不能仅用商品图片来统计网页上所有的图片。且这些图片的布局也会变化。</p>
+<p>解决办法：直接定位那些标签来查找信息。本例中，直接通过商品图片的文件路径来查找：</p>
+<pre><code>from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+html = urlopen(&quot;http://www.pythonscraping.com/pages/page3.html&quot;)
+bsObj = BeautifulSoup(html)
+images = bsObj.findAll(&quot;img&quot;,{&quot;src&quot;:re.compile(&quot;\.\.\/img\/gifts/img.*\.jpg&quot;)})
+for image in images:
+    print(image[&quot;src&quot;])
+</code></pre>
+<p>👆这段代码会打印出图片的相对路径，都是以<code>../img/gifts/img</code>开头，以<code>jpg</code>结尾，结果如下：</p>
+<pre><code>../img/gifts/img1.jpg
+../img/gifts/img2.jpg
+../img/gifts/img3.jpg
+../img/gifts/img4.jpg
+../img/gifts/img6.jpg
+</code></pre>
+<p>正则表达式可以作为BeautifulSoup语句的任意一个参数，让你的目标元素查找工作极具灵活性。</p>
+<h2 id="25-获取属性"><strong>2.5 获取属性</strong></h2>
+<p>👆已经介绍了如何获取和过滤标签，以及获取标签里的内容。但是，在网络数据次阿吉时，经常不需要查找标签的内容，而是需要查找标签属性。比如标签<code>&lt;a&gt;</code>指向的URL链接包含在<code>href</code>属性中，或者<code>&lt;img&gt;</code>标签的图片文件包含在<code>src</code>属性中，这时获取标签属性就变得非常有用了。</p>
+<p>对于一个标签对象，可以用下面的代码获取它的全部属性：<br>
+<code>myTag.attrs</code></p>
+<p>这行代码返回的是一个python字典对象，可以获取和操作这些属性。比如要获取图片的资源位置src，可以用：<br>
+<code>myImgTag.attrs[&quot;src&quot;]</code></p>
+<h2 id="26-lambda表达式"><strong>2.6 Lambda表达式</strong></h2>
+<p>Lambda表达式本质上是一个函数，可以作为其他函数的变量使用，也就是说，一个函数不是定义成f(x,y)，而是定义成f(g(x),y)或f(g(x),h(x))的形式。</p>
+<p>BeautifulSoup允许我们把特定函数类型当作findAll函数的参数。唯一的限制条件是这些函数必须把一个标签作为参数且返回结果是布尔类型。BeautifulSoup用这个函数来评估它遇到的每个标签对象，最后把评估结果为“真”的标签保留，把其他标签剔除。</p>
+<p>例如，👇获取有两个属性的标签：</p>
+<pre><code>soup.findAll(lambda tag: len(tag.attrs) ==2)
+</code></pre>
+<p>这行代码会找出下面的标签：</p>
+<pre><code>&lt;div class=&quot;body&quot; id=&quot;content&quot;&gt;&lt;/div&gt;
+&lt;span style=&quot;color:red&quot; class=&quot;title&quot;&gt;&lt;/span&gt;
+</code></pre>
+<p>在BeautifulSoup里用Lambda表达式选择标签，是正则表达式的完美替代方案。</p>
+<h2 id="27-超越beautifulsoup"><strong>2.7 超越BeautifulSoup</strong></h2>
+<p>除了BeautifulSoup库外，还可以用其他的库。</p>
+<ul>
+<li>lxml<br>
+可以用来解析HTML和XML文档，以非常底层的实现而闻名。大部分源代码是用C语言写的。它在处理绝大多数HTML文档时速度非常快。</li>
+<li>HTML parser<br>
+python自带的解析库，不用另行安装。</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://andandojing.github.io/tag/data-collection" class="tag">
+                    网络数据采集
+                  </a>
+                
+                  <a href="https://andandojing.github.io/tag/KC2rnT7KG" class="tag">
+                    python
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://andandojing.github.io/post/python-data-collection-1-chapter">
+                  <h3 class="post-title">
+                    Python 网络数据采集-第1章 初见网络爬虫
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c23ccbb3f1897aadbc0e',
+        clientSecret: 'ccedac29941be844f2c7129b3d20d49fe9af9834',
+        repo: 'andandojing.github.io',
+        owner: 'AndandoJing',
+        admin: ['AndandoJing'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

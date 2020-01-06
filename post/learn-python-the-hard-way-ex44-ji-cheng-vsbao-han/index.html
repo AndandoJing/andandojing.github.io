@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -113,7 +113,7 @@
             <div class="post-content">
               <p>大多数继承的用途，可以简化或用组合物所取代，并应不计一切代价避免多重继承。</p>
 <h4 id="什么是继承"><strong>什么是继承</strong></h4>
-<p>继承是用来描述一个类从它的父类哪里获得大部分甚至全部父类的功能。
+<p>继承是用来描述一个类从它的父类哪里获得大部分甚至全部父类的功能。<br>
 比如<code>class Foo(Bar)</code>就是指“创建一个叫做Foo的类，并继承Bar”。执行这句的时候，编程语言使得<code>Foo</code>的实例所有的行为都跟<code>Bar</code>的实例一样。这么做，可以让<code>Bar</code>类中放一些通用功能，那些需要特殊定制的函数或功能则放在子类<code>Foo</code>中。</p>
 <p>当需要做这些特殊化函数编写时，父子类之间有3种交互方法：</p>
 <blockquote>
@@ -144,7 +144,7 @@ son.implicit()
 PARENT implicit()
 PARENT implicit()
 </code></pre>
-<p>可见，虽然在代码中写的是<code>son.implicit()</code>，且<code>Child</code>中并没有关于<code>implicit()</code>的方法，但代码仍正常运行，因为它调用了<code>Parent</code>中定义的同名方法。
+<p>可见，虽然在代码中写的是<code>son.implicit()</code>，且<code>Child</code>中并没有关于<code>implicit()</code>的方法，但代码仍正常运行，因为它调用了<code>Parent</code>中定义的同名方法。<br>
 也就是说，如果你在<code>Parent</code>中定义了一个方法，那么其所有的子类<code>Child</code>都可以自动获得该方法。</p>
 <h4 id="重写方法override-explicitly"><strong>重写方法override explicitly</strong></h4>
 <p>重写方法主要用于，在子类中有不同于父类的表现，所以需要覆盖父类的隐性继承。比如：</p>
@@ -317,8 +317,8 @@ CHILD, AFTER OTHER altered()
 </code></pre>
 <p>👆这里的<code>Child</code>和<code>Other</code>中大部分代码实现了相同的功能，唯一不同之处在于必须定义一个<code>Child.implicit</code>方法取做一个动作。此外，还可以问问自己，如果需要这个<code>Other</code>作为一个类，是不是可以把它放在一个叫做<code>other.py</code>的模块中就行？</p>
 <h4 id="什么时候用继承什么时候用包含"><strong>什么时候用继承，什么时候用包含</strong></h4>
-<p>继承和包含的问题可以归结为试图解决可重复使用代码的问题。
-继承通过创建一种机制，让你在基类中有隐含的功能来解决这个问题。
+<p>继承和包含的问题可以归结为试图解决可重复使用代码的问题。<br>
+继承通过创建一种机制，让你在基类中有隐含的功能来解决这个问题。<br>
 包含则是通过给你的模块和函数可以在其他类别被调用来解决这个问题。</p>
 <p>在选择继承或包含时的三个原则：</p>
 <blockquote>
@@ -330,8 +330,8 @@ CHILD, AFTER OTHER altered()
 </blockquote>
 <p>面对对象编程要牢记：这是一个程序员创建打包和共享代码的社会习俗。所以如果对方使用时，需要取适应用法。</p>
 <h4 id="附加题"><strong>附加题</strong></h4>
-<p>阅读<code>http://www.python.org/dev/peps/pep-0008/</code>并尝试将它引用到自己的代码中。
-这里的文本主要解释的是python的代码规范。
+<p>阅读<code>http://www.python.org/dev/peps/pep-0008/</code>并尝试将它引用到自己的代码中。<br>
+这里的文本主要解释的是python的代码规范。<br>
 举例1:</p>
 <pre><code># Alligned with opening delimiter.
 foo = long_function_name(var_one, var_two, 
@@ -348,7 +348,7 @@ foo = long_function_name(
     var_one, var_two, 
     var_three, var_four)
 </code></pre>
-<p>👆要注意锁进，以及一行太长的情况下换多行清晰显示。
+<p>👆要注意锁进，以及一行太长的情况下换多行清晰显示。<br>
 还有一种可选方式：</p>
 <pre><code>#Optional
 # Hanging indents *may* be indented to other than 4 spaces.
@@ -395,21 +395,21 @@ result = some_function_that_takes_arguments(
 )
 </code></pre>
 <h4 id="️注意">⚠️<strong>注意：</strong></h4>
-<p><strong>用Tab还是用Space空格？</strong>
-最好用空格键。如果代码本来是用Tab的话才用Tab。
+<p><strong>用Tab还是用Space空格？</strong><br>
+最好用空格键。如果代码本来是用Tab的话才用Tab。<br>
 python3中本身不允许tab和空格混用。</p>
-<p><strong>每行代码的长度限制</strong>
-每行的理论最大长度是79个字符。
-如果一行中有部分注释等，正文代码的长度限制在72个字符。
-可以把窗口直接设定为80，这样能够直观地限制每行代码字符数量。
-部分团队会把最大长度设为99字符。
+<p><strong>每行代码的长度限制</strong><br>
+每行的理论最大长度是79个字符。<br>
+如果一行中有部分注释等，正文代码的长度限制在72个字符。<br>
+可以把窗口直接设定为80，这样能够直观地限制每行代码字符数量。<br>
+部分团队会把最大长度设为99字符。<br>
 举例4:</p>
 <pre><code>with open('/path/to/some/file/you/wan/to/resd') as file_1, \
     open('/path/to/some/file/being/written', 'w') as file_2:
     file_2.write(file_1.read())
 </code></pre>
-<p><strong>二元运算符之前或之后换行？</strong>
-之前建议在操作符出现后换行，但现在为了阅读方便更建议操作符出现前换行。
+<p><strong>二元运算符之前或之后换行？</strong><br>
+之前建议在操作符出现后换行，但现在为了阅读方便更建议操作符出现前换行。<br>
 举例5对比，后者目前更推荐：</p>
 <pre><code># No: operators sit far from their operands
 income = (gross_wages +
@@ -425,14 +425,14 @@ income = (gross_wages
          - ira_deduction
          - student_loan_interest)
 </code></pre>
-<p><strong>空白行blank line</strong>
-类定义和一级方法上方空两行。
+<p><strong>空白行blank line</strong><br>
+类定义和一级方法上方空两行。<br>
 比如：</p>
 <pre><code>#空第一行
 #空第二行
 class Aron(object):
 </code></pre>
-<p>类里面的方法定义上方空一行。
+<p>类里面的方法定义上方空一行。<br>
 比如：</p>
 <pre><code>#空第一行
 #空第二行
@@ -440,11 +440,11 @@ class Aron(object):
 #空一行
     def write(self):
 </code></pre>
-<p>此外，如果有很多函数，函数与函数中间也需要空行，形成区块。
+<p>此外，如果有很多函数，函数与函数中间也需要空行，形成区块。<br>
 python中可以用contrl-L（或^L）来作为空行快捷键。这也是部分文档处理器的分页符。</p>
-<p><strong>源文件编码信息</strong>
-python3默认的编码形式是UTF-8，默认情况下就不需要再做注明。
-python3中，所有标识符必须使用ASCII符号，并且尽可能使用英语单词（很多情况下缩写和技术类术语不是英语）。字符串文字和注释也必须是ASCII格式。
+<p><strong>源文件编码信息</strong><br>
+python3默认的编码形式是UTF-8，默认情况下就不需要再做注明。<br>
+python3中，所有标识符必须使用ASCII符号，并且尽可能使用英语单词（很多情况下缩写和技术类术语不是英语）。字符串文字和注释也必须是ASCII格式。<br>
 例外：</p>
 <ol>
 <li>测试非ASCII功能的测试用例</li>
@@ -471,19 +471,19 @@ No: import sys, os
 <li>本地imports</li>
 </ol>
 <ul>
-<li>建议用绝对imports（就是完整的from...import...形式）
+<li>建议用绝对imports（就是完整的from...import...形式）<br>
 比如：</li>
 </ul>
 <pre><code>import mypkg.sibling
 from mypkg import sibling
 from mypkg.sibling import example
 </code></pre>
-<p>相对导入在处理复杂的包时比较适合，可以减少冗长
+<p>相对导入在处理复杂的包时比较适合，可以减少冗长<br>
 比如：</p>
 <pre><code>from . import sibling
 from .sibling import example
 </code></pre>
-<p>基本库的imports建议绝对导入，复杂的imports。
+<p>基本库的imports建议绝对导入，复杂的imports。<br>
 python3中已经移除隐性相对导入。</p>
 <ul>
 <li>如果从一个包含类的模组中import类class时，建议格式如下：</li>
@@ -500,7 +500,7 @@ import foo.bar.yourclass
 <li>避免使用通配符导入（<code>from &lt;module&gt; import *</code>）因为这样会造成在当前命名空间出现的命名含义不清晰，造成困扰。</li>
 </ul>
 <h4 id="模块级的双下划线命名module-level-dunder-names"><strong>模块级的双下划线命名Module level dunder names</strong></h4>
-<p>双下划线命名比如<code>__all__</code>,<code>__author__</code>,<code>__version__</code>应该卸载文档字符串docstring之后。但在<code>from __future__</code>import的任何其他类型的引用（导入import）语句之前。python要求模块中<code>__future__</code>的导入必须在除文档字符串docstring植物的任何其他代码之前。
+<p>双下划线命名比如<code>__all__</code>,<code>__author__</code>,<code>__version__</code>应该卸载文档字符串docstring之后。但在<code>from __future__</code>import的任何其他类型的引用（导入import）语句之前。python要求模块中<code>__future__</code>的导入必须在除文档字符串docstring植物的任何其他代码之前。<br>
 举例：</p>
 <pre><code>&quot;&quot;&quot;This is the example module.
 
@@ -517,10 +517,10 @@ import os
 import sys
 </code></pre>
 <h4 id="字符串引用string-quotes"><strong>字符串引用string quotes</strong></h4>
-<p>python中单引号和双引号作用相同，但不建议混合使用，建议统一某一种方式使用。如果字符串中需要显示单引号，可将整个字符串用双引号引用，反之亦然。这样可以避免使用反斜杠\来显示字符串内的引号。
+<p>python中单引号和双引号作用相同，但不建议混合使用，建议统一某一种方式使用。如果字符串中需要显示单引号，可将整个字符串用双引号引用，反之亦然。这样可以避免使用反斜杠\来显示字符串内的引号。<br>
 三引号表示的字符串，使用双引号字符来表示。</p>
 <h4 id="表达式和语句中的空格whitespace-in-expressions-and-statements"><strong>表达式和语句中的空格whitespace in expressions and statements</strong></h4>
-<p><strong>一些痛点pet peeves</strong>
+<p><strong>一些痛点pet peeves</strong><br>
 避免使用过多空白行：</p>
 <ul>
 <li>方括号，圆括号和花括号之后：</li>
@@ -697,16 +697,16 @@ FILES = ['setup.cfg', 'tox.ini',]
 initialize(FILES, error=True,)
 </code></pre>
 <h4 id="注释comments"><strong>注释comments</strong></h4>
-<p>注释不可以和代码冲突，修改代码时记得修改注释。
-注释应该是完整的多个句子。如果注释是一个短语或者一个句子，首字母应该大写，除非开头是一个以小写字母开头的标识符（永远不要更改标识符的大小写）。
-如果注释很多，可以忽视结尾的句号。块注释通常由一段或几段完整句子组成，每个句子都应该以句号结束。
-句尾的句号后应该再加上2个空格。
+<p>注释不可以和代码冲突，修改代码时记得修改注释。<br>
+注释应该是完整的多个句子。如果注释是一个短语或者一个句子，首字母应该大写，除非开头是一个以小写字母开头的标识符（永远不要更改标识符的大小写）。<br>
+如果注释很多，可以忽视结尾的句号。块注释通常由一段或几段完整句子组成，每个句子都应该以句号结束。<br>
+句尾的句号后应该再加上2个空格。<br>
 注释最好都用英语写（方便非本国语言程序猿看懂）。</p>
 <h4 id="块注释block-comments"><strong>块注释block comments</strong></h4>
-<p>块注释一般在对应代码之前，并且和对应代码有同样的缩进级别。块注释的每一行都应该有<code>#</code>和一个空格开头（除非该文本是在注释内缩进对齐的）。
+<p>块注释一般在对应代码之前，并且和对应代码有同样的缩进级别。块注释的每一行都应该有<code>#</code>和一个空格开头（除非该文本是在注释内缩进对齐的）。<br>
 块注释中的段落应该用汁含邮单个<code>#</code>的一行隔开。</p>
 <h4 id="行内注释inline-comments"><strong>行内注释inline comments</strong></h4>
-<p>尽量少用行内注释。一般也是不必需的。代码含义很明显的时候尤其如此。
+<p>尽量少用行内注释。一般也是不必需的。代码含义很明显的时候尤其如此。<br>
 行内注释应该至少和代码之间有两个空格的间隔，并且用<code>#</code>和一个空格开始。</p>
 <pre><code>x = x + 1   # increment x
 </code></pre>
@@ -738,12 +738,12 @@ Optional plotz says to frobnicate the bizbaz first.
 <li><code>lower_case_with_underscores</code>（带下划线小写）</li>
 <li><code>UPPERCASE</code>（大写）</li>
 <li><code>UPPER_CASE_WITH_UNDERSCORES</code>（带下划线大写）</li>
-<li><code>CapitalizedWords</code>（也叫做CapWords或者CamelCase，因为单词首字母大写看起来像驼峰）。也称作StudlyCaps。
+<li><code>CapitalizedWords</code>（也叫做CapWords或者CamelCase，因为单词首字母大写看起来像驼峰）。也称作StudlyCaps。<br>
 注意：当CapWords里包含缩写时，将缩写部分的字母都大写。<code>HTTPServerError</code>比<code>HttpServerError</code>要好。</li>
 <li><code>mixedCase</code>（注意：和CapitalizedWords不同在于其首字母小写）</li>
 <li><code>Capitalized_Words_With_Underscores</code>（这种风格超级丑）</li>
 </ul>
-<p>也有风格使用简短唯一的前缀来表示一组相关的命名。python中不常见，但举个例子：
+<p>也有风格使用简短唯一的前缀来表示一组相关的命名。python中不常见，但举个例子：<br>
 <code>os.stat()</code>函数返回一个tuple，其中的元素名原本为<code>st_mode</code>,<code>st_size</code>,<code>st_mtime</code>等。</p>
 <p>此外，要区别以下划线开始或结尾的特殊形式：</p>
 <ul>
@@ -757,46 +757,46 @@ Optional plotz says to frobnicate the bizbaz first.
 <li><code>__double_leading_and_trailing_underscore__</code>：以双下划线开头和结尾的命名风格表示“魔术”对象或属性，存在于用户控制的命名空间（user-controlled namespaces）里（也就是说，这些命名已经存在，但通常需要用户覆写来实现用户所需要的功能）。比如，<code>__init__</code>,<code>__import__</code>,<code>__file__</code>。⚠️不要自己发明，按照文档描述来使用命名。</li>
 </ul>
 <h5 id="规范命名约定"><strong>规范：命名约定</strong></h5>
-<p><strong>避免的命名</strong>
+<p><strong>避免的命名</strong><br>
 避免使用小写的L，大写的o和大写的i作为单个字符的变量名（因为容易和数字混淆）。</p>
-<p><strong>ASCII兼容性</strong>
+<p><strong>ASCII兼容性</strong><br>
 标准库中使用的标识符必须与ASCII兼容。</p>
-<p><strong>包和模块命名</strong>
-模块命名要短小，且全小写。如果下划线能提高可读性，可以在模块命中使用。
+<p><strong>包和模块命名</strong><br>
+模块命名要短小，且全小写。如果下划线能提高可读性，可以在模块命中使用。<br>
 python包命名应该全小写，短小，但不应该使用下划线。</p>
-<p><strong>类命名</strong>
-类命名应该使用驼峰CapWords的命名约定。
+<p><strong>类命名</strong><br>
+类命名应该使用驼峰CapWords的命名约定。<br>
 内建命名有特殊约定：大部分内建名都是一个单词（或两个一起使用的单词），驼峰的约定支队一场命名和内建常量使用。</p>
-<p><strong>类型变量命名</strong>
-简短的驼峰命名：
+<p><strong>类型变量命名</strong><br>
+简短的驼峰命名：<br>
 <code>T</code>,<code>AnyStr</code>,<code>Num</code>等。建议后缀<code>_co</code>或<code>_contra</code>添加倒用于声明相应的covariant和contravariant的行为。例如：</p>
 <pre><code>from typing import TpyeVar
 
 VT_co = TypeVar('VT_co', covariant=True)
 KT_contra = TypeVar('KT_contra', contravariant=True)
 </code></pre>
-<p><strong>异常命名</strong>
+<p><strong>异常命名</strong><br>
 如果异常实际上是抛出错误的话，异常名前应该加上“Error”的前缀。</p>
-<p><strong>全局变量命名</strong>
-前提：这些变量仅在同一个模块内使用，也适用于函数命名。
+<p><strong>全局变量命名</strong><br>
+前提：这些变量仅在同一个模块内使用，也适用于函数命名。<br>
 引用方式设计为<code>from M import *</code>的模块，应该使用<code>__all__</code>机制来避免import全局变量，或者采用下划线前缀的就约定来命名全局变量，从而表明这些变量是“模块非公开的”。</p>
-<p><strong>函数命名</strong>
-函数命名应该都是小写，必要时使用下划线来提高可读性。
+<p><strong>函数命名</strong><br>
+函数命名应该都是小写，必要时使用下划线来提高可读性。<br>
 只有当已有代码风格已经是混合大小写时（比如threading.py），为了保留向后兼容性才使用混合大小写。</p>
-<p><strong>函数和方法参数function and method arguments</strong>
-实例方法的第一参数永远都是<code>self</code>。
-类方法的第一个参数永远都是<code>cls</code>。
+<p><strong>函数和方法参数function and method arguments</strong><br>
+实例方法的第一参数永远都是<code>self</code>。<br>
+类方法的第一个参数永远都是<code>cls</code>。<br>
 在函数参数名和保留关键字冲突时，使用以下划线结尾的命名一般更好，比如<code>class_</code>比<code>clss</code>更好。</p>
-<p><strong>方法命名和实例变量</strong>
-规则：小写单词，必要时使用下划线分开以提高可读性。仅对非公开方法和变量命名在开头使用一个下划线。
-避免和子类的命名冲突，使用两个下划线开头来出发python的命名修饰机制。
+<p><strong>方法命名和实例变量</strong><br>
+规则：小写单词，必要时使用下划线分开以提高可读性。仅对非公开方法和变量命名在开头使用一个下划线。<br>
+避免和子类的命名冲突，使用两个下划线开头来出发python的命名修饰机制。<br>
 python类名的命名修饰规则：如果类Foo有一个属性叫<code>__a</code>，不能使用<code>Foo.__a</code>的方式访问该变量。一般来说，两个下划线开头的命名方式仅用于避免与设计为子类的类中的属性名冲突。</p>
-<p><strong>常量</strong>
+<p><strong>常量</strong><br>
 常用通常在模块级别定义，使用全部大写并用下划线分割单词。如：<code>MAX_OVERFLOW</code>和<code>TOTAL</code>。</p>
-<p><strong>继承的设计</strong>
-区别：类的方法和实例变量（属性）应该是公开的还是非公开的。
-如果有疑虑，就选择非公开；因为之后将非公开属性变为公开属性更容易。
-另一类属性术语子类API的一部分。一些类是为继承设计的，要么扩展要么修改类的部分行为。设计这样的类时，需要谨慎明确地决定哪些属性是公开的，哪些术语子类API，哪些真的只会被你的基类调用。
+<p><strong>继承的设计</strong><br>
+区别：类的方法和实例变量（属性）应该是公开的还是非公开的。<br>
+如果有疑虑，就选择非公开；因为之后将非公开属性变为公开属性更容易。<br>
+另一类属性术语子类API的一部分。一些类是为继承设计的，要么扩展要么修改类的部分行为。设计这样的类时，需要谨慎明确地决定哪些属性是公开的，哪些术语子类API，哪些真的只会被你的基类调用。<br>
 规则指南：</p>
 <ul>
 <li>公开属性不应该有开头下划线</li>
@@ -806,11 +806,11 @@ python类名的命名修饰规则：如果类Foo有一个属性叫<code>__a</cod
 </ul>
 <h4 id="编程建议"><strong>编程建议</strong></h4>
 <ul>
-<li>代码应该以不影响其他python实现的方式编写
+<li>代码应该以不影响其他python实现的方式编写<br>
 在库中性能敏感的部分，用<code>' '.join</code>形式代替，这样可以确保在不同的实现中国呢字符串拼接是线性时间的。</li>
-<li>与单例比较，像<code>None</code>应该用<code>is</code>或者<code>is not</code>，从不使用<code>==</code>操作符。
+<li>与单例比较，像<code>None</code>应该用<code>is</code>或者<code>is not</code>，从不使用<code>==</code>操作符。<br>
 当心<code>if x is not None</code>这种写法（哪怕你确实想验证它的字面意思）。</li>
-<li>用<code>is not</code>而不是<code>not ... is</code>，虽然表达式功能相同，但前一个更好。
+<li>用<code>is not</code>而不是<code>not ... is</code>，虽然表达式功能相同，但前一个更好。<br>
 举例：</li>
 </ul>
 <pre><code># 推荐的写法
@@ -820,9 +820,9 @@ if foo is not None:
 if not foo is None:
 </code></pre>
 <ul>
-<li>用富比较实现排序操作的时候，最好实现所有六个比较操作符（<code>__eq__</code>,<code>__ne__</code>,<code>__lt__</code>,<code>__le__</code>,<code>__gt__</code>,<code>__ge__</code>)，而不是依靠其他代码来进行特定比较。
+<li>用富比较实现排序操作的时候，最好实现所有六个比较操作符（<code>__eq__</code>,<code>__ne__</code>,<code>__lt__</code>,<code>__le__</code>,<code>__gt__</code>,<code>__ge__</code>)，而不是依靠其他代码来进行特定比较。<br>
 <code>functoolstotal_ordering()</code>装饰器提供了一个工具去生成缺少的比较方法。</li>
-<li>始终使用<code>def</code>语句来代替直接绑定了一个<code>lambda</code>表达式的赋值语句。
+<li>始终使用<code>def</code>语句来代替直接绑定了一个<code>lambda</code>表达式的赋值语句。<br>
 举例：</li>
 </ul>
 <pre><code># 推荐的写法：
@@ -832,12 +832,12 @@ def f(x): return 2*x
 f = lambda x: 2*x
 </code></pre>
 <ul>
-<li>异常类应该派生自<code>Exception</code>而不是<code>BaseException</code>。直接继承<code>BaseException</code>是为<code>Exception</code>保留的。从<code>BaseException</code>继承病补货异常这种做法几乎总是错的。
+<li>异常类应该派生自<code>Exception</code>而不是<code>BaseException</code>。直接继承<code>BaseException</code>是为<code>Exception</code>保留的。从<code>BaseException</code>继承病补货异常这种做法几乎总是错的。<br>
 设计异常的层次结构，应基于哪些可能出现异常的代码，而不是引发一场的位置。编码的时候，以回答“出了什么问题”而不是“这里出了什么问题”为目标。</li>
 </ul>
 <p>类的命名约定适用于一场，如果异常类是一个错误，应该给异常类加一个后缀<code>Error</code>。用于非本地流程控制或者其他形式的信号的非错误异常不需要一个特殊的后缀。</p>
 <ul>
-<li>捕获异常时，尽可能使用明确的一场，而不是一个空的<code>except:</code>语句。
+<li>捕获异常时，尽可能使用明确的一场，而不是一个空的<code>except:</code>语句。<br>
 举例：</li>
 </ul>
 <pre><code>try:
@@ -845,7 +845,7 @@ f = lambda x: 2*x
 except ImportError:
     platform_specific_module = None
 </code></pre>
-<p>一个空的<code>except:</code>语句将会补货到<code>SystemExit</code>和<code>KeyboardInterrupt</code>异常，很难区分程序的终端到底是<code>Ctrl+C</code>还是其他问题引起的。如果想不火程序的所有错误，使用<code>except Exception:</code>（空<code>except:</code>等同于<code>except BaseException</code>）。
+<p>一个空的<code>except:</code>语句将会补货到<code>SystemExit</code>和<code>KeyboardInterrupt</code>异常，很难区分程序的终端到底是<code>Ctrl+C</code>还是其他问题引起的。如果想不火程序的所有错误，使用<code>except Exception:</code>（空<code>except:</code>等同于<code>except BaseException</code>）。<br>
 两种情况下可以使用<code>except:</code>语句：</p>
 <ol>
 <li>如果异常处理程序会打印或者记录回溯信息；至少用户意识到错误的存在。</li>
@@ -861,7 +861,7 @@ except Exception as exc:
 </code></pre>
 <p>python3只支持这种语法。</p>
 <ul>
-<li>推荐使用<code>return</code>语句。函数内的<code>return</code>语句都应该返回一个表达式，或者<code>None</code>。如果一个<code>return</code>语句返回一个表达式，另一个没有返回值的应该用<code>return None</code>清晰的说明，并且在一个函数的结尾应该明确使用一个<code>return</code>语句（如果没有返回值的话）。
+<li>推荐使用<code>return</code>语句。函数内的<code>return</code>语句都应该返回一个表达式，或者<code>None</code>。如果一个<code>return</code>语句返回一个表达式，另一个没有返回值的应该用<code>return None</code>清晰的说明，并且在一个函数的结尾应该明确使用一个<code>return</code>语句（如果没有返回值的话）。<br>
 推荐写法：</li>
 </ul>
 <pre><code>def foo(x):
@@ -877,7 +877,7 @@ def bar(x):
     return math.sqrt(x)
 </code></pre>
 <ul>
-<li>用<code>' '.startwith()</code>和<code>' '.endwith()</code>代替字符串切片来检查前缀和后缀。
+<li>用<code>' '.startwith()</code>和<code>' '.endwith()</code>代替字符串切片来检查前缀和后缀。<br>
 <code>startswith()</code>和<code>endswith()</code>更简洁，不容易出错。举例：</li>
 </ul>
 <pre><code># 推荐的写法：
@@ -887,7 +887,7 @@ if foo.startswith('bar'):
 if foo[:3] == 'bar':
 </code></pre>
 <h4 id="常见问题"><strong>常见问题</strong></h4>
-<p>对象不是复制的类吗？
+<p>对象不是复制的类吗？<br>
 有些语言（比如JavaScript）中时这样的，这些被称为原型的语言，这类语言中对象和类没有什么不同。但python中，类作为模版，可以生成新对象，类似于如何使用模具制造硬币。</p>
 
             </div>

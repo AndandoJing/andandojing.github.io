@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -134,7 +134,7 @@ not (&quot;testing&quot; == &quot;testing&quot; and &quot;Zed&quot; == &quot;Coo
 &quot;chunky&quot; == &quot;bacon&quot; and not (3 == 4 or 3 == 3)
 3 == 3 and not (&quot;testing&quot; == &quot;testing&quot; or &quot;Python&quot; == &quot;Fun&quot;)
 </code></pre>
-<p>这部分实际上是在终端输入python后，一行一行输入后可以得出结果。
+<p>这部分实际上是在终端输入python后，一行一行输入后可以得出结果。<br>
 所有的布尔逻辑表达式都可以用简单流程得到结果：</p>
 <ol>
 <li>找到相等判断的部分（==或者!=），将其改写为最终值（True或者False）</li>
@@ -143,7 +143,7 @@ not (&quot;testing&quot; == &quot;testing&quot; and &quot;Zed&quot; == &quot;Coo
 <li>找到剩下的and或者or，解出他们的值</li>
 <li>全部做完后，得出最后的结果是True还是False</li>
 </ol>
-<p>举一个例子：
+<p>举一个例子：<br>
 <code>3 != 4 and not (&quot;testing&quot; != &quot;test&quot; or &quot;Python&quot; == &quot;Python”)</code></p>
 <p>解答过程：</p>
 <ol>
@@ -154,20 +154,20 @@ not (&quot;testing&quot; == &quot;testing&quot; and &quot;Zed&quot; == &quot;Coo
 <li>找到not并将其逆转： not (True) 为False：True and False</li>
 <li>找到剩下的and和or，解出值：True and False为False</li>
 </ol>
-<p><strong>⚠️注意：</strong>
-虽然字节符中’testing’和”testing”是一样的，但是如果在python中直接输入：
-’testing’ = “testing”  =&gt; False
-如果输入”test” and “test” =&gt; “test”
-如果输入 1 and 1 =&gt; 1
-python中返回两个被操作对象中的一个，会得到第一个操作字元。
-如果输入False and 1 =&gt; False
-如果输入1 and False =&gt; False
-如果输入True and 1 + 0 =&gt; 1
-如果输入1 + 0 and False =&gt; False
+<p><strong>⚠️注意：</strong><br>
+虽然字节符中’testing’和”testing”是一样的，但是如果在python中直接输入：<br>
+’testing’ = “testing”  =&gt; False<br>
+如果输入”test” and “test” =&gt; “test”<br>
+如果输入 1 and 1 =&gt; 1<br>
+python中返回两个被操作对象中的一个，会得到第一个操作字元。<br>
+如果输入False and 1 =&gt; False<br>
+如果输入1 and False =&gt; False<br>
+如果输入True and 1 + 0 =&gt; 1<br>
+如果输入1 + 0 and False =&gt; False<br>
 也就是说and和or运算符总会返回对象（不是左边的就是右边的）</p>
-<p><strong>短路逻辑：</strong>
-任何False开头的and语句都会处理成False，并不会继续检查后面的语句。
-任何包括了True和or的语句，只要处理到True字样，就不会继续向下推算，直接返回True。
+<p><strong>短路逻辑：</strong><br>
+任何False开头的and语句都会处理成False，并不会继续检查后面的语句。<br>
+任何包括了True和or的语句，只要处理到True字样，就不会继续向下推算，直接返回True。<br>
 不过尽量保证整个语句能正常处理。</p>
 <p>!= 是主流用法，&lt;和&gt;将逐渐弃用</p>
 

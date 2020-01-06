@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -123,7 +123,7 @@ pirnt(mystify[‘apple’])
 <ol>
 <li>模组是包含函数和变量的python文件</li>
 <li>可以import这个文件</li>
-<li>可以使用’.’操作符访问到模组中的函数和变量
+<li>可以使用’.’操作符访问到模组中的函数和变量<br>
 <strong>举例：</strong></li>
 </ol>
 <pre><code>#this goes in mystuff.py
@@ -154,11 +154,11 @@ mystuff.tangerine #same thing, it’s just a variable
 <p>也就是说，<strong>python 里有一个通用的模式</strong>：</p>
 <ol>
 <li>拿一个类似key=value风格的数据容器</li>
-<li>通过key的名称获取其中的value
+<li>通过key的名称获取其中的value<br>
 对于字典来说，key是一个字符串，获得值的语法是[key]。对于模组来说，key是函数或者变量的名称，而语法是.key。</li>
 </ol>
-<p><strong>类和模组差不多</strong>
-也可以把模组当作一种特殊的字典，用来储存一些python代码，通过’.’操作符访问这些代码。python还有另一种代码结构来实现类似目的，也就是类（class），通过类，可以把一组函数和数据放到一个容器中，并用’.’操作符访问到它们。
+<p><strong>类和模组差不多</strong><br>
+也可以把模组当作一种特殊的字典，用来储存一些python代码，通过’.’操作符访问这些代码。python还有另一种代码结构来实现类似目的，也就是类（class），通过类，可以把一组函数和数据放到一个容器中，并用’.’操作符访问到它们。<br>
 <strong>举例：</strong></p>
 <pre><code>class MyStuff(object):
     def __init__(self):
@@ -168,11 +168,11 @@ mystuff.tangerine #same thing, it’s just a variable
 </code></pre>
 <p>这里是用创建mystuff模块的方法来创建一个类。</p>
 <p>这段代码大概就是模拟了一个叫MyStuff的迷你模块，里面有一个叫apple()的函数，还有一个叫__init__()的函数（暂时不懂什么意思），同时设置了tangerine变量时用了self.tangerine的语法。</p>
-<p><strong>类与模组使用上的区别：</strong>
+<p><strong>类与模组使用上的区别：</strong><br>
 类可以重复创建很多出来，哪怕一次一百万个，也不会互相干涉（相对独立）。但模组，一次import后，整个程序里就只有这一个内容，只有把模组内部探索得更深才行。</p>
-<p><strong>对象object是什么？</strong>
-对象相当于迷你版的import
-如果说类和迷你模组差不多，那么对于类来说，也有一个类似import的概念，这个概念叫做“实例（instance）”，意思就是“创建”。当讲一个类“实例化”以后，就会得到一个对象（object）。
+<p><strong>对象object是什么？</strong><br>
+对象相当于迷你版的import<br>
+如果说类和迷你模组差不多，那么对于类来说，也有一个类似import的概念，这个概念叫做“实例（instance）”，意思就是“创建”。当讲一个类“实例化”以后，就会得到一个对象（object）。<br>
 <strong>举例：</strong></p>
 <pre><code>thing = MyStuff() #“实例化”操作，类似调用函数
 thing.apple()
@@ -188,8 +188,8 @@ print(thing.tangerine)
 <li>这里把self.tangerine设成一段歌词，这样就初始化了该对象；</li>
 <li>最后python将这个新建的对象赋给一个叫thing的变量，以供以后使用。</li>
 </ol>
-<p><strong>⚠️注意：</strong>
-类和对象和模组是完全不同的东西。
+<p><strong>⚠️注意：</strong><br>
+类和对象和模组是完全不同的东西。<br>
 从东西里获取东西的三种办法：</p>
 <pre><code>#dict style
 mystuff[‘apples’]
@@ -294,8 +294,8 @@ third line
 9th line
 xiaojinyudeMacBook-Pro:AtomProjects isaking$ 
 </code></pre>
-<p><strong>可能出现的错误：</strong>
-song1.sing()
+<p><strong>可能出现的错误：</strong><br>
+song1.sing()<br>
 这里不能依样画葫芦写song2.sing()，会出现错误：</p>
 <pre><code>Traceback (most recent call last):
   File &quot;ex40_1.py&quot;, line 22, in &lt;module&gt;
@@ -303,9 +303,9 @@ song1.sing()
 AttributeError: 'list' object has no attribute ‘sing'
 </code></pre>
 <p>也就是说，列表不能套用类的方式来打印。</p>
-<p><strong>为什么创建init或者别的类函数时需要多加一个self变量？</strong>
+<p><strong>为什么创建init或者别的类函数时需要多加一个self变量？</strong><br>
 如果不加self，cheese = ‘Frank’这样的代码意义就不明确了，它指的既可能是实例的cheese属性，或者一个叫做cheese的局部变量。有了self.cheese = ‘Frank’就清楚地知道这指的是实例的属性self.cheese.</p>
-<p><strong>class类的详细解释：</strong>
+<p><strong>class类的详细解释：</strong><br>
 <strong>class包括：</strong></p>
 <ol>
 <li>类的属性：类中涉及的变量</li>
@@ -315,18 +315,18 @@ AttributeError: 'list' object has no attribute ‘sing'
 <ol>
 <li><strong>xx</strong>()这类的函数（方法）是声明该属性为私有，不能再类的外部被使用或者直接访问。</li>
 <li><strong>init</strong>()支持带参数的类的初始化，也可以声明该类的属性。</li>
-<li><strong>init</strong>()的第一个参数必须是self（self为习惯用法，可以改成别的名字），后续参数可以自由指定，和
+<li><strong>init</strong>()的第一个参数必须是self（self为习惯用法，可以改成别的名字），后续参数可以自由指定，和<br>
 定义函数没有区别。</li>
 </ol>
-<p><strong>函数定义</strong>
+<p><strong>函数定义</strong><br>
 在类中，def可以为类定义一个函数（方法），与一般函数定义不同，类方法必须包含参数self，且为第一个参数。</p>
-<p><strong>self参数含义</strong>
-在类的代码（函数）中，需要访问当前的实例中的变量和函数。
-<strong>举例：</strong>
-访问Instance中的对应变量property：
-Instance.ProperyNam，读取之前的值和写入新的值
-调用对应函数function：
-Instance.function()，即执行对应动作
+<p><strong>self参数含义</strong><br>
+在类的代码（函数）中，需要访问当前的实例中的变量和函数。<br>
+<strong>举例：</strong><br>
+访问Instance中的对应变量property：<br>
+Instance.ProperyNam，读取之前的值和写入新的值<br>
+调用对应函数function：<br>
+Instance.function()，即执行对应动作<br>
 这里的Instance本身就是self</p>
 
             </div>

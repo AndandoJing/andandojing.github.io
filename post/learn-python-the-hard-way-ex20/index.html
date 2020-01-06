@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1562335375296">
+<link rel="shortcut icon" href="https://andandojing.github.io/favicon.ico?v=1578325910242">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://andandojing.github.io/styles/main.css">
 
@@ -37,7 +37,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://andandojing.github.io">
-        <img src="https://andandojing.github.io/images/avatar.png?v=1562335375296" class="site-logo">
+        <img src="https://andandojing.github.io/images/avatar.png?v=1578325910242" class="site-logo">
         <h1 class="site-title">Learning with Writing</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -185,23 +185,23 @@ Let's print three lines:
 3 I need to shave it off.
 xiaojinyudeMBP:AtomProjects isaking$ 
 </code></pre>
-<p><strong>file中的seek()是做什么的？</strong>
-seek()用于移动文件读取指针到指定位置
-<strong>seek()的语法：</strong>
-fileObject.seek(offset[,whence])
-offset：开始的偏移量，也就是代表需要移动偏移的字节数
-whence：可选，默认值为0。给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。
-<strong>返回值：</strong>
-该函数没有返回值。
-<strong>seek()函数</strong>
+<p><strong>file中的seek()是做什么的？</strong><br>
+seek()用于移动文件读取指针到指定位置<br>
+<strong>seek()的语法：</strong><br>
+fileObject.seek(offset[,whence])<br>
+offset：开始的偏移量，也就是代表需要移动偏移的字节数<br>
+whence：可选，默认值为0。给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。<br>
+<strong>返回值：</strong><br>
+该函数没有返回值。<br>
+<strong>seek()函数</strong><br>
 处理对象是字节而不是行，所以seek(0)只会转到文件的0 byte，也就是第一个byte，不会把current_line设为0。current_line只是一个独立变量，和文件本身没有关系，只能手动为其增值。</p>
-<p><strong>+=这个简写操作符的作用：</strong>
+<p><strong>+=这个简写操作符的作用：</strong><br>
 a += b 是 a = a + b 的简写，也就是将a + b重新赋值给a，一般用于计数。比如这个代码中的current_line = current_line + 1可以写成current_line += 1</p>
-<p><strong>print_all (f)这里的f是什么？</strong>
-f是变量，在这里指一个文件。python里的文件读取和DVD或磁带类似，有一个用来读取数据的“磁头”。
-运行f.seek()可以回到文件的开始，f.readline()会读取文件的一行，然后将“磁头”移动到\n后面。
+<p><strong>print_all (f)这里的f是什么？</strong><br>
+f是变量，在这里指一个文件。python里的文件读取和DVD或磁带类似，有一个用来读取数据的“磁头”。<br>
+运行f.seek()可以回到文件的开始，f.readline()会读取文件的一行，然后将“磁头”移动到\n后面。<br>
 readline()函数返回的内容中本来就包括\n（一个空行），print()在打印时也会添加一个\n，这样就会出现两个空行。如果要减掉空行，可以在print()语句结尾加一个逗号，这样print就不会把它自己的\n打印出来了。</p>
-<p><strong>readline()</strong>
+<p><strong>readline()</strong><br>
 里面的代码会扫描文件的每一个字节，直到找到一个\n为止，然后停止读取文件，并且返回此前的文件内容。文件f会记录每次调用readline()后的读取位置，所以下次调用时可以直接读取接下来的一行。</p>
 <p>📖<strong>重新写一遍复习：</strong></p>
 <pre><code>#尝试写一个自己的类似脚本
